@@ -29,10 +29,10 @@ force-https: True
 #############
 
 lang: "en"
-author: "John Smith"
-title: "{ John Smith }"
-description: "Blog and website of John Smith, blogging mainly for tech. Opinions expressed are mine."
-keywords: "smith, jones, personal, jekyll, theme"
+author: "z3nth10n"
+title: "{ z3nth10n }"
+description: "Blog and website of z3nth10n, blogging mainly for tech."
+keywords: "z3nth10n, dev"
 favicon: "/img/favicon.ico"
 
 ################
@@ -47,7 +47,7 @@ background-img: "../img/intro-bg.jpg"
 # Dynamic Text on the Header #
 ##############################
 
-dynamic-typing: True
+dynamic-typing: false
 shuffle: True # Shuffle the lines.
 loop: True
 loop-count: False # Set False for infinite loop, or set any number for finite loop.
