@@ -3,20 +3,38 @@
 
 <header class="intro">
   <div class="intro-body">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
           <div class="col-md-10 col-md-offset-1">
-            <h1 class="brand-heading">&nbsp;</h1>
-            <h1 class="brand-heading">&nbsp;</h1>
-            <span class="intro-text">{{ content }}</span>
-            <h5>&nbsp;</h5>
-            <a href="#{{ site.pages_list['About'] }}" class="page-scroll">
-              {% if site.me-img contains "https://" %}
-                <img class="img-me" src="{{ site.me-img }}" alt="">
-              {% else %}
-                <img class="img-me" src="{{site.baseurl}}{{ site.me-img }}" alt="">
-              {% endif %}
-            </a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 intro-text-container">
+                        <h5>&nbsp;</h5>
+                        <h5>&nbsp;</h5>
+                        <span class="intro-text">{{ content }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <a href="#{{ site.pages_list['About'] }}" class="page-scroll">
+                          {% if site.me-img contains "https://" %}
+                            <img class="img-me" src="{{ site.me-img }}" alt="">
+                          {% else %}
+                            <img class="img-me" src="{{site.baseurl}}{{ site.me-img }}" alt="">
+                          {% endif %}
+                        </a>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <h2>Who am I?</h2>
+                        </p>
+                        <p>
+                            I'm spanish dev who has been developing since 2011. I'm from Spain. I like (and also, I'm a bit get used) to develop lonely, but I'm open to new oportunities and I invite you to collaborate with me if you are interested on my projects. See them, scroll down.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
           </div>
         </div>
     </div>

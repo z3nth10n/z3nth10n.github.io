@@ -157,19 +157,16 @@ a {
 
 .intro {
     display: table;
+    min-height: 350px;
     width: 100%;
-    height: auto;
+    /* height: auto; */
     padding: 100px 0;
-    text-align: center;
+    /* text-align: center; */
     color: $intro-text-color;
     {% if site.background-img %}
-    background: url({{ site.background-img }}) no-repeat bottom center scroll;
+    background: url({{ site.background-img }});
     {% endif %}
     background-color: $header-background-color;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
     .intro-body {
         display: table-cell;
         vertical-align: middle;
@@ -184,7 +181,7 @@ a {
         }
     }
     @media(min-width:768px) {
-        height: 100%;
+        /* height: 100%; */
         padding: 0;
         .intro-body {
             .brand-heading {
@@ -231,13 +228,12 @@ a {
     }
 }
 
-.content-section {
-    margin-top: 100px;
+#page {
     padding-top: 100px;
-    @media(min-width:767px) {
-        margin-top: 125px;
-        padding-top: 125px;
-    }
+    padding-bottom: 100px;
+}
+
+.content-section {
     /* Added in { Personal } for responsive images in posts and section contents */
     img {
         display: block;
@@ -444,4 +440,19 @@ body {
 
 .fourofour {
   border: 1px solid $primary-color !important;
+}
+
+
+/* CUSTOM STYLES */
+
+.navbar-brand img {
+    filter: invert(26%) sepia(85%) saturate(874%) hue-rotate(327deg) brightness(109%) contrast(77%);
+}
+
+.navbar-brand div {
+    color: #b84d45;
+}
+
+.intro-text-container {
+    text-align: center;
 }
