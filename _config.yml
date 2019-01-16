@@ -29,10 +29,10 @@ force-https: True
 #############
 
 lang: "en"
-author: "z3nth10n"
-title: "{ z3nth10n }"
-description: "Blog and website of z3nth10n, blogging mainly for tech."
-keywords: "z3nth10n, dev"
+author: "John Smith"
+title: "{ John Smith }"
+description: "Blog and website of John Smith, blogging mainly for tech. Opinions expressed are mine."
+keywords: "smith, jones, personal, jekyll, theme"
 favicon: "/img/favicon.ico"
 
 ################
