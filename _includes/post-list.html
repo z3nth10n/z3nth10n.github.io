@@ -16,7 +16,7 @@
         </h4>
 
         <section class="text-left">
-          {{ post.content | markdownify }} <!--- | strip_html | truncatewords: site.post-preview-words -->
+          {{ post.content | markdownify | | truncatehtml: site.post-preview-words }} <!--- | strip_html | truncatewords: site.post-preview-words -->
         </section>
 
       </div>
