@@ -1,26 +1,6 @@
-
-<!-- Post List Start -->
-
-<!--- h4 align="left">
-  <strong>{{ post.date | date_to_string }}</strong>
-  <small>.
-    <a class="category" href="{{site.baseurl}}/categories/{{ post.category | downcase }}.html">
-      {{ post.category }}
-    </a>
-  .</small>
-  <br class="visible-xs-block">
-  <a href="{{site.baseurl}}{{post.url}}">
-    <strong>{{ post.title }}</strong>
-  </a>
-  <br class="visible-xs-block">
-  <small><a href="{{site.baseurl}}{{post.url}}#disqus_thread">Comments</a></small>
-</h4>
-
--->
-
 <!-- Post List End -->
 
-<section id="{{ page.section-type }}" class="text-center">
+<section id="{{ page.section-type }}">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
 
@@ -35,8 +15,8 @@
           <small> <a href="{{site.baseurl}}{{post.url}}#disqus_thread">Comments</a></small>
         </h4>
 
-        <section class="text-justify">
-          {{ post.content | markdownify | strip_html | truncatewords: site.post-preview-words }}
+        <section class="text-left">
+          {{ post.content | markdownify }} <!--- | strip_html | truncatewords: site.post-preview-words -->
         </section>
 
       </div>
