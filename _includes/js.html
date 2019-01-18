@@ -311,6 +311,9 @@ function addTohistory() {
     }
  
     $(document).ready(function() {
+        if($(window).width() >= 1024)
+            return;
+        
         changeSize($(".v-center").parent().parent(), function(e) {
             var totalHeight = e.height(), 
                 vCenter = $(".v-center");
