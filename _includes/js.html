@@ -20,6 +20,16 @@ $(document).ready(toggleNavCollapse);
 $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click",function(b){var a=$(this);$("html, body").stop().animate({scrollTop:$(a.attr("href")).offset().top-50},1500,"easeInOutExpo",function(){a.blur()});b.preventDefault()})});$(".navbar-collapse ul li a").click(function(){$(".navbar-toggle:visible").click()});
 </script>
 
+<!--- Plugins Start -->
+
+<!--- Arrive Start -->
+
+<script src="js/plugins/arrive.min.js"></script>
+
+<!--- Arrive End -->
+
+<!--- Plugins End -->
+
 {% if page.section-type == "index" %}
 
   <!-- Collapse navbar when navbar-brand is clicked -->
@@ -272,5 +282,45 @@ function addTohistory() {
 <!-- Gesture Navigation / Swipe Instruction End -->
 
 {% endif %}
+
+<!--- Custom Javascript Start -->
+
+<script>
+    var height,
+        width;
+    
+    function changeSize(el, action) {
+        updateheight(el);
+        
+        $(document).bind('DOMSubtreeModified', function() {
+            if(el.height() != height || el.width() != width) {
+                if(action != null) {
+                    updateheight(el);
+                    action(el);
+                }
+            }
+        });
+    }
+    
+    function updateheight(el, force = false) {
+        if(width == null || force)
+            width = el.width(); 
+        
+        if(height == null || force)
+            height = el.height(); 
+    }
+ 
+    $(document).ready(function() {
+        changeSize($(".v-center").parent().parent(), function(e) {
+            var totalHeight = e.height(), 
+                vCenter = $(".v-center");
+
+            vCenter.css("height", totalHeight + "px");
+            vCenter.css("top", (totalHeight / 2) + "px"); 
+        });
+    });
+</script>
+
+<!--- Custom Javascript End -->
 
 <!-- Javascript End -->

@@ -228,9 +228,12 @@ a {
     }
 }
 
-#page {
-    padding-top: 100px;
-    padding-bottom: 100px;
+#page, #last-social-media {
+    padding-top: 50px; 
+}
+
+#contact {
+    padding-bottom: 50px;
 }
 
 .content-section {
@@ -460,4 +463,9 @@ body {
 #latest-post {
     padding-top: 50px;
     padding-bottom: 50px;
+}
+
+.v-center {
+    position: relative;
+    margin-top: -25%;
 }

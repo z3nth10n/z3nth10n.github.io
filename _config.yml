@@ -107,7 +107,7 @@ icon-192p: "/img/web-app/icon-192p.png"
 
 enable-gesture-navigation: True
 
-post-preview-words: 500
+post-preview-words: 250
 
 paginate: 5
 
@@ -197,6 +197,7 @@ keybase-in-footer: True
 
 pages_list:
   # About: 'about'
+  LastSocialMedia: 'last-social-media'
   Blog: 'latest-post'
   Timeline: 'timeline'
   Contact: 'contact'
@@ -219,3 +220,4 @@ plugins:
   - jemoji
   - iconv
   - nokogiri
+  - jekyll-twitter-plugin
