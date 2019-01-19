@@ -9,6 +9,7 @@ jobs:
     environment:
       BUNDLER_VERSION: 2.0.1
       BUNDLE_PATH: ~/repo/vendor/bundle
+      GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
     steps:
       - checkout
       - restore_cache:
@@ -17,7 +18,7 @@ jobs:
             - rubygems-v1-fallback
       - run:
           name: Bundle Pre Install
-          command: gem install bundler:2.0.1
+          command: gem install bundler:$BUNDLER_VERSION
       - run:
           name: Bundle Install
           command: bundle check || bundle install
@@ -33,7 +34,7 @@ jobs:
           command: bundle exec jekyll build
       - run:
           name: Run Build HTML
-          command: bash ~/repo/script/build_html
+          command: bash ~/repo/script/build_html $CIRCLE_SHA1 $GIT_COMMIT_DESC
 workflows:
   version: 2
   test-deploy:
