@@ -33,7 +33,7 @@ jobs:
           command: bundle exec jekyll build
       - run:
           name: Run Build HTML
-          command: ./script/build_html
+          command: bash ~/repo/script/build_html
       - persist_to_workspace:
           root: ./
           paths:
