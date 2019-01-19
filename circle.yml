@@ -23,7 +23,7 @@ jobs:
           command: bundle check || bundle install
       - run:
           name: Rake tests
-          command: bundle exec rake -f ./Rakefile
+          command: bundle exec rake
       - save_cache:
           key: rubygems-v1-{{ checksum "Gemfile.lock" }}
           paths:
