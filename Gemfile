@@ -20,6 +20,11 @@ gem "minima", "~> 2.0"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"
+  gem "nokogiri", ">= 1.10.1"
+  gem "iconv", ">= 1.0.7"
+  gem "jekyll-paginate", ">= 1.1.0"
+  gem "jemoji", ">= 0.10.1"
+  gem "jekyll-twitter-plugin", ">= 2.0.0"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
