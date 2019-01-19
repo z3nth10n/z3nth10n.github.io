@@ -1,5 +1,7 @@
 #!/bin/bash -ex
 
+GIT_COMMIT_DESC=$2
+
 # Setup git so we can use it
 git config --global user.email "z3nth10n@gmail.com"
 git config --global user.name "z3nth10n"
@@ -18,6 +20,5 @@ mv _site /tmp/
 rm -rf * .bundle .sass-cache
 mv /tmp/_site/* .
 git add -A .
-git commit -m "CircleCI build_html: copy _site files that was generated 
-from gh-pages-ci branch"
+git commit -m "$GIT_COMMIT_DESC"
 git push origin master
