@@ -1,0 +1,14 @@
+general:
+  branches:
+    only:
+      - gh-pages-ci
+    ignore:
+      - master
+test:
+  override:
+    - bundle exec rake
+deployment:
+  build_html:
+    branch: ["gh-pages-ci"]
+    commands:
+      - ./script/build_html
