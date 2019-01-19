@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: ~/repo
+  working_directory: ./
 version: 2
 jobs:
   build:
@@ -8,7 +8,7 @@ jobs:
       - image: circleci/ruby:2.6.0-node
     environment:
       BUNDLER_VERSION: 2.0.1
-      BUNDLE_PATH: ~/repo/vendor/bundle
+      # BUNDLE_PATH: ~/repo/vendor/bundle
     steps:
       - checkout
       - restore_cache:
