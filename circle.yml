@@ -22,8 +22,11 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install
       - run:
-          name: Output info
-          command: pwd || ls
+          name: Output info I
+          command: pwd
+      - run:
+          name: Output info II
+          command: ls
       - run:
           name: Rake tests
           command: bundle exec rake
