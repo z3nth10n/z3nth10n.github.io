@@ -79,7 +79,8 @@ task :preview => :clean do
   compass('watch &')
   jekyll('serve --watch')
 end
-task :serve => :preview
+
+# task :serve => :preview
 
 
 desc 'Build for deployment (but do not deploy)'

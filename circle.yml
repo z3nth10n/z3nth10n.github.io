@@ -31,20 +31,13 @@ jobs:
       - run:
           name: Jekyll build
           command: bundle exec jekyll build
+      - run:
+          name: Run Build HTML
+          command: ./script/build_html
       - persist_to_workspace:
           root: ./
           paths:
             - _site
-  deploy:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.6.0-node
-    environment:
-        BUNDLER_VERSION: 2.0.1
-    steps:
-      - run:
-          name: Run Build HTML
-          command: ./script/build_html
 workflows:
   version: 2
   test-deploy:
