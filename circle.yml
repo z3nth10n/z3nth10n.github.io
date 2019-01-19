@@ -5,7 +5,7 @@ jobs:
   build:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.5
+      - image: circleci/ruby:2.6.0-node
     environment:
       BUNDLE_PATH: ~/repo/vendor/bundle
     steps:
@@ -35,7 +35,7 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/ruby:2.6.0-node
-      environment:
+    environment:
         BUNDLER_VERSION: 2.0.1
     steps:
       - run:
