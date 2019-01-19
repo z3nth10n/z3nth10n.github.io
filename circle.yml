@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 
 general:
   branches:
@@ -9,7 +9,7 @@ general:
 test:
   override:
     - bundle exec rake
-deployment:
+workflows:
   build_html:
     branch: ["gh-pages-ci"]
     jobs:
