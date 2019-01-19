@@ -28,6 +28,7 @@ group :jekyll_plugins do
   gem "jemoji", ">= 0.10.1"
   gem "tzinfo", "~> 1.1"
   gem "activesupport", ">= 5.2.2"
+  gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
