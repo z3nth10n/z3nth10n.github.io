@@ -34,7 +34,9 @@ jobs:
   deploy:
     <<: *defaults
     docker:
-      - image: circleci/python:3.6.3
+      - image: circleci/ruby:2.6.0-node
+      environment:
+        BUNDLER_VERSION: 2.0.1
     steps:
       - run:
           name: Run Build HTML
