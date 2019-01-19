@@ -6,7 +6,11 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/ruby:2.6.0-node
+    dependencies:
+      pre:
+        - gem install bundler
     environment:
+      BUNDLER_VERSION: 2.0.1
       BUNDLE_PATH: ~/repo/vendor/bundle
     steps:
       - checkout
