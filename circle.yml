@@ -34,7 +34,7 @@ jobs:
           command: bundle exec jekyll build
       - run:
           name: Run Build HTML
-          command: bash ~/repo/script/build_html $CIRCLE_SHA1 $GIT_COMMIT_DESC
+          command: bash ~/repo/script/build_html "$CIRCLE_SHA1" "$GIT_COMMIT_DESC"
 workflows:
   version: 2
   test-deploy:
