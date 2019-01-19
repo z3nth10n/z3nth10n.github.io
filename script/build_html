@@ -1,8 +1,8 @@
 #!/bin/bash -ex
 
 # Setup git so we can use it
-git config --global user.email "you@email.com"
-git config --global user.name "CircleCI build_html script"
+git config --global user.email "z3nth10n@gmail.com"
+git config --global user.name "z3nth10n"
 # remove changes from current gh-pages-ci branch
 git checkout -f
 git checkout master

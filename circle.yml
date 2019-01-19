@@ -34,10 +34,6 @@ jobs:
       - run:
           name: Run Build HTML
           command: bash ~/repo/script/build_html
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - _site
 workflows:
   version: 2
   test-deploy:
