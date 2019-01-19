@@ -16,6 +16,7 @@ body {
     font-family: "Lora","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: $font-color;
     background-color: $primary-color;
+    margin: 0!important;
 }
 
 html {
@@ -226,14 +227,6 @@ a {
         -moz-transform: scale(1);
         transform: scale(1);
     }
-}
-
-#page, #last-social-media {
-    padding-top: 50px; 
-}
-
-#contact {
-    padding-bottom: 50px;
 }
 
 .content-section {
@@ -468,4 +461,33 @@ body {
 .v-center {
     position: relative;
     margin-top: -25%;
+}
+
+header {
+    margin-bottom: 75px; 
+}
+
+#last-social-media {
+    padding-bottom: 50px;
+}
+
+footer {
+    padding-top: 50px;
+    padding-bottom: 150px;
+}
+
+@media (max-width: 576px) {
+    .jekyll-twitter-plugin {
+        margin-top: 15px;
+    }
+    #last-social-media {
+        padding-bottom: 75px;
+    }
+    .v-spacing {
+        display: none;
+    }
+    .intro-text {
+        display: inline-block;
+        margin-bottom: 25px;
+    }
 }

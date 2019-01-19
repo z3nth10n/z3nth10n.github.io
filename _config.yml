@@ -197,7 +197,7 @@ keybase-in-footer: True
 
 pages_list:
   # About: 'about'
-  LastSocialMedia: 'last-social-media'
+  'Last Social Media': 'last-social-media'
   Blog: 'latest-post'
   Timeline: 'timeline'
   Contact: 'contact'

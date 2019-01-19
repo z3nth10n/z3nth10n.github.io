@@ -22,11 +22,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
 
 <!--- Plugins Start -->
 
-<!--- Arrive Start -->
-
-<script src="js/plugins/arrive.min.js"></script>
-
-<!--- Arrive End -->
+<!--- WIP -->
 
 <!--- Plugins End -->
 
@@ -311,7 +307,40 @@ function addTohistory() {
     }
  
     $(document).ready(function() {
-        if($(window).width() >= 1024)
+        var winWidth = $(window).width();
+        
+        setTimeout(function() {
+            var resArr = $(".res-content");
+
+            // console.log($(".res-content").length);
+
+            resArr.each(function(index) {
+                var res = $(resArr[index]).find("iframe");
+
+                var hasWAttr = res.attr("width") != null;
+                var resWidth = hasWAttr ? res.attr("width") : Number(res.css("width").replace(/[^-\d\.]/g, ''));
+                var resHeight = hasWAttr ? res.attr("height") : Number(res.css("height").replace(/[^-\d\.]/g, ''));
+
+                console.log((resWidth >= winWidth).toString() + " | Element width: " + resWidth + " | Windows width: " + winWidth);
+
+                var minWidth = winWidth;
+                if(resWidth >= minWidth) {
+                    var newWidth = minWidth - 30;
+                    var newHeight = (newWidth / resWidth) * resHeight;
+
+                    if(hasWAttr) {
+                        res.attr("width", newWidth);
+                        res.attr("height", newHeight);
+                    }
+                    else {
+                        res.css("width", newWidth);
+                        res.css("height", newHeight);
+                    }
+                }
+            });
+        }, 500);
+        
+        if(winWidth < 1024)
             return;
         
         changeSize($(".v-center").parent().parent(), function(e) {
