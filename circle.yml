@@ -1,0 +1,16 @@
+version: 2.1
+
+general:
+  branches:
+    only:
+      - gh-pages-ci
+    ignore:
+      - master
+test:
+  override:
+    - bundle exec rake
+deployment:
+  build_html:
+    branch: ["gh-pages-ci"]
+    jobs:
+      - ./script/build_html
