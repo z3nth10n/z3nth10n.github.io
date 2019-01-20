@@ -2,7 +2,7 @@
 
 <section id="{{ page.section-type }}">
     <div class="row">
-      <div class="col-md-10 col-md-offset-1">
+      <box class="col-md-12 vertical-offset">
 
         {% assign post = site.posts.first %}
         <h4> <strong> {{ post.date | date_to_string }} </strong>
@@ -16,9 +16,9 @@
         </h4>
 
         <section class="text-left">
-          {{ post.content | markdownify | | truncatehtml: site.post-preview-words }} <!--- | strip_html | truncatewords: site.post-preview-words -->
+          {{ post.content | markdownify | | truncatehtml: site.post-preview-words }}
         </section>
 
-      </div>
+      </box>
     </div>
 </section>
