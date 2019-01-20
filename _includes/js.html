@@ -343,20 +343,14 @@ function addTohistory() {
         if(winWidth < 1024)
             return;
         
-        // changeSize(, function(e) {
-            // pxheight
-        var el = $(".v-center").parent().parent();
         var vCenter = $(".v-center"),
             totalHeight = Number(vCenter.data("pxheight")),
             myHeight = vCenter.height();
-        
-        console.log(totalHeight);
 
-            // vCenter.css("height", totalHeight + "px");
         var val = ((totalHeight - myHeight) / 2);
+        
         vCenter.css("padding-top", val + "px");
         vCenter.css("padding-bottom", val + "px");
-        // });
     });
 </script>
 
