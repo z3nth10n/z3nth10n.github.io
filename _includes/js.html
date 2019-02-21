@@ -34,6 +34,15 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
   $(function(){$(".navbar-brand").click(function(){$(".collapse.in")&&$(".collapse.in").animate({height:"1px"},500,function(){$(".collapse.in").removeClass("in")})})});
   </script>
 
+  <script type="text/javascript">
+    $(document).ready(function() {
+      if($(window).width() < 576) {
+        $(".video iframe").attr("width", "");
+        $(".video iframe").attr("height", "");
+      }
+    });
+  </script>
+
 {% endif %}
 
 {% if site.syntax-highlight and page.section-type == "post" %}

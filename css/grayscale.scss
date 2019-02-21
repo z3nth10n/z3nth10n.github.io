@@ -519,8 +519,8 @@ box p {
 }
 
 @media (max-width: 576px) {
-    .jekyll-twitter-plugin {
-        margin-top: 15px;
+    .expand-width-mobile {
+        width: 100%;
     }
     #last-social-media {
         padding-bottom: 75px;
@@ -531,5 +531,11 @@ box p {
     .intro-text {
         display: inline-block;
         margin-bottom: 25px;
+    }
+    .top-margin-mobile {
+        margin-top: 15px;
+    }
+    .video {
+        margin: 15px 0;
     }
 }
