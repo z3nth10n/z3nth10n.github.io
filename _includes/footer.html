@@ -2,7 +2,9 @@
 
 <footer>
 
-    {% include social-buttons.html %}
+	{% if no-social-buttons == blank %}
+    	{% include social-buttons.html %}
+    {% endif %}
 
     <p><br><br></p>
 
