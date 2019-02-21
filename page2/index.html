@@ -217,11 +217,11 @@ If you want to have a static message in your intro layout, disable the dynamic-t
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-6 text-center">
-                <box class="v-center horizontal-offset" data-pxheight="534">
+                <box class="v-center horizontal-offset expand-width-mobile" data-pxheight="534">
                     <div class="video res-content"><figure><iframe width="640" height="480" src="//www.youtube.com/embed/-Aycbij4j5?list=UU9_182JSvrypccfo-OFllUg" frameborder="0" allowfullscreen></iframe></figure></div>
                 </box>
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-6 top-margin-mobile">
                 <box class="text-center expand-width">
                     <div class='jekyll-twitter-plugin res-content'><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
@@ -802,6 +802,15 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
 
   <script>
   $(function(){$(".navbar-brand").click(function(){$(".collapse.in")&&$(".collapse.in").animate({height:"1px"},500,function(){$(".collapse.in").removeClass("in")})})});
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      if($(window).width() < 576) {
+        $(".video iframe").attr("width", "");
+        $(".video iframe").attr("height", "");
+      }
+    });
   </script>
 
 
