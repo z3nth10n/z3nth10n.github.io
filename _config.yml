@@ -253,7 +253,7 @@ email: "z3nth10n@gmail.com"
 # This works best when your author blurb image has a transparent background, or matches your site background color.
 
 # if the author_blurb is not set, then this feature is skipped
-author_blurb: "z3nth10n is a Spanish developer who has been developing since 2011. He likes coding in Unity3D and C#. Also, he knows about front-end (HTML, CSS and JQuery) developing, back-end developing (PHP, SQL and C#) and system administration (Bash and Powershell). He is forming a new team called United Teamwork Association, [see they work at Github](https://github.com/uta-org). If you are interested in join this team, please, send him a message on the buttons below."
+author_blurb: "**z3nth10n** is a Spanish developer who has been developing since 2011. He likes coding in Unity3D and C#. Also, he knows about front-end (HTML, CSS and JQuery) developing, back-end developing (PHP, SQL and C#) and system administration (Bash and Powershell). He is forming a new team called United Teamwork Association, [see they work at Github](https://github.com/uta-org). If you are interested in join this team, please, send him a message on the buttons below."
 author_blurb_image: "/img/author.png"
 
 ##################
