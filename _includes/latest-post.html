@@ -30,9 +30,11 @@
             <hr>
             <p>
                 {% for category in site.categories %}
+                    {% if forloop.index <= 5 %}
                     <a class="category-label" href="{{site.baseurl}}/categories/{{ category | first | downcase }}">
                         {{ category | first }}
                     </a>
+                    {% endif %}
                 {% endfor %}
             </p>
         </box>
