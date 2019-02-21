@@ -214,15 +214,15 @@ If you want to have a static message in your intro layout, disable the dynamic-t
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-6 text-center">
-                <box class="v-center horizontal-offset expand-width-mobile" data-pxheight="534">
-                    <div class="video res-content"><figure><iframe width="640" height="480" src="//www.youtube.com/embed/-Aycbij4j5?list=UU9_182JSvrypccfo-OFllUg" frameborder="0" allowfullscreen></iframe></figure></div>
+        <div class="row sm-vertical-center">
+            <div class="col-sm-12 col-md-6 text-center sm-expand-height">
+                <box class="sm-both-offset xs-vertical-offset expand-width-mobile">
+                    <div><figure><iframe width="640" height="480" src="//www.youtube.com/embed/-Aycbij4j5?list=UU9_182JSvrypccfo-OFllUg" frameborder="0" allowfullscreen></iframe></figure></div>
                 </box>
             </div>
             <div class="col-sm-12 col-md-6 top-margin-mobile">
                 <box class="text-center expand-width">
-                    <div class='jekyll-twitter-plugin res-content'><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+                    <div class='jekyll-twitter-plugin'><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
 <a class="twitter-timeline" data-width="500" data-tweet-limit="5" href="https://twitter.com/z3nth10n?ref_src=twsrc%5Etfw" data-theme="dark" data-link-color="#b84d45">Tweets by z3nth10n</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -477,7 +477,7 @@ icon-48p: "/img/web-app/icon...</code></pre>
        
 
     </div>
-    <div class="col-md-3 order-xs-first">
+    <div class="col-md-3 order-xs-first col-xs-expand">
         <h2 class="xs-invisible">&nbsp;</h2>
         <box class="horizontal-offset vertical-offset vertical-margin expand-width">
             <a href="#" class="page-scroll avatar-medium">
@@ -707,7 +707,7 @@ function loadScript(url) {
 <section id="contact" class="container content-section text-center">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <h4 class="xs-visible">&nbsp;</h2>
+      <p class="xs-visible h5-padding">&nbsp;</p>
 
       <h2 id="contact">Contact</h2>
 
@@ -947,83 +947,6 @@ function addTohistory() {
 <!-- Gesture Navigation / Swipe Instruction End -->
 
 
-
-<!--- Custom Javascript Start -->
-
-<script>
-    var height,
-        width;
-    
-    function changeSize(el, action) {
-        updateHeight(el);
-        
-        /*$(document).bind('DOMSubtreeModified', function() {
-            if(el.height() != height || el.width() != width) {
-                if(action != null) {
-                    updateHeight(el);
-                    action(el);
-                }
-            }
-        });*/
-    }
-    
-    function updateHeight(el, force = false) {
-        if(width == null || force)
-            width = el.width(); 
-        
-        if(height == null || force)
-            height = el.height(); 
-    }
- 
-    $(document).ready(function() {
-        var winWidth = $(window).width();
-        
-        setTimeout(function() {
-            var resArr = $(".res-content");
-
-            // console.log($(".res-content").length);
-
-            resArr.each(function(index) {
-                var res = $(resArr[index]).find("iframe");
-
-                var hasWAttr = res.attr("width") != null;
-                var resWidth = hasWAttr ? res.attr("width") : Number(res.css("width").replace(/[^-\d\.]/g, ''));
-                var resHeight = hasWAttr ? res.attr("height") : Number(res.css("height").replace(/[^-\d\.]/g, ''));
-
-                // console.log((resWidth >= winWidth).toString() + " | Element width: " + resWidth + " | Windows width: " + winWidth);
-
-                var minWidth = winWidth;
-                if(resWidth >= minWidth) {
-                    var newWidth = minWidth - 30;
-                    var newHeight = (newWidth / resWidth) * resHeight;
-
-                    if(hasWAttr) {
-                        res.attr("width", newWidth);
-                        res.attr("height", newHeight);
-                    }
-                    else {
-                        res.css("width", newWidth);
-                        res.css("height", newHeight);
-                    }
-                }
-            });
-        }, 500);
-        
-        if(winWidth < 1024)
-            return;
-        
-        var vCenter = $(".v-center"),
-            totalHeight = Number(vCenter.data("pxheight")),
-            myHeight = vCenter.height();
-
-        var val = ((totalHeight - myHeight) / 2);
-        
-        vCenter.css("padding-top", val + "px");
-        vCenter.css("padding-bottom", val + "px");
-    });
-</script>
-
-<!--- Custom Javascript End -->
 
 <!-- Javascript End -->
 
