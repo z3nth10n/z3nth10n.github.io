@@ -28,6 +28,11 @@
               <div class="timeline-body">
                 {{ event.description | markdownify }}
               </div>
+              {% if event.url != blank %}
+              <div class="timeline-refurl">
+                <a href="{{ event.url }}">See reference...</a>
+              </div>
+              {% endif %}
             </div>
           </li>
         {% endfor %}
