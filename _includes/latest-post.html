@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-3 order-xs-first col-xs-expand">
         <h2 class="xs-invisible">&nbsp;</h2>
-        <box class="horizontal-offset vertical-offset vertical-margin expand-width">
+        <box class="horizontal-offset vertical-offset vertical-margin expand-width presentation-sidebar">
             <a href="#{{ site.pages_list['About'] }}" class="page-scroll avatar-medium">
                 {% include avatar.html %}
             </a>
@@ -28,11 +28,23 @@
                 {% include social-buttons.html small-buttons="true" %}
             </p>
             <hr>
+            <h4>Categories</h4>
             <p>
                 {% for category in site.categories %}
                     {% if forloop.index <= 5 %}
-                    <a class="category-label" href="{{site.baseurl}}/categories/{{ category | first | downcase }}">
+                    <a class="label" href="{{site.baseurl}}/categories/{{ category | first | downcase }}">
                         {{ category | first }}
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </p>
+            <hr>
+            <h4>Tags</h4>
+            <p>
+                {% for tag in site.tags %}
+                    {% if forloop.index <= 5 %}
+                    <a class="label" href="{{site.baseurl}}/tags/{{ tag | first | downcase }}">
+                        {{ tag | first }}
                     </a>
                     {% endif %}
                 {% endfor %}
