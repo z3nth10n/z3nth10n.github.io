@@ -83,7 +83,7 @@ me-img: "/img/ricknmoty-avatar.png"
 ##############################
 # Color the browser elements #
 ##############################
-color-browser: "#000000"
+color-browser: "#2f1f1f"
 apple-status-bar-style: "black"
 
 ################

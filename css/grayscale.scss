@@ -543,7 +543,7 @@ box p {
         width: 100%;
     }
     #last-social-media {
-        padding-bottom: 75px;
+        padding-bottom: 0px;
     }
     .v-spacing {
         display: none;
@@ -579,3 +579,69 @@ box p {
         background-color: darken($social-buttons-color, 10%);
     }
 }
+
+
+.xs-visible {
+    display: none;
+}
+
+@media (max-width: 576px) {
+    .row-xs-flex {
+      display: flex;
+      flex-direction: column;
+    }
+    .order-xs-first {
+        order: 1;
+    }
+    .order-xs-last {
+        order: 2;
+    }
+    .xs-invisible {
+        display: none;
+    }
+    .xs-visible {
+        display: block;
+    }
+    .xs-margin-top {
+        margin-top: 25px;
+    }
+    h2#blog-posts {
+        margin: 0!important;
+    }
+    .pagination h4 {
+        margin: 0 0 15px!important;
+    }
+}
+
+@media (min-width: 992px) {
+    .row-sm {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+}
+
+/* From Bootsrap v4 */
+
+/*.order-first {
+  -ms-flex-order: -1;
+  order: -1;
+}
+
+@media (min-width: 768px) {
+    .order-md-last {
+        -ms-flex-order: 13;
+        order: 13;
+    }
+}
+
+.flex-column-reverse {
+  -ms-flex-direction: column-reverse !important;
+  flex-direction: column-reverse !important;
+}
+
+@media (min-width: 768px) {
+  .flex-md-row {
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
+  }
+}*/

@@ -1,9 +1,9 @@
 <!-- Latest Posts Preview Start -->
 
-<section id="page" class="container content-section text-center">
+<section id="page" class="container content-section text-center xs-margin-top">
 
-  <div class="row">
-    <div class="col-md-9"> <!--- col-xs-10 col-xs-offset-1 -->
+  <div class="row-sm row-xs-flex">
+    <div class="col-md-9 order-xs-last"> <!--- col-xs-10 col-xs-offset-1 -->
         
     {{ page.content | markdownify }}
 
@@ -16,8 +16,8 @@
     {% include pagination.html %}       
 
     </div>
-    <div class="col-md-3">
-        <h2>&nbsp;</h2>
+    <div class="col-md-3 order-xs-first">
+        <h2 class="xs-invisible">&nbsp;</h2>
         <box class="horizontal-offset vertical-offset vertical-margin expand-width">
             <a href="#{{ site.pages_list['About'] }}" class="page-scroll avatar-medium">
                 {% include avatar.html %}
