@@ -40,6 +40,10 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         $(".video iframe").attr("width", "");
         $(".video iframe").attr("height", "");
       }
+      else if($(window).width() > 992) {
+        // console.log($(".video").parent().parent().width());
+        $(".video iframe").attr("width", ($(".video").parent().parent().width() - 10) + "px");
+      }
     });
   </script>
 
