@@ -515,6 +515,10 @@ box p {
     padding-bottom: 15px;
 }
 
+.both-offset {
+    padding: 15px;
+}
+
 .horizontal-offset {
     padding-left: 15px;
     padding-right: 15px;
@@ -554,9 +558,6 @@ box p {
     }
     .top-margin-mobile {
         margin-top: 15px;
-    }
-    .video {
-        margin: 15px 0;
     }
 }
 
@@ -606,10 +607,23 @@ box p {
         margin-top: 25px;
     }
     h2#blog-posts {
-        margin: 0!important;
+        margin: 15px 0!important;
     }
     .pagination h4 {
         margin: 0 0 15px!important;
+    }
+    .xs-vertical-offset {
+        padding: 15px 0;
+    }
+    #latest-post:first-child {
+        padding-top: 12.5px !important;
+    }
+    .col-xs-expand {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    .intro {
+        margin-bottom: 35px !important;
     }
 }
 
@@ -618,30 +632,38 @@ box p {
         margin-right: -15px;
         margin-left: -15px;
     }
-}
-
-/* From Bootsrap v4 */
-
-/*.order-first {
-  -ms-flex-order: -1;
-  order: -1;
-}
-
-@media (min-width: 768px) {
-    .order-md-last {
-        -ms-flex-order: 13;
-        order: 13;
+    .sm-vertical-center {
+        display: flex;
+        align-items: center;
+    }
+    .sm-expand-height {
+        height: 100%;
+    }
+    .sm-both-offset {
+        padding: 15px;
     }
 }
 
-.flex-column-reverse {
-  -ms-flex-direction: column-reverse !important;
-  flex-direction: column-reverse !important;
+.h1-padding {
+    margin: 0 0 70px;   
 }
 
-@media (min-width: 768px) {
-  .flex-md-row {
-    -ms-flex-direction: row !important;
-    flex-direction: row !important;
-  }
-}*/
+.h2-padding {
+    margin: 0 0 55px;
+}
+
+.h3-padding {
+    margin: 0 0 40px;
+}
+
+.h4-padding {
+    margin: 0 0 25px;
+}
+
+.h5-padding {
+    margin: 0 0 12.5px;
+}
+
+.h6-padding {
+    margin: 0 0 5px;    
+}
