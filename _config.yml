@@ -58,7 +58,7 @@ lines: # You can add HTML Tags in the Text
   - text: "The lower you fall, the higher you'll fly."
   - text: "Where’s your will to be weird?"
 
-me-img: "/img/ricknmoty-avatar.png"
+me-img: "/img/author.png"
 
 # To use facebook profile pic comment the previous line and uncomment the following
 # line, and replace 'user_id' with your facebook user id.
@@ -253,7 +253,7 @@ email: "z3nth10n@gmail.com"
 # This works best when your author blurb image has a transparent background, or matches your site background color.
 
 # if the author_blurb is not set, then this feature is skipped
-author_blurb: "John Smith is an awesome person. He lives in Flatland, where he works on two-dimensional engineering projects. In his spare time, John likes to eat cotton candy."
+author_blurb: "z3nth10n is a Spanish developer who has been developing since 2011. He likes coding in Unity3D and C#. Also, he knows about front-end (HTML, CSS and JQuery) developing, back-end developing (PHP, SQL and C#) and system administration (Bash and Powershell). He is forming a new team called United Teamwork Association, [see they work at Github](https://github.com/uta-org). If you are interested in join this team, please, send him a message on the buttons below."
 author_blurb_image: "/img/author.png"
 
 ##################
@@ -269,6 +269,10 @@ social:
     url: "https://github.com/z3nth10n"
   - title: "instagram"
     url: "https://instagram.com/z3nth10n"
+  - title: "discord"
+    url: "https://instagram.com/z3nth10n"
+  - title: "telegram"
+    url: "https://t.me/z3nth10n"
   - title: "rss"
     url: "/feed.xml"
 
