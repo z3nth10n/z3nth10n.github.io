@@ -589,11 +589,14 @@ box p {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #333;
+    border-top: 1px solid #666;
     margin: 1em 0;
     padding: 0; 
 }
 
+.presentation-sidebar .buttons {
+    margin: 5px 0;
+}
 
 .xs-visible {
     display: none;
