@@ -3,7 +3,7 @@
 <ul class="list-inline social-buttons {% if include.small-buttons != blank %}small-social-icons{% endif %}">
     {% for network in site.social %}
     <li>
-        <a href="{{ network.url }}" target="_blank"><i class="{%if network.custom-class != blank %} {{ network.custom-class }} {% else %} fab {% endif %} fa-{{ network.title }} fa-fw"></i></a>
+        <a href="{{ network.url }}" target="_blank"><i class="{% if network.custom-class != blank %} {{ network.custom-class }} {% else %} fab {% endif %} fa-{{ network.title }} fa-fw"></i></a>
     </li>
     {% endfor %}
     {% if site.keybase-in-social %}
