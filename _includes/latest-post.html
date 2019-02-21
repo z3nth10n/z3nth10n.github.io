@@ -23,7 +23,7 @@
                 {% include avatar.html %}
             </a>
             <p>Álvaro Rodríguez García</p>
-            <n class="gray"><b>Hobbyist Developer</b></p>
+            <p class="gray"><b>Hobbyist Developer</b></p>
             <p class="buttons">
                 {% include social-buttons.html small-buttons="true" %}
             </p>
@@ -32,9 +32,9 @@
             <p>
                 {% for category in site.categories %}
                     {% if forloop.index <= 5 %}
-                    <a class="label" href="{{site.baseurl}}/categories/{{ category | first | downcase }}">
-                        {{ category | first }}
-                    </a>
+                        <a class="label" href="{{site.baseurl}}/categories/{{ category | first | downcase }}">
+                            {{ category | first }}
+                        </a>
                     {% endif %}
                 {% endfor %}
             </p>
@@ -43,9 +43,9 @@
             <p>
                 {% for tag in site.tags %}
                     {% if forloop.index <= 5 %}
-                    <a class="label" href="{{site.baseurl}}/tags/{{ tag | first | downcase }}">
-                        {{ tag | first }}
-                    </a>
+                        <a class="label" href="{{site.baseurl}}/tags/{{ tag | first | downcase }}">
+                            {{ tag | first }}
+                        </a>
                     {% endif %}
                 {% endfor %}
             </p>
