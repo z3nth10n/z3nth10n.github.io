@@ -49,7 +49,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
 
 {% endif %}
 
-{% if site.syntax-highlight and page.section-type == "post" %}
+{% if site.syntax-highlight and (page.section-type == "post" or page.section-type == "category") %}
 
 {% include js-forcehighlight.html %}
 

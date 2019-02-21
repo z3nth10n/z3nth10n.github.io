@@ -317,6 +317,25 @@ ul.social-buttons li a {
     }
 }
 
+ul.small-social-icons {
+    margin-bottom: 5px !important;
+    
+    li {
+        padding: 0px !important;
+
+        a {
+            width: 24px !important;
+            height: 24px !important;
+            font-size: 12px !important;
+            line-height: 24px !important;
+        }
+    }
+}
+
+ul.small-social-icons ~ hr {
+    margin: 10px 0;
+}
+
 footer {
     padding: 50px 0;
     text-align: center;
@@ -453,7 +472,8 @@ body {
     text-align: center;
 }
 
-#latest-post {
+#latest-post,
+#category {
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -537,5 +557,25 @@ box p {
     }
     .video {
         margin: 15px 0;
+    }
+}
+
+.category-label {
+    display: inline-block;
+    background-color: #222;
+    margin: 5px;
+    padding: 5px 10px;
+    color: $secondary-color;
+    border-radius: 5px;
+    text-align: center;
+
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+    
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: darken($social-buttons-color, 10%);
     }
 }

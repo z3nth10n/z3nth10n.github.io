@@ -23,10 +23,18 @@
                 {% include avatar.html %}
             </a>
             <p>Álvaro Rodríguez García</p>
-            <p class="gray">Hobbyist Developer</p>
-            <p></p>
+            <n class="gray"><b>Hobbyist Developer</b></p>
+            <p>
+                {% include social-buttons.html small-buttons="true" %}
+            </p>
             <hr>
-            <p>&lt; Tags &gt;</p>
+            <p>
+                {% for category in site.categories %}
+                    <a class="category-label" href="{{site.baseurl}}/categories/{{ category | first | downcase }}">
+                        {{ category | first }}
+                    </a>
+                {% endfor %}
+            </p>
         </box>
     </div>
   </div>
