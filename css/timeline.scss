@@ -73,8 +73,6 @@
 .img-me {
     z-index: 100;
     left: 0;
-    width: 100px;
-    height: 100px;
     margin-left: 0;
     border: 7px solid #f1f1f1;
     border-radius: 100%;
@@ -82,6 +80,34 @@
     color: #fff;
     background-color: #f1f1f1;
 }
+
+ .avatar-small {
+     .img-me {
+         width: 20px;
+         height: 20px;
+     }
+ }
+    
+ .avatar-medium {
+     .img-me {
+         width: 32px;
+         height: 32px;
+     }
+ }
+    
+ .avatar-big {
+     .img-me {
+    width: 100px;
+    height: 100px;
+     }
+ }
+    
+ .avatar-extrabig {
+     .img-me {
+         width: 175px;
+         height: 175px;
+     }
+ }
 
 .timeline>li .timeline-image h4 {
     margin-top: 12px;
@@ -157,9 +183,32 @@
         margin-left: -50px;
     }
 
-    .img-me {
-        width: 150px;
-        height: 150px;
+    .avatar-small {
+        .img-me {
+            width: 32px;
+            height: 32px;
+        }
+    }
+    
+    .avatar-medium {
+        .img-me {
+            width: 60px;
+            height: 60px;
+        }
+    }
+    
+    .avatar-big {
+        .img-me {
+            width: 150px;
+            height: 150px;
+        }
+    }
+    
+    .avatar-extrabig {
+        .img-me {
+            width: 256px;
+            height: 256px;
+        }
     }
 
     .timeline>li .timeline-image h4 {
@@ -195,10 +244,33 @@
         height: 150px;
         margin-left: -75px;
     }
-
-    .img-me {
-        width: 200px;
-        height: 200px;
+    
+    .avatar-small {
+        .img-me {
+            width: 48px;
+            height: 48px;
+        }
+    }
+    
+    .avatar-medium {
+        .img-me {
+            width: 96px;
+            height: 96px;
+        }
+    }
+    
+    .avatar-big {
+        .img-me {
+            width: 200px;
+            height: 200px;
+        }
+    }
+    
+    .avatar-extrabig {
+        .img-me {
+            width: 512px;
+            height: 512px;
+        }
     }
 
     .timeline>li .timeline-image h4 {
@@ -232,7 +304,7 @@
         height: 170px;
         margin-left: -85px;
     }
-
+    
     .timeline>li .img-me {
         width: 200px;
         height: 200px;

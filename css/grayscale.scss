@@ -68,14 +68,14 @@ div {
 }
 
 a {
-    color: $secondary-color;
+    color: $light-primary-color;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     &:hover,
     &:focus {
         text-decoration: none;
-        color: darken($secondary-color,20%);
+        color: darken($light-primary-color, 20%);
     }
 }
 
@@ -454,13 +454,8 @@ body {
 }
 
 #latest-post {
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-.v-center {
-    position: relative;
-    margin-top: -25%;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 header {
@@ -474,6 +469,53 @@ header {
 footer {
     padding-top: 50px;
     padding-bottom: 150px;
+}
+
+box {
+    background-color: #292F33;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+box a {
+    color: $secondary-color!important;
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        color: darken($secondary-color,20%)!important;
+    }
+}
+
+box p {
+    margin: 0!important;
+}
+
+.vertical-offset {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.horizontal-offset {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.vertical-margin {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.horizontal-margin {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.expand-width {
+    width: 100%;
+}
+
+.expand-height {
+    height: 100%;
 }
 
 @media (max-width: 576px) {

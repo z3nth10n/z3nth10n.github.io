@@ -1,0 +1,24 @@
+#!/bin/bash -ex
+
+GIT_COMMIT_DESC="$1"
+
+# Setup git so we can use it
+git config --global user.email "z3nth10n@gmail.com"
+git config --global user.name "z3nth10n"
+# remove changes from current gh-pages-ci branch
+git checkout -f
+git checkout master
+
+# Make sure that local master matches with remote master
+# CircleCI merges made changes to master so need to reset it
+git fetch origin master
+git reset --hard origin/master
+
+# Gets _site/* files and pushes them to master branch
+# Note: CircleCI creates vendor and .bundle files
+mv _site /tmp/
+rm -rf * .bundle .sass-cache
+mv /tmp/_site/* .
+git add -A .
+git commit -m "$GIT_COMMIT_DESC"
+git push origin master
