@@ -1,36 +1,160 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% for page in site.pages %}
-    {% if page.sitemap != null and page.sitemap != empty %}
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
       <url>
-        <loc>{{ site.url }}{{ page.url }}</loc>
-        {% if page.sitemap %}
-          {% if page.sitemap.lastmod %}
-          <lastmod>{{ page.sitemap.lastmod | date_to_xmlschema }}</lastmod>
-          {% endif %}
-          {% if page.sitemap.changefreq %}
-          <changefreq>{{ page.sitemap.changefreq }}</changefreq>
-          {% endif %}
-          {% if page.sitemap.priority %}
-          <priority>{{ page.sitemap.priority }}</priority>
-          {% endif %}
-        {% endif %}
+        <loc>https://le4ker.github.io/blog/</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
        </url>
-    {% endif %}
-  {% endfor %}
-  {% for post in site.posts %}
+    
+  
+    
+      <url>
+        <loc>https://le4ker.github.io/</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <url>
+        <loc>https://le4ker.github.io/page2/</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+  
     <url>
-      <loc>{{ site.url }}{{ site.baseurl }}{{ post.url }}</loc>
-      {% if post.lastmod == null %}
-        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
-      {% else %}
-        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
-      {% endif %}
+      <loc>https://le4ker.github.io/jekyll/update/2019/01/15/welcome-to-jekyll.html</loc>
+      
+        <lastmod>2019-01-15T17:40:14+00:00</lastmod>
+      
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
     </url>
-  {% endfor %}
+  
+    <url>
+      <loc>https://le4ker.github.io/tech/2015/06/27/welcome.html</loc>
+      
+        <lastmod>2015-06-27T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
+      <loc>https://le4ker.github.io/tech/2015/06/25/initial-setup.html</loc>
+      
+        <lastmod>2015-06-25T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
+      <loc>https://le4ker.github.io/tech/2015/06/24/intro-layout-tutorial.html</loc>
+      
+        <lastmod>2015-06-24T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
+      <loc>https://le4ker.github.io/tech/2015/06/22/web-app-mode.html</loc>
+      
+        <lastmod>2015-06-22T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
+      <loc>https://le4ker.github.io/tech/2015/06/20/blog-tutorial.html</loc>
+      
+        <lastmod>2015-06-20T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
+      <loc>https://le4ker.github.io/tech/2015/06/19/writing-posts.html</loc>
+      
+        <lastmod>2015-06-19T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
+      <loc>https://le4ker.github.io/tech/2015/06/12/timeline-tutorial.html</loc>
+      
+        <lastmod>2015-06-12T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
+      <loc>https://le4ker.github.io/tech/2015/06/11/social-buttons-tutorial.html</loc>
+      
+        <lastmod>2015-06-11T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
+      <loc>https://le4ker.github.io/tech/2015/06/10/contact-tutorial.html</loc>
+      
+        <lastmod>2015-06-10T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
 </urlset>

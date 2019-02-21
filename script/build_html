@@ -19,6 +19,6 @@ git reset --hard origin/master
 mv _site /tmp/
 rm -rf * .bundle .sass-cache
 mv /tmp/_site/* .
-git add -A .
+git add --all
 git commit -m "$GIT_COMMIT_DESC"
 git push origin master
