@@ -38,7 +38,6 @@ exclude_from_localizations: ["js", "img", "css", "script", "scripts"]
 lang: "en"
 author: "z3nth10n"
 title: "{ z3nth10n }"
-description: "Blog and website of z3nth10n, blogging mainly for tech."
 keywords: "z3nth10n, dev"
 favicon: "/img/favicon.ico"
 
