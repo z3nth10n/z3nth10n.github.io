@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 	<channel>
 		<title>{ z3nth10n }</title>
-		<description>Blog and website of z3nth10n, blogging mainly for tech.</description>
+		<description></description>
 		<link>https://z3nth10n.github.io</link>
 		<atom:link href="https://z3nth10n.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
