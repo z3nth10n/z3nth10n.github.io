@@ -132,7 +132,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
   <script type="text/javascript">
 
   var myQuotes =  new Array();
-  {% for line in site.lines %}
+  {% for line in site.translations[site.lang]['lines'] %}
     myQuotes.push("{{ line.text }}");
   {% endfor %}
 
