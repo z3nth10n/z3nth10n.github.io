@@ -17,8 +17,8 @@
   <meta name="description" content="Blog and website of z3nth10n, blogging mainly for tech.">
   <meta name="author" content="z3nth10n">
   <meta name="keywords" content="z3nth10n, dev">
-  <link rel="canonical" href="/tech/2015/06/12/timeline-tutorial.html">
-  <title>{ z3nth10n } | Adding a life event in the Timeline</title>
+  <link rel="canonical" href="/tech/2015/06/25/initial-setup.md">
+  <title>{ z3nth10n } | Initial setup</title>
 
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -177,15 +177,15 @@
 <!-- Swipe Instructions End -->
 
 
-          <h1><strong>Adding a life event in the Timeline</strong></h1>
+          <h1><strong>Initial setup</strong></h1>
           <h4>
-            <strong>12 Jun 2015</strong>
+            <strong>25 Jun 2015</strong>
             <small>
               . category:
               <a class="category" href="/categories/tech.html">
                 tech
               </a>.
-              <a href="/tech/2015/06/12/timeline-tutorial.html#disqus_thread">Comments</a>
+              <a href="/tech/2015/06/25/initial-setup.md#disqus_thread">Comments</a>
               <br />
               
                 <a class="tag" href="/tags/tutorial.html">#tutorial</a>
@@ -194,31 +194,101 @@
           </h4>
 
           <section class="text-justify">
-            <p>One of the coolest features of { Personal } is that enables you to tell your life’s story in
-the form of a timeline of photos, dates and text descriptions.</p>
+            <p>All features of { Personal } are controlled by setting values to variables that are defined in the
+_config.yml file. Let’s start with the initial variables that you have to set before
+serving your { Personal } website for the first time.</p>
 
-<p>The Timeline is controlled by the following variables:</p>
+<h3 id="essential-variables">Essential variables</h3>
 
 <pre><code data-trim="" class="yaml">
-events:
-  - image: "/img/timeline/spidertocat.png"
-    date: "September 2013 - Today"
-    description: "Saving the neighborhood!"
-  - image: "/img/timeline/baracktocat.jpg"
-    date: "September 2007 - August 2013"
-    description: "Started coding"
+# NB! Set your site's url, otherwise stuff will break :)
 
-# First image of the Timeline
+url: "https://le4ker.github.io"
 
-timeline-img: "/img/timeline/default.png"
+# If you're hosting your site at a Project repository on GitHub pages
+# (https://yourusername.github.io/repository-name)
+# and NOT your user repository (https://yourusername.github.io)
+# then add in the baseurl here, like this: "/repository-name"
+#
+# NB! Without this *nothing* will work, because it's used in every path :)
+
+baseurl: /personal-jekyll-theme
 </code></pre>
 
-<p>For each event of your life, add a tuple of image, date and description to the events,
-and the timeline will be automatically generated!</p>
+<p>The url and baseurl variables are essential, because they are used <em>everywhere</em> where an anchor is defined!</p>
 
-<p>The timeline-img path variable is the image that you want to show up in the beginning of your Timeline, be creative!</p>
+<h3 id="coloring">Coloring</h3>
 
-<p><small>Square images are recommended 😉</small></p>
+<p>You can define the colors that you want in your { Personal } website by setting
+the following variable sin the /_sass/_variables.scss file:</p>
+
+<pre><code data-trim="" class="scss">
+// Main color
+$primary-color: #000;
+
+// Anchor color
+$secondary-color: #00cdff;
+
+// Font color
+$font-color: #fff;
+</code></pre>
+
+<h3 id="https">HTTPS</h3>
+
+<p>By default { Personal } will enforce https by javascript redirection.
+HTTPS is important because it encrypts the data sent between the client and the server.
+If you are hosting on GitHub Pages then it will just work, because your website
+will be piggybacking GitHub’s certificate.
+If you are hosting your website in a server that doesn’t have a certificate and
+you don’t want to issue one, then you can disable this feature by setting the following
+variable to False:</p>
+
+<pre><code data-trim="" class="yaml">
+force-https: True
+</code></pre>
+
+<h3 id="html-head">HTML Head</h3>
+
+<pre><code data-trim="" class="yaml">
+lang: "en"
+author: "John Smith"
+title: "{ John Smith }"
+description: "Blog and website of John Smith, blogging mainly for tech. Opinions expressed are mine."
+keywords: "smith, jones, personal, jekyll, theme"
+favicon: "/img/favicon.ico"
+err-404-img: "/img/labtocat.png"
+</code></pre>
+
+<p>The values that you set, will be placed in the head section of every generated HTML page.</p>
+
+<h3 id="google-analytics">Google Analytics</h3>
+
+<p>The Google tracking code will be placed in every generated page.
+If you don’t want Google analytics tracking your website’s traffic, set the google-tracking-id to an empty string.</p>
+
+<pre><code data-trim="" class="yaml">
+google-tracking-id: "UA-35880426-4"
+</code></pre>
+
+<h3 id="serving--personal-">Serving { Personal }</h3>
+
+<p>Install the required dependencies:</p>
+
+<pre><code data-trim="" class="bash">
+gem install jekyll jekyll-paginate jemoji html-proofer
+</code></pre>
+
+<p>Serve the jekyll website:</p>
+
+<pre><code data-trim="" class="bash">
+./scripts/serve-production
+</code></pre>
+
+<p>That’s it!</p>
+
+<p>Visit <a href="http://127.0.0.1:4000">http://127.0.0.1:4000</a> and you are ready to start hacking around your { Personal } website!</p>
+
+<p><small>Many thanks to <a href="https://github.com/joariasl" target="\_blank">@joariasl</a> for the language support! </small></p>
 
           </section>
 
@@ -228,7 +298,7 @@ and the timeline will be automatically generated!</p>
   <ul class="rrssb-buttons clearfix">
     
       <li class="rrssb-email">
-        <a href="mailto:?subject=Adding a life event in the Timeline&body=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html" data-proofer-ignore>
+        <a href="mailto:?subject=Initial setup&body=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md" data-proofer-ignore>
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M20.11 26.147c-2.335 1.05-4.36 1.4-7.124 1.4C6.524 27.548.84 22.916.84 15.284.84 7.343 6.602.45 15.4.45c6.854 0 11.8 4.7 11.8 11.252 0 5.684-3.193 9.265-7.398 9.3-1.83 0-3.153-.934-3.347-2.997h-.077c-1.208 1.986-2.96 2.997-5.023 2.997-2.532 0-4.36-1.868-4.36-5.062 0-4.75 3.503-9.07 9.11-9.07 1.713 0 3.7.4 4.6.972l-1.17 7.203c-.387 2.298-.115 3.3 1 3.4 1.674 0 3.774-2.102 3.774-6.58 0-5.06-3.27-8.994-9.304-8.994C9.05 2.87 3.83 7.545 3.83 14.97c0 6.5 4.2 10.2 10 10.202 1.987 0 4.09-.43 5.647-1.245l.634 2.22zM16.647 10.1c-.31-.078-.7-.155-1.207-.155-2.572 0-4.596 2.53-4.596 5.53 0 1.5.7 2.4 1.9 2.4 1.44 0 2.96-1.83 3.31-4.088l.592-3.72z"
@@ -241,7 +311,7 @@ and the timeline will be automatically generated!</p>
     
     
       <li class="rrssb-facebook">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html&title=Adding a life event in the Timeline" class="popup">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md&title=Initial setup" class="popup">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="29" height="29" viewBox="0 0 29 29"><path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"
               class="cls-2" fill-rule="evenodd"/></svg>
@@ -252,7 +322,7 @@ and the timeline will be automatically generated!</p>
     
     
       <li class="rrssb-twitter">
-        <a href="https://twitter.com/share?url=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html&text=Adding a life event in the Timeline"
+        <a href="https://twitter.com/share?url=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md&text=Initial setup"
         class="popup">
           <span class="rrssb-icon"><svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62c-3.122.162-6.22-.646-8.86-2.32 2.702.18 5.375-.648 7.507-2.32-2.072-.248-3.818-1.662-4.49-3.64.802.13 1.62.077 2.4-.154-2.482-.466-4.312-2.586-4.412-5.11.688.276 1.426.408 2.168.387-2.135-1.65-2.73-4.62-1.394-6.965C5.574 7.816 9.54 9.84 13.802 10.07c-.842-2.738.694-5.64 3.434-6.48 2.018-.624 4.212.043 5.546 1.682 1.186-.213 2.318-.662 3.33-1.317-.386 1.256-1.248 2.312-2.4 2.942 1.048-.106 2.07-.394 3.02-.85-.458 1.182-1.343 2.15-2.48 2.71z"/></svg></span>
           <span class="rrssb-text">twitter</span>
@@ -261,7 +331,7 @@ and the timeline will be automatically generated!</p>
     
     
       <li class="rrssb-linkedin">
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html" class="popup">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md" class="popup">
         <span class="rrssb-icon">
           <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
             <path d="M25.424 15.887v8.447h-4.896v-7.882c0-1.98-.71-3.33-2.48-3.33-1.354 0-2.158.91-2.514 1.802-.13.315-.162.753-.162 1.194v8.216h-4.9s.067-13.35 0-14.73h4.9v2.087c-.01.017-.023.033-.033.05h.032v-.05c.65-1.002 1.812-2.435 4.414-2.435 3.222 0 5.638 2.106 5.638 6.632zM5.348 2.5c-1.676 0-2.772 1.093-2.772 2.54 0 1.42 1.066 2.538 2.717 2.546h.032c1.71 0 2.77-1.132 2.77-2.546C8.056 3.593 7.02 2.5 5.344 2.5h.005zm-2.48 21.834h4.896V9.604H2.867v14.73z"
@@ -274,7 +344,7 @@ and the timeline will be automatically generated!</p>
     
     
       <li class="rrssb-reddit">
-        <a href="https://www.reddit.com/submit?url=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html&title=Adding a life event in the Timeline" target="_blank">
+        <a href="https://www.reddit.com/submit?url=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md&title=Initial setup" target="_blank">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M11.794 15.316c0-1.03-.835-1.895-1.866-1.895-1.03 0-1.893.866-1.893 1.896s.863 1.9 1.9 1.9c1.023-.016 1.865-.916 1.865-1.9zM18.1 13.422c-1.03 0-1.895.864-1.895 1.895 0 1 .9 1.9 1.9 1.865 1.03 0 1.87-.836 1.87-1.865-.006-1.017-.875-1.917-1.875-1.895zM17.527 19.79c-.678.68-1.826 1.007-3.514 1.007h-.03c-1.686 0-2.834-.328-3.51-1.005-.264-.265-.693-.265-.958 0-.264.265-.264.7 0 1 .943.9 2.4 1.4 4.5 1.402.005 0 0 0 0 0 .005 0 0 0 0 0 2.066 0 3.527-.46 4.47-1.402.265-.264.265-.693.002-.958-.267-.334-.688-.334-.988-.043z"
@@ -289,7 +359,7 @@ and the timeline will be automatically generated!</p>
     
     
       <li class="rrssb-googleplus">
-        <a href="https://plus.google.com/share?url=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html" class="popup">
+        <a href="https://plus.google.com/share?url=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md" class="popup">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21 8.29h-1.95v2.6h-2.6v1.82h2.6v2.6H21v-2.6h2.6v-1.885H21V8.29zM7.614 10.306v2.925h3.9c-.26 1.69-1.755 2.925-3.9 2.925-2.34 0-4.29-2.016-4.29-4.354s1.885-4.353 4.29-4.353c1.104 0 2.014.326 2.794 1.105l2.08-2.08c-1.3-1.17-2.924-1.883-4.874-1.883C3.65 4.586.4 7.835.4 11.8s3.25 7.212 7.214 7.212c4.224 0 6.953-2.988 6.953-7.082 0-.52-.065-1.104-.13-1.624H7.614z"/></svg>
           </span>
@@ -299,7 +369,7 @@ and the timeline will be automatically generated!</p>
     
     
       <li class="rrssb-tumblr">
-        <a href="https://tumblr.com/share/link?url=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html" target="_blank">
+        <a href="https://tumblr.com/share/link?url=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md" target="_blank">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M18.02 21.842c-2.03.052-2.422-1.396-2.44-2.446v-7.294h4.73V7.874H15.6V1.592h-3.714s-.167.053-.182.186c-.218 1.935-1.144 5.33-4.988 6.688v3.637h2.927v7.677c0 2.8 1.7 6.7 7.3 6.6 1.863-.03 3.934-.795 4.392-1.453l-1.22-3.54c-.52.213-1.415.413-2.115.455z"
@@ -312,7 +382,7 @@ and the timeline will be automatically generated!</p>
     
     
       <li class="rrssb-pinterest">
-        <a href="https://pinterest.com/pin/create/button/?url=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html" target="_blank">
+        <a href="https://pinterest.com/pin/create/button/?url=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md" target="_blank">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M14.02 1.57c-7.06 0-12.784 5.723-12.784 12.785S6.96 27.14 14.02 27.14c7.062 0 12.786-5.725 12.786-12.785 0-7.06-5.724-12.785-12.785-12.785zm1.24 17.085c-1.16-.09-1.648-.666-2.558-1.22-.5 2.627-1.113 5.146-2.925 6.46-.56-3.972.822-6.952 1.462-10.117-1.094-1.84.13-5.545 2.437-4.632 2.837 1.123-2.458 6.842 1.1 7.557 3.71.744 5.226-6.44 2.924-8.775-3.324-3.374-9.677-.077-8.896 4.754.19 1.178 1.408 1.538.49 3.168-2.13-.472-2.764-2.15-2.683-4.388.132-3.662 3.292-6.227 6.46-6.582 4.008-.448 7.772 1.474 8.29 5.24.58 4.254-1.815 8.864-6.1 8.532v.003z"
@@ -325,7 +395,7 @@ and the timeline will be automatically generated!</p>
     
     
       <li class="rrssb-pocket">
-        <a href="https://getpocket.com/save?url=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html">
+        <a href="https://getpocket.com/save?url=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md">
           <span class="rrssb-icon">
             <svg width="32" height="28" viewBox="0 0 32 28" xmlns="http://www.w3.org/2000/svg">
               <path d="M28.782.002c2.03.002 3.193 1.12 3.182 3.106-.022 3.57.17 7.16-.158 10.7-1.09 11.773-14.588 18.092-24.6 11.573C2.72 22.458.197 18.313.057 12.937c-.09-3.36-.05-6.72-.026-10.08C.04 1.113 1.212.016 3.02.008 7.347-.006 11.678.004 16.006.002c4.258 0 8.518-.004 12.776 0zM8.65 7.856c-1.262.135-1.99.57-2.357 1.476-.392.965-.115 1.81.606 2.496 2.453 2.334 4.91 4.664 7.398 6.966 1.086 1.003 2.237.99 3.314-.013 2.407-2.23 4.795-4.482 7.17-6.747 1.203-1.148 1.32-2.468.365-3.426-1.01-1.014-2.302-.933-3.558.245-1.596 1.497-3.222 2.965-4.75 4.526-.706.715-1.12.627-1.783-.034-1.597-1.596-3.25-3.138-4.93-4.644-.47-.42-1.123-.647-1.478-.844z"
@@ -338,7 +408,7 @@ and the timeline will be automatically generated!</p>
     
     
       <li class="rrssb-vk">
-        <a href="https://vk.com/share.php?url=https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html" class="popup">
+        <a href="https://vk.com/share.php?url=https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md" class="popup">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="70 70 378.7 378.7"><path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"/></svg>
           </span>
@@ -505,7 +575,7 @@ function loadScript(url) {
 <script>
 function addTohistory() {
   if (!window.location.host.startsWith("127.0.0.1")) {
-    history.pushState({}, 'Adding a life event in the Timeline', 'https://z3nth10n.github.io/tech/2015/06/12/timeline-tutorial.html');
+    history.pushState({}, 'Initial setup', 'https://z3nth10n.github.io/tech/2015/06/25/initial-setup.md');
   }
 }
 </script>
@@ -525,14 +595,14 @@ function addTohistory() {
       new Hammer(post).on('swipeleft', function(event) {
         addTohistory();
         
-          document.location.replace("/tech/2015/06/11/social-buttons-tutorial.html");
+          document.location.replace("/tech/2015/06/24/intro-layout-tutorial.md");
         
       });
 
       new Hammer(post).on('swiperight', function(event) {
         addTohistory();
         
-          document.location.replace("/tech/2015/06/19/writing-posts.html");
+          document.location.replace("/tech/2015/06/27/welcome.md");
         
       });
     </script>
