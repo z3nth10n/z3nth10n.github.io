@@ -111,7 +111,7 @@
       <ul class="nav navbar-nav">
         <li class="language-selection">
             <button type="button" class="all-toggle navbar-toggle visible" data-toggle="collapse" data-target=".lang-select">
-                Select your language
+                
             </button>
             <span class="lang-select collapse">
                 
