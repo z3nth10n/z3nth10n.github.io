@@ -4,6 +4,27 @@
 
 description: "Blog and website of z3nth10n, blogging mainly for tech."
 
+################
+# Introduction #
+################
+
+introduction-header: "Who am I?"
+introduction: "I'm spanish dev who has been developing since 2011. I like (and also, I'm a bit get used) to develop lonely, but I'm open to new oportunities and I invite you to collaborate with me if you are interested on my projects. See them scrolling down."
+
+##############################
+# Dynamic Text on the Header #
+##############################
+
+lines: # You can add HTML Tags in the Text
+  - text: "The lower you fall, the higher you'll fly."
+  - text: "Where’s your will to be weird?"
+  
+##############
+# Navigation #
+##############
+
+select-language: "Select your language"
+
 ############
 # Timeline #
 ############
