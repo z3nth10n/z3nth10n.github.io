@@ -1,0 +1,7 @@
+{% for lng in site.data.languages %}
+   <p>
+      <a href="/{{ lng[0] }}">
+          {{ lng[1].icon | emojify }} {{ lng[1].label }}
+      </a>
+   </p>
+{% endfor %}

@@ -23,6 +23,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
       <ul class="nav navbar-nav">
+        <li>
+            <button type="button" class="all-toggle navbar-toggle visible" data-toggle="collapse" data-target=".lang-select">
+                Select your language
+            </button>
+            <span class="lang-select collapse">
+                {% include langs.html %}
+            </span>
+        </li>
         {% if page.section-type == "index" %}
 
           <!-- Scroll to section for each page in index -->

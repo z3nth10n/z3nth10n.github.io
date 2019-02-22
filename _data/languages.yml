@@ -1,6 +1,6 @@
 en:
-  label: English
-  icon: ":us:"
+    label: "English"
+    icon: ":us:"
 es:
-  label: Español
-  icon: ":es:"
+    label: "Español"
+    icon: ":es:"

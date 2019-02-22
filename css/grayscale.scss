@@ -89,7 +89,11 @@ a {
     /* Fix height limit and scroll for small screen and many items menu */
     max-height: 100%;
     overflow-y: auto;
-
+    
+    .visible {
+        display: block;
+    }
+    
     .navbar-toggle {
         padding: 4px 6px;
         font-size: 16px;
@@ -98,6 +102,14 @@ a {
         &:active {
             outline: none;
         }
+    }
+    .all-toggle {
+        background-color: transparent;
+        background-image: none;
+        border: 0;
+        text-transform: uppercase;
+        margin: 10px 15px;
+        float: none !important;
     }
     .navbar-brand {
         font-weight: 700;
@@ -682,4 +694,11 @@ box p {
 
 .h6-padding {
     margin: 0 0 5px;    
+}
+
+.emojione {
+    border: 0 !important;
+    width: 32px;
+    height: 32px;
+    display: inline-block !important;
 }
