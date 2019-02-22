@@ -1,6 +1,6 @@
 {% for lng in site.data.languages %}
    <p>
-      <a href="/{{ lng[0] }}">
+      <a href="{{site.baseurl_root}}{{ lng[0].url }}">
           {{ lng[1].icon | emojify }} {{ lng[1].label }}
       </a>
    </p>

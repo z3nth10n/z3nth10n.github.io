@@ -1,6 +1,8 @@
 en:
     label: "English"
     icon: ":us:"
+    url: "/"
 es:
     label: "Español"
     icon: ":es:"
+    url: "/es"
