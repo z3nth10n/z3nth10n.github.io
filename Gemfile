@@ -28,6 +28,7 @@ group :jekyll_plugins do
   gem "jemoji", ">= 0.10.2"
   gem "tzinfo", "~> 1.1"
   gem "activesupport", ">= 5.2.2"
+  gem 'emoji_for_jekyll', path: '_plugins/emoji-for-jekyll'
   gem 'jekyll-multiple-languages-plugin', '~> 1.6'
   gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
 end
