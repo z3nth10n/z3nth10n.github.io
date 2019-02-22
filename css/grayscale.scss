@@ -113,16 +113,23 @@ a {
         .all-toggle {
             background-color: transparent;
             background-image: none;
-            border: 0;
+            border-top: 0;
             text-transform: uppercase;
-            margin: 10px 15px!important;
+            margin: 0;
+            margin-top: -1px;
             float: none !important;
             display: inline-block;
-            font-size: 14px;
+            font-size: 15px;
+        }
+        @media (min-width: 992px) {
+            .all-toggle {
+                padding: 15px !important;
+                margin: 0!important;
+            }
         }
         @media (max-width: 576px) {
             .all-toggle {
-                padding: 0;
+                padding: 10px 0;
             }
         }
     }
@@ -218,6 +225,18 @@ a {
             .intro-text {
                 font-size: 26px;
             }
+        }
+        .no-intro-offset {
+            padding: 0;
+        }
+    }
+    @media (max-width: 576px) {
+        .intro-header h2 {
+            text-align: right;
+            margin-top: -95px;
+        }
+        .intro-header p:last-child {
+            padding-top: 15px;
         }
     }
 }
