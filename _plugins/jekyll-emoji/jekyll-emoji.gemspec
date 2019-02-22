@@ -5,7 +5,7 @@ require 'jekyll/emoji/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-emoji"
-  spec.version       = Jekyll::Emoji::VERSION
+  spec.version       = Jekyll::JEmoji::VERSION
   spec.authors       = ["Nino Miletich"]
   spec.email         = ["nino@miletich.me"]
 
@@ -30,5 +30,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "jekyll", ">= 2.0"
   spec.add_dependency "yajl-ruby", "~> 1.2", '>= 1.2.0'
   spec.add_dependency "oga", "~> 1.2", '>= 1.2.0'
-  spec.add_dependency "httpclient", ">=2.7"
+  spec.add_dependency "httpclient", ">= 2.7"
 end

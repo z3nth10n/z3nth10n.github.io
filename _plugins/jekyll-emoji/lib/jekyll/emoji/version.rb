@@ -1,5 +1,5 @@
 module Jekyll
-  module Emoji
+  module JEmoji
     VERSION = "1.0.3"
   end
 end

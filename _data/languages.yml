@@ -1,8 +1,6 @@
----
 en:
   label: English
-  icon: ":flag_us:"
+  icon: ":us:"
 es:
   label: Español
-  icon: ":flag_es:"
----
+  icon: ":es:"

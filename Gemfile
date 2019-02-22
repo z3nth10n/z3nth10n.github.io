@@ -22,7 +22,7 @@ group :jekyll_plugins do
   #gem 'gemoji', '~> 3.0'
   #gem 'html-pipeline', '~> 2.10'
   #gem 'jemoji', path: '_plugins/jemoji'
-  gem 'jemoji', '~> 0.10.1'
+  gem 'jemoji', '~> 0.10.2'
   gem "rake", ">= 12.3.2"
   gem "jekyll-feed", "~> 0.6"
   gem 'html-proofer', ">= 3.10.1"
