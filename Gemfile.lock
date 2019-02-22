@@ -1,4 +1,9 @@
 PATH
+  remote: _plugins/emoji-for-jekyll
+  specs:
+    emoji_for_jekyll (0.2.3)
+
+PATH
   remote: _plugins/jekyll-twitter-plugin
   specs:
     jekyll-twitter-plugin (2.0.0)
@@ -115,6 +120,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport (>= 5.2.2)
+  emoji_for_jekyll!
   html-proofer (>= 3.10.1)
   iconv (>= 1.0.7)
   jekyll (~> 3.8.5)

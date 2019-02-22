@@ -196,6 +196,16 @@ keybase-username: z3nth10n
 keybase-in-social: false
 keybase-in-footer: false
 
+##########
+# Emojis #
+##########
+
+jemoji: true
+
+# emoji-whitelist:
+#  - heart
+#  - flag_us
+
 ################################################################################
 
 # NB! Tread carefully if you want to change the variables below this point!
@@ -219,3 +229,4 @@ plugins:
   - iconv
   - nokogiri
   - jekyll-twitter-plugin
+  - emoji_for_jekyll
