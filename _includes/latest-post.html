@@ -5,6 +5,20 @@
   <div class="row-sm row-xs-flex">
     <div class="col-md-9 order-xs-last"> <!--- col-xs-10 col-xs-offset-1 -->
         
+    <!--- {{ site.data.languages[post.lang].icon }} {{ site.data.languages[post.lang].label }} -->
+      
+      {{ site.data.languages['en'].icon }}
+      
+      {{ ":flag_us:" }}
+      
+      :flag_us:
+      
+      :hearth:
+       
+       {% for lng in site.data.languages %}
+           {{ lng.label }}
+       {% endfor %}
+        
     {{ page.content | markdownify }}
 
     <div>
@@ -19,7 +33,7 @@
     <div class="col-md-3 order-xs-first col-xs-expand">
         <h2 class="xs-invisible">&nbsp;</h2>
         <box class="horizontal-offset vertical-offset vertical-margin expand-width presentation-sidebar">
-            <a href="#{{ site.pages_list['About'] }}" class="page-scroll avatar-medium">
+            <a href="#{{ site.translations[site.lang]['pages_list']['About'] }}" class="page-scroll avatar-medium">
                 {% include avatar.html %}
             </a>
             <p>Álvaro Rodríguez García</p>

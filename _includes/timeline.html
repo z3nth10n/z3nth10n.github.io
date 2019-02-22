@@ -9,7 +9,7 @@
 
       <ul class="timeline">
 
-        {% for event in site.events %}
+        {% for event in site.translations[site.lang]["events"] %}
           {% assign loopindex = forloop.index | modulo: 2 %}
           {% capture class %}
           {% if loopindex == 0 %}

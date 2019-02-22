@@ -25,9 +25,10 @@ group :jekyll_plugins do
   gem "nokogiri", ">= 1.10.1"
   gem "iconv", ">= 1.0.7"
   gem "jekyll-paginate", ">= 1.1.0"
-  gem "jemoji", ">= 0.10.1"
+  gem "jemoji", ">= 0.10.2"
   gem "tzinfo", "~> 1.1"
   gem "activesupport", ">= 5.2.2"
+  gem 'jekyll-multiple-languages-plugin', '~> 1.6'
   gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
 end
 
