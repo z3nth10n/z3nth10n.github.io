@@ -106,6 +106,10 @@ a {
     .language-selection {
         text-align: center;
         
+        .lang-select p {
+            margin: 5px 0;
+        }
+        
         .all-toggle {
             background-color: transparent;
             background-image: none;
