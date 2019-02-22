@@ -200,11 +200,11 @@ keybase-in-footer: false
 # Emojis #
 ##########
 
-jemoji: true
-
-# emoji-whitelist:
-#  - heart
-#  - flag_us
+emoji:
+  format: emojione-png # default html
+  ascii: false # default false
+  shortname: true # default true
+  src: "https://github.githubassets.com/images/icons/emoji/unicode" # defaults to "https://cdn.jsdelivr.net/emojione/assets/#{ext}"
 
 ################################################################################
 
@@ -226,7 +226,7 @@ sass:
 plugins:
   - jekyll-paginate
   - jemoji
+  - jekyll-emoji
   - iconv
   - nokogiri
   - jekyll-twitter-plugin
-  - emoji_for_jekyll
