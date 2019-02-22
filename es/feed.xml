@@ -3,8 +3,8 @@
 	<channel>
 		<title>{ z3nth10n }</title>
 		<description>Blog and website of z3nth10n, blogging mainly for tech.</description>
-		<link>https://z3nth10n.github.io/es</link>
-		<atom:link href="https://z3nth10n.github.io/es/feed.xml" rel="self" type="application/rss+xml" />
+		<link>https://z3nth10n.github.io</link>
+		<atom:link href="https://z3nth10n.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 	</channel>
 </rss>
