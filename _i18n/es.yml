@@ -1,0 +1,189 @@
+#############
+# HTML Head #
+#############
+
+description: "Este es el blog y sitio web de z3nth10n, aquí se tratará principalmente el desarrollo de mis proyectos."
+
+################
+# Introduction #
+################
+
+introduction-header: "¿Quién soy?"
+introduction: "Soy un desarrollador español desde 2011. Me gusta (y también, estoy acostumbrado) a desarrollar solo. Pero estoy abierto a nuevas oportunidades y os invito a que colaboréis conmigo si estáis interesados en mis proyectos. Échales un vistazo más abajo."
+
+##############################
+# Dynamic Text on the Header #
+##############################
+
+lines: # You can add HTML Tags in the Text
+  - text: "The lower you fall, the higher you'll fly."
+  - text: "Where’s your will to be weird?"
+  
+##############
+# Navigation #
+##############
+
+select-language: "Elige tu idioma"
+
+#########
+# Posts #
+#########
+
+empty-post-list-caption: "Nada por aquí..."
+
+############
+# Timeline #
+############
+
+events:
+  - image: "/img/timeline/high-school.png"
+    date: "Febrero 2019"
+    description: "I started at high school"
+    url: ""
+  - image: "/img/timeline/job-finish.png"
+    date: "Diciembre 2018"
+    description: "I finished my higher vocational training"
+    url: ""
+  - image: "/img/timeline/caja.jpg"
+    date: "Noviembre 2016"
+    description: "I bought my second computer (my current one)!"
+    url: ""
+  - image: "/img/timeline/studying.png"
+    date: "Septiembre 2016"
+    description: "I started studying my higher vocational training"
+    url: ""
+  - image: "/img/timeline/graduated.png"
+    date: "Junio 2016"
+    description: "I finished at school and I created my first Unity3D team (and our first paid assets were published)"
+    url: ""
+  - image: "/img/timeline/domain.png"
+    date: "Mayo 2016"
+    description: "I bought my first domain && used Cloudflare for first time"
+    url: ""
+  - image: "/img/timeline/git.png"
+    date: "Mayo 2016 - Today"
+    description: "Since here I had been using Github (with Git) && Gitlab"
+    url: ""
+  - image: "/img/timeline/java.png"
+    date: "August 2015"
+    description: "I started writing my first Java code && MC plugins for Bukkit"
+    url: "https://github.com/VintageDev-Nukes/SykoCode"
+  - image: "/img/timeline/minecraft.png"
+    date: "Diciembre 2014 - Septiembre 2015"
+    description: "We formed a team to build a MC server!"
+    url: ""
+  - image: "/img/timeline/procedural.jpg"
+    date: "Julio 2014"
+    description: "I tried to do a prodecural terrain generation system (w/ Perlin Noise) in Unity3D"
+    url: ""
+  - image: "/img/timeline/unity3d.png"
+    date: "Noviembre 2013"
+    description: "I started with Unity3D (I switched into C#)"
+    url: ""
+  - image: "/img/timeline/default.png"
+    date: "Julio 2013"
+    description: "I joined Github!"
+    url: ""
+  - image: "/img/timeline/stackoverflow.png"
+    date: "Julio 2013"
+    description: "I joined Stackoverflow!"
+    url: "https://stackoverflow.com/users/2466790/seazoux"
+  - image: "/img/timeline/actionscript.png"
+    date: "Mayo 2013"
+    description: "I tried to learn ActionScript (but I abandoned the idea)"
+    url: "https://www.youtube.com/watch?v=t7Sh4BQlzXc"
+  - image: "/img/timeline/c++.png"
+    date: "Abril 2013"
+    description: "I tried to learn C && C++ (and my first minigames in SMFL)!"
+    url: "https://github.com/VintageDev-Nukes/SelfLearningCpp"
+  - image: "/img/timeline/smf.png"
+    date: "January 2013"
+    description: "I started using SMF"
+    url: ""
+  - image: "/img/timeline/php-sql.png"
+    date: "Noviembre 2012"
+    description: "I started learning PHP && MySQL!"
+    url: "https://github.com/VintageDev-Nukes/InfiJuegos"
+  - image: "/img/timeline/redlaptop.jpg"
+    date: "Septiembre 2012"
+    description: "I bought my second laptop!"
+    url: ""
+  - image: "/img/timeline/vbnet.png"
+    date: "Julio 2012 - Noviembre 2013"
+    description: "During this peiod I had been coding in VB.NET"
+    url: "https://github.com/VintageDev-Nukes/SEO-Calculator"
+  - image: "/img/timeline/vbscript.png"
+    date: "Junio 2012"
+    description: "I started writing my first VBScript scripts"
+    url: "https://github.com/VintageDev-Nukes/VBS-Launcher"
+  - image: "/img/timeline/msdos.jpg"
+    date: "Mayo 2012"
+    description: "I started writing my first Batch scripts"
+    url: "https://github.com/VintageDev-Nukes/BATCH-Launcher"
+  - image: "/img/timeline/html-js-css.png"
+    date: "Junio 2011"
+    description: "I started writing my first HTML, JS and CSS snippets"
+    url: "https://github.com/VintageDev-Nukes/Spirate-n-Miscs"
+  - image: "/img/timeline/youtube.png"
+    date: "Junio 2011"
+    description: "I joined YouTube (as a YouTuber) (my first account was AlvaroAlbox registered in Febrero 2010)"
+    url: "https://socialblade.com/youtube/user/ikillnukes4evertmb"
+  - image: "/img/timeline/ehn.png"
+    date: "Mayoo 2011"
+    description: "I joined ElHacker.Net"
+    url: "https://foro.elhacker.net/profiles/seazoux-u419740.html"
+  - image: "/img/timeline/maxiuniverse.png"
+    date: "August 2010"
+    description: "I discovered Spirate (and how to use hostings) and I recreated MaxiUniverse!"
+    url: "https://web.archive.org/web/20190221220205/http://maxiuniverse.activo.mx/"
+  - image: "/img/timeline/spirate.jpg"
+    date: "Abril 2010 - Junio 2010"
+    description: "I created my first forum (MaxiUniverse)"
+    url: "https://web.archive.org/web/20100524184651/http://maxiuniverse.superforo.net/"
+  - image: "/img/timeline/taringa.png"
+    date: "Q3 2009"
+    description: "I joined Taringa!"
+    url: ""
+  - image: "/img/timeline/freerider2.png"
+    date: "Mid 2009"
+    description: "I started playing Free Rider 2!"
+    url: ""
+  - image: "/img/timeline/foroactivo.png"
+    date: "Septiembre 2008"
+    description: "I discovered Foroactivo!"
+    url: ""
+  - image: "/img/timeline/old-laptop.png"
+    date: "Junio 2008"
+    description: "My uncles bought me my first laptop then I could start using internet as a frequent user && tried to learn VB6!"
+    url: ""
+  - image: "/img/timeline/nintendo.png"
+    date: "Julio 2007"
+    description: "I had my first Nintendo DS!"
+    url: ""
+  - image: "/img/timeline/old-computer.jpg"
+    date: "Abril 2003"
+    description: "My parents bought me my first computer!"
+    url: ""
+  - image: "/img/timeline/born.png"
+    date: "Julio 1998"
+    description: "I was born!"
+    url: ""
+    
+################
+# Author Blurb #
+################
+
+# The author blurb goes underneath blog posts.
+# This works best when your author blurb image has a transparent background, or matches your site background color.
+
+# if the author_blurb is not set, then this feature is skipped
+author_blurb: "**z3nth10n** es un desarrollador español desde 2011. Le gusta desarrollador en Unity3D y C#. También, conoce el desarrollo en front-end (HTML, CSS y JQuery), el desarrollo en back-end (PHP, SQL y C#) y administración de sistemas (Bash y Powershell). Él está formando un nuevo equipo llamado \"United Teamwork Association\", [échale un vistazo en Github](https://github.com/uta-org). Si estás interesado en involucrarte en este equipo, por favor, mándale un mensaje a través de los botones de más abajo."
+
+# Sections shown in the index page
+
+pages_list:
+  # About: 'about'
+  'Últimas noticias': 'last-social-media'
+  Blog: 'latest-post'
+  'Línea de tiempo': 'timeline'
+  'Contacto': 'contact'

@@ -687,6 +687,10 @@ box p {
     .intro {
         margin-bottom: 35px !important;
     }
+    .vertical-xs-margin {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -735,4 +739,10 @@ box p {
     width: 32px;
     height: 32px;
     display: inline-block !important;
+}
+
+.empty-posts {
+    width: 100%;
+    height: 300px;
+    line-height: 300px;
 }
