@@ -109,6 +109,26 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
       <ul class="nav navbar-nav">
+        <li>
+            <button type="button" class="all-toggle navbar-toggle visible" data-toggle="collapse" data-target=".lang-select">
+                Select your language
+            </button>
+            <span class="lang-select collapse">
+                
+   <p>
+      <a href="/en">
+          <img class="emojione" alt="🇺🇸" src="https://github.githubassets.com/images/icons/emoji/unicode/1f1fa-1f1f8.png" /> English
+      </a>
+   </p>
+
+   <p>
+      <a href="/es">
+          <img class="emojione" alt="🇪🇸" src="https://github.githubassets.com/images/icons/emoji/unicode/1f1ea-1f1f8.png" /> Español
+      </a>
+   </p>
+
+            </span>
+        </li>
         
           <!-- Blog, Post, Tag and Error pages -->
           
