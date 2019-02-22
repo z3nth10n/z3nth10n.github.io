@@ -10,11 +10,11 @@
       {% if page.section-type == "index" %}
         <a class="navbar-brand page-scroll" href="#page-top">
       {% else %}
-        <a class="navbar-brand" href="{{site.baseurl}}/">
+        <a class="navbar-brand" href="{{site.baseurl_root}}/">
       {% endif %}
           <div>
             {% if site.black-favicon %}
-              <img src="{{site.baseurl}}{{ site.black-favicon }}" alt="">
+              <img src="{{site.baseurl_root}}{{ site.black-favicon }}" alt="">
             {% endif %}
             {{ site.title }}
           </div>

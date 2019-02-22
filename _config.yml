@@ -28,7 +28,7 @@ force-https: True
 # Languages #
 #############
 
-languages: ["en", "es"]
+languages: ["sv", "en", "es"]
 exclude_from_localizations: ["js", "img", "css", "script", "scripts"]
 
 #############
