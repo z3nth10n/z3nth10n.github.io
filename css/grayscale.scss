@@ -111,11 +111,15 @@ a {
             background-image: none;
             border: 0;
             text-transform: uppercase;
-            padding: 0;
             margin: 10px 15px!important;
             float: none !important;
             display: inline-block;
             font-size: 14px;
+        }
+        @media (max-width: 576px) {
+            .all-toggle {
+                padding: 0;
+            }
         }
     }
     .navbar-brand {
