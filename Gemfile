@@ -19,16 +19,13 @@ gem "minima", "~> 2.0"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-  #gem 'gemoji', '~> 3.0'
-  #gem 'html-pipeline', '~> 2.10'
-  #gem 'jemoji', path: '_plugins/jemoji'
   gem 'jemoji', '~> 0.10.2'
   gem "rake", ">= 12.3.2"
   gem "jekyll-feed", "~> 0.6"
   gem 'html-proofer', ">= 3.10.1"
   gem "nokogiri", ">= 1.10.1"
   gem "iconv", ">= 1.0.7"
-  gem 'jekyll-paginate-v2', '~> 2.1'
+  gem 'jekyll-paginate-v2', path: "_plugins/jekyll-paginate-v2"
   gem "tzinfo", "~> 1.1"
   gem "activesupport", ">= 5.2.2"
   gem 'httpclient', '~> 2.8', '>= 2.8.3'
