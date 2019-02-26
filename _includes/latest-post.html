@@ -7,8 +7,6 @@
         
     {{ page.content | markdownify }}
     
-    {{ paginator }}
-    
     <div>
       {% if paginator.total_posts > 0 %}
           {% for post in paginator.posts %}
