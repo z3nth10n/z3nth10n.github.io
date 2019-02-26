@@ -12,8 +12,12 @@
     {% include header.html %}
 
     {% for p in site.translations[site.lang]['pages_list'] %}
+     
+      {% assign innerindex=forloop.index0 %}
+      
       {% for page in site.pages %}
         {% if p[1] == page.section-type %}
+          {% capture findex %} {{ innerindex }} {% endcapture %}
           {% include {{ page.path }} %}
         {% endif %}
       {% endfor %}

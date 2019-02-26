@@ -1,0 +1,6 @@
+{% for p in site.translations[site.lang]['pages_list'] %}
+    {% assign intindex = findex | plus: 0 %}
+    {% if forloop.index0 == intindex %}
+        {{ p[0] }}
+    {% endif %}
+{% endfor %}
