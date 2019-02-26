@@ -14,7 +14,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
+  <meta name="description" content="Blog and website of z3nth10n, blogging mainly for tech.">
   <meta name="author" content="z3nth10n">
   <meta name="keywords" content="z3nth10n, dev">
   <link rel="canonical" href="/wikipedia/2016/10/27/social-buttons-tutorial.md">
@@ -111,7 +111,7 @@
       <ul class="nav navbar-nav">
         <li class="language-selection">
             <button type="button" class="all-toggle navbar-toggle visible" data-toggle="collapse" data-target=".lang-select">
-                
+                Select your language
             </button>
             <span class="lang-select collapse">
                 
@@ -131,6 +131,32 @@
         </li>
         
           <!-- Blog, Post, Tag and Error pages -->
+          
+            <li>
+            
+                <a href="/#last-social-media"> Last Social Media </a>
+            
+            </li>
+          
+            <li>
+            
+              
+                <a href="/blog/"> Blog </a>
+              
+            
+            </li>
+          
+            <li>
+            
+                <a href="/#timeline"> Timeline </a>
+            
+            </li>
+          
+            <li>
+            
+                <a href="/#contact"> Contact </a>
+            
+            </li>
           
         
       </ul>
@@ -326,53 +352,6 @@
           <hr />
 
           
-          <div class="author row">
-            <img class="col-xs-4 col-sm-3 col-md-2" src="/img/author.png" alt="Me" />
-            <p class="col-xs-8 col-sm-9 col-md-10">
-              <p><strong>z3nth10n</strong> is a Spanish developer since 2011. He likes coding in Unity3D and C#. Also, he knows about front-end (HTML, CSS and JQuery) developing, back-end developing (PHP, SQL and C#) and system administration (Bash and Powershell). He is forming a new team called United Teamwork Association, <a href="https://github.com/uta-org">see they work at Github</a>. If you are interested in join this team, please, send him a message on the buttons below.</p>
-
-            </p>
-            <p class="buttons">
-                <!-- Social Buttons Start -->
-
-<ul class="list-inline social-buttons ">
-    
-    <li>
-        <a href="https://facebook.com/Z3nth10n-344166426434567" target="_blank"><i class=" fab  fa-facebook fa-fw"></i></a>
-    </li>
-    
-    <li>
-        <a href="https://twitter.com/z3nth10n" target="_blank"><i class=" fab  fa-twitter fa-fw"></i></a>
-    </li>
-    
-    <li>
-        <a href="https://github.com/z3nth10n" target="_blank"><i class=" fab  fa-github fa-fw"></i></a>
-    </li>
-    
-    <li>
-        <a href="https://instagram.com/z3nth10n" target="_blank"><i class=" fab  fa-instagram fa-fw"></i></a>
-    </li>
-    
-    <li>
-        <a href="https://discord.com/users/208235269764284417" target="_blank"><i class=" fab  fa-discord fa-fw"></i></a>
-    </li>
-    
-    <li>
-        <a href="https://t.me/z3nth10n" target="_blank"><i class=" fab  fa-telegram fa-fw"></i></a>
-    </li>
-    
-    <li>
-        <a href="/feed.xml" target="_blank"><i class=" fas  fa-rss fa-fw"></i></a>
-    </li>
-    
-    
-</ul>
-
-<!-- Social Buttons End -->
-
-            </p>
-          </div>
-          
         </div>
       </div>
     </section>
@@ -547,7 +526,7 @@ function addTohistory() {
       new Hammer(post).on('swiperight', function(event) {
         addTohistory();
         
-          document.location.replace("/en/welcome-to-jekyll.html");
+          document.location.replace("/");
         
       });
     </script>

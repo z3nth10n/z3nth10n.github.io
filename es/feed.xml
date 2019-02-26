@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>{ z3nth10n }</title>
+		<description>Este es el blog y sitio web de z3nth10n, aquí se tratará principalmente el desarrollo de mis proyectos.</description>
+		<link>https://z3nth10n.github.io</link>
+		<atom:link href="https://z3nth10n.github.io/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Tests</title>
+				
+				
+					<description>&lt;p&gt;TestsTestsTestsTestsTestsTests Tests Tests Tests&lt;/p&gt;
+</description>
+				
+				<pubDate>Thu, 27 Oct 2016 18:16:49 +0000</pubDate>
+				<link>https://z3nth10n.github.io/es/tests/2016/10/27/testing.md</link>
+				<guid isPermaLink="true">https://z3nth10n.github.io/tests/2016/10/27/testing.md</guid>
+			</item>
+		
+	</channel>
+</rss>
