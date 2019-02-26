@@ -34,24 +34,32 @@
             <hr>
             <h4>Categories</h4>
             <p>
-                {% for category in site.categories %}
-                    {% if forloop.index <= 5 %}
-                        <a class="label" href="{{site.baseurl}}/categories/{{ category | first | downcase }}">
-                            {{ category | first }}
-                        </a>
-                    {% endif %}
-                {% endfor %}
+                {% if site.categories.length > 0 %}
+                    {% for category in site.categories %}
+                        {% if forloop.index <= 5 %}
+                            <a class="label" href="{{site.baseurl}}/categories/{{ category | first | downcase }}">
+                                {{ category | first }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    Nothing yet...
+                {% endif %}
             </p>
             <hr>
             <h4>Tags</h4>
             <p>
-                {% for tag in site.tags %}
-                    {% if forloop.index <= 5 %}
-                        <a class="label" href="{{site.baseurl}}/tags/{{ tag | first | downcase }}">
-                            {{ tag | first }}
-                        </a>
-                    {% endif %}
-                {% endfor %}
+                {% if site.tags.length > 0 %}
+                    {% for tag in site.tags %}
+                        {% if forloop.index <= 5 %}
+                            <a class="label" href="{{site.baseurl}}/tags/{{ tag | first | downcase }}">
+                                {{ tag | first }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    Nothing yet...
+                {% endif %}
             </p>
         </box>
     </div>
