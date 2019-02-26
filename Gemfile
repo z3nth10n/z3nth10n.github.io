@@ -35,7 +35,7 @@ group :jekyll_plugins do
   gem 'oga', '~> 1.2', '>= 1.2.0'
   gem 'yajl-ruby', '~> 1.2', '>= 1.2.0'
   gem 'jekyll-emoji', path: '_plugins/jekyll-emoji'
-  gem 'jekyll-multiple-languages-plugin', '~> 1.6'
+  # gem 'jekyll-multiple-languages-plugin', '~> 1.6'
   gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
 end
 
