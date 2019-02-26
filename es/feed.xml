@@ -7,15 +7,27 @@
 		<atom:link href="https://z3nth10n.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
-				<title>Tests</title>
+				<title>Modifying the social buttons</title>
 				
 				
-					<description>&lt;p&gt;TestsTestsTestsTestsTestsTests Tests Tests Tests&lt;/p&gt;
+					<description>&lt;p&gt;aaaaa&lt;/p&gt;
 </description>
 				
 				<pubDate>Thu, 27 Oct 2016 18:16:49 +0000</pubDate>
-				<link>https://z3nth10n.github.io/es/tests/2016/10/27/testing.md</link>
-				<guid isPermaLink="true">https://z3nth10n.github.io/tests/2016/10/27/testing.md</guid>
+				<link>https://z3nth10n.github.io/es/wikipedia/2016/10/27/social-buttons-tutorial.md</link>
+				<guid isPermaLink="true">https://z3nth10n.github.io/wikipedia/2016/10/27/social-buttons-tutorial.md</guid>
+			</item>
+		
+			<item>
+				<title>Modifying the Contact</title>
+				
+				
+					<description>&lt;p&gt;aaaaa&lt;/p&gt;
+</description>
+				
+				<pubDate>Thu, 27 Oct 2016 18:16:49 +0000</pubDate>
+				<link>https://z3nth10n.github.io/es/wikipedia/2016/10/27/contact-tutorial.md</link>
+				<guid isPermaLink="true">https://z3nth10n.github.io/wikipedia/2016/10/27/contact-tutorial.md</guid>
 			</item>
 		
 	</channel>
