@@ -6,17 +6,5 @@
 		<link>https://z3nth10n.github.io</link>
 		<atom:link href="https://z3nth10n.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
-			<item>
-				<title>Tests</title>
-				
-				
-					<description>&lt;p&gt;TestsTestsTestsTestsTestsTests Tests Tests Tests&lt;/p&gt;
-</description>
-				
-				<pubDate>Fri, 22 Feb 2019 00:00:00 +0000</pubDate>
-				<link>https://z3nth10n.github.io/es/2019/02/22/testing.md</link>
-				<guid isPermaLink="true">https://z3nth10n.github.io/2019/02/22/testing.md</guid>
-			</item>
-		
 	</channel>
 </rss>
