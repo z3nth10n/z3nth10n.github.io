@@ -58,7 +58,7 @@ module Jekyll
           Jekyll::Deprecator.deprecation_message "Pagination: The 'title_suffix' configuration has been deprecated. Please use 'title'. See https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration"
         end
 
-        Jekyll.logger.debug "Pagination:","Starting"
+        Jekyll.logger.info "Pagination:","Starting"
 
         ################ 0 #################### 
         # Get all pages in the site (this will be used to find the pagination templates)
