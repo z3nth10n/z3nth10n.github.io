@@ -42,7 +42,7 @@ events:
     url: ""
   - image: "/img/timeline/job-finish.png"
     date: "December 2018"
-    description: "I finished my higher vocational training"
+    description: "I finished my professional development course"
     url: ""
   - image: "/img/timeline/caja.jpg"
     date: "November 2016"
@@ -50,7 +50,7 @@ events:
     url: ""
   - image: "/img/timeline/studying.png"
     date: "September 2016"
-    description: "I started studying my higher vocational training"
+    description: "I started studying my professional development course"
     url: ""
   - image: "/img/timeline/graduated.png"
     date: "June 2016"
@@ -66,7 +66,7 @@ events:
     url: ""
   - image: "/img/timeline/java.png"
     date: "August 2015"
-    description: "I started writing my first Java code && MC plugins for Bukkit"
+    description: "I wrote my first Java code && MC plugins for Bukkit"
     url: "https://github.com/VintageDev-Nukes/SykoCode"
   - image: "/img/timeline/minecraft.png"
     date: "December 2014 - September 2015"
@@ -74,7 +74,7 @@ events:
     url: ""
   - image: "/img/timeline/procedural.jpg"
     date: "July 2014"
-    description: "I tried to do a prodecural terrain generation system (w/ Perlin Noise) in Unity3D"
+    description: "I tried to create a prodecural terrain generation system (w/ Perlin Noise) in Unity3D"
     url: ""
   - image: "/img/timeline/unity3d.png"
     date: "November 2013"
@@ -126,7 +126,7 @@ events:
     url: "https://github.com/VintageDev-Nukes/Spirate-n-Miscs"
   - image: "/img/timeline/youtube.png"
     date: "June 2011"
-    description: "I joined YouTube (as a YouTuber) (my first account was AlvaroAlbox registered in February 2010)"
+    description: "I joined YouTube (as a regular user) (my first account was AlvaroAlbox registered in February 2010)"
     url: "https://socialblade.com/youtube/user/ikillnukes4evertmb"
   - image: "/img/timeline/ehn.png"
     date: "May 2011"
@@ -134,7 +134,7 @@ events:
     url: "https://foro.elhacker.net/profiles/seazoux-u419740.html"
   - image: "/img/timeline/maxiuniverse.png"
     date: "August 2010"
-    description: "I discovered Spirate (and how to use hostings) and I recreated MaxiUniverse!"
+    description: "I discovered Spirate (and how to use hostings), also, I recreated MaxiUniverse!"
     url: "https://web.archive.org/web/20190221220205/http://maxiuniverse.activo.mx/"
   - image: "/img/timeline/spirate.jpg"
     date: "April 2010 - June 2010"
@@ -154,7 +154,7 @@ events:
     url: ""
   - image: "/img/timeline/old-laptop.png"
     date: "June 2008"
-    description: "My uncles bought me my first laptop then I could start using internet as a frequent user && tried to learn VB6!"
+    description: "My uncles bought me my first laptop then I could start using Internet as a regular user && tried to learn VB6!"
     url: ""
   - image: "/img/timeline/nintendo.png"
     date: "July 2007"
@@ -187,3 +187,24 @@ pages_list:
   Blog: 'latest-post'
   Timeline: 'timeline'
   Contact: 'contact'
+  
+################
+# Blog Section #
+################
+
+occupation: 'Hobbyist Developer'
+categories_caption: 'Categories'
+tags_caption: 'Tags'
+nothing_yet: 'Nothing yet...'
+
+############
+# Timeline #
+############
+
+see_ref: 'See reference...'
+
+###########
+# Contact #
+###########
+
+dropme-mail: 'Drop me an email if you are interested in me coding for you or saving your neighborhood!'

@@ -27,12 +27,12 @@
                 {% include avatar.html %}
             </a>
             <p>Álvaro Rodríguez García</p>
-            <p class="gray"><b>Hobbyist Developer</b></p>
+            <p class="gray"><b>{{ site.translations[site.lang]['occupation'] }}</b></p>
             <p class="buttons">
                 {% include social-buttons.html small-buttons="true" %}
             </p>
             <hr>
-            <h4>Categories</h4>
+            <h4>{{ site.translations[site.lang]['categories_caption'] }}</h4>
             <p>
                 {% if site.categories.length > 0 %}
                     {% for category in site.categories %}
@@ -43,11 +43,11 @@
                         {% endif %}
                     {% endfor %}
                 {% else %}
-                    Nothing yet...
+                    {{ site.translations[site.lang]['nothing_yet'] }}
                 {% endif %}
             </p>
             <hr>
-            <h4>Tags</h4>
+            <h4>{{ site.translations[site.lang]['tags_caption'] }}</h4>
             <p>
                 {% if site.tags.length > 0 %}
                     {% for tag in site.tags %}
@@ -58,7 +58,7 @@
                         {% endif %}
                     {% endfor %}
                 {% else %}
-                    Nothing yet...
+                    {{ site.translations[site.lang]['nothing_yet'] }}
                 {% endif %}
             </p>
         </box>
