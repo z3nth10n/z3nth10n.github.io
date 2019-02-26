@@ -2,8 +2,11 @@
 layout: post
 section-type: post
 title: Modifying the social buttons
-category: tech
-tags: [ 'tutorial' ]
+pagination: 
+  enabled: true
+  category: tech
+  tag: tutorial
+  locale: en, es
 ---
 
 Social buttons (rendered above the footer) are great for having a small hub with all your social footprint.

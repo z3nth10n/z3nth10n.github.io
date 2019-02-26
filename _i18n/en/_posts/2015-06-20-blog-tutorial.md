@@ -2,8 +2,11 @@
 layout: post
 section-type: post
 title: Setting up the Blog
-category: tech
-tags: [ 'tutorial' ]
+pagination: 
+  enabled: true
+  category: tech
+  tag: tutorial
+  locale: en, es
 ---
 
 A website is truly personal if it hosts your blog as well, this place of the internet

@@ -2,8 +2,11 @@
 layout: post
 section-type: post
 title: Web app mode
-category: tech
-tags: [ 'tutorial']
+pagination: 
+  enabled: true
+  category: tech
+  tag: tutorial
+  locale: en, es
 ---
 You can make your website behave like a native web app in iOS and Android devices
 by providing links for the icons for each resolution:

@@ -8,6 +8,7 @@
     {{ page.content | markdownify }}
     
     <div>
+      {{ paginator }}
       {% if paginator.posts.length > 0 %}
           {% for post in paginator.posts %}
             {% include post-list.html %}

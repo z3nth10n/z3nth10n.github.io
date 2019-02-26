@@ -2,8 +2,11 @@
 layout: post
 section-type: post
 title: Modifying the Header
-category: tech
-tags: [ 'tutorial' ]
+pagination: 
+  enabled: true
+  category: tech
+  tag: tutorial
+  locale: en, es
 ---
 
 The intro part of the index page (Header) is consisted of four elements:

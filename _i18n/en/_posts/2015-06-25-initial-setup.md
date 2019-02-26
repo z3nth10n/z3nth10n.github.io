@@ -2,8 +2,11 @@
 layout: post
 section-type: post
 title: Initial setup
-category: tech
-tags: [ 'tutorial' ]
+pagination: 
+  enabled: true
+  category: tech
+  tag: tutorial
+  locale: en, es
 ---
 
 All features of { Personal } are controlled by setting values to variables that are defined in the

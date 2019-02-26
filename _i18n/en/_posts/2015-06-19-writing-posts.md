@@ -2,8 +2,11 @@
 layout: post
 section-type: post
 title: Writing posts
-category: tech
-tags: [ 'tutorial' ]
+pagination: 
+  enabled: true
+  category: tech
+  tag: tutorial
+  locale: en, es
 ---
 
 ### Creating a new post

@@ -2,8 +2,11 @@
 layout: post
 section-type: post
 title: Modifying the Contact
-category: tech
-tags: [ 'tutorial' ]
+pagination: 
+  enabled: true
+  category: tech
+  tag: tutorial
+  locale: en, es
 ---
 
 The contact part of the index page is consisted of two elements:
