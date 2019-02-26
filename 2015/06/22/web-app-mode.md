@@ -566,7 +566,7 @@ function addTohistory() {
       new Hammer(post).on('swiperight', function(event) {
         addTohistory();
         
-          document.location.replace("/2015/06/24/intro-layout-tutorial.md");
+          document.location.replace("/en/intro-layout-tutorial.html");
         
       });
     </script>
