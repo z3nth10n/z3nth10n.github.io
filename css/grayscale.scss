@@ -233,10 +233,14 @@ a {
     @media (max-width: 576px) {
         .intro-header h2 {
             text-align: right;
-            margin-top: -95px;
+            margin: -95px 15px;
+            width: calc(8/12*100%);
+            position: absolute;
+            right: 0;
         }
         .intro-header p:last-child {
             padding-top: 15px;
+            text-align: justify;
         }
     }
 }
@@ -746,3 +750,28 @@ box p {
     height: 300px;
     line-height: 300px;
 }
+
+/* SlabText CSS */
+
+/*.slabtexted .slabtext
+{
+    display: -moz-inline-box;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.slabtextinactive .slabtext
+{
+    display: inline;
+    white-space: normal;
+    font-size: 1em !important;
+    letter-spacing: inherit !important;
+    word-spacing: inherit !important;
+    *letter-spacing: normal !important;
+    *word-spacing: normal !important;
+}
+
+.slabtextdone .slabtext
+{
+    display: block;
+}*/
