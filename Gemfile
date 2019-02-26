@@ -25,7 +25,7 @@ group :jekyll_plugins do
   gem 'html-proofer', ">= 3.10.1"
   gem "nokogiri", ">= 1.10.1"
   gem "iconv", ">= 1.0.7"
-  gem 'jekyll-paginate-v2', path: "_plugins/jekyll-paginate-v2"
+  gem 'jekyll-paginate-v2', '~> 2.1'
   gem "tzinfo", "~> 1.1"
   gem "activesupport", ">= 5.2.2"
   gem 'httpclient', '~> 2.8', '>= 2.8.3'
