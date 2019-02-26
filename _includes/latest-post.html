@@ -7,8 +7,10 @@
         
     {{ page.content | markdownify }}
     
+    {{ paginator }}
+    
     <div>
-      {% if paginator.posts.size > 0 %}
+      {% if paginator.total_posts > 0 %}
           {% for post in paginator.posts %}
             {% include post-list.html %}
           {% endfor %}
@@ -17,9 +19,7 @@
       {% endif %}
     </div>
 
-    {% if paginator.posts.size > 0 %}
-        {% include pagination.html %}       
-    {% endif %}
+    {% include pagination.html %}
    
     </div>
     <div class="col-md-3 order-xs-first col-xs-expand">
