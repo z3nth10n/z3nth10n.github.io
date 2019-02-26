@@ -42,13 +42,13 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
       if($(window).width() < 576) {
         $(".video iframe").attr("width", "");
         $(".video iframe").attr("height", "");
+          
+        $(".intro .intro-header h2").fitText();
       }
       else if($(window).width() > 992) {
         // console.log($(".video").parent().parent().width());
         $(".video iframe").attr("width", ($(".video").parent().parent().width() - 10) + "px");
       }
-        
-        $(".intro .intro-header h2").fitText();
     });
   </script>
 
