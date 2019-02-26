@@ -6,7 +6,7 @@ pagination:
   enabled: true
   category: tech
   tag: tutorial
-  locale: en, es
+  locale: en
 ---
 
 The contact part of the index page is consisted of two elements:

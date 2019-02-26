@@ -6,7 +6,7 @@ pagination:
   enabled: true
   category: tech
   tag: tutorial
-  locale: en, es
+  locale: en
 ---
 One of the coolest features of { Personal } is that enables you to tell your life's story in
 the form of a timeline of photos, dates and text descriptions.

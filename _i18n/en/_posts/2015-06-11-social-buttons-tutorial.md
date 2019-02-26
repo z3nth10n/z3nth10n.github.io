@@ -6,7 +6,7 @@ pagination:
   enabled: true
   category: tech
   tag: tutorial
-  locale: en, es
+  locale: en
 ---
 
 Social buttons (rendered above the footer) are great for having a small hub with all your social footprint.

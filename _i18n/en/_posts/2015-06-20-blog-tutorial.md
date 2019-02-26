@@ -6,7 +6,7 @@ pagination:
   enabled: true
   category: tech
   tag: tutorial
-  locale: en, es
+  locale: en
 ---
 
 A website is truly personal if it hosts your blog as well, this place of the internet

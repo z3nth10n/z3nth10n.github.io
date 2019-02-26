@@ -6,7 +6,7 @@ pagination:
   enabled: true
   category: tech
   tag: tutorial
-  locale: en, es
+  locale: en
 ---
 
 All features of { Personal } are controlled by setting values to variables that are defined in the

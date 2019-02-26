@@ -6,7 +6,7 @@ pagination:
   enabled: true
   category: tech
   tag: tutorial
-  locale: en, es
+  locale: en
 ---
 You can make your website behave like a native web app in iOS and Android devices
 by providing links for the icons for each resolution:
