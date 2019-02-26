@@ -70,8 +70,6 @@ GEM
       safe_yaml (~> 1.0)
     jekyll-feed (0.11.0)
       jekyll (~> 3.3)
-    jekyll-multiple-languages-plugin (1.6.0)
-      jekyll (>= 2.0, < 4.0)
     jekyll-paginate-v2 (2.1.0)
       jekyll (~> 3.0)
     jekyll-sass-converter (1.5.2)
@@ -145,7 +143,6 @@ DEPENDENCIES
   jekyll (~> 3.8.5)
   jekyll-emoji!
   jekyll-feed (~> 0.6)
-  jekyll-multiple-languages-plugin (~> 1.6)
   jekyll-paginate-v2 (~> 2.1)
   jekyll-twitter-plugin!
   jemoji (~> 0.10.2)
