@@ -23,8 +23,24 @@
     
   
     
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
       <url>
-        <loc>https://z3nth10n.github.io/</loc>
+        <loc>https://z3nth10n.github.io/index.html</loc>
         
           
           
@@ -36,20 +52,39 @@
     
   
     
-  
+      <url>
+        <loc>https://z3nth10n.github.io/en/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
     
   
     
-  
+      <url>
+        <loc>https://z3nth10n.github.io/es/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
     
   
-    
   
-    
-  
-    
-  
-    
-  
+    <url>
+      <loc>https://z3nth10n.github.io/2019/02/22/testing.md</loc>
+      
+        <lastmod>2019-02-22T00:00:00+00:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
   
 </urlset>
