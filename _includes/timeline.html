@@ -8,8 +8,7 @@
       <h2>{% include title.html %}</h2>
 
       <ul class="timeline">
-
-        {% for event in site.translations[site.lang]["events"] %}
+        <!--- {% for event in site.translations[site.lang]["events"] %}
           {% assign loopindex = forloop.index | modulo: 2 %}
           {% capture class %}
           {% if loopindex == 0 %}
@@ -35,7 +34,7 @@
               {% endif %}
             </div>
           </li>
-        {% endfor %}
+        {% endfor %} -->
 
         <li class="timeline-inverted">
           <div class="timeline-image">

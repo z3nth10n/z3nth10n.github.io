@@ -23,12 +23,6 @@ $(document).ready(toggleNavCollapse);
 $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click",function(b){var a=$(this);$("html, body").stop().animate({scrollTop:$(a.attr("href")).offset().top-50},1500,"easeInOutExpo",function(){a.blur()});b.preventDefault()})});$(".navbar-collapse ul li a").click(function(){$(".navbar-toggle:visible").click()});
 </script>
 
-<!--- Plugins Start -->
-
-<!--- WIP -->
-
-<!--- Plugins End -->
-
 {% if page.section-type == "index" %}
 
   <!-- Collapse navbar when navbar-brand is clicked -->
@@ -36,6 +30,8 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
   <script>
   $(function(){$(".navbar-brand").click(function(){$(".collapse.in")&&$(".collapse.in").animate({height:"1px"},500,function(){$(".collapse.in").removeClass("in")})})});
   </script>
+  
+  <!--- Custom scripts on index -->
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -49,12 +45,82 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         // console.log($(".video").parent().parent().width());
         $(".video iframe").attr("width", ($(".video").parent().parent().width() - 10) + "px");
       }
-        
-        $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
     });
   </script>
 
 {% endif %}
+
+<!--- Custom scripts out of index -->
+
+<script>
+    String.prototype.replaceAll = String.prototype.replaceAll || function(string, replaced) {
+      return this.replace(new RegExp(string, 'g'), replaced);
+    };
+    
+    $(document).ready(function() {
+      $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
+          
+      var timelineJson = getTimelineJson();
+      // console.log(timelineJson);
+        
+      /*
+        
+        {% for event in site.translations[site.lang]["events"] %}
+          {% assign loopindex = forloop.index | modulo: 2 %}
+          {% capture class %}
+          {% if loopindex == 0 %}
+            timeline-inverted
+          {% endif %}
+          {% endcapture %}
+
+          <li class="{{ class }}">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="{{site.baseurl_root}}{{ event.image }}" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>{{ event.date }}</h4>
+              </div>
+              <div class="timeline-body">
+                {{ event.description | markdownify }}
+              </div>
+              {% if event.url != blank %}
+              <div class="timeline-refurl">
+                <a href="{{ event.url }}">{{ site.translations[site.lang]['see_ref'] }}</a>
+              </div>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+        
+      */
+      
+      var i = 0;
+      for(var elIndex in timelineJson) {
+        var el = timelineJson[elIndex];
+        $(".timeline").append(appendItem());
+          
+        if(i >= 5)
+            break;
+          
+        ++i;
+      }
+        
+      function appendItem() {
+        return $("<li></li>").append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
+      }
+      
+      function getTimelineJson() {
+          var str = "";
+                  
+          {% for p in site.translations[site.lang]["events"] %}
+            str += '{{ p | json }}'.replaceAll("=>", ":") + ",";
+          {% endfor %}
+                  
+          return JSON.parse("[" + str.substr(0, str.length - 1) + "]");
+      }
+    });
+</script>
 
 {% if site.syntax-highlight and (page.section-type == "post" or page.section-type == "category") %}
 
