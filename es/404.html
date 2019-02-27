@@ -296,14 +296,12 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
       }
     
       var shownItems = 0;
-      readMoreItems();
+      readMoreItems(true);
         
-      $(".timeline.only-button button").on('click', readMoreItems);
+      $(".timeline.only-button button").on('click', function() { readMoreItems(false); });
         
-      
-        
-      function readMoreItems() {
-          var curHeight = $(".timeline.expandable").height(),
+      function readMoreItems(firstTime) {
+          var curHeight = $(".timeline.expandable").height() - (firstTime ? 100 : 0),
               sumHeight = 0,
               count = 0,
               remItems = items - shownItems;
@@ -311,11 +309,8 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
           $(".timeline.expandable li").each(function(i) {
               if(i < shownItems)
                   return true;
-              
-              var localHeight = $(this).outerHeight(true);
-              // console.log("At index: " + i + " => " + localHeight);
-              
-              sumHeight += localHeight;
+
+              sumHeight += $(this).outerHeight(true);
               
               if((i + 1) >= shownItems + 5)
                   return false;
@@ -326,7 +321,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
           if(items - shownItems <= 0)
             $(".timeline.only-button button").hide();
           
-          $(".timeline.expandable").height(curHeight + sumHeight + "px"); // Bug: I need to show 100px less
+          $(".timeline.expandable").height(curHeight + sumHeight + "px");
       }
         
       function appendItem(el, index) {
