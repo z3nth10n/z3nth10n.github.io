@@ -63,48 +63,15 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
     $(document).ready(function() {
       $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
           
-      var timelineJson = getTimelineJson();
-      // console.log(timelineJson);
+      var timelineJson = getTimelineJson(),
+          converter = new showdown.Converter(),
+          items = 0;
         
-      /*
-        
-        {% for event in site.translations[site.lang]["events"] %}
-          {% assign loopindex = forloop.index | modulo: 2 %}
-          {% capture class %}
-          {% if loopindex == 0 %}
-            timeline-inverted
-          {% endif %}
-          {% endcapture %}
-
-          <li class="{{ class }}">
-            <div class="timeline-image">
-              <img class="img-circle img-responsive" src="{{site.baseurl_root}}{{ event.image }}" alt="">
-            </div>
-            <div class="timeline-panel">
-              <div class="timeline-heading">
-                <h4>{{ event.date }}</h4>
-              </div>
-              <div class="timeline-body">
-                {{ event.description | markdownify }}
-              </div>
-              {% if event.url != blank %}
-              <div class="timeline-refurl">
-                <a href="{{ event.url }}">{{ site.translations[site.lang]['see_ref'] }}</a>
-              </div>
-              {% endif %}
-            </div>
-          </li>
-        {% endfor %}
-        
-      */
-      
-      var converter = new showdown.Converter();
-        
-      var items = 0;
       for(var elIndex in timelineJson) {
         var element = timelineJson[elIndex];
+          
         $(".timeline.expandable").append(appendItem(element, items));
-          ++items;
+        ++items;
       }
         
       $(".timeline.only-button button").on('click', function() {

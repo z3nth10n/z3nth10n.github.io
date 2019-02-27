@@ -7,35 +7,7 @@
 
       <h2>{% include title.html %}</h2>
 
-      <ul class="timeline expandable">
-        <!--- {% for event in site.translations[site.lang]["events"] %}
-          {% assign loopindex = forloop.index | modulo: 2 %}
-          {% capture class %}
-          {% if loopindex == 0 %}
-            timeline-inverted
-          {% endif %}
-          {% endcapture %}
-
-          <li class="{{ class }}">
-            <div class="timeline-image">
-              <img class="img-circle img-responsive" src="{{site.baseurl_root}}{{ event.image }}" alt="">
-            </div>
-            <div class="timeline-panel">
-              <div class="timeline-heading">
-                <h4>{{ event.date }}</h4>
-              </div>
-              <div class="timeline-body">
-                {{ event.description | markdownify }}
-              </div>
-              {% if event.url != blank %}
-              <div class="timeline-refurl">
-                <a href="{{ event.url }}">{{ site.translations[site.lang]['see_ref'] }}</a>
-              </div>
-              {% endif %}
-            </div>
-          </li>
-        {% endfor %} -->
-      </ul>
+      <ul class="timeline expandable"></ul>
       <ul class="timeline only-button">
         <button class="btn-default">Read More...</button>
 

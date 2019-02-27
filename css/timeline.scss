@@ -331,7 +331,7 @@
 }
 
 .timeline.expandable {
-    height: calc(270px * 5 - 100px);
+    height: 0px;
     overflow-y: hidden;
     
     -webkit-transition: height 1s;
