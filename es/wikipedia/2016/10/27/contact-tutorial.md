@@ -113,21 +113,21 @@
             <button type="button" class="all-toggle navbar-toggle visible" data-toggle="collapse" data-target=".lang-select">
                 Elige tu idioma
             </button>
-            <span class="lang-select collapse">
+            <ul class="lang-select collapse">
                 
-   <p>
+   <li>
       <a href="/">
           <img class="emojione" alt="🇺🇸" src="https://github.githubassets.com/images/icons/emoji/unicode/1f1fa-1f1f8.png" /> English
       </a>
-   </p>
+   </li>
 
-   <p>
+   <li>
       <a href="/es">
           <img class="emojione" alt="🇪🇸" src="https://github.githubassets.com/images/icons/emoji/unicode/1f1ea-1f1f8.png" /> Español
       </a>
-   </p>
+   </li>
 
-            </span>
+            </ul>
         </li>
         
           <!-- Blog, Post, Tag and Error pages -->
