@@ -333,6 +333,10 @@
 .timeline.expandable {
     height: calc(270px * 5 - 100px);
     overflow-y: hidden;
+    
+    -webkit-transition: height 1s;
+    -moz-transition: height 1s;
+    transition: height 1s;
 }
 
 .timeline.only-button {
