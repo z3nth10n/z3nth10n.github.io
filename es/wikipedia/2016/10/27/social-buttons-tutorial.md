@@ -436,13 +436,894 @@ $(document).ready(toggleNavCollapse);
 $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click",function(b){var a=$(this);$("html, body").stop().animate({scrollTop:$(a.attr("href")).offset().top-50},1500,"easeInOutExpo",function(){a.blur()});b.preventDefault()})});$(".navbar-collapse ul li a").click(function(){$(".navbar-toggle:visible").click()});
 </script>
 
-<!--- Plugins Start -->
-
-<!--- WIP -->
-
-<!--- Plugins End -->
 
 
+<!--- Custom scripts out of index -->
+
+<script>
+    String.prototype.replaceAll = String.prototype.replaceAll || function(string, replaced) {
+      return this.replace(new RegExp(string, 'g'), replaced);
+    };
+    
+    $(document).ready(function() {
+      $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
+          
+      var timelineJson = getTimelineJson();
+      // console.log(timelineJson);
+        
+      /*
+        
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/high-school.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Febrero 2019</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Empecé en la universidad</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/job-finish.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Diciembre 2018</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Terminé la FCT del ciclo</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/caja.jpg" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Noviembre 2016</h4>
+              </div>
+              <div class="timeline-body">
+                <p>¡Compré mi segundo ordenador (el que tengo ahora)!</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/studying.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Septiembre 2016</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Empecé un ciclo de formación profesional superior</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/graduated.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Junio 2016</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Terminé bachiller y creé mi primer equipo de desarrollo en Unity3D (y nuestros primeros assets de pago)</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/domain.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Mayo 2016</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Compré mi primer dominio y usé Cloudflare por primera vez</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/git.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Mayo 2016 - Today</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Desde entonces he estado usando Github (con Git) y Gitlab</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/java.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Agosto 2015</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Escribí mi primer código en Java y plugins de Minecraft para Bukkit</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://github.com/VintageDev-Nukes/SykoCode">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/minecraft.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Diciembre 2014 - Septiembre 2015</h4>
+              </div>
+              <div class="timeline-body">
+                <p>¡Formamos un equipo para hacer un servidor de Minecraft!</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/procedural.jpg" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Julio 2014</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Intenté crear un sistema de generación de terrenos procedural (con Perlin Noise) en Unity3D</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/unity3d.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Noviembre 2013</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Empecé en Unity3D (me cambié a C#)</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/default.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Julio 2013</h4>
+              </div>
+              <div class="timeline-body">
+                <p>¡Me registré en Github!</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/stackoverflow.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Julio 2013</h4>
+              </div>
+              <div class="timeline-body">
+                <p>¡Me registré en Stackoverflow!</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://stackoverflow.com/users/2466790/seazoux">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/actionscript.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Mayo 2013</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Intenté aprender ActionScript (pero abandoné la idea)</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://www.youtube.com/watch?v=t7Sh4BQlzXc">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/c++.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Abril 2013</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Intenté aprender C y C++ (y crear mis primeros minijuegos en SMFL)</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://github.com/VintageDev-Nukes/SelfLearningCpp">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/smf.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Enero 2013</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Empecé a usar SMF</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/php-sql.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Noviembre 2012</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Empecé a aprender PHP y MySQL</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://github.com/VintageDev-Nukes/InfiJuegos">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/redlaptop.jpg" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Septiembre 2012</h4>
+              </div>
+              <div class="timeline-body">
+                <p>¡Compré mi segundo portátil!</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/vbnet.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Julio 2012 - Noviembre 2013</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Durante este periodo estuve programando el Visual Basic.NET</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://github.com/VintageDev-Nukes/SEO-Calculator">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/vbscript.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Junio 2012</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Empecé a programar mis primeros scripts en VBScript</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://github.com/VintageDev-Nukes/VBS-Launcher">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/msdos.jpg" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Mayo 2012</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Empecé a programar mis primeros scripts en Batch</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://github.com/VintageDev-Nukes/BATCH-Launcher">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/html-js-css.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Junio 2011</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Empecé a escribir mis primeros snippets en HTML, CSS y Javascript</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://github.com/VintageDev-Nukes/Spirate-n-Miscs">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/youtube.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Junio 2011</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Me registré en YouTube (como usuario habitual)</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://socialblade.com/youtube/user/ikillnukes4evertmb">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/ehn.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Mayo 2011</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Me registre en EHN (ElHacker.Net)</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://foro.elhacker.net/profiles/seazoux-u419740.html">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/maxiuniverse.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Agosto 2010</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Descubrí Spirate (y aprendí como usar hostings), también, recreé MaxiUniverse</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://web.archive.org/web/20190221220205/http://maxiuniverse.activo.mx/">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/spirate.jpg" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Abril 2010 - Junio 2010</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Creé mi primer foro llamado MaxiUniverse</p>
+
+              </div>
+              
+              <div class="timeline-refurl">
+                <a href="https://web.archive.org/web/20100524184651/http://maxiuniverse.superforo.net/">Ver referencia...</a>
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/taringa.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Q3 2009</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Me registré en Taringa</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/freerider2.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>A mediados de 2009</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Empecé a jugar Free Rider 2</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/foroactivo.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Septiembre 2008</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Desubrí Foroactivo</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/old-laptop.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Junio 2008</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Mis tíos me compraron mi primer portatil, después pude empezar a usar Internet como un usuario habitual e intenté aprender Visual Basic 6</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/nintendo.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Julio 2007</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Tuve mi primera Nintendo DS</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/old-computer.jpg" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Abril 2003</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Mis padres me compraron mi primer ordenador de torre</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/born.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Julio 1998</h4>
+              </div>
+              <div class="timeline-body">
+                <p>¡Vine al mundo!</p>
+
+              </div>
+              
+            </div>
+          </li>
+        
+        
+      */
+      
+      var i = 0;
+      for(var elIndex in timelineJson) {
+        var el = timelineJson[elIndex];
+        $(".timeline").append(appendItem());
+          
+        if(i >= 5)
+            break;
+          
+        ++i;
+      }
+        
+      function appendItem() {
+        return $("<li></li>").append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
+      }
+      
+      function getTimelineJson() {
+          var str = "";
+                  
+          
+            str += '{"image"=>"/img/timeline/high-school.png", "date"=>"Febrero 2019", "description"=>"Empecé en la universidad", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/job-finish.png", "date"=>"Diciembre 2018", "description"=>"Terminé la FCT del ciclo", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/caja.jpg", "date"=>"Noviembre 2016", "description"=>"¡Compré mi segundo ordenador (el que tengo ahora)!", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/studying.png", "date"=>"Septiembre 2016", "description"=>"Empecé un ciclo de formación profesional superior", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/graduated.png", "date"=>"Junio 2016", "description"=>"Terminé bachiller y creé mi primer equipo de desarrollo en Unity3D (y nuestros primeros assets de pago)", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/domain.png", "date"=>"Mayo 2016", "description"=>"Compré mi primer dominio y usé Cloudflare por primera vez", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/git.png", "date"=>"Mayo 2016 - Today", "description"=>"Desde entonces he estado usando Github (con Git) y Gitlab", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/java.png", "date"=>"Agosto 2015", "description"=>"Escribí mi primer código en Java y plugins de Minecraft para Bukkit", "url"=>"https://github.com/VintageDev-Nukes/SykoCode"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/minecraft.png", "date"=>"Diciembre 2014 - Septiembre 2015", "description"=>"¡Formamos un equipo para hacer un servidor de Minecraft!", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/procedural.jpg", "date"=>"Julio 2014", "description"=>"Intenté crear un sistema de generación de terrenos procedural (con Perlin Noise) en Unity3D", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/unity3d.png", "date"=>"Noviembre 2013", "description"=>"Empecé en Unity3D (me cambié a C#)", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/default.png", "date"=>"Julio 2013", "description"=>"¡Me registré en Github!", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/stackoverflow.png", "date"=>"Julio 2013", "description"=>"¡Me registré en Stackoverflow!", "url"=>"https://stackoverflow.com/users/2466790/seazoux"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/actionscript.png", "date"=>"Mayo 2013", "description"=>"Intenté aprender ActionScript (pero abandoné la idea)", "url"=>"https://www.youtube.com/watch?v=t7Sh4BQlzXc"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/c++.png", "date"=>"Abril 2013", "description"=>"Intenté aprender C y C++ (y crear mis primeros minijuegos en SMFL)", "url"=>"https://github.com/VintageDev-Nukes/SelfLearningCpp"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/smf.png", "date"=>"Enero 2013", "description"=>"Empecé a usar SMF", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/php-sql.png", "date"=>"Noviembre 2012", "description"=>"Empecé a aprender PHP y MySQL", "url"=>"https://github.com/VintageDev-Nukes/InfiJuegos"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/redlaptop.jpg", "date"=>"Septiembre 2012", "description"=>"¡Compré mi segundo portátil!", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/vbnet.png", "date"=>"Julio 2012 - Noviembre 2013", "description"=>"Durante este periodo estuve programando el Visual Basic.NET", "url"=>"https://github.com/VintageDev-Nukes/SEO-Calculator"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/vbscript.png", "date"=>"Junio 2012", "description"=>"Empecé a programar mis primeros scripts en VBScript", "url"=>"https://github.com/VintageDev-Nukes/VBS-Launcher"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/msdos.jpg", "date"=>"Mayo 2012", "description"=>"Empecé a programar mis primeros scripts en Batch", "url"=>"https://github.com/VintageDev-Nukes/BATCH-Launcher"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/html-js-css.png", "date"=>"Junio 2011", "description"=>"Empecé a escribir mis primeros snippets en HTML, CSS y Javascript", "url"=>"https://github.com/VintageDev-Nukes/Spirate-n-Miscs"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/youtube.png", "date"=>"Junio 2011", "description"=>"Me registré en YouTube (como usuario habitual)", "url"=>"https://socialblade.com/youtube/user/ikillnukes4evertmb"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/ehn.png", "date"=>"Mayo 2011", "description"=>"Me registre en EHN (ElHacker.Net)", "url"=>"https://foro.elhacker.net/profiles/seazoux-u419740.html"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/maxiuniverse.png", "date"=>"Agosto 2010", "description"=>"Descubrí Spirate (y aprendí como usar hostings), también, recreé MaxiUniverse", "url"=>"https://web.archive.org/web/20190221220205/http://maxiuniverse.activo.mx/"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/spirate.jpg", "date"=>"Abril 2010 - Junio 2010", "description"=>"Creé mi primer foro llamado MaxiUniverse", "url"=>"https://web.archive.org/web/20100524184651/http://maxiuniverse.superforo.net/"}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/taringa.png", "date"=>"Q3 2009", "description"=>"Me registré en Taringa", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/freerider2.png", "date"=>"A mediados de 2009", "description"=>"Empecé a jugar Free Rider 2", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/foroactivo.png", "date"=>"Septiembre 2008", "description"=>"Desubrí Foroactivo", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/old-laptop.png", "date"=>"Junio 2008", "description"=>"Mis tíos me compraron mi primer portatil, después pude empezar a usar Internet como un usuario habitual e intenté aprender Visual Basic 6", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/nintendo.png", "date"=>"Julio 2007", "description"=>"Tuve mi primera Nintendo DS", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/old-computer.jpg", "date"=>"Abril 2003", "description"=>"Mis padres me compraron mi primer ordenador de torre", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+            str += '{"image"=>"/img/timeline/born.png", "date"=>"Julio 1998", "description"=>"¡Vine al mundo!", "url"=>""}'.replaceAll("=>", ":") + ",";
+          
+                  
+          return JSON.parse("[" + str.substr(0, str.length - 1) + "]");
+      }
+    });
+</script>
 
 
 
