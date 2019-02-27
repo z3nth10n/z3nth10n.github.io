@@ -146,10 +146,10 @@ a {
                 transition: top .3s;
                 
                 position: absolute;
-                top: 72px;
-                left: -15px;
+                top: 70px;
+                left: -25px;
                 margin: 0 -15px;
-                width: calc(100% + 30px);
+                width: calc(100% + 40px);
 
                 li {
                     width: 100%;
@@ -158,27 +158,27 @@ a {
             }
         }
         
-        .all-toggle {
+        .toggle {
             background-color: transparent;
             background-image: none;
-            border-top: 0;
+            border: 0;
             text-transform: uppercase;
-            margin: 0;
-            margin-top: -1px;
+            margin: 0 !important;
             float: none !important;
             display: inline-block;
             font-size: 15px;
+            outline: none;
         }
         
         @media (min-width: 992px) {
-            .all-toggle {
+            .toggle {
                 padding: 15px !important;
-                margin: 0!important;
+                margin-top: -1px !important;
             }
         }
         
         @media (max-width: 576px) {
-            .all-toggle {
+            .toggle {
                 padding: 10px 0;
             }
         }
@@ -242,7 +242,7 @@ a {
 
 @media (min-width: 992px) {
     .top-nav-collapse .lang-select {
-        top: 52px !important;
+        top: 50px !important;
     }
 }
 

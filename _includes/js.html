@@ -49,6 +49,8 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         // console.log($(".video").parent().parent().width());
         $(".video iframe").attr("width", ($(".video").parent().parent().width() - 10) + "px");
       }
+        
+        $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
     });
   </script>
 
