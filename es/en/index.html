@@ -513,7 +513,7 @@ function loadScript(url) {
     
 </h2>
 
-      <ul class="timeline">
+      <ul class="timeline expandable">
         <!--- 
           
           
@@ -1292,6 +1292,9 @@ function loadScript(url) {
             </div>
           </li>
          -->
+      </ul>
+      <ul class="timeline only-button">
+        <button class="btn-default">Read More...</button>
 
         <li class="timeline-inverted">
           <div class="timeline-image">
@@ -2309,13 +2312,13 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
       var i = 0;
       for(var elIndex in timelineJson) {
         var el = timelineJson[elIndex];
-        $(".timeline").append(appendItem());
-          
-        if(i >= 5)
-            break;
-          
-        ++i;
+        $(".timeline.expandable").append(appendItem());
       }
+        
+      $(".timeline.only-button button").on('click', function() {
+          var curHeight = Number($(".timeline.expandable").height());
+          $(".timeline.expandable").height((curHeight + 270 * 5 - 100) + "px");
+      });
         
       function appendItem() {
         return $("<li></li>").append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
