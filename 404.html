@@ -1067,15 +1067,22 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         
       */
       
-      var i = 0;
+      var items = 0;
       for(var elIndex in timelineJson) {
         var el = timelineJson[elIndex];
         $(".timeline.expandable").append(appendItem());
+          ++items;
       }
         
       $(".timeline.only-button button").on('click', function() {
-          var curHeight = Number($(".timeline.expandable").height());
-          $(".timeline.expandable").height((curHeight + 270 * 5 - 100) + "px");
+          var curHeight = Number($(".timeline.expandable").height()),
+              numItems = (curHeight + 100) / 270,
+              remItems = items - numItems;
+          
+          if(remItems <= 0)
+              $(".timeline.only-button button").hide();
+          
+          $(".timeline.expandable").height((curHeight + 270 * (remItems >= 5 ? 5 : remItems)) + "px");
       });
         
       function appendItem() {
