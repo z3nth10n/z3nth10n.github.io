@@ -13,6 +13,9 @@
 <!-- Plugin SlabText -->
 <script src="{{ site.baseurl_root }}/js/plugins/jquery.fittext.min.js"></script>
 
+<!-- Markdownify for JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+
 <!-- Custom Theme JavaScript -->
 <!--* Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
 * Code licensed under the Apache License v2.0.
@@ -95,10 +98,12 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         
       */
       
+      var converter = new showdown.Converter();
+        
       var items = 0;
       for(var elIndex in timelineJson) {
-        var el = timelineJson[elIndex];
-        $(".timeline.expandable").append(appendItem());
+        var element = timelineJson[elIndex];
+        $(".timeline.expandable").append(appendItem(element, items));
           ++items;
       }
         
@@ -113,8 +118,22 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
           $(".timeline.expandable").height((curHeight + 270 * (remItems >= 5 ? 5 : remItems)) + "px");
       });
         
-      function appendItem() {
-        return $("<li></li>").append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
+      function appendItem(el, index) {
+        var li = $("<li " + (index % 2 != 0 ? 'class="timeline-inverted"' : '') + "></li>");
+          
+        li.append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
+          
+        var panel = $('<div class="timeline-panel"></div>');
+          
+        panel.append($('<div class="timeline-heading"></div>').append($("<h4></h4>").text(el.date)));
+        panel.append($('<div class="timeline-body"></div>').html(converter.makeHtml(el.description)));
+          
+        if(el.url != "") 
+            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("{{ site.translations[site.lang]['see_ref'] }}")));
+          
+        li.append(panel);
+          
+        return li;
       }
       
       function getTimelineJson() {
