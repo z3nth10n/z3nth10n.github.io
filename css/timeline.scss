@@ -1,6 +1,8 @@
 ---
 ---
 
+@import "variables";
+
 .timeline {
     position: relative;
     padding: 0;
@@ -325,5 +327,37 @@
 
     .timeline>li.timeline-inverted>.timeline-panel {
         padding: 0 100px 20px 20px;
+    }
+}
+
+.timeline.expandable {
+    height: calc(270px * 5 - 100px);
+    overflow-y: hidden;
+}
+
+.timeline.only-button {
+    
+    &:before {
+        margin-top: -100px;
+    }
+    
+    li {
+        margin-top: 100px;
+    }
+    
+    button {
+        z-index: 1000;
+        position: absolute;
+        margin-left: -64px;
+        margin-top: -60px;
+        width: 128px;
+        background-color: $primary-color;
+        
+        &:hover,
+        &:focus {
+            color: white;
+            border: 1px solid white;
+            background-color: $secondary-color;
+        }
     }
 }

@@ -7,7 +7,7 @@
 
       <h2>{% include title.html %}</h2>
 
-      <ul class="timeline">
+      <ul class="timeline expandable">
         <!--- {% for event in site.translations[site.lang]["events"] %}
           {% assign loopindex = forloop.index | modulo: 2 %}
           {% capture class %}
@@ -35,6 +35,9 @@
             </div>
           </li>
         {% endfor %} -->
+      </ul>
+      <ul class="timeline only-button">
+        <button class="btn-default">Read More...</button>
 
         <li class="timeline-inverted">
           <div class="timeline-image">
