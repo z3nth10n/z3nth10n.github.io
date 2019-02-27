@@ -140,8 +140,11 @@ a {
         }
         
         @media (min-width: 992px) {
-        
             .lang-select {
+                -webkit-transition: top .3s;
+                -moz-transition: top .3s;
+                transition: top .3s;
+                
                 position: absolute;
                 top: 72px;
                 left: -15px;
@@ -153,10 +156,6 @@ a {
                 }
 
             }
-        }
-        
-        .lang-select p {
-            margin: 5px 0;
         }
         
         .all-toggle {
@@ -238,6 +237,12 @@ a {
             background: $navbar-lg-collapse-background-color;
             border-bottom: 1px solid rgba($font-color, 0.3);
         }
+    }
+}
+
+@media (min-width: 992px) {
+    .top-nav-collapse .lang-select {
+        top: 52px !important;
     }
 }
 
