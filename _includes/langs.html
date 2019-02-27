@@ -1,7 +1,7 @@
 {% for lng in site.data.languages %}
-   <p>
+   <li>
       <a href="{{site.baseurl_root}}{{ lng[1].url }}">
           {{ lng[1].icon | emojify }} {{ lng[1].label }}
       </a>
-   </p>
+   </li>
 {% endfor %}

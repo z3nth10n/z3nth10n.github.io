@@ -27,9 +27,9 @@
             <button type="button" class="all-toggle navbar-toggle visible" data-toggle="collapse" data-target=".lang-select">
                 {{ site.translations[site.lang]['select-language'] }}
             </button>
-            <span class="lang-select collapse">
+            <ul class="lang-select collapse">
                 {% include langs.html %}
-            </span>
+            </ul>
         </li>
         {% if page.section-type == "index" %}
 

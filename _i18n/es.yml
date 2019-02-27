@@ -200,12 +200,14 @@ occupation: 'Desarrollador por hobby'
 categories_caption: 'Categorías'
 tags_caption: 'Tags'
 nothing_yet: 'Nada aún...'
+uncat: 'SIN CATEGORÍA'
+comments: 'Comentarios'
 
 ############
 # Timeline #
 ############
 
-see_ref: 'See reference...'
+see_ref: 'Ver referencia...'
   
 ###########
 # Contact #

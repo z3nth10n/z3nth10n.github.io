@@ -88,7 +88,7 @@ a {
 
     /* Fix height limit and scroll for small screen and many items menu */
     max-height: 100%;
-    overflow-y: auto;
+    overflow-y: inherit;
     
     .visible {
         display: block;
@@ -103,8 +103,57 @@ a {
             outline: none;
         }
     }
+    
     .language-selection {
         text-align: center;
+        
+        .lang-select li {
+            display: block;
+            list-style: none;
+            background: darken($navbar-sm-background-color, 10%);
+            
+            a {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+            
+            @media (min-width: 992px) {
+                a {
+                    padding: 10px 0;
+                }
+            }
+            
+            @media (max-width: 576px) {
+                a {
+                    display: inline-block;
+                    padding: 10px 0;
+                }
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .lang-select li {
+                margin-left: -40px;
+                width: calc(100% + 40px);
+            }
+        }
+        
+        @media (min-width: 992px) {
+        
+            .lang-select {
+                position: absolute;
+                top: 72px;
+                left: -15px;
+                margin: 0 -15px;
+                width: calc(100% + 30px);
+
+                li {
+                    width: 100%;
+                }
+
+            }
+        }
         
         .lang-select p {
             margin: 5px 0;
@@ -121,12 +170,14 @@ a {
             display: inline-block;
             font-size: 15px;
         }
+        
         @media (min-width: 992px) {
             .all-toggle {
                 padding: 15px !important;
                 margin: 0!important;
             }
         }
+        
         @media (max-width: 576px) {
             .all-toggle {
                 padding: 10px 0;
@@ -160,7 +211,7 @@ a {
                 &:focus,
                 &:active {
                     outline: none;
-                      background-color: rgba($font-color, 0.3);
+                    background-color: rgba($font-color, 0.3);
                 }
             }
             &.active {
