@@ -111,7 +111,7 @@
     <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
       <ul class="nav navbar-nav">
         <li class="language-selection">
-            <button type="button" class="all-toggle navbar-toggle visible" data-toggle="collapse" data-target=".lang-select">
+            <button type="button" class="toggle visible">
                 Elige tu idioma
             </button>
             <ul class="lang-select collapse">
@@ -1510,6 +1510,8 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         // console.log($(".video").parent().parent().width());
         $(".video iframe").attr("width", ($(".video").parent().parent().width() - 10) + "px");
       }
+        
+        $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
     });
   </script>
 

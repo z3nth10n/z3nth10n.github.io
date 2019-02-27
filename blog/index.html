@@ -110,7 +110,7 @@
     <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
       <ul class="nav navbar-nav">
         <li class="language-selection">
-            <button type="button" class="all-toggle navbar-toggle visible" data-toggle="collapse" data-target=".lang-select">
+            <button type="button" class="toggle visible">
                 Select your language
             </button>
             <ul class="lang-select collapse">
