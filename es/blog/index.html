@@ -329,7 +329,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
       $(".timeline.only-button button").on('click', function() { readMoreItems(false); });
         
       function readMoreItems(firstTime) {
-          var curHeight = $(".timeline.expandable").height() - (firstTime ? 100 : 0),
+          var curHeight = $(".timeline.expandable").height() - ($(window).width() > 576 ? (firstTime ? 100 : 0) : (firstTime ? 50 : 0)),
               sumHeight = 0,
               count = 0,
               remItems = items - shownItems;
@@ -338,7 +338,10 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
               if(i < shownItems)
                   return true;
 
-              sumHeight += $(this).outerHeight(true);
+              var height = $(this).outerHeight(true);
+              // console.log("Index: "+ i + "; Height: " + height + "; Text: " + $(this).find(".timeline-body p").text());
+              
+              sumHeight += height;
               
               if((i + 1) >= shownItems + 5)
                   return false;
@@ -348,6 +351,8 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
           
           if(items - shownItems <= 0)
             $(".timeline.only-button button").hide();
+          
+          // console.log("Cur Height: " + curHeight + "; Sum Height: " + sumHeight);
           
           $(".timeline.expandable").height(curHeight + sumHeight + "px");
       }
