@@ -74,13 +74,15 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         ++items;
       }
     
-      var shownItems = 0;
+      var shownItems = 0,
+          staticHeight = $(window).width() > 576 ? 100 : 50;
+        
       readMoreItems(true);
         
       $(".timeline.only-button button").on('click', function() { readMoreItems(false); });
         
       function readMoreItems(firstTime) {
-          var curHeight = $(".timeline.expandable").height() - ($(window).width() > 576 ? (firstTime ? 100 : 0) : (firstTime ? 50 : 0)),
+          var curHeight = $(".timeline.expandable").height() - (firstTime ? staticHeight : 0),
               sumHeight = 0,
               count = 0,
               remItems = items - shownItems;
@@ -90,8 +92,6 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
                   return true;
 
               var height = $(this).outerHeight(true);
-              // console.log("Index: "+ i + "; Height: " + height + "; Text: " + $(this).find(".timeline-body p").text());
-              
               sumHeight += height;
               
               if((i + 1) >= shownItems + 5)
@@ -100,12 +100,14 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
           
           shownItems += (remItems >= 5 ? 5 : remItems);
           
-          if(items - shownItems <= 0)
+          var plusHeight = 0;
+          if(items - shownItems <= 0) {
             $(".timeline.only-button button").hide();
+            plusHeight = staticHeight;
+          }
           
-          // console.log("Cur Height: " + curHeight + "; Sum Height: " + sumHeight);
-          
-          $(".timeline.expandable").height(curHeight + sumHeight + "px");
+          console.log(staticHeight);
+          $(".timeline.expandable").height((curHeight + sumHeight + plusHeight) + "px");
       }
         
       function appendItem(el, index) {
