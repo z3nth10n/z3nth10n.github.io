@@ -64,6 +64,11 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         // console.log($(".video").parent().parent().width());
         $(".video iframe").attr("width", ($(".video").parent().parent().width() - 10) + "px");
       }
+        
+      $('section[data-showif="only-sm"]').each(function(index) {
+         if($(window).width() > 992)
+             $(this).load("/html/" + $(this).data("htmlinclude") + ".html");
+      });
     });
   </script>
 

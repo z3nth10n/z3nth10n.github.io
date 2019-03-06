@@ -1,0 +1,9 @@
+<div class="container gitcards">
+    <div class="row">
+        {% for repo in site.data.repos %}
+            <div class="col-md-4">
+                <div class="github-card" data-github="{{ repo }}" data-theme="default"></div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -143,6 +143,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.6)
   jekyll-multiple-languages-plugin (~> 1.6)
   jekyll-paginate-v2 (~> 2.1)
+  jekyll-sass-converter
   jekyll-twitter-plugin!
   jemoji (~> 0.10.2)
   minima (~> 2.0)

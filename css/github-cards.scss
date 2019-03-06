@@ -1,3 +1,6 @@
+---
+---
+
 @import "variables";
 
 body {
@@ -18,8 +21,8 @@ body.ready {
 .github-card {
 	border-radius: 5px;
 	padding: 8px 8px 0;
-	background: $secondary-color;
-	color: #555;
+	background: $box-color;
+	color: $cards-general-text-color;
 	position: relative
 }
 
@@ -42,7 +45,7 @@ body.ready {
 	top: 0;
 	right: 0;
 	padding: 4px 8px 4px 7px;
-	color: #555;
+	color: $cards-general-text-color;
 	text-shadow: 0 1px 0 #fff;
 	border: 1px solid #d4d4d4;
 	border-radius: 3px;
@@ -74,7 +77,7 @@ body.ready {
 }
 
 .user-card .header a {
-	color: #707070;
+	color: $cards-text-color;
 	text-decoration: none
 }
 
@@ -94,7 +97,7 @@ body.ready {
 
 .user-card strong {
 	display: block;
-	color: #292f33;
+	color: $cards-strong-color;
 	font-size: 16px;
 	line-height: 1.6
 }
@@ -102,7 +105,7 @@ body.ready {
 .user-card ul {
 	text-transform: uppercase;
 	font-size: 12px;
-	color: #707070;
+	color: $cards-text-color;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -118,7 +121,7 @@ body.ready {
 }
 
 .user-card .status a {
-	color: #707070;
+	color: $cards-text-color;
 	text-decoration: none
 }
 
@@ -164,7 +167,7 @@ body.ready {
 }
 
 .repo-card .header a {
-	color: #707070
+	color: #707070;
 }
 
 .repo-card .header strong {
@@ -174,7 +177,7 @@ body.ready {
 }
 
 .repo-card .header strong a {
-	color: #292f33
+	color: $cards-strong-color;
 }
 
 .repo-card .header sup {
