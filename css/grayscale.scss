@@ -807,27 +807,10 @@ box p {
     line-height: 300px;
 }
 
-/* SlabText CSS */
-
-/*.slabtexted .slabtext
-{
-    display: -moz-inline-box;
-    display: inline-block;
-    white-space: nowrap;
+.gitcards iframe {
+    padding: 0 15px;
+    
+    .github-card {
+        background-color: black;
+    }
 }
-
-.slabtextinactive .slabtext
-{
-    display: inline;
-    white-space: normal;
-    font-size: 1em !important;
-    letter-spacing: inherit !important;
-    word-spacing: inherit !important;
-    *letter-spacing: normal !important;
-    *word-spacing: normal !important;
-}
-
-.slabtextdone .slabtext
-{
-    display: block;
-}*/

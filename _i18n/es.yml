@@ -186,8 +186,8 @@ author_blurb: "**z3nth10n** es un desarrollador español desde 2011. Le gusta de
 # Sections shown in the index page
 
 pages_list:
-  # About: 'about'
   'Últimas noticias': 'last-social-media'
+  Proyectos: 'github-cards'
   Blog: 'latest-post'
   'Línea de tiempo': 'timeline'
   'Contacto': 'contact'
