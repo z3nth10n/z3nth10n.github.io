@@ -116,13 +116,13 @@
             <ul class="lang-select collapse">
                 
    <li>
-      <a href="/">
+      <a href="/" data-lang="">
           <img class="emojione" alt="🇺🇸" src="https://github.githubassets.com/images/icons/emoji/unicode/1f1fa-1f1f8.png" /> English
       </a>
    </li>
 
    <li>
-      <a href="/es">
+      <a href="/es" data-lang="es">
           <img class="emojione" alt="🇪🇸" src="https://github.githubassets.com/images/icons/emoji/unicode/1f1ea-1f1f8.png" /> Español
       </a>
    </li>
@@ -429,6 +429,12 @@
 <!-- Markdownify for JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
 
+<!--- JQuery Cookies -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+<!--- LINQ for JS -->
+<script src="/js/plugins/linq.min.js"></script>
+
 <!-- Custom Theme JavaScript -->
 <!--* Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
 * Code licensed under the Apache License v2.0.
@@ -449,6 +455,14 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
     };
     
     $(document).ready(function() {
+        
+      // Set lang url    
+      var curLang = Cookies.get("lang");    
+      console.log("Lang: " + curLang);
+        
+      if(curLang && !Enumerable.from(window.location.href.split("/")).any(p => p.indexOf(curLang) > -1))
+        window.location.href = "/" + curLang;
+        
       $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
           
       var timelineJson = getTimelineJson(),
@@ -462,13 +476,15 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         ++items;
       }
     
-      var shownItems = 0;
+      var shownItems = 0,
+          staticHeight = $(window).width() > 576 ? 100 : 50;
+        
       readMoreItems(true);
         
       $(".timeline.only-button button").on('click', function() { readMoreItems(false); });
         
       function readMoreItems(firstTime) {
-          var curHeight = $(".timeline.expandable").height() - ($(window).width() > 576 ? (firstTime ? 100 : 0) : (firstTime ? 50 : 0)),
+          var curHeight = $(".timeline.expandable").height() - (firstTime ? staticHeight : 0),
               sumHeight = 0,
               count = 0,
               remItems = items - shownItems;
@@ -478,8 +494,6 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
                   return true;
 
               var height = $(this).outerHeight(true);
-              // console.log("Index: "+ i + "; Height: " + height + "; Text: " + $(this).find(".timeline-body p").text());
-              
               sumHeight += height;
               
               if((i + 1) >= shownItems + 5)
@@ -488,12 +502,14 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
           
           shownItems += (remItems >= 5 ? 5 : remItems);
           
-          if(items - shownItems <= 0)
+          var plusHeight = 0;
+          if(items - shownItems <= 0) {
             $(".timeline.only-button button").hide();
+            plusHeight = staticHeight;
+          }
           
-          // console.log("Cur Height: " + curHeight + "; Sum Height: " + sumHeight);
-          
-          $(".timeline.expandable").height(curHeight + sumHeight + "px");
+          console.log(staticHeight);
+          $(".timeline.expandable").height((curHeight + sumHeight + plusHeight) + "px");
       }
         
       function appendItem(el, index) {
@@ -587,6 +603,14 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
                   
           return JSON.parse("[" + str.substr(0, str.length - 1) + "]");
       }
+           
+           // Cookie set
+           
+           $(".lang-select a").on('click', function(e) {
+               e.preventDefault();
+               Cookies.set("lang", $(this).data('lang'));
+               window.location.href = $(this).attr('href');
+           });
     });
 </script>
 
