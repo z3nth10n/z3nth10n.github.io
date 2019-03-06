@@ -242,26 +242,10 @@ If you want to have a static message in your intro layout, disable the dynamic-t
       
         
           
-          
-<div class="container gitcards">
-    <div class="row">
+          <section id="github-cards" data-showif="only-sm" data-htmlinclude="github-cards-content">
+</section>
         
-            <div class="col-md-4">
-                <div class="github-card" data-github="uta-org/QuickFork" data-theme="default"></div>
-            </div>
-        
-            <div class="col-md-4">
-                <div class="github-card" data-github="uta-org/ZWSetup" data-theme="default"></div>
-            </div>
-        
-            <div class="col-md-4">
-                <div class="github-card" data-github="uta-org/uzLib.Lite" data-theme="default"></div>
-            </div>
-        
-    </div>
-</div>
-
-
+      
         
       
         
@@ -368,10 +352,14 @@ If you want to have a static message in your intro layout, disable the dynamic-t
       
         
       
+        
+      
     
      
       
       
+      
+        
       
         
       
@@ -641,6 +629,8 @@ function loadScript(url) {
         
       
         
+      
+        
           
           
 <!-- Timeline Start -->
@@ -757,6 +747,8 @@ function loadScript(url) {
 
 <!-- Contact End -->
 
+        
+      
         
       
         
@@ -908,6 +900,11 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         // console.log($(".video").parent().parent().width());
         $(".video iframe").attr("width", ($(".video").parent().parent().width() - 10) + "px");
       }
+        
+      $('section[data-showif="only-sm"]').each(function(index) {
+         if($(window).width() > 992)
+             $(this).load("/html/" + $(this).data("htmlinclude") + ".html");
+      });
     });
   </script>
 
