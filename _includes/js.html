@@ -22,6 +22,16 @@
 <!--- LINQ for JS -->
 <script src="{{ site.baseurl_root }}/js/plugins/linq.min.js"></script>
 
+<!--- Only Index Scripts -->
+
+{% if page.section-type == "index" %}
+
+<!--- Github Cards -->
+
+<script src="https://cdn.jsdelivr.net/gh/lepture/github-cards@latest/jsdelivr/widget.js"></script>
+
+{% endif %}
+
 <!-- Custom Theme JavaScript -->
 <!--* Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
 * Code licensed under the Apache License v2.0.
