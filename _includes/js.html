@@ -81,7 +81,13 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
                 jsonObj[jsonFile] = jsonData;
              
                 engine.renderFile($(el).data("htmlinclude"), jsonObj)
-                    .then(function(data) { $(el).html(data); });
+                    .then(function(data) { 
+                        $(el).html(data);
+                    
+                        // Hide nav
+                        var href = '#' + $(el).attr('id');
+                        $("a[href='" + href +"']").parent().hide();
+                    });
             });
          }
       });

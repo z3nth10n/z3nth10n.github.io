@@ -182,8 +182,8 @@ author_blurb: "**z3nth10n** is a Spanish developer since 2011. He likes coding i
 # Sections shown in the index page
 
 pages_list:
-  'Last Social Media': 'last-social-media'
   Projects: 'github-cards'
+  'Last Social Media': 'last-social-media'
   Blog: 'latest-post'
   Timeline: 'timeline'
   Contact: 'contact'
