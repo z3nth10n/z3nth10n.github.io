@@ -45,8 +45,8 @@
 
   
   
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.2/cookieconsent.min.css" />
-<script async defer src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.2/cookieconsent.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 <script>
 window.addEventListener("load", function(){
 window.cookieconsent.initialise({
@@ -59,7 +59,10 @@ window.cookieconsent.initialise({
     }
   },
   "content": {
-    "href": "https://www.dev-eth0.de/privacy-policy"
+    "message": "Esta página web usa cookies para asegurar una mejor experiencia en nuestro sitio.",
+    "dismiss": "¡Vale!",
+    "link": "Aprende más",
+    "href": "/es/privacy-policy"
   }
 })});
 </script>
