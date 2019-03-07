@@ -280,4 +280,4 @@ plugins:
   - iconv
   - nokogiri
   - jekyll-twitter-plugin
-  - jekyll-multiple-languages-plugin
+  - jekyll-language-plugin

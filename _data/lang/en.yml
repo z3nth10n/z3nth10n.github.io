@@ -1,3 +1,4 @@
+---
 #############
 # HTML Head #
 #############
@@ -224,3 +225,11 @@ chatango: '<script id="cid0020000212942320011" data-cfasync="false" async src="/
 cookie-msg: 'This website uses cookies to ensure you get the best experience on our website.'
 cookie-dimiss: 'Got it!'
 cookie-link: 'Learn more'
+
+#######
+# 404 #
+#######
+
+err:
+    title: 'Why are you still procrastinating?'
+    content: 'Check <a href="http://waitbutwhy.com/2013/11/how-to-beat-procrastination.html" target="_blank">this</a> out if you want to stop looking for pages that don\'t exist'

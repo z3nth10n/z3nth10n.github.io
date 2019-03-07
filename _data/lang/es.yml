@@ -1,3 +1,4 @@
+---
 #############
 # HTML Head #
 #############
@@ -228,3 +229,11 @@ chatango: '<script id="cid0020000212942520505" data-cfasync="false" async src="/
 cookie-msg: 'Esta página web usa cookies para asegurar una mejor experiencia en nuestro sitio.'
 cookie-dimiss: '¡Vale!'
 cookie-link: 'Aprende más'
+
+#######
+# 404 #
+#######
+
+err:
+    title: '¿Por qué sigues procrastinando?'
+    content: 'Mira <a href="http://www.recursosparapymes.com/exclusivo-premium/Procrastinacion.pdf" target="_blank">esto</a> si quieres dejar de seguir viendo páginas que no existen.'

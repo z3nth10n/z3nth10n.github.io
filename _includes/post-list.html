@@ -7,11 +7,11 @@
         {% assign post = site.posts.first %}
         <h4> <strong> {{ post.date | date_to_string }} </strong>
           <small>.
-            <a class="category" href="{{site.baseurl}}/categories/{{post.category | downcase}}.html">
-              {{ post.category }}
+            <a class="category" href="{{site.baseurl}}/categories/{{post.categories | downcase}}.html">
+              {{ post.categories }}
             </a>
             
-            {% if post.category == blank %}
+            {% if post.categories == blank %}
                 {{ site.translations[site.lang]['uncat'] }}
             {% endif %}
           .</small>
