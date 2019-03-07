@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.2/cookieconsent.min.css" />
-<script async defer src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.2/cookieconsent.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 <script>
 window.addEventListener("load", function(){
 window.cookieconsent.initialise({
@@ -12,6 +12,9 @@ window.cookieconsent.initialise({
     }
   },
   "content": {
+    "message": "{{ site.translations[site.lang]['cookie-msg'] }}",
+    "dismiss": "{{ site.translations[site.lang]['cookie-dimiss'] }}",
+    "link": "{{ site.translations[site.lang]['cookie-link'] }}",
     "href": "{{ site.baseurl }}/privacy-policy"
   }
 })});
