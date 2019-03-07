@@ -153,13 +153,13 @@ window.cookieconsent.initialise({
           
             <li>
             
-                <a href="/es/#last-social-media"> Últimas noticias </a>
+                <a href="/es/#github-cards"> Proyectos </a>
             
             </li>
           
             <li>
             
-                <a href="/es/#github-cards"> Proyectos </a>
+                <a href="/es/#last-social-media"> Últimas noticias </a>
             
             </li>
           
@@ -351,7 +351,6 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         
       // Set lang url    
       var curLang = Cookies.get("lang");    
-      console.log("Lang: " + curLang);
         
       if(curLang && !Enumerable.from(window.location.href.split("/")).any(p => p.indexOf(curLang) > -1))
         window.location.href = "/" + curLang; // Check and get relative url of where we were
@@ -401,7 +400,6 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
             plusHeight = staticHeight;
           }
           
-          console.log(staticHeight);
           $(".timeline.expandable").height((curHeight + sumHeight + plusHeight) + "px");
       }
         

@@ -154,11 +154,11 @@ window.cookieconsent.initialise({
           <!-- Scroll to section for each page in index -->
           
             <li>
-              <a class="page-scroll" href="#last-social-media"> Últimas noticias </a>
+              <a class="page-scroll" href="#github-cards"> Proyectos </a>
             </li>
           
             <li>
-              <a class="page-scroll" href="#github-cards"> Proyectos </a>
+              <a class="page-scroll" href="#last-social-media"> Últimas noticias </a>
             </li>
           
             <li>
@@ -241,6 +241,43 @@ If you want to have a static message in your intro layout, disable the dynamic-t
         
       
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+     
+      
+      
+      
+        
+      
+        
+      
+        
+      
+        
           
           <section id="github-cards" data-showif="only-sm" data-jsonrequire="repos" data-htmlinclude="github-cards-content">
 </section>
@@ -262,10 +299,10 @@ If you want to have a static message in your intro layout, disable the dynamic-t
                     <h2>
     
     
-        Últimas noticias
-    
 
     
+    
+        Últimas noticias
     
 
     
@@ -299,43 +336,6 @@ If you want to have a static message in your intro layout, disable the dynamic-t
         </div>
     </div>
 </section>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-     
-      
-      
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
         
       
         
@@ -805,9 +805,7 @@ function loadScript(url) {
 
 
 
-<!--- Github Cards -->
-
-<script src="/js/plugins/widget.js"></script>
+<!--- Nothing here... -->
 
 
 
@@ -840,7 +838,6 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         $(".intro .intro-header h2").fitText();
       }
       else if($(window).width() > 992) {
-        // console.log($(".video").parent().parent().width());
         $(".video iframe").attr("width", ($(".video").parent().parent().width() - 10) + "px");
       }
         
@@ -860,7 +857,13 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
                 jsonObj[jsonFile] = jsonData;
              
                 engine.renderFile($(el).data("htmlinclude"), jsonObj)
-                    .then($(el).html);
+                    .then(function(data) { 
+                        $(el).html(data);
+                    
+                        // Hide nav
+                        var href = '#' + $(el).attr('id');
+                        $("a[href='" + href +"']").parent().hide();
+                    });
             });
          }
       });
@@ -880,7 +883,6 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         
       // Set lang url    
       var curLang = Cookies.get("lang");    
-      console.log("Lang: " + curLang);
         
       if(curLang && !Enumerable.from(window.location.href.split("/")).any(p => p.indexOf(curLang) > -1))
         window.location.href = "/" + curLang; // Check and get relative url of where we were
@@ -930,7 +932,6 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
             plusHeight = staticHeight;
           }
           
-          console.log(staticHeight);
           $(".timeline.expandable").height((curHeight + sumHeight + plusHeight) + "px");
       }
         
