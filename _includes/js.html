@@ -64,11 +64,12 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
       else if($(window).width() > 992) {
         $(".video iframe").attr("width", ($(".video").parent().parent().width() - 10) + "px");
       }
-        
-      $('section[data-showif="only-sm"]').each(function(index) {
-         var el = $('section[data-showif="only-sm"]')[index];
+      
+      var els = $('section[data-showif="above-xs"]');
+      els.each(function(index) {
+         var el = els[index];
           
-         if($(window).width() > 992) {
+         if($(window).width() > 576) {
              var engine = new Liquid({
                 root: 'html/',  // dirs to lookup layouts/includes
                 extname: '.html'          // the extname used for layouts/includes, defaults ""
@@ -77,18 +78,19 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
             var jsonFile = $(this).data("jsonrequire"),
                 jsonObj = {};
              
-            $.get("data/"+jsonFile+".json", function(jsonData) {
+            $.get("data/" + jsonFile + ".json", function(jsonData) {
                 jsonObj[jsonFile] = jsonData;
              
                 engine.renderFile($(el).data("htmlinclude"), jsonObj)
                     .then(function(data) { 
                         $(el).html(data);
-                    
-                        // Hide nav
-                        var href = '#' + $(el).attr('id');
-                        $("a[href='" + href +"']").parent().hide();
                     });
             });
+         }
+         else {
+            // Hide nav
+            var href = '#' + $(el).attr('id');
+            $("a[href='" + href +"']").parent().hide();
          }
       });
     });
