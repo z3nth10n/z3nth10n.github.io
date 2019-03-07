@@ -214,3 +214,9 @@ see_ref: 'Ver referencia...'
 ###########
 
 dropme-mail: 'Mándame un correo si estás interasado en mis proyectos o si necesitas algo.'
+
+############
+# Chatango #
+############
+
+chatango: '<script id="cid0020000212942520505" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 200px;height: 300px;">{"handle":"z3nth10n-es","arch":"js","styles":{"a":"202020","b":100,"c":"c0c0c0","d":"ffffff","e":"404040","g":"e0e0e0","k":"c0c0c0","l":"c0c0c0","m":"c0c0c0","p":"10","q":"c0c0c0","r":100,"pos":"br","cv":1,"cvbg":"c0c0c0","cvfg":"404040","cvw":75,"cvh":30,"cnrs":"1","fwtickm":1}}</script>'
