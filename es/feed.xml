@@ -1,31 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--- <xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml"
-                src="/js/plugins/linq.min.js"
-                type="application/javascript"/>
-                
-<xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml"
-                src="/js/lang.redirect.js"
-                type="application/javascript"/> -->
-
-<!--- <script xmlns="http://www.w3.org/1999/xhtml" src="/js/plugins/linq.min.js"></script>                
-<script xmlns="http://www.w3.org/1999/xhtml" src="/js/lang.redirect.js"></script> -->
-                
-<script xmlns="http://www.w3.org/1999/xhtml">
-<![CDATA[
-console.log('feed.xml');
-]]>
-</script> 
-
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 	<channel>
 		<title>{ z3nth10n }</title>
+        
+        
 		<description>
-		        Este es el blog y sitio web de z3nth10n, aquí se tratará principalmente el desarrollo de mis proyectos.
+            
+            Este es el blog y sitio web de z3nth10n, aquí se tratará principalmente el desarrollo de mis proyectos.
+        
         </description>
+        
 		<link>https://z3nth10n.github.io</link>
         <language>es</language>
-		<atom:link href="https://z3nth10n.github.io/feed.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://z3nth10n.github.io/en/feed.xml" rel="self" type="application/rss+xml" />
 		
 	</channel>
 </rss>

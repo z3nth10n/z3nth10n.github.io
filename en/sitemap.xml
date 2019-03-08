@@ -16,6 +16,20 @@
     
   
     
+      <url>
+        <loc>https://z3nth10n.github.io/feed</loc>
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>https://z3nth10n.github.io/es/feed</loc>
+        
+       </url>
+    
+  
+    
   
     
   
@@ -23,7 +37,20 @@
   
     
       <url>
-        <loc>https://z3nth10n.github.io/blog/</loc>
+        <loc>https://z3nth10n.github.io/en/blog/</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>https://z3nth10n.github.io/es/blog/</loc>
         
           
           
@@ -45,22 +72,23 @@
     
   
     
-  
-    
-  
+      <url>
+        <loc>https://z3nth10n.github.io/sitemap</loc>
+        
+       </url>
     
   
     
       <url>
-        <loc>https://z3nth10n.github.io/index.html</loc>
-        
-          
-          
-          
-          <priority>1.0</priority>
-          
+        <loc>https://z3nth10n.github.io/es/sitemap</loc>
         
        </url>
+    
+  
+    
+  
+    
+  
     
   
     
