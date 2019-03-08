@@ -16,10 +16,10 @@ alert('Hello');
 	<channel>
 		<title>{ z3nth10n }</title>
 		<description>
-		        Este es el blog y sitio web de z3nth10n, aquí se tratará principalmente el desarrollo de mis proyectos.
+		        Blog and website of z3nth10n, blogging mainly for tech.
         </description>
 		<link>https://z3nth10n.github.io</link>
-        <language>es</language>
+        <language>en</language>
 		<atom:link href="https://z3nth10n.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 	</channel>
