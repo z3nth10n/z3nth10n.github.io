@@ -8,14 +8,14 @@
                 src="/js/lang.redirect.js"
                 type="application/javascript"/> -->
 
-<script xmlns="http://www.w3.org/1999/xhtml" src="/js/plugins/linq.min.js"></script>                
-<script xmlns="http://www.w3.org/1999/xhtml" src="/js/lang.redirect.js"></script>
+<!--- <script xmlns="http://www.w3.org/1999/xhtml" src="/js/plugins/linq.min.js"></script>                
+<script xmlns="http://www.w3.org/1999/xhtml" src="/js/lang.redirect.js"></script> -->
                 
-<script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+<script xmlns="http://www.w3.org/1999/xhtml">
 <![CDATA[
 console.log('feed.xml');
 ]]>
-</script>
+</script> 
 
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 	<channel>
