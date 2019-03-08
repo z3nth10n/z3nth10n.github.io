@@ -1,12 +1,15 @@
 ---
-layout: null
+layout: error
+title: 404
 languages:
 - en
 - es
 subset: err
-title: 404
+permalink: '/404.html'
 ---
 
-## {% t 'title' %}
-
-#### {% t 'content' %}
+<script>
+    (function() {
+        window.location.href = "{{ site.baseurl }}/{{ page.language }}/error-404";
+    })();
+</script>

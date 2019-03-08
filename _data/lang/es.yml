@@ -237,3 +237,11 @@ cookie-link: 'Aprende más'
 err:
     title: '¿Por qué sigues procrastinando?'
     content: 'Mira <a href="http://www.recursosparapymes.com/exclusivo-premium/Procrastinacion.pdf" target="_blank">esto</a> si quieres dejar de seguir viendo páginas que no existen.'
+    
+#########
+# Langs #
+#########
+
+lang:
+  en: Inglés
+  es: Español

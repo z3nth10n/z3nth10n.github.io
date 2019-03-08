@@ -232,4 +232,12 @@ cookie-link: 'Learn more'
 
 err:
     title: 'Why are you still procrastinating?'
-    content: 'Check <a href="http://waitbutwhy.com/2013/11/how-to-beat-procrastination.html" target="_blank">this</a> out if you want to stop looking for pages that don\'t exist'
+    content: 'Check <a href="http://waitbutwhy.com/2013/11/how-to-beat-procrastination.html" target="_blank">this</a> out if you want to stop looking for pages that don''t exist'
+    
+#########
+# Langs #
+#########
+
+lang:
+  en: English
+  es: Spanish
