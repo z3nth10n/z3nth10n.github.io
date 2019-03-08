@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{site.translations[site.lang]['description']}}">
+  <meta name="description" content="{% t 'description' %}">
   <meta name="author" content="{{site.author}}">
   <meta name="keywords" content="{{site.keywords}}">
   <link rel="canonical" href="{{page.url | replace:'index.html','' | prepend: site.baseurl_root}}">
@@ -37,7 +37,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{site.baseurl_root}}{{site.favicon}}">
   {% endif %}
 
-  {% if page.url == "/error-404.html" | prepend: {{site.baseurl}} %}
+  {% if page.url contains "/error-404" | prepend: {{site.baseurl}} %}
     <meta http-equiv="refresh" content="20; url={{site.baseurl}}/">
   {% endif %}
   

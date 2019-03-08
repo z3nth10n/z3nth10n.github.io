@@ -12,9 +12,9 @@ window.cookieconsent.initialise({
     }
   },
   "content": {
-    "message": "{{ site.translations[site.lang]['cookie-msg'] }}",
-    "dismiss": "{{ site.translations[site.lang]['cookie-dimiss'] }}",
-    "link": "{{ site.translations[site.lang]['cookie-link'] }}",
+    "message": "{% t 'cookie-msg' %}",
+    "dismiss": "{% t 'cookie-dimiss' %}",
+    "link": "{% t 'cookie-link' %}",
     "href": "{{ site.baseurl }}/privacy-policy"
   }
 })});

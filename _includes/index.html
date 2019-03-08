@@ -10,24 +10,27 @@
     {% include navigation.html %}
 
     {% include header.html %}
-
-    {% for p in site.translations[site.lang]['pages_list'] %}
-     
+    
+    {% capture pagelist %}
+        {% t 'pages_list' %}
+    {% endcapture %}
+    
+    {% for p in pagelist %}
       {% assign innerindex=forloop.index0 %}
+      {% capture findex %} {{ innerindex }} {% endcapture %}
       
-      {% for page in site.pages %}
-        {% if p[1] == page.section-type %}
-          {% capture findex %} {{ innerindex }} {% endcapture %}
-          {% include {{ page.path }} %}
-        {% endif %}
-      {% endfor %}
+      {% capture pincl %}
+          {{ p[1] }}
+      {% endcapture%}
+      
+
     {% endfor %}
 
     {% include footer.html %}
 
     {% include js.html %}
     
-    {{ site.translations[site.lang]['chatango'] }}
+    {% t 'chatango' %}
 
   </body>
 </html>

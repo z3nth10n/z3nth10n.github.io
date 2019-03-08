@@ -16,16 +16,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2">
-                        <a href="#{{ site.translations[site.lang]['pages_list']['About'] }}" class="page-scroll avatar-big">
+                        <a href="#" class="page-scroll avatar-big">
                             {% include avatar.html %}
                         </a>
                     </div>
                     <div class="col-xs-12 col-md-10 intro-header">
                         <p>
-                            <h2>{{ site.translations[site.lang]['introduction-header'] }}</h2>
+                            <h2>{% t 'introduction-header' %}</h2>
                         </p>
                         <p>
-                            {{ site.translations[site.lang]['introduction'] }}
+                            {% t 'introduction' %}
                         </p>
                     </div>
                 </div>
