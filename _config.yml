@@ -288,3 +288,7 @@ plugins:
   - nokogiri
   - jekyll-twitter-plugin
   - jekyll-language-plugin
+  - jekyll-redirect-from
+
+whitelist:
+  - jekyll-redirect-from

@@ -34,6 +34,7 @@ group :jekyll_plugins do
   gem 'jekyll-emoji', path: '_plugins/jekyll-emoji'
   gem 'jekyll-language-plugin'
   gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
+  gem 'jekyll-redirect-from', '~> 0.14.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
