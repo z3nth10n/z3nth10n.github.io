@@ -1,9 +1,12 @@
 ---
-layout: error
+layout: null
 title: 404
 subset: err
 permalink: '/404.html'
 ---
+
+<!--- LINQ for JS -->
+<script src="{{ site.baseurl_root }}/js/plugins/linq.min.js"></script>
 
 <script>
     (function() {
@@ -13,7 +16,9 @@ permalink: '/404.html'
         var retLang = "/";
         if(langs.length >= 1)
             retLang += langs.first() + "/";
+        else
+            retLang = "/en/";
         
-        window.location.href = window.location.host + retLang + "error-404";
+        window.location.href = window.location.protocol + "//" + window.location.host + retLang + "error-404";
     })();
 </script>
