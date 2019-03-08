@@ -12,13 +12,16 @@ permalink: '/404.html'
     (function() {
         var langArr = ["en", "es"]; // TODO: 0 Scalibity
         var langs = Enumerable.from(window.location.href.split("/")).where(p => langArr.includes(p));
-        
+
         var retLang = "/";
-        if(langs.length >= 1)
+        if(langs.count() >= 1)
             retLang += langs.first() + "/";
         else
             retLang = "/en/";
         
-        window.location.href = window.location.protocol + "//" + window.location.host + retLang + "error-404";
+        var url = window.location.protocol + "//" + window.location.host + retLang + "error-404";
+        
+        // console.log(url);
+        window.location.href = url;
     })();
 </script>
