@@ -215,6 +215,289 @@ If you want to have a static message in your intro layout, disable the dynamic-t
     
     
     
+    
+    
+    
+    <!--- 
+    
+        "Projects"=>"github-cards", "Last Social Media"=>"last-social-media", "Blog"=>"latest-post", "Timeline"=>"timeline", "Contact"=>"contact"
+    
+    404.htmlcontact.htmlcontact.htmlerror-404.htmlerror-404.htmlfeed.xmlfeed.xmlfeed_en.htmlfeed_es.htmlgithub-cards.htmlgithub-cards.scssgrayscale.scssindex.htmlindex.htmllast-social-media.htmllatest-post.htmlmanifest.jsonsitemap.xmlsitemap.xmlsitemap_en.htmlsitemap_es.htmltimeline.htmltimeline.scssredirects.jsonindex.htmlindex_en.htmlindex_es.html 
+    -->
+    
+    
+      
+      
+      
+      
+      
+      
+      
+       
+      <section id="github-cards" data-showif="above-xs" data-jsonrequire="repos" data-htmlinclude="github-cards-content">
+</section>
+    
+      
+      
+      
+      
+      
+      
+      
+       
+      <section id="last-social-media">
+    <div class="container socialmedia">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h2></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row sm-vertical-center">
+            <div class="col-sm-12 col-md-6 text-center sm-expand-height">
+                <box class="sm-both-offset xs-vertical-offset expand-width-mobile">
+                    <div class="video"><figure><iframe width="640" height="480" src="//www.youtube.com/embed/-Aycbij4j5?list=UU9_182JSvrypccfo-OFllUg" frameborder="0" allowfullscreen></iframe></figure></div>
+                </box>
+            </div>
+            <div class="col-sm-12 col-md-6 top-margin-mobile">
+                <box class="text-center expand-width">
+                    <div class='jekyll-twitter-plugin'><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<a class="twitter-timeline" data-width="500" data-tweet-limit="5" href="https://twitter.com/z3nth10n?ref_src=twsrc%5Etfw" data-theme="dark" data-link-color="#b84d45">Tweets by z3nth10n</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body></html>
+</div>
+                </box>
+            </div>
+        </div>
+    </div>
+</section>
+    
+      
+      
+      
+      
+      
+      
+      
+       
+      <!-- Latest Posts Preview Start -->
+
+<section id="page" class="container content-section text-center xs-margin-top">
+
+  <div class="row-sm row-xs-flex">
+    <div class="col-md-9 order-xs-last">
+        
+    <h2></h2>
+    
+    <div>
+      
+          <box class="empty-posts">
+    Nothing here...
+</box>
+      
+    </div>
+
+    
+<!-- Pagination Links Start -->
+
+  <!-- 
+    Showing buttons to move to the next and to the previous list of posts (pager buttons).
+  -->
+  
+
+<!-- Pagination Links End -->
+
+   
+    </div>
+    <div class="col-md-3 order-xs-first col-xs-expand">
+        <h2 class="xs-invisible">&nbsp;</h2>
+        <box class="horizontal-offset vertical-offset vertical-xs-margin expand-width presentation-sidebar">
+            <a href="#" class="page-scroll avatar-medium">
+                
+    <img class="img-me" src="/img/author.png" alt="">
+
+            </a>
+            <p>Álvaro Rodríguez García</p>
+            <p class="gray"><b></b></p>
+            <p class="buttons">
+                <!-- Social Buttons Start -->
+
+<ul class="list-inline social-buttons small-social-icons">
+    
+    <li>
+        <a href="https://facebook.com/Z3nth10n-344166426434567" target="_blank"><i class=" fab  fa-facebook fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://twitter.com/z3nth10n" target="_blank"><i class=" fab  fa-twitter fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://github.com/z3nth10n" target="_blank"><i class=" fab  fa-github fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://instagram.com/z3nth10n" target="_blank"><i class=" fab  fa-instagram fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://discord.com/users/208235269764284417" target="_blank"><i class=" fab  fa-discord fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://t.me/z3nth10n" target="_blank"><i class=" fab  fa-telegram fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="/feed.xml" target="_blank"><i class=" fas  fa-rss fa-fw"></i></a>
+    </li>
+    
+    
+</ul>
+
+<!-- Social Buttons End -->
+
+            </p>
+            <hr>
+            <h4></h4>
+            <p>
+                
+                    
+                
+            </p>
+            <hr>
+            <h4></h4>
+            <p>
+                
+                    
+                
+            </p>
+        </box>
+    </div>
+  </div>
+</section>
+    
+<!-- Syntax highlight in post pages-->
+
+<script>
+function loadScript(url) {
+    var script = document.createElement('script'); 
+    document.head.appendChild(script);  
+    script.type = 'text/javascript';
+    script.src = url;
+    
+    return script;
+}
+</script>
+
+<script>
+
+    var highlighterLoad 
+    jQueryCode = function(){
+        // your jQuery code
+        loadScript("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js");
+
+        setTimeout(function() {
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        }, 200);
+    }
+
+    if(window.jQuery)  jQueryCode();
+    else{   
+        var script = loadScript("https://code.jquery.com/jquery-latest.min.js");
+
+        script.onload = jQueryCode;
+    }
+</script>
+
+<!-- Latest Posts Preview End -->
+    
+      
+      
+      
+      
+      
+      
+      
+       
+      
+<!-- Timeline Start -->
+
+<section id="index" class="container content-section text-center">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+      <h2></h2>
+
+      <ul class="timeline expandable"></ul>
+      <ul class="timeline only-button">
+        <button class="btn-default">Read More...</button>
+
+        <li class="timeline-inverted">
+          <div class="timeline-image">
+            <img class="img-circle img-responsive" src="/img/timeline/default.png" alt="">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline End -->
+
+    
+      
+      
+      
+      
+      
+      
+      
+       
+      <!-- Contact Start -->
+
+<section id="index" class="container content-section text-center">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <p class="xs-visible h5-padding">&nbsp;</p>
+      
+      <h2></h2>
+
+      <!--
+If you want to have a static message in your intro layout, disable the dynamic-typing in the _config.yml and write here your text
+-->
+
+
+      
+        
+          
+            <p>
+            <script>
+              function join_at_email(user, domain){
+              return (user && domain)?(user + "@" + domain):"";
+              }
+              document.write('<a href="mailto:'
+              + join_at_email( "z3nth10n", "gmail.com" )
+              + '">'
+              + join_at_email( "z3nth10n", "gmail.com" )
+              + '</a>'
+              );
+              </script>
+            </p>
+        
+      
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact End -->
+
+    
 
     <!-- Footer Start -->
 
