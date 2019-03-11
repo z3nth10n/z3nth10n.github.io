@@ -134,7 +134,7 @@ window.cookieconsent.initialise({
       <ul class="nav navbar-nav">
         <li class="language-selection">
             <button type="button" class="toggle visible">
-                
+                Elige tu idioma
             </button>
             <ul class="lang-select collapse">
                 
@@ -153,10 +153,45 @@ window.cookieconsent.initialise({
             </ul>
         </li>
         
+        
 
-          <!-- Scroll to section for each page in index -->
-          
-
+        
+        
+              
+        
+             <!-- Scroll to section for each page in index -->     
+              
+                  
+                  
+                  <li>
+                      <a class="page-scroll" href="#github-cards"> 
+            Proyectos </a>
+                  </li>
+              
+                  
+                  
+                  <li>
+                      <a class="page-scroll" href="#last-social-media">  Últimas noticias </a>
+                  </li>
+              
+                  
+                  
+                  <li>
+                      <a class="page-scroll" href="#latest-post">  Blog </a>
+                  </li>
+              
+                  
+                  
+                  <li>
+                      <a class="page-scroll" href="#timeline">  Línea de tiempo </a>
+                  </li>
+              
+                  
+                  
+                  <li>
+                      <a class="page-scroll" href="#contact">  Contacto </a>
+                  </li>
+              
         
       </ul>
     </div>
@@ -218,13 +253,6 @@ If you want to have a static message in your intro layout, disable the dynamic-t
     
     
     
-    <!--- 
-    
-        "Proyectos"=>"github-cards", "Últimas noticias"=>"last-social-media", "Blog"=>"latest-post", "Línea de tiempo"=>"timeline", "Contacto"=>"contact"
-    
-    404.htmlcontact.htmlcontact.htmlerror-404.htmlerror-404.htmlfeed.xmlfeed.xmlfeed_en.htmlfeed_es.htmlgithub-cards.htmlgithub-cards.scssgrayscale.scssindex.htmlindex.htmllast-social-media.htmllatest-post.htmlmanifest.jsonsitemap.xmlsitemap.xmlsitemap_en.htmlsitemap_es.htmltimeline.htmltimeline.scssredirects.jsonindex.htmlindex_en.htmlindex_es.html 
-    -->
-    
     
       
       
@@ -250,7 +278,39 @@ If you want to have a static message in your intro layout, disable the dynamic-t
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
-                    <h2></h2>
+                    <h2>
+
+
+
+
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+         Últimas noticias
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+</h2>
                 </div>
             </div>
         </div>
@@ -289,7 +349,39 @@ If you want to have a static message in your intro layout, disable the dynamic-t
   <div class="row-sm row-xs-flex">
     <div class="col-md-9 order-xs-last">
         
-    <h2></h2>
+    <h2>
+
+
+
+
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+         Blog
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+</h2>
     
     <div>
       
@@ -320,7 +412,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
 
             </a>
             <p>Álvaro Rodríguez García</p>
-            <p class="gray"><b></b></p>
+            <p class="gray"><b>Desarrollador por hobby</b></p>
             <p class="buttons">
                 <!-- Social Buttons Start -->
 
@@ -361,17 +453,17 @@ If you want to have a static message in your intro layout, disable the dynamic-t
 
             </p>
             <hr>
-            <h4></h4>
+            <h4>Categorías</h4>
             <p>
                 
-                    
+                    Nada aún...
                 
             </p>
             <hr>
-            <h4></h4>
+            <h4>Tags</h4>
             <p>
                 
-                    
+                    Nada aún...
                 
             </p>
         </box>
@@ -431,7 +523,39 @@ function loadScript(url) {
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
 
-      <h2></h2>
+      <h2>
+
+
+
+
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+         Línea de tiempo
+    
+
+    
+    
+    
+    
+</h2>
 
       <ul class="timeline expandable"></ul>
       <ul class="timeline only-button">
@@ -465,7 +589,39 @@ function loadScript(url) {
     <div class="col-md-10 col-md-offset-1">
       <p class="xs-visible h5-padding">&nbsp;</p>
       
-      <h2></h2>
+      <h2>
+
+
+
+
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+         Contacto
+    
+</h2>
 
       <!--
 If you want to have a static message in your intro layout, disable the dynamic-typing in the _config.yml and write here your text
@@ -661,6 +817,13 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
       return this.replace(new RegExp(string, 'g'), replaced);
     };
     
+    function parseLiquid(str) {
+      str = str.replaceAll("=>", ":").replaceAll("}", "},");
+      str = "[" + str.substr(0, str.length - 1) + "]";
+              
+      return JSON.parse(str);
+    }
+    
     $(document).ready(function() {
         
       // Set lang url    
@@ -671,7 +834,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         
       $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
           
-      var timelineJson = getTimelineJson(),
+      var timelineJson = parseLiquid('{"image"=>"/img/timeline/high-school.png", "date"=>"Febrero 2019", "description"=>"Empecé en la universidad", "url"=>""}{"image"=>"/img/timeline/job-finish.png", "date"=>"Diciembre 2018", "description"=>"Terminé la FCT del ciclo", "url"=>""}{"image"=>"/img/timeline/caja.jpg", "date"=>"Noviembre 2016", "description"=>"¡Compré mi segundo ordenador (el que tengo ahora)!", "url"=>""}{"image"=>"/img/timeline/studying.png", "date"=>"Septiembre 2016", "description"=>"Empecé un ciclo de formación profesional superior", "url"=>""}{"image"=>"/img/timeline/graduated.png", "date"=>"Junio 2016", "description"=>"Terminé bachiller y creé mi primer equipo de desarrollo en Unity3D (y nuestros primeros assets de pago)", "url"=>""}{"image"=>"/img/timeline/domain.png", "date"=>"Mayo 2016", "description"=>"Compré mi primer dominio y usé Cloudflare por primera vez", "url"=>""}{"image"=>"/img/timeline/git.png", "date"=>"Mayo 2016 - Today", "description"=>"Desde entonces he estado usando Github (con Git) y Gitlab", "url"=>""}{"image"=>"/img/timeline/java.png", "date"=>"Agosto 2015", "description"=>"Escribí mi primer código en Java y plugins de Minecraft para Bukkit", "url"=>"https://github.com/VintageDev-Nukes/SykoCode"}{"image"=>"/img/timeline/minecraft.png", "date"=>"Diciembre 2014 - Septiembre 2015", "description"=>"¡Formamos un equipo para hacer un servidor de Minecraft!", "url"=>""}{"image"=>"/img/timeline/procedural.jpg", "date"=>"Julio 2014", "description"=>"Intenté crear un sistema de generación de terrenos procedural (con Perlin Noise) en Unity3D", "url"=>""}{"image"=>"/img/timeline/unity3d.png", "date"=>"Noviembre 2013", "description"=>"Empecé en Unity3D (me cambié a C#)", "url"=>""}{"image"=>"/img/timeline/default.png", "date"=>"Julio 2013", "description"=>"¡Me registré en Github!", "url"=>""}{"image"=>"/img/timeline/stackoverflow.png", "date"=>"Julio 2013", "description"=>"¡Me registré en Stackoverflow!", "url"=>"https://stackoverflow.com/users/2466790/seazoux"}{"image"=>"/img/timeline/actionscript.png", "date"=>"Mayo 2013", "description"=>"Intenté aprender ActionScript (pero abandoné la idea)", "url"=>"https://www.youtube.com/watch?v=t7Sh4BQlzXc"}{"image"=>"/img/timeline/c++.png", "date"=>"Abril 2013", "description"=>"Intenté aprender C y C++ (y crear mis primeros minijuegos en SMFL)", "url"=>"https://github.com/VintageDev-Nukes/SelfLearningCpp"}{"image"=>"/img/timeline/smf.png", "date"=>"Enero 2013", "description"=>"Empecé a usar SMF", "url"=>""}{"image"=>"/img/timeline/php-sql.png", "date"=>"Noviembre 2012", "description"=>"Empecé a aprender PHP y MySQL", "url"=>"https://github.com/VintageDev-Nukes/InfiJuegos"}{"image"=>"/img/timeline/redlaptop.jpg", "date"=>"Septiembre 2012", "description"=>"¡Compré mi segundo portátil!", "url"=>""}{"image"=>"/img/timeline/vbnet.png", "date"=>"Julio 2012 - Noviembre 2013", "description"=>"Durante este periodo estuve programando el Visual Basic.NET", "url"=>"https://github.com/VintageDev-Nukes/SEO-Calculator"}{"image"=>"/img/timeline/vbscript.png", "date"=>"Junio 2012", "description"=>"Empecé a programar mis primeros scripts en VBScript", "url"=>"https://github.com/VintageDev-Nukes/VBS-Launcher"}{"image"=>"/img/timeline/msdos.jpg", "date"=>"Mayo 2012", "description"=>"Empecé a programar mis primeros scripts en Batch", "url"=>"https://github.com/VintageDev-Nukes/BATCH-Launcher"}{"image"=>"/img/timeline/html-js-css.png", "date"=>"Junio 2011", "description"=>"Empecé a escribir mis primeros snippets en HTML, CSS y Javascript", "url"=>"https://github.com/VintageDev-Nukes/Spirate-n-Miscs"}{"image"=>"/img/timeline/youtube.png", "date"=>"Junio 2011", "description"=>"Me registré en YouTube (como usuario habitual)", "url"=>"https://socialblade.com/youtube/user/ikillnukes4evertmb"}{"image"=>"/img/timeline/ehn.png", "date"=>"Mayo 2011", "description"=>"Me registre en EHN (ElHacker.Net)", "url"=>"https://foro.elhacker.net/profiles/seazoux-u419740.html"}{"image"=>"/img/timeline/maxiuniverse.png", "date"=>"Agosto 2010", "description"=>"Descubrí Spirate (y aprendí como usar hostings), también, recreé MaxiUniverse", "url"=>"https://web.archive.org/web/20190221220205/http://maxiuniverse.activo.mx/"}{"image"=>"/img/timeline/spirate.jpg", "date"=>"Abril 2010 - Junio 2010", "description"=>"Creé mi primer foro llamado MaxiUniverse", "url"=>"https://web.archive.org/web/20100524184651/http://maxiuniverse.superforo.net/"}{"image"=>"/img/timeline/taringa.png", "date"=>"Q3 2009", "description"=>"Me registré en Taringa", "url"=>""}{"image"=>"/img/timeline/freerider2.png", "date"=>"A mediados de 2009", "description"=>"Empecé a jugar Free Rider 2", "url"=>""}{"image"=>"/img/timeline/foroactivo.png", "date"=>"Septiembre 2008", "description"=>"Desubrí Foroactivo", "url"=>""}{"image"=>"/img/timeline/old-laptop.png", "date"=>"Junio 2008", "description"=>"Mis tíos me compraron mi primer portatil, después pude empezar a usar Internet como un usuario habitual e intenté aprender Visual Basic 6", "url"=>""}{"image"=>"/img/timeline/nintendo.png", "date"=>"Julio 2007", "description"=>"Tuve mi primera Nintendo DS", "url"=>""}{"image"=>"/img/timeline/old-computer.jpg", "date"=>"Abril 2003", "description"=>"Mis padres me compraron mi primer ordenador de torre", "url"=>""}{"image"=>"/img/timeline/born.png", "date"=>"Julio 1998", "description"=>"¡Vine al mundo!", "url"=>""}'),
           converter = new showdown.Converter(),
           items = 0;
         
@@ -728,28 +891,20 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         panel.append($('<div class="timeline-body"></div>').html(converter.makeHtml(el.description)));
           
         if(el.url != "") 
-            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("")));
+            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("Ver referencia...")));
           
         li.append(panel);
           
         return li;
       }
-      
-      function getTimelineJson() {
-          var str = "";
-                  
-          
-                  
-          return JSON.parse("[" + str.substr(0, str.length - 1) + "]");
-      }
            
-           // Cookie set
+      // Cookie set
            
-           $(".lang-select a").on('click', function(e) {
-               e.preventDefault();
-               Cookies.set("lang", $(this).data('lang'));
-               window.location.href = $(this).attr('href');
-           });
+      $(".lang-select a").on('click', function(e) {
+         e.preventDefault();
+         Cookies.set("lang", $(this).data('lang'));
+         window.location.href = $(this).attr('href');
+      });
     });
 </script>
 
@@ -768,11 +923,17 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
   <script type="text/javascript" src="/js/typed.min.js"></script>
   <script type="text/javascript">
 
-  var myQuotes =  new Array();
   
+  
+  var _myQuotes = parseLiquid('{"text"=>"Hay dos formas de reflejar la luz: ser la lámpara que la emite o el espejo que la refleja."}{"text"=>"El primer paso no te lleva a donde quieres ir, pero te saca de donde estás."}{"text"=>"Trabaja de algo que realmente te guste y nunca trabajarás."}{"text"=>"Sólo quienes intentan lo absurdo conseguirán lo imposible."}{"text"=>"Es justamente la posibilidad de realizar un sueño lo que hace que la vida sea interesante."}{"text"=>"No cuentes los días, haz que los días cuenten."}'),
+      myQuotes = new Array();
+   
+  for(var line in _myQuotes) {
+      myQuotes.push(_myQuotes[line].text);
+  }
 
   function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex ;
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
