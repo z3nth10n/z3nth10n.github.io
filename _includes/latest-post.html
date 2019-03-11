@@ -23,16 +23,16 @@
     <div class="col-md-3 order-xs-first col-xs-expand">
         <h2 class="xs-invisible">&nbsp;</h2>
         <box class="horizontal-offset vertical-offset vertical-xs-margin expand-width presentation-sidebar">
-            <a href="#{{ site.translations[site.lang]['pages_list']['About'] }}" class="page-scroll avatar-medium">
+            <a href="#" class="page-scroll avatar-medium">
                 {% include avatar.html %}
             </a>
             <p>Álvaro Rodríguez García</p>
-            <p class="gray"><b>{{ site.translations[site.lang]['occupation'] }}</b></p>
+            <p class="gray"><b>{% t 'occupation' %}</b></p>
             <p class="buttons">
                 {% include social-buttons.html small-buttons="true" %}
             </p>
             <hr>
-            <h4>{{ site.translations[site.lang]['categories_caption'] }}</h4>
+            <h4>{% t 'categories_caption' %}</h4>
             <p>
                 {% if site.categories.length > 0 %}
                     {% for category in site.categories %}
@@ -43,11 +43,11 @@
                         {% endif %}
                     {% endfor %}
                 {% else %}
-                    {{ site.translations[site.lang]['nothing_yet'] }}
+                    {% t 'nothing_yet' %}
                 {% endif %}
             </p>
             <hr>
-            <h4>{{ site.translations[site.lang]['tags_caption'] }}</h4>
+            <h4>{% t 'tags_caption' %}</h4>
             <p>
                 {% if site.tags.length > 0 %}
                     {% for tag in site.tags %}
@@ -58,7 +58,7 @@
                         {% endif %}
                     {% endfor %}
                 {% else %}
-                    {{ site.translations[site.lang]['nothing_yet'] }}
+                    {% t 'nothing_yet' %}
                 {% endif %}
             </p>
         </box>

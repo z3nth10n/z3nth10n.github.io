@@ -25,21 +25,30 @@
       <ul class="nav navbar-nav">
         <li class="language-selection">
             <button type="button" class="toggle visible">
-                {{ site.translations[site.lang]['select-language'] }}
+                {% t 'select-language' %}
             </button>
             <ul class="lang-select collapse">
                 {% include langs.html %}
             </ul>
         </li>
         {% if page.section-type == "index" %}
+          
+             <!-- Scroll to section for each page in index -->
+              {% capture _pagelist %}
+                {% t 'pages_list' %}
+              {% endcapture %}
 
-          <!-- Scroll to section for each page in index -->
-          {% for p in site.translations[site.lang]['pages_list'] %}
-            <li>
-              <a class="page-scroll" href="#{{ p[1] }}"> {{p[0]}} </a>
-            </li>
-          {% endfor %}
+              {% assign pagelist = _pagelist | remove: "{" | remove: "}" %}
 
+              {% assign pagearr = pagelist | split: "," %}
+             
+              {% for _p in pagearr %}
+                  {% assign p = _p | split: "=>" %}
+                  {% assign link = p[1] | strip_newlines | remove: '"' | strip %}
+                  <li>
+                      <a class="page-scroll" href="#{{ link }}"> {{ p[0] | remove: '"' }} </a>
+                  </li>
+              {% endfor %}
         {% else %}
           <!-- Blog, Post, Tag and Error pages -->
           {% for p in site.translations[site.lang]['pages_list'] %}
