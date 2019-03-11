@@ -11,19 +11,29 @@
 
     {% include header.html %}
     
-    {% capture pagelist %}
+    {% capture _pagelist %}
         {% t 'pages_list' %}
     {% endcapture %}
     
-    {% for p in pagelist %}
+    {% assign pagelist = _pagelist | remove: "{" | remove: "}" %}
+    
+    {% assign pagearr = pagelist | split: "," %}
+    
+    <!--- 
+    {{ pagelist }}
+    {{ site.pages | map: "name" }} 
+    -->
+    
+    {% for _p in pagearr %}
       {% assign innerindex=forloop.index0 %}
+      {% assign p = _p | split: "=>" %}
+      
       {% capture findex %} {{ innerindex }} {% endcapture %}
       
-      {% capture pincl %}
-          {{ p[1] }}
-      {% endcapture%}
-      
-
+      {% assign _pincl = p[1] | strip %}
+      {% assign pincl = _pincl | replace: '"', '' | append: ".html" %}
+       
+      {% include {{ pincl }} %}
     {% endfor %}
 
     {% include footer.html %}
