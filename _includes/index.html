@@ -19,11 +19,6 @@
     
     {% assign pagearr = pagelist | split: "," %}
     
-    <!--- 
-    {{ pagelist }}
-    {{ site.pages | map: "name" }} 
-    -->
-    
     {% for _p in pagearr %}
       {% assign innerindex=forloop.index0 %}
       {% assign p = _p | split: "=>" %}

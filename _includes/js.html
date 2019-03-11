@@ -105,6 +105,13 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
       return this.replace(new RegExp(string, 'g'), replaced);
     };
     
+    function parseLiquid(str) {
+      str = str.replaceAll("=>", ":").replaceAll("}", "},");
+      str = "[" + str.substr(0, str.length - 1) + "]";
+              
+      return JSON.parse(str);
+    }
+    
     $(document).ready(function() {
         
       // Set lang url    
@@ -115,7 +122,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         
       $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
           
-      var timelineJson = getTimelineJson(),
+      var timelineJson = parseLiquid('{% t "events" %}'),
           converter = new showdown.Converter(),
           items = 0;
         
@@ -172,30 +179,20 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
         panel.append($('<div class="timeline-body"></div>').html(converter.makeHtml(el.description)));
           
         if(el.url != "") 
-            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("{{ site.translations[site.lang]['see_ref'] }}")));
+            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("{% t 'see_ref' %}")));
           
         li.append(panel);
           
         return li;
       }
-      
-      function getTimelineJson() {
-          var str = "";
-                  
-          {% for p in site.translations[site.lang]["events"] %}
-            str += '{{ p | json }}'.replaceAll("=>", ":") + ",";
-          {% endfor %}
-                  
-          return JSON.parse("[" + str.substr(0, str.length - 1) + "]");
-      }
            
-           // Cookie set
+      // Cookie set
            
-           $(".lang-select a").on('click', function(e) {
-               e.preventDefault();
-               Cookies.set("lang", $(this).data('lang'));
-               window.location.href = $(this).attr('href');
-           });
+      $(".lang-select a").on('click', function(e) {
+         e.preventDefault();
+         Cookies.set("lang", $(this).data('lang'));
+         window.location.href = $(this).attr('href');
+      });
     });
 </script>
 
@@ -281,10 +278,16 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
   <script type="text/javascript" src="{{site.baseurl_root}}/js/typed.min.js"></script>
   <script type="text/javascript">
 
-  var myQuotes =  new Array();
-  {% for line in site.translations[site.lang]['lines'] %}
-    myQuotes.push("{{ line.text }}");
-  {% endfor %}
+  {% capture lines %}
+    {% t 'lines' %}
+  {% endcapture %}
+  
+  var _myQuotes = parseLiquid('{{ lines | strip_newlines | replace: "'", "\\'" | strip }}'),
+      myQuotes = new Array();
+   
+  for(var line in _myQuotes) {
+      myQuotes.push(_myQuotes[line].text);
+  }
 
   function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex ;
