@@ -12,11 +12,11 @@
             </a>
             
             {% if post.categories == blank %}
-                {{ site.translations[site.lang]['uncat'] }}
+                {% t 'uncat' %}
             {% endif %}
           .</small>
           <strong> <a href="{{site.baseurl}}{{ post.url }}">{{post.title}} </a> </strong>
-          <small> <a href="{{site.baseurl}}{{post.url}}#disqus_thread">{{ site.translations[site.lang]['comments'] }}</a></small>
+          <small> <a href="{{site.baseurl}}{{post.url}}#disqus_thread">{% t 'comments' %}</a></small>
         </h4>
 
         <section class="text-left">

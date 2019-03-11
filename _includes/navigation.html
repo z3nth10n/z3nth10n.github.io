@@ -31,17 +31,16 @@
                 {% include langs.html %}
             </ul>
         </li>
+        
+        {% capture _pagelist %}
+            {% t 'pages_list' %}
+        {% endcapture %}
+
+        {% assign pagelist = _pagelist | remove: "{" | remove: "}" %}
+        {% assign pagearr = pagelist | split: "," %}
+              
         {% if page.section-type == "index" %}
-          
-             <!-- Scroll to section for each page in index -->
-              {% capture _pagelist %}
-                {% t 'pages_list' %}
-              {% endcapture %}
-
-              {% assign pagelist = _pagelist | remove: "{" | remove: "}" %}
-
-              {% assign pagearr = pagelist | split: "," %}
-             
+             <!-- Scroll to section for each page in index -->     
               {% for _p in pagearr %}
                   {% assign p = _p | split: "=>" %}
                   {% assign link = p[1] | strip_newlines | remove: '"' | strip %}
@@ -51,7 +50,10 @@
               {% endfor %}
         {% else %}
           <!-- Blog, Post, Tag and Error pages -->
-          {% for p in site.translations[site.lang]['pages_list'] %}
+          {% for _p in pagearr %}
+            {% assign p = _p | split: "=>" %}
+            {% assign link = p[1] | strip_newlines | remove: '"' | strip %}
+            
             <li>
             {% if p[1] == "latest-post" %}
               {% if page.url == "/blog/index.html" | prepend: {{site.baseurl}} %}
@@ -60,7 +62,7 @@
                 <a href="{{site.baseurl}}/blog/"> {{p[0]}} </a>
               {% endif %}
             {% else %}
-                <a href="{{site.baseurl}}/#{{ p[1] }}"> {{p[0]}} </a>
+                <a href="{{site.baseurl}}/#{{ link }}"> {{p[0]}} </a>
             {% endif %}
             </li>
           {% endfor %}
