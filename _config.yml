@@ -25,13 +25,6 @@ google-tracking-id: ""
 force-https: True
 
 #############
-# Languages #
-#############
-
-languages: ["en", "es"]
-exclude_from_localizations: ["js", "img", "css", "script", "scripts"]
-
-#############
 # HTML Head #
 #############
 
@@ -292,3 +285,5 @@ plugins:
 
 whitelist:
   - jekyll-redirect-from
+  
+encoding: UTF-8

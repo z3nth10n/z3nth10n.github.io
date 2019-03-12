@@ -243,5 +243,5 @@ err:
 #########
 
 lang:
-  en: Inglés
-  es: Español
+  en: 'Inglés'
+  es: 'Español'

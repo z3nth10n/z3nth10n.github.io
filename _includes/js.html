@@ -70,15 +70,18 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
          var el = els[index];
           
          if($(window).width() > 576) {
-             var engine = new Liquid({
-                root: 'html/',  // dirs to lookup layouts/includes
+            var absPath = window.location.protocol + "//" + window.location.host; 
+            var engine = new Liquid({
+                root: absPath + '/html/',  // dirs to lookup layouts/includes
                 extname: '.html'          // the extname used for layouts/includes, defaults ""
             });
              
             var jsonFile = $(this).data("jsonrequire"),
-                jsonObj = {};
-             
-            $.get("data/" + jsonFile + ".json", function(jsonData) {
+                jsonObj = {},
+                filePath = absPath + "/data/" + jsonFile + ".json";
+            
+            console.log(filePath);
+            $.get(filePath, function(jsonData) {
                 jsonObj[jsonFile] = jsonData;
              
                 engine.renderFile($(el).data("htmlinclude"), jsonObj)

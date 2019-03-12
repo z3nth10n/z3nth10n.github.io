@@ -45,7 +45,7 @@
                   {% assign p = _p | split: "=>" %}
                   {% assign link = p[1] | strip_newlines | remove: '"' | strip %}
                   <li>
-                      <a class="page-scroll" href="#{{ link }}"> {{ p[0] | remove: '"' }} </a>
+                      <a class="page-scroll" href="#{{ link }}"> <script>document.write("{{ p[0] | strip_newlines | remove: '"' | strip }}");</script> </a>
                   </li>
               {% endfor %}
         {% else %}
@@ -57,12 +57,12 @@
             <li>
             {% if p[1] == "latest-post" %}
               {% if page.url == "/blog/index.html" | prepend: {{site.baseurl}} %}
-                <a class="page-scroll" href="#page"> {{p[0]}} </a>
+                <a class="page-scroll" href="#page"> <script>document.write("{{ p[0] | strip_newlines | remove: '"' | strip }}");</script> </a>
               {% else %}
-                <a href="{{site.baseurl}}/blog/"> {{p[0]}} </a>
+                <a href="{{site.baseurl}}/blog/"> <script>document.write("{{ p[0] | strip_newlines | remove: '"' | strip }}");</script> </a>
               {% endif %}
             {% else %}
-                <a href="{{site.baseurl}}/#{{ link }}"> {{p[0]}} </a>
+                <a href="{{site.baseurl}}/#{{ link }}"> <script>document.write("{{ p[0] | strip_newlines | remove: '"' | strip }}");</script> </a>
             {% endif %}
             </li>
           {% endfor %}

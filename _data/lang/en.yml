@@ -239,5 +239,5 @@ err:
 #########
 
 lang:
-  en: English
-  es: Spanish
+  en: 'English'
+  es: 'Spanish'

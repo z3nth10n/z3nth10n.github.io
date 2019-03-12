@@ -10,6 +10,6 @@
     {% assign intindex = findex | plus: 0 %}
     
     {% if forloop.index0 == intindex %}
-        {{ p[0] | remove: '"' }}
+        <script>document.write("{{ p[0] | strip_newlines | remove: '"' | strip }}");</script>
     {% endif %}
 {% endfor %}
