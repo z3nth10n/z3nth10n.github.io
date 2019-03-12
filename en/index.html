@@ -164,32 +164,31 @@ window.cookieconsent.initialise({
                   
                   
                   <li>
-                      <a class="page-scroll" href="#github-cards"> 
-            Projects </a>
+                      <a class="page-scroll" href="#github-cards"> <script>document.write("Projects");</script> </a>
                   </li>
               
                   
                   
                   <li>
-                      <a class="page-scroll" href="#last-social-media">  Last Social Media </a>
+                      <a class="page-scroll" href="#last-social-media"> <script>document.write("Last Social Media");</script> </a>
                   </li>
               
                   
                   
                   <li>
-                      <a class="page-scroll" href="#latest-post">  Blog </a>
+                      <a class="page-scroll" href="#latest-post"> <script>document.write("Blog");</script> </a>
                   </li>
               
                   
                   
                   <li>
-                      <a class="page-scroll" href="#timeline">  Timeline </a>
+                      <a class="page-scroll" href="#timeline"> <script>document.write("Timeline");</script> </a>
                   </li>
               
                   
                   
                   <li>
-                      <a class="page-scroll" href="#contact">  Contact </a>
+                      <a class="page-scroll" href="#contact"> <script>document.write("Contact");</script> </a>
                   </li>
               
         
@@ -293,7 +292,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
     
     
     
-         Last Social Media
+        <script>document.write("Last Social Media");</script>
     
 
     
@@ -369,7 +368,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
     
     
     
-         Blog
+        <script>document.write("Blog");</script>
     
 
     
@@ -604,7 +603,7 @@ function loadScript(url) {
     
     
     
-         Timeline
+        <script>document.write("Timeline");</script>
     
 
     
@@ -675,7 +674,7 @@ function loadScript(url) {
     
     
     
-         Contact
+        <script>document.write("Contact");</script>
     
 </h2>
 
@@ -838,15 +837,18 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
          var el = els[index];
           
          if($(window).width() > 576) {
-             var engine = new Liquid({
-                root: 'html/',  // dirs to lookup layouts/includes
+            var absPath = window.location.protocol + "//" + window.location.host; 
+            var engine = new Liquid({
+                root: absPath + '/html/',  // dirs to lookup layouts/includes
                 extname: '.html'          // the extname used for layouts/includes, defaults ""
             });
              
             var jsonFile = $(this).data("jsonrequire"),
-                jsonObj = {};
-             
-            $.get("data/" + jsonFile + ".json", function(jsonData) {
+                jsonObj = {},
+                filePath = absPath + "/data/" + jsonFile + ".json";
+            
+            console.log(filePath);
+            $.get(filePath, function(jsonData) {
                 jsonObj[jsonFile] = jsonData;
              
                 engine.renderFile($(el).data("htmlinclude"), jsonObj)

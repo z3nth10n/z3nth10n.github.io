@@ -165,8 +165,7 @@ window.cookieconsent.initialise({
             
             <li>
             
-                <a href="/#github-cards"> 
-            "Proyectos" </a>
+                <a href="/#github-cards"> <script>document.write("Proyectos");</script> </a>
             
             </li>
           
@@ -175,7 +174,7 @@ window.cookieconsent.initialise({
             
             <li>
             
-                <a href="/#last-social-media">  "Últimas noticias" </a>
+                <a href="/#last-social-media"> <script>document.write("Últimas noticias");</script> </a>
             
             </li>
           
@@ -184,7 +183,7 @@ window.cookieconsent.initialise({
             
             <li>
             
-                <a href="/#latest-post">  "Blog" </a>
+                <a href="/#latest-post"> <script>document.write("Blog");</script> </a>
             
             </li>
           
@@ -193,7 +192,7 @@ window.cookieconsent.initialise({
             
             <li>
             
-                <a href="/#timeline">  "Línea de tiempo" </a>
+                <a href="/#timeline"> <script>document.write("Línea de tiempo");</script> </a>
             
             </li>
           
@@ -202,7 +201,7 @@ window.cookieconsent.initialise({
             
             <li>
             
-                <a href="/#contact">  "Contacto" </a>
+                <a href="/#contact"> <script>document.write("Contacto");</script> </a>
             
             </li>
           
