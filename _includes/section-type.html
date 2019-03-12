@@ -1,0 +1,15 @@
+{% capture _pagelist %}
+    {% t 'pages_list' %}
+{% endcapture %}
+
+{% assign pagelist = _pagelist | remove: "{" | remove: "}" %}
+{% assign pagearr = pagelist | split: "," %}
+
+{% for _p in pagearr %}
+    {% assign p = _p | split: "=>" %}
+    {% assign intindex = findex | plus: 0 %}
+    
+    {% if forloop.index0 == intindex %}
+        {{ p[1] | remove: '"' | newline_to_br | strip_newlines | replace: '<br />', ' ' | strip_html | strip }}
+    {% endif %}
+{% endfor %}

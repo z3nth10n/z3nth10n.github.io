@@ -741,9 +741,6 @@ box p {
         margin-right: -15px;
         margin-left: -15px;
     }
-    .intro {
-        margin-bottom: 35px !important;
-    }
     .vertical-xs-margin {
         margin-top: 15px;
         margin-bottom: 15px;
@@ -819,5 +816,14 @@ box p {
     a {
         color: black;
         text-decoration: underline;
+    }
+}
+
+@media (max-width: 576px) {
+    .issue-report {
+        margin-bottom: 35px !important;
+    }
+    #timeline {
+        margin-top: 15px;
     }
 }
