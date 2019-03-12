@@ -34,11 +34,20 @@
             <hr>
             <h4>{% t 'categories_caption' %}</h4>
             <p>
-                {% if site.categories.length > 0 %}
-                    {% for category in site.categories %}
+                {% assign categories = "" | split: ',' %}
+               
+                {% for post in paginator.posts %}
+                    {% assign item = post.categories.first %}
+                    {% unless categories contains item %}
+                        {% assign categories = categories | push: item %}
+                    {% endunless %}
+                {% endfor %}
+                
+                {% if categories.size > 0 %}
+                    {% for category in categories %}
                         {% if forloop.index <= 5 %}
-                            <a class="label" href="{{site.baseurl}}/categories/{{ category | first | downcase }}">
-                                {{ category | first }}
+                            <a class="label" href="{{site.baseurl}}/categories/{{ category | downcase }}">
+                                {{ category }}
                             </a>
                         {% endif %}
                     {% endfor %}
@@ -49,11 +58,20 @@
             <hr>
             <h4>{% t 'tags_caption' %}</h4>
             <p>
-                {% if site.tags.length > 0 %}
-                    {% for tag in site.tags %}
+                {% assign tags = "" | split: ',' %}
+               
+                {% for post in paginator.posts %}
+                    {% assign item = post.tags.first %}
+                    {% unless tags contains item %}
+                        {% assign tags = tags | push: item %}
+                    {% endunless %}
+                {% endfor %}
+               
+                {% if tags.first != blank and tags.size > 0 %}
+                    {% for tag in tags %}
                         {% if forloop.index <= 5 %}
-                            <a class="label" href="{{site.baseurl}}/tags/{{ tag | first | downcase }}">
-                                {{ tag | first }}
+                            <a class="label" href="{{site.baseurl}}/tags/{{ tag | downcase }}">
+                                {{ tag }}
                             </a>
                         {% endif %}
                     {% endfor %}

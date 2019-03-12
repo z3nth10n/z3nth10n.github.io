@@ -24,10 +24,14 @@
             <strong>{{ page.date | date_to_string }}</strong>
             <small>
               . category:
-              <a class="category" href="{{site.baseurl}}/categories/{{page.category | downcase}}.html">
-                {{ page.category }}
-              </a>.
-              <a href="{{site.baseurl}}{{page.url }}#disqus_thread">Comments</a>
+              <a class="category" href="{{site.baseurl}}/categories/{{page.categories.first | downcase }}.html">
+                {{ page.categories.first }}
+              </a>
+                {% if post.categories.first and post.categories.size == 0 or post.categories.first != true and post.categories == blank %}
+                    {% t 'uncat' %}
+                {% endif %}
+              .
+              <a href="{{site.baseurl}}{{page.url}}#disqus_thread">Comments</a>
               <br />
               {% for tag in page.tags %}
                 <a class="tag" href="{{site.baseurl}}/tags/{{tag | downcase}}.html">#{{ tag }}</a>
