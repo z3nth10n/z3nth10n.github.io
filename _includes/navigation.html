@@ -25,7 +25,8 @@
       <ul class="nav navbar-nav">
         <li class="language-selection">
             <button type="button" class="toggle visible">
-                {% t 'select-language' %}
+                <span class="sm-invisible">{% t 'select-language' %}</span>
+                <i class="fas fa-language sm-visible"></i>
             </button>
             <ul class="lang-select collapse">
                 {% include langs.html %}

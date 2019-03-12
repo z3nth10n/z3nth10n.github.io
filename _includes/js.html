@@ -69,7 +69,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
       els.each(function(index) {
          var el = els[index];
           
-         if($(window).width() > 576) {
+         if($(window).width() > 992) {
             var absPath = window.location.protocol + "//" + window.location.host; 
             var engine = new Liquid({
                 root: absPath + '/html/',  // dirs to lookup layouts/includes

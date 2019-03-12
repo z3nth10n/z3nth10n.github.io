@@ -705,6 +705,24 @@ box p {
     display: none;
 }
 
+.sm-visible {
+    display: none;
+}
+
+.sm-invisible {
+    display: inline-block;
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .sm-visible {
+        display: inline-block;
+    }
+
+    .sm-invisible {
+        display: none;
+    }
+}
+
 @media (max-width: 576px) {
     .row-xs-flex {
       display: flex;
