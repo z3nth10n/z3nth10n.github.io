@@ -31,7 +31,7 @@ jobs:
             - vendor/bundle
       - run:
           name: Set Jekyll Env Vars
-          command: JEKYLL_ENV=production jekyll build
+          command: JEKYLL_ENV=production
       - run:
           name: Jekyll build
           command: bundle exec jekyll build
