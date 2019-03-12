@@ -584,10 +584,6 @@ body {
     padding-bottom: 15px;
 }
 
-header {
-    margin-bottom: 75px; 
-}
-
 #github-cards,
 #last-social-media {
     padding-bottom: 50px;
@@ -810,4 +806,18 @@ box p {
 
 .gitcards iframe {
     padding: 0 15px;
+}
+
+.issue-report {
+    width: 100%;
+    background-color: $header-background-color;
+    color: black;
+    margin-bottom: 75px;
+    text-align: center;
+    padding: 5px 0;
+    
+    a {
+        color: black;
+        text-decoration: underline;
+    }
 }
