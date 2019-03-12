@@ -31,7 +31,7 @@ jobs:
             - vendor/bundle
       - run:
           name: Jekyll build
-          command: JEKYLL_ENV=production bundle exec jekyll build
+          command: bundle exec jekyll build --trace
       - run:
           name: Run Build HTML
           command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
