@@ -287,3 +287,4 @@ whitelist:
   - jekyll-redirect-from
   
 encoding: UTF-8
+# permalink: "/:year/:month/:day/:title"
