@@ -10,6 +10,7 @@ jobs:
       BUNDLER_VERSION: 2.0.1
       BUNDLE_PATH: ~/repo/vendor/bundle
       GIT_COMMIT_DESC: git log -1 --pretty=%B
+      JEKYLL_ENV: production
     steps:
       - checkout
       - restore_cache:
