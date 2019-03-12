@@ -199,6 +199,7 @@ pages_list:
 
 occupation: 'Desarrollador por hobby'
 categories_caption: 'Categorías'
+category_caption: 'Categoría'
 tags_caption: 'Tags'
 nothing_yet: 'Nada aún...'
 uncat: 'SIN CATEGORÍA'

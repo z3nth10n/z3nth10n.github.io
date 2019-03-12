@@ -195,6 +195,7 @@ pages_list:
 
 occupation: 'Hobbyist Developer'
 categories_caption: 'Categories'
+category_caption: 'Category'
 tags_caption: 'Tags'
 nothing_yet: 'Nothing yet...'
 uncat: 'UNCATEGORIZED'

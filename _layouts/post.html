@@ -23,7 +23,7 @@
           <h4>
             <strong>{{ page.date | date_to_string }}</strong>
             <small>
-              . category:
+              . {% t 'category_caption' %}:
               <a class="category" href="{{site.baseurl}}/categories/{{page.categories.first | downcase }}.html">
                 {{ page.categories.first }}
               </a>
