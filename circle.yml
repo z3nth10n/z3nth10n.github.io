@@ -30,11 +30,8 @@ jobs:
           paths:
             - vendor/bundle
       - run:
-          name: Set Jekyll Env Vars
-          command: JEKYLL_ENV=production
-      - run:
           name: Jekyll build
-          command: bundle exec jekyll build
+          command: JEKYLL_ENV=production bundle exec jekyll build
       - run:
           name: Run Build HTML
           command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
