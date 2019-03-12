@@ -19,6 +19,7 @@
     {% endif %}
   {% endfor %}
   {% for post in site.posts %}
+  {% if page.language == post.language %}
     <url>
       <loc>{{ site.url }}{{ site.baseurl_root }}{{ post.url }}</loc>
       {% if post.lastmod == null %}
@@ -29,5 +30,6 @@
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
     </url>
+  {% endif %}
   {% endfor %}
 </urlset>
