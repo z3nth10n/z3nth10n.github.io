@@ -1,7 +1,7 @@
 {% for lng in site.data.languages %}
    <li>
-      <a href="{{ site.baseurl_root }}{{ lng[1].url }}" data-lang="{{ lng[1].url | remove: '/' }}">
+      <span data-lang="{{ lng[0] }}">
           {{ lng[1].icon | emojify }} {{ lng[1].label }}
-      </a>
+      </span>
    </li>
 {% endfor %}

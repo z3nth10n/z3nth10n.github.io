@@ -11,7 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
 <!-- Plugin SlabText -->
-<script src="{{ site.baseurl_root }}/js/plugins/jquery.fittext.min.js"></script>
+<script src="{{ site.baseurl }}/js/plugins/jquery.fittext.min.js"></script>
 
 <!-- Markdownify for JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
@@ -20,10 +20,15 @@
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 <!--- LINQ for JS -->
-<script src="{{ site.baseurl_root }}/js/plugins/linq.min.js"></script>
+<script src="{{ site.baseurl }}/js/plugins/linq.min.js"></script>
 
 <!--- Liquid for JS -->
 <script src="https://unpkg.com/liquidjs@7.5.1/dist/liquid.min.js"></script>
+
+<!-- Lang Utils -->
+<script>
+    {% include js/lang.utils.js %}
+</script>
 
 <!--- Only Index Scripts -->
 
@@ -96,7 +101,6 @@ $(".navbar-collapse ul li a").click(function() {
                 jsonObj = {},
                 filePath = absPath + "/data/" + jsonFile + ".json";
             
-            console.log(filePath);
             $.get(filePath, function(jsonData) {
                 jsonObj[jsonFile] = jsonData;
              
@@ -131,13 +135,8 @@ $(".navbar-collapse ul li a").click(function() {
       return JSON.parse(str);
     }
     
-    $(document).ready(function() {
-        
-      // Set lang url    
-      var curLang = Cookies.get("lang");    
-        
-      if(curLang && !Enumerable.from(window.location.href.split("/")).any(p => p == curLang))
-        window.location.href = "{{ site.baseurl_root }}/" + curLang; // Check and get relative url of where we were
+    $(document).ready(function() {        
+      redirectLangIfNeed();
         
       $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
           
@@ -207,10 +206,12 @@ $(".navbar-collapse ul li a").click(function() {
            
       // Cookie set
            
-      $(".lang-select a").on('click', function(e) {
+      $(".lang-select span").on('click', function(e) {
          e.preventDefault();
-         Cookies.set("lang", $(this).data('lang'));
-         window.location.href = $(this).attr('href');
+         
+         var dataLang = $(this).data('lang');
+         Cookies.set("lang", dataLang);
+         doLangDirect(dataLang);
       });
     });
 </script>
@@ -284,7 +285,7 @@ $(".navbar-collapse ul li a").click(function() {
 
   <!-- Share buttons Start -->
 
-  <script src="{{site.baseurl_root}}/js/rrssb.min.js"></script>
+  <script src="{{site.baseurl}}/js/rrssb.min.js"></script>
 
   <!-- Share buttons End -->
 
@@ -294,7 +295,7 @@ $(".navbar-collapse ul li a").click(function() {
 
   <!-- Dynamic Typing Start -->
 
-  <script type="text/javascript" src="{{site.baseurl_root}}/js/typed.min.js"></script>
+  <script type="text/javascript" src="{{site.baseurl}}/js/typed.min.js"></script>
   <script type="text/javascript">
 
   {% capture lines %}
@@ -361,7 +362,7 @@ function addTohistory() {
 
     <!-- Post Gesture Navigation Start -->
 
-    <script type="text/javascript" src="{{site.baseurl_root}}/js/hammer.min.js"></script>
+    <script type="text/javascript" src="{{site.baseurl}}/js/hammer.min.js"></script>
 
     <script>
       var post = document.getElementById('post');
@@ -393,7 +394,7 @@ function addTohistory() {
 
     <!-- Blog Gesture Navigation Start -->
 
-    <script type="text/javascript" src="{{site.baseurl_root}}/js/hammer.min.js"></script>
+    <script type="text/javascript" src="{{site.baseurl}}/js/hammer.min.js"></script>
 
     <script>
       var page = document.getElementById('page');

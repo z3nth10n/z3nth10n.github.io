@@ -21,7 +21,7 @@
   {% for post in site.posts %}
   {% if page.language == post.language %}
     <url>
-      <loc>{{ site.url }}{{ site.baseurl_root }}{{ post.url }}</loc>
+      <loc>{{ site.url }}{{ site.baseurl }}{{ post.url }}</loc>
       {% if post.lastmod == null %}
         <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
       {% else %}

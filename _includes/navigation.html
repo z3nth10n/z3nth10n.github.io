@@ -10,11 +10,11 @@
       {% if page.section-type == "index" %}
         <a class="navbar-brand page-scroll" href="#page-top">
       {% else %}
-        <a class="navbar-brand" href="{{site.baseurl_root}}/">
+        <a class="navbar-brand" href="{{site.baseurl}}/">
       {% endif %}
           <div>
             {% if site.black-favicon %}
-              <img src="{{site.baseurl_root}}{{ site.black-favicon }}" alt="">
+              <img src="{{site.baseurl}}{{ site.black-favicon }}" alt="">
             {% endif %}
             {{ site.title }}
           </div>
@@ -51,22 +51,7 @@
               {% endfor %}
         {% else %}
           <!-- Blog, Post, Tag and Error pages -->
-          {% for _p in pagearr %}
-            {% assign p = _p | split: "=>" %}
-            {% assign link = p[1] | strip_newlines | remove: '"' | strip %}
-            
-            <li>
-            {% if p[1] == "latest-post" %}
-              {% if page.url == "/blog/index.html" | prepend: {{site.baseurl}} %}
-                <a class="page-scroll" href="#page"> <script>document.write("{{ p[0] | strip_newlines | remove: '"' | strip }}");</script> </a>
-              {% else %}
-                <a href="{{site.baseurl}}/blog/"> <script>document.write("{{ p[0] | strip_newlines | remove: '"' | strip }}");</script> </a>
-              {% endif %}
-            {% else %}
-                <a href="{{site.baseurl}}/#{{ link }}"> <script>document.write("{{ p[0] | strip_newlines | remove: '"' | strip }}");</script> </a>
-            {% endif %}
-            </li>
-          {% endfor %}
+          <!-- TODO -->
         {% endif %}
       </ul>
     </div>

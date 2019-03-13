@@ -10,6 +10,6 @@
     {% assign intindex = findex | plus: 0 %}
     
     {% if forloop.index0 == intindex %}
-        {{ p[1] | remove: '"' | newline_to_br | strip_newlines | replace: '<br />', ' ' | strip_html | strip }}
+        {{ p[1] | remove: '"' }}
     {% endif %}
 {% endfor %}
