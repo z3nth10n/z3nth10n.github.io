@@ -25,6 +25,42 @@
 <!--- Liquid for JS -->
 <script src="https://unpkg.com/liquidjs@7.5.1/dist/liquid.min.js"></script>
 
+<!--- Disqus Count -->
+<script type="text/javascript">
+$(document).ready(function () {
+  var disqusPublicKey = "lseJUNTSxmq0VGKjFtGjYygE0z3Q3DIrYfZuBQy7Gl0Anm8wrMan8oWAe2GJGwyY";
+  var disqusShortname = "{{ site.disqus-shortname }}"; // Replace with your own shortname
+
+  var urlArray = [];
+  $('.count-comments').each(function () {
+    var url = $(this).data('disqus-url');
+    urlArray.push('link:' + url);
+  });
+
+  $.ajax({
+    type: 'GET',
+    url: "https://disqus.com/api/3.0/threads/set.jsonp",
+    data: { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray },
+    cache: false,
+    dataType: 'jsonp',
+    success: function (result) {
+
+      for (var i in result.response) {
+
+        var countText = " comments";
+        var count = result.response[i].posts;
+
+        if (count == 1)
+          countText = " comment";
+
+        $('span[data-disqus-url="' + result.response[i].link + '"]').html('<h4>' + count + countText + '</h4>');
+
+      }
+    }
+  });
+});
+</script>
+
 <!-- Lang Utils -->
 <script>
     {% include js/lang.utils.js %}
