@@ -4,6 +4,7 @@
 # NB! Set your site's url, otherwise stuff will break :)
 
 url: "https://z3nth10n.github.io"
+mainurl: "https://z3nth10n.github.io"
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (https://yourusername.github.io/repository-name)
