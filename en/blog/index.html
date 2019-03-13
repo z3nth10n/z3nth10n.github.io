@@ -325,13 +325,21 @@ $(document).ready(function () {
     urlArray.push('link:' + url);
   });
 
+  var dataObj = { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray };
+
+  console.log(urlArray);
+  console.log('https://z3nth10n.github.io');
+  console.log(unescape("https://disqus.com/api/3.0/threads/set.jsonp?" + $.param(dataObj)));    
+    
   $.ajax({
     type: 'GET',
     url: "https://disqus.com/api/3.0/threads/set.jsonp",
-    data: { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray },
+    data: dataObj,
     cache: false,
     dataType: 'jsonp',
     success: function (result) {
+        
+      console.log(result);    
 
       for (var i in result.response) {
         var countText = "Comments",
@@ -341,7 +349,6 @@ $(document).ready(function () {
           countText = "Comment";
 
         $('span[data-disqus-url="' + result.response[i].link + '"]').html(count + " " + countText);
-
       }
     }
   });

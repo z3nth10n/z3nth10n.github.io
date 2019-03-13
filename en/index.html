@@ -425,7 +425,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
             
           .</small>
           <strong> <a href="/en/2016/10/27/social-buttons-tutorial">Modifying the social buttons </a> </strong>
-          <small> <a href="/en/2016/10/27/social-buttons-tutorial.html#disqus_thread"><span data-disqus-url="/en/2016/10/27/social-buttons-tutorial.html" class="count-comments"></span></a></small>
+          <small> <a href="/en/2016/10/27/social-buttons-tutorial.html#disqus_thread"><span data-disqus-url="https://z3nth10n.github.io/en/2016/10/27/social-buttons-tutorial.html" class="count-comments"></span></a></small>
         </h4>
 
         <section class="text-left">
@@ -456,7 +456,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
             
           .</small>
           <strong> <a href="/en/2016/10/27/contact-tutorial">Modifying the Contact </a> </strong>
-          <small> <a href="/en/2016/10/27/contact-tutorial.html#disqus_thread"><span data-disqus-url="/en/2016/10/27/contact-tutorial.html" class="count-comments"></span></a></small>
+          <small> <a href="/en/2016/10/27/contact-tutorial.html#disqus_thread"><span data-disqus-url="https://z3nth10n.github.io/en/2016/10/27/contact-tutorial.html" class="count-comments"></span></a></small>
         </h4>
 
         <section class="text-left">
@@ -848,13 +848,21 @@ $(document).ready(function () {
     urlArray.push('link:' + url);
   });
 
+  var dataObj = { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray };
+
+  console.log(urlArray);
+  console.log('https://z3nth10n.github.io');
+  console.log(unescape("https://disqus.com/api/3.0/threads/set.jsonp?" + $.param(dataObj)));    
+    
   $.ajax({
     type: 'GET',
     url: "https://disqus.com/api/3.0/threads/set.jsonp",
-    data: { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray },
+    data: dataObj,
     cache: false,
     dataType: 'jsonp',
     success: function (result) {
+        
+      console.log(result);    
 
       for (var i in result.response) {
         var countText = "Comments",
@@ -864,7 +872,6 @@ $(document).ready(function () {
           countText = "Comment";
 
         $('span[data-disqus-url="' + result.response[i].link + '"]').html(count + " " + countText);
-
       }
     }
   });
