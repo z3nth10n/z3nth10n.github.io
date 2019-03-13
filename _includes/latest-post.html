@@ -1,6 +1,10 @@
 <!-- Latest Posts Preview Start -->
 
-<section id="{% include section-type.html %}" class="container content-section text-center xs-margin-top">
+{% capture section %}
+    {% include section-type.html %}
+{% endcapture %}
+
+<section id="{{ section | strip_newlines | strip }}" class="container content-section text-center xs-margin-top">
 
   <div class="row-sm row-xs-flex">
     <div class="col-md-9 order-xs-last">

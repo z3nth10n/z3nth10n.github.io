@@ -1,4 +1,8 @@
-<section id="{% include section-type.html %}">
+{% capture section %}
+    {% include section-type.html %}
+{% endcapture %}
+
+<section id="{{ section | strip_newlines | strip }}">
     <div class="container socialmedia">
         <div class="row">
             <div class="col-md-12">

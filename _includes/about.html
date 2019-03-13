@@ -1,7 +1,11 @@
 
 <!-- About Start -->
 
-<section id="{% include section-type.html %}" class="container content-section text-center">
+{% capture section %}
+    {% include section-type.html %}
+{% endcapture %}
+
+<section id="{{ section | strip_newlines | strip }}" class="container content-section text-center">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       {{ page.content | markdownify }}

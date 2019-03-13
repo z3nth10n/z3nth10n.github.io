@@ -1,2 +1,6 @@
-<section id="{% include section-type.html %}" data-showif="above-xs" data-jsonrequire="repos" data-htmlinclude="github-cards-content">
+{% capture section %}
+    {% include section-type.html %}
+{% endcapture %}
+
+<section id="{{ section | strip_newlines | strip }}" data-showif="above-xs" data-jsonrequire="repos" data-htmlinclude="github-cards-content">
 </section>

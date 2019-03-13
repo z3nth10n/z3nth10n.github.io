@@ -1,6 +1,10 @@
 <!-- Post List End -->
 
-<section id="{% include section-type.html %}">
+{% capture section %}
+    {% include section-type.html %}
+{% endcapture %}
+
+<section id="{{ section | strip_newlines | strip }}">
     <div class="row">
       <box class="col-md-12 vertical-offset">
 
