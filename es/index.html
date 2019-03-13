@@ -425,7 +425,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
             
           .</small>
           <strong> <a href="/es/2016/10/27/social-buttons-tutorial">Modifying the social buttons </a> </strong>
-          <small> <a href="/es/2016/10/27/social-buttons-tutorial.html#disqus_thread"><span data-disqus-url="/es/2016/10/27/social-buttons-tutorial.html" class="count-comments"></span> Comentarios</a></small>
+          <small> <a href="/es/2016/10/27/social-buttons-tutorial.html#disqus_thread"><span data-disqus-url="/es/2016/10/27/social-buttons-tutorial.html" class="count-comments"></span></a></small>
         </h4>
 
         <section class="text-left">
@@ -456,7 +456,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
             
           .</small>
           <strong> <a href="/es/2016/10/27/contact-tutorial">Modifying the Contact </a> </strong>
-          <small> <a href="/es/2016/10/27/contact-tutorial.html#disqus_thread"><span data-disqus-url="/es/2016/10/27/contact-tutorial.html" class="count-comments"></span> Comentarios</a></small>
+          <small> <a href="/es/2016/10/27/contact-tutorial.html#disqus_thread"><span data-disqus-url="/es/2016/10/27/contact-tutorial.html" class="count-comments"></span></a></small>
         </h4>
 
         <section class="text-left">
@@ -857,14 +857,13 @@ $(document).ready(function () {
     success: function (result) {
 
       for (var i in result.response) {
-
-        var countText = " comments";
-        var count = result.response[i].posts;
+        var countText = "Comentarios",
+            count = result.response[i].posts;
 
         if (count == 1)
-          countText = " comment";
+          countText = "Comentario";
 
-        $('span[data-disqus-url="' + result.response[i].link + '"]').html('<h4>' + count + countText + '</h4>');
+        $('span[data-disqus-url="' + result.response[i].link + '"]').html(count + " " + countText);
 
       }
     }

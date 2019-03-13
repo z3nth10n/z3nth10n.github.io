@@ -485,14 +485,13 @@ $(document).ready(function () {
     success: function (result) {
 
       for (var i in result.response) {
-
-        var countText = " comments";
-        var count = result.response[i].posts;
+        var countText = "Comments",
+            count = result.response[i].posts;
 
         if (count == 1)
-          countText = " comment";
+          countText = "Comment";
 
-        $('span[data-disqus-url="' + result.response[i].link + '"]').html('<h4>' + count + countText + '</h4>');
+        $('span[data-disqus-url="' + result.response[i].link + '"]').html(count + " " + countText);
 
       }
     }
