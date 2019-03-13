@@ -1,16 +1,76 @@
 <!--- LINQ for JS -->
 <script src="/js/plugins/linq.min.js"></script>
+<!--- JQuery Cookies -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- Lang Utils -->
+<script>
+    function getLangArr() {
+    var arr = [
+            
+               "en",
+            
+               "es",
+            
+        ];
+    
+    return arr;
+}
 
+function redirectLangIfNeed() {
+    // Set lang url    
+    var curLang = Cookies.get("lang");    
+        
+    if(curLang && !Enumerable.from(window.location.href.split("/")).any(p => p == curLang)) {
+        if(curLang == "en" && getLocationLang().count() == 0)
+            return;
+        
+        doLangDirect(curLang);
+    }
+}
+
+function doLangDirect(lang) {
+    if(lang == "")
+        lang = "en";
+    
+    var url = window.location.protocol + "//" + window.location.host + "/" + lang + "/" + getLesserLangUrl();
+    
+    // console.log(url);
+    window.location.href = url;
+}
+
+function getLesserLangUrl() {
+    var langs = getLocationLang(),
+        curLang = "";
+    
+    if(langs.count() >= 1)
+        curLang = langs.first() + "/";
+    
+    return window.location.href.replace(window.location.protocol + "//" + window.location.host + "/" + curLang, "");
+}
+
+function getLocationLang() {
+    return Enumerable.from(window.location.href.split("/")).where(p => getLangArr().includes(p));
+}
+</script>
+
+<!-- Error redirect -->
 <script>
     (function() {
-        var langArr = ["en", "es"]; // TODO: 0 Scalibity
-        var langs = Enumerable.from(window.location.href.split("/")).where(p => langArr.includes(p));
+        console.log(getLangArr());
+        var langArr = getLangArr();
+        var langs = getLocationLang();
 
-        var retLang = "/";
-        if(langs.count() >= 1)
-            retLang += langs.first() + "/";
+        var retLang = "/",
+            curLang = Cookies.get("lang");
+        
+        if(curLang == undefined) {
+            if(langs.count() >= 1)
+                retLang += langs.first() + "/";
+            else
+                retLang = "/en/";
+        }
         else
-            retLang = "/en/";
+            retLang = "/" + curLang + "/";
         
         var url = window.location.protocol + "//" + window.location.host + retLang + "error-404";
         
