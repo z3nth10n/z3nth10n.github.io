@@ -10,3 +10,8 @@ plugins:
   - jekyll-language-plugin
   - jekyll-redirect-from
   - jekyll-minifier
+  
+# Uglifier Args
+jekyll-minifier:
+  uglifier_args:
+    harmony: true
