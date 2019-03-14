@@ -34,7 +34,10 @@ module Jekyll
 
           json = escape_json(Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8'))
 
-          source = File.read(File.join(@inc, "patreon_default.html"))
+          source = "<script>" + File.read(File.join(@inc, "js", "patreon.js")) + "</script>"
+          source += File.read(File.join(@inc, "design_default.html"))
+          source += File.read(File.join(@inc, "button.html"))
+          source += "<style>" + File.read(File.join(@inc, "css", "design_default.css")) + "</style>"
 
           source
         end
