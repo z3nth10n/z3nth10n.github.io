@@ -886,3 +886,9 @@ box p {
         margin-top: 15px;
     }
 }
+
+@media (min-width: 992px) {
+    .align-sm-right {
+        float: right;
+    }
+}
