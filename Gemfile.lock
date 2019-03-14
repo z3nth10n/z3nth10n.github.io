@@ -8,6 +8,12 @@ PATH
       yajl-ruby (~> 1.2, >= 1.2.0)
 
 PATH
+  remote: _plugins/jekyll-patreon
+  specs:
+    jekyll-patreon (1.0.0)
+      jekyll (~> 3.0)
+
+PATH
   remote: _plugins/jekyll-twitter-plugin
   specs:
     jekyll-twitter-plugin (2.0.0)
@@ -144,6 +150,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.6)
   jekyll-language-plugin
   jekyll-paginate-v2 (~> 2.1)
+  jekyll-patreon!
   jekyll-redirect-from (~> 0.14.0)
   jekyll-twitter-plugin!
   jemoji (~> 0.10.2)
