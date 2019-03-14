@@ -1,0 +1,61 @@
+<div class="col-md-3 order-xs-first col-xs-expand">
+        <h2 class="xs-invisible">&nbsp;</h2>
+        <box class="horizontal-offset vertical-offset vertical-xs-margin expand-width presentation-sidebar">
+            <a href="#" class="page-scroll avatar-medium">
+                {% include avatar.html %}
+            </a>
+            <p>Álvaro Rodríguez García</p>
+            <p class="gray"><b>{% t 'occupation' %}</b></p>
+            <p class="buttons">
+                {% include social-buttons.html small-buttons="true" %}
+            </p>
+            <hr>
+            <h4>{% t 'categories_caption' %}</h4>
+            <p>
+                {% assign categories = "" | split: ',' %}
+               
+                {% for post in paginator.posts %}
+                    {% assign item = post.categories.first %}
+                    {% unless categories contains item %}
+                        {% assign categories = categories | push: item %}
+                    {% endunless %}
+                {% endfor %}
+                
+                {% if categories.size > 0 %}
+                    {% for category in categories %}
+                        {% if forloop.index <= 5 %}
+                            <a class="label" href="{{site.baseurl}}/categories/{{ category | downcase }}">
+                                {{ category }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% t 'nothing_yet' %}
+                {% endif %}
+            </p>
+            <hr>
+            <h4>{% t 'tags_caption' %}</h4>
+            <p>
+                {% assign tags = "" | split: ',' %}
+               
+                {% for post in paginator.posts %}
+                    {% assign item = post.tags.first %}
+                    {% unless tags contains item %}
+                        {% assign tags = tags | push: item %}
+                    {% endunless %}
+                {% endfor %}
+               
+                {% if tags.first != blank and tags.size > 0 %}
+                    {% for tag in tags %}
+                        {% if forloop.index <= 5 %}
+                            <a class="label" href="{{site.baseurl}}/tags/{{ tag | downcase }}">
+                                {{ tag }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% t 'nothing_yet' %}
+                {% endif %}
+            </p>
+        </box>
+    </div>
