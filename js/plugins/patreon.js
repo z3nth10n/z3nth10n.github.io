@@ -99,19 +99,23 @@ var GoalieTron = {
     }
 };
 
-$(document).ready(function() {
-    if (typeof PatreonData['data'] == "object")
-    {
-        var campaignData = GoalieTron.GetCampaign();
-        var goalData = GoalieTron.GetActiveGoal();
-        if (!goalData)
+document.addEventListener("DOMContentLoaded", function(event) { 
+    console.log("aaaa");
+    
+    $(document).ready(function() {
+        if (typeof PatreonData['data'] == "object")
         {
-            goalData = GoalieTron.CreateDummyGoal(campaignData);
-        }
+            var campaignData = GoalieTron.GetCampaign();
+            var goalData = GoalieTron.GetActiveGoal();
+            if (!goalData)
+            {
+                goalData = GoalieTron.CreateDummyGoal(campaignData);
+            }
 
-        var goalperc = Math.floor((campaignData.pledge_sum / goalData.amount_cents) * 100.0);
-        $("#goalietron_percentage").val(goalperc);
-        GoalieTron.GoalTextFromTo(campaignData, goalData);
-        GoalieTron.ShowGoalProgress(goalperc)
-    }
+            var goalperc = Math.floor((campaignData.pledge_sum / goalData.amount_cents) * 100.0);
+            $("#goalietron_percentage").val(goalperc);
+            GoalieTron.GoalTextFromTo(campaignData, goalData);
+            GoalieTron.ShowGoalProgress(goalperc)
+        }
+    });
 });

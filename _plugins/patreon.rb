@@ -27,16 +27,17 @@ module Jekyll
          @PatreonID = getPatreonID(@profile) 
       end
      
-      json = escape_javascript(Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8'))
+      json = escape_json(Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8'))
         
       source = "<link href=\"/css/patreon_default.css\" rel=\"stylesheet\">"
-      source += "<script async src=\"https://cdn6.patreon.com/becomePatronButton.bundle.js?u=#{@PatreonID}\"></script>"
+      source += "<script async src=\"https://c6.patreon.com/becomePatronButton.bundle.js\"></script>"
       source += "<script>"
-      source += "var PatreonData = '#{json}';"
+      source += "var PatreonData = JSON.parse(\"#{json}\");"
+      source += "console.log(PatreonData);"
       source += "var GoalieTronShowGoalText = \"\"; // {showgoaltext};"
       source += "</script>"
       source += "<script src=\"/js/plugins/patreon.js\"></script>"
-      source += "<a href=\"https://www.patreon.com/bePatron?u={patreon_userid}\" data-patreon-widget-type=\"become-patron-button\">Become a Patron!</a>"
+      source += "<a href=\"https://www.patreon.com/bePatron?u=#{@PatreonID}\" data-patreon-widget-type=\"become-patron-button\">Become a Patron!</a>"
       source += "<div id=\"goalietron_toptext\">{toptext}</div>"
       source += "<div class=\"goalietron_goalmoney\">"
       source += "<span id=\"goalietron_goalmoneytext\"></span>"
@@ -62,17 +63,11 @@ module Jekyll
       patreon_id_index = patreon_source.index("\"creator_id\": ")
     
       unless patreon_id_index.nil?
-          # pagedata = patreon_source[patreon_id_index, 14]
-          
+
           patreon_id_index += 14
           endidpos = patreon_source.from(patreon_id_index).index("\n")
           
-          # Jekyll.logger.info "Patreon pagedata:",pagedata
-          
           if endidpos.nil?
-            # Jekyll.logger.info "Patreon index:",patreon_id_index
-            # Jekyll.logger.info "Patreon source:",patreon_source.from(patreon_id_index)
-              
             endidpos = patreon_source.from(patreon_id_index).index("}")
           end
           
@@ -81,12 +76,8 @@ module Jekyll
           end
           
           patreon_id = patreon_source.from(patreon_id_index)[0, endidpos].strip
-          
-          # patreon_id = pagedata.last(6)
-          
-          Jekyll.logger.info "Patreon ID:",patreon_id
-          
-          return -1
+
+          # Jekyll.logger.info "Patreon ID:",patreon_id
           
           if patreon_id.nil?
               raiseError()
@@ -102,14 +93,16 @@ module Jekyll
         raise RuntimeError, "An error occurred getting the ID from your Patreon profile"
     end
       
-    JS_ESCAPE_MAP   =   { '\\' => '\\\\', '</' => '<\/', "\r\n" => '\n', "\n" => '\n', "\r" => '\n', '"' => '\\"', "'" => "\\'" }
+    JSON_ESCAPE_MAP = {
+    '\\'    => '\\\\',
+    '</'    => '<\/',
+    "\r\n"  => '\n',
+    "\n"    => '\n',
+    "\r"    => '\n',
+    '"'     => '\\"' }
 
-    def escape_javascript(javascript)
-      if javascript
-        result = javascript.gsub(/(\|<\/|\r\n|\342\200\250|\342\200\251|[\n\r"'])/u) {|match| JS_ESCAPE_MAP[match] }
-      else
-        ''
-      end
+    def escape_json(json)
+      json.gsub(/(\\|<\/|\r\n|[\n\r"])/) { JSON_ESCAPE_MAP[$1] }
     end
   end
 end
