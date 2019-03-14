@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 var GoalieTron = {
     GetCampaign: function() {
@@ -50,12 +50,12 @@ var GoalieTron = {
     ShowGoalProgress: function(perc) {
         var percWidth = perc > 100 ? 100 : perc;
 
-        jQuery("#goalietron_meter > span").each(function() {
-            jQuery(this)
+        $("#goalietron_meter > span").each(function() {
+            $(this)
                 .data("origWidth", percWidth + "%")
                 .width(0)
                 .animate({
-                    width: jQuery(this).data("origWidth")
+                    width: $(this).data("origWidth")
                 }, 1200);
         });
     },
@@ -67,7 +67,7 @@ var GoalieTron = {
         {
             pledgeSum = Math.floor(this.GetPledgeSum(campaignData));
 
-            jQuery("#goalietron_paypername").html("per " + campaignData.pay_per_name);
+            $("#goalietron_paypername").html("per " + campaignData.pay_per_name);
         }
 
         if (goalData)
@@ -76,19 +76,19 @@ var GoalieTron = {
 
             if (GoalieTronShowGoalText)
             {
-                jQuery("#goalietron_goaltext").html(goalData.description);
+                $("#goalietron_goaltext").html(goalData.description);
             }
         }
 
         if (pledgeSum < goalTotal)
         {
-            jQuery("#goalietron_goalmoneytext").html("$" + pledgeSum + " of $" + goalTotal);
-            jQuery("#goalietron_goalreached").html("");
+            $("#goalietron_goalmoneytext").html("$" + pledgeSum + " of $" + goalTotal);
+            $("#goalietron_goalreached").html("");
         }
         else
         {
-            jQuery("#goalietron_goalmoneytext").html("$" + goalTotal);
-            jQuery("#goalietron_goalreached").html("- reached!");
+            $("#goalietron_goalmoneytext").html("$" + goalTotal);
+            $("#goalietron_goalreached").html("- reached!");
         }
     },
     CreateDummyGoal: function(campaignData) {
@@ -99,7 +99,7 @@ var GoalieTron = {
     }
 };
 
-jQuery(document).ready(function() {
+$(document).ready(function() {
     if (typeof PatreonData['data'] == "object")
     {
         var campaignData = GoalieTron.GetCampaign();
@@ -110,7 +110,7 @@ jQuery(document).ready(function() {
         }
 
         var goalperc = Math.floor((campaignData.pledge_sum / goalData.amount_cents) * 100.0);
-        jQuery("#goalietron_percentage").val(goalperc);
+        $("#goalietron_percentage").val(goalperc);
         GoalieTron.GoalTextFromTo(campaignData, goalData);
         GoalieTron.ShowGoalProgress(goalperc)
     }

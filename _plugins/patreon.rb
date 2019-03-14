@@ -30,7 +30,7 @@ module Jekyll
       json = escape_javascript(Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8'))
         
       source = "<link href=\"/css/patreon_default.css\" rel=\"stylesheet\">"
-      source += "<script async src=\"https://cdn6.patreon.com/becomePatronButton.bundle.js\"></script>"
+      source += "<script async src=\"https://cdn6.patreon.com/becomePatronButton.bundle.js?u=#{@PatreonID}\"></script>"
       source += "<script>"
       source += "var PatreonData = '#{json}';"
       source += "var GoalieTronShowGoalText = \"\"; // {showgoaltext};"
@@ -57,15 +57,36 @@ module Jekyll
       patreon_url = URI.encode("#{PatreonWebsiteURL}#{username}")
     
       # Jekyll.logger.info "Patreon profile url:",patreon_url
-      patreon_source = Net::HTTP.get_response(URI.parse(patreon_url)).body.force_encoding('UTF-8')
+      patreon_source = Net::HTTP.get_response(URI.parse(patreon_url)).body.force_encoding('UTF-8').delete!("\r\n\\")
 
       patreon_id_index = patreon_source.index("\"creator_id\": ")
     
       unless patreon_id_index.nil?
-          pagedata = patreon_source[patreon_id_index, 20]
-          patreon_id = pagedata.last(6)
+          # pagedata = patreon_source[patreon_id_index, 14]
           
-          # Jekyll.logger.info "Patreon ID:",patreon_id
+          patreon_id_index += 14
+          endidpos = patreon_source.from(patreon_id_index).index("\n")
+          
+          # Jekyll.logger.info "Patreon pagedata:",pagedata
+          
+          if endidpos.nil?
+            # Jekyll.logger.info "Patreon index:",patreon_id_index
+            # Jekyll.logger.info "Patreon source:",patreon_source.from(patreon_id_index)
+              
+            endidpos = patreon_source.from(patreon_id_index).index("}")
+          end
+          
+          if endidpos.nil?
+              raiseError()
+          end
+          
+          patreon_id = patreon_source.from(patreon_id_index)[0, endidpos].strip
+          
+          # patreon_id = pagedata.last(6)
+          
+          Jekyll.logger.info "Patreon ID:",patreon_id
+          
+          return -1
           
           if patreon_id.nil?
               raiseError()
