@@ -11,47 +11,30 @@ require "jekyll-patreon/version"
 require 'net/http'
 
 module Jekyll
-  module Patreon::Generator 
-      class WidgetGenerator < Liquid::Tag
-        @profile = nil
+  module Patreon::Tags 
+      class PatreonTag < Liquid::Tag
         PatreonWebsiteURL = "https://www.patreon.com/"
         PatreonUserAPIURL = "https://api.patreon.com/user/"
+          
+        @inc = nil
+        @username = nil
         @PatreonID = nil
 
         def initialize(tag_name, markup, tokens)
           super
 
-          @profile = markup.strip
+          @inc = File.expand_path("../../_inc", __FILE__)
+          @username = markup.strip
         end
 
         def render(context)
           if @PatreonID.nil?
-             @PatreonID = getPatreonID(@profile) 
+             @PatreonID = getPatreonID(@username) 
           end
 
           json = escape_json(Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8'))
 
-          source = "<link href=\"/css/patreon_default.css\" rel=\"stylesheet\">"
-          source += "<script async src=\"https://c6.patreon.com/becomePatronButton.bundle.js\"></script>"
-          source += "<script>"
-          source += "var PatreonData = JSON.parse(\"#{json}\");"
-          source += "console.log(PatreonData);"
-          source += "var GoalieTronShowGoalText = \"\"; // {showgoaltext};"
-          source += "</script>"
-          source += "<script src=\"/js/plugins/patreon.js\"></script>"
-          source += "<a href=\"https://www.patreon.com/bePatron?u=#{@PatreonID}\" data-patreon-widget-type=\"become-patron-button\">Become a Patron!</a>"
-          source += "<div id=\"goalietron_toptext\">{toptext}</div>"
-          source += "<div class=\"goalietron_goalmoney\">"
-          source += "<span id=\"goalietron_goalmoneytext\"></span>"
-          source += "<span id=\"goalietron_goalreached\" class='goalreached'></span>"
-          source += "</div>"
-          source += "<div id=\"goalietron_paypername\"></div>"
-          source += "<div class=\"meter {metercolor}\" id=\"goalietron_meter\">"
-          source += "<span style=\"width: 0%\"></span>"
-          source += "</div>"
-          source += "<div id=\"goalietron_goaltext\"></div>"
-          source += "<div id=\"goalietron_bottomtext\">{bottomtext}</div>"
-          source += "<div class=\"goalietron_button\">{goalietron_button}</div>"
+          source = File.read(File.join(@inc, "patreon_default.html"))
 
           source
         end
@@ -111,4 +94,4 @@ module Jekyll
 end
 
 # Jekyll.logger.info "Patreon:","Test"
-Liquid::Template.register_tag('patreon', Jekyll::Patreon::Generator::WidgetGenerator)
+Liquid::Template.register_tag('patreon', Jekyll::Patreon::Tags::PatreonTag)

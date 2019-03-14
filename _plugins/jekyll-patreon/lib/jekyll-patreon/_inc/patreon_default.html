@@ -1,0 +1,20 @@
+<link href="/css/patreon_default.css" rel="stylesheet">
+<script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+<script>
+    var PatreonData = '#{json}';
+    var GoalieTronShowGoalText = ""; // {showgoaltext};
+</script>
+<script src="/js/plugins/patreon.js"></script>
+<a href="https://www.patreon.com/bePatron?u=#{@PatreonID}" data-patreon-widget-type="become-patron-button">Become a Patron!</a>
+<div id="goalietron_toptext">{toptext}</div>
+<div class="goalietron_goalmoney">
+    <span id="goalietron_goalmoneytext"></span>
+    <span id="goalietron_goalreached" class='goalreached'></span>
+</div>
+<div id="goalietron_paypername"></div>
+<div class="meter {metercolor}" id="goalietron_meter">
+    <span style="width: 0%"></span>
+</div>
+<div id="goalietron_goaltext"></div>
+<div id="goalietron_bottomtext">{bottomtext}</div>
+<div class="goalietron_button">{goalietron_button}</div>
