@@ -35,6 +35,7 @@ group :jekyll_plugins do
   gem 'jekyll-language-plugin'
   gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
   gem 'jekyll-redirect-from', '~> 0.14.0'
+  gem 'jekyll-patreon', path: "_plugins/jekyll-patreon"
   # gem 'jekyll-minifier', '~> 0.1.10'
 end
 
