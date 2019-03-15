@@ -48,6 +48,7 @@ module Jekyll
           end
             
           source += "<style>" + File.read(File.join(@inc, "css", "design_" + @config['design'] + ".css")) + "</style>"
+          source += "<style>" + File.read(File.join(@inc, "css", "common.css")) + "</style>"
 
           source
         end

@@ -100,8 +100,6 @@ var patreon = {
 };
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-    console.log("aaaa");
-    
     $(document).ready(function() {
         if (typeof PatreonData['data'] == "object")
         {
@@ -123,5 +121,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         
         if($("#patreon_bottomtext").text() == "")
             $("#patreon_bottomtext").remove();
+        
+        // $(".patreon_button").remove();
     });
 });
