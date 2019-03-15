@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     var themeChanger = {
         settings: {
-            wrappers: [$('.js-theme-wrapper')],
+            wrappers: [],
             buttons: $('.js-theme-button'),
             cookieName: "current-theme"
         },
@@ -35,12 +35,14 @@ $(document).ready(function() {
     function setTheme(theme) {
         console.log("Setting theme: " + theme);
         
+        console.log(themeChanger.settings.wrappers);
+        console.log(typeof themeChanger.settings.wrappers);
+
         themeChanger.settings.wrappers.forEach(function(el) {
-            $(el).removeClass().addClass('net ' + theme)
+            console.log(el);
+            el.removeClass().addClass('net ' + theme)
         });
     }
-
-    themeChanger.init();
     
     // Add theme wrapper to body
     $("body").addClass("net default js-theme-wrapper");
@@ -51,11 +53,19 @@ $(document).ready(function() {
     waitForEl("iframe.theme-sensitive", function() {
         var frames = $("iframe.theme-sensitive"),
             frameCount = 0;
+        
+        if(frames.length == 0) {
+            // If there is any available frame just assign the cookie
+            assignFromCookie();
+            return;
+        }
+        
+        console.log("Assigning theme to frames (" + frames.length + ")");
 
         frames.each(function() {
             $(this).load(function() {
                 var body = $(this).contents().find("body");
-                body.addClass("net " + currentTheme + " js-theme-wrapper");
+                body.addClass("net " + getCurrentTheme() + " js-theme-wrapper");
 
                 curWrappers.push(body);
 
@@ -68,13 +78,36 @@ $(document).ready(function() {
 
         function frameCallback() {
             themeChanger.settings.wrappers = themeChanger.settings.wrappers.concat(curWrappers);
+            
+            // Assign theme from cookie (if defined)
+            assignFromCookie();
         }
     });
     
-    // Assign theme from cookie (if defined)
-    var currentTheme = Cookies.get(themeChanger.settings.cookieName);
-    console.log("Cookie stored theme: " + currentTheme);
+    function isThemeDefined() {
+        return Cookies.get(themeChanger.settings.cookieName);
+    }
     
-    if (currentTheme != undefined)
-        setTheme(currentTheme);
+    function getCurrentTheme() {
+        var curTheme = isThemeDefined();
+        return curTheme != undefined ? curTheme : "default";
+    }
+    
+    function assignFromCookie() {
+        var currentTheme = isThemeDefined();
+        console.log("Cookie stored theme: " + currentTheme);
+
+        if (currentTheme != undefined)
+            setTheme(currentTheme);
+    }
+    
+    // At the end, wait for the wrapper then init
+    var defaultWrapper = '.js-theme-wrapper';
+    waitForEl(defaultWrapper, function() {
+        // Add default wrapper
+        themeChanger.settings.wrappers.push($(defaultWrapper));
+
+        // ... and them, init
+        themeChanger.init(); 
+    });
 });
