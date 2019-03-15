@@ -38,6 +38,8 @@ $(document).ready(function() {
         themeChanger.settings.wrappers.forEach(function(el) {
             el.removeClass().addClass('net ' + theme)
         });
+        
+        setMobileStyles(theme);
     }
     
     // Add theme wrapper to body
