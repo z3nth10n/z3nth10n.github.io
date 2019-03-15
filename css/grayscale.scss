@@ -772,7 +772,10 @@ box p {
     .order-xs-first {
         order: 1;
     }
-    .order-xs-last {
+    .order-xs-second {
+        order: 2;
+    }
+    .order-xs-third {
         order: 2;
     }
     .xs-invisible {
