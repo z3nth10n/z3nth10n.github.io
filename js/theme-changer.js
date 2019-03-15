@@ -41,20 +41,11 @@ $(document).ready(function() {
     }
 
     themeChanger.init();
-
-    if (currentTheme != undefined)
-        setTheme(currentTheme);
-
-    // Assign theme to body from cookie (if defined)
-    var currentTheme = Cookies.get(themeChanger.settings.cookieName);
-    if(currentTheme == undefined)
-        currentTheme = "default";
     
-    console.log("Cookie stored theme: " + currentTheme);
+    // Add theme wrapper to body
+    $("body").addClass("net default js-theme-wrapper");
 
-    $("body").addClass("net " + currentTheme + " js-theme-wrapper");
-
-    // Workaround for iframes (ie, cards)
+    // And them do the workaround for iframes (ie, cards)
     var curWrappers = [];
 
     waitForEl("iframe.theme-sensitive", function() {
@@ -79,4 +70,11 @@ $(document).ready(function() {
             themeChanger.settings.wrappers = themeChanger.settings.wrappers.concat(curWrappers);
         }
     });
+    
+    // Assign theme from cookie (if defined)
+    var currentTheme = Cookies.get(themeChanger.settings.cookieName);
+    console.log("Cookie stored theme: " + currentTheme);
+    
+    if (currentTheme != undefined)
+        setTheme(currentTheme);
 });
