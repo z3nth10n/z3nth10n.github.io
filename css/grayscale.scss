@@ -97,26 +97,6 @@ div {
   user-select: text;
 }
 
-/*
-
-// Main color
-$primary-color: rgb(47, 31, 31);
-$light-primary-color: #b84d45;
-
-// Anchor color
-$secondary-color: #00cdff;
-$box-color: #292F33;
-$cards-general-text-color: #bbb;
-$cards-text-color: white;
-$cards-strong-color: #ddd;
-
-// Font color
-$font-color: #fff;
-
-*/
-
-
-
 @mixin theme($name, $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color) {
     
     $navbar-text-shadow: true;
@@ -407,39 +387,7 @@ $font-color: #fff;
             }
         }
 
-        @-webkit-keyframes pulse {
-            from {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-            }
-
-            50% {
-                -webkit-transform: scale(1.2);
-                transform: scale(1.2);
-            }
-
-            100% {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-            }
-        }
-
-        @-moz-keyframes pulse {
-            from {
-                -moz-transform: scale(1);
-                transform: scale(1);
-            }
-
-            50% {
-                -moz-transform: scale(1.2);
-                transform: scale(1.2);
-            }
-
-            100% {
-                -moz-transform: scale(1);
-                transform: scale(1);
-            }
-        }
+        
 
         .content-section {
             /* Added in { Personal } for responsive images in posts and section contents */
@@ -579,55 +527,6 @@ $font-color: #fff;
         body {
             -webkit-tap-highlight-color: rgba($font-color, 0.2);
         }
-
-        /* Added in { Personal } for Typed Cursor in Header */
-        .typed-cursor{
-            opacity: 1;
-            -webkit-animation: blink 0.7s infinite;
-            -moz-animation: blink 0.7s infinite;
-            animation: blink 0.7s infinite;
-            font-size: 16px;
-            vertical-align: top;
-            @media(min-width:768px) {
-                font-size: 22px;
-            }
-        }
-        @keyframes blink{
-            0% { opacity:1; }
-            50% { opacity:0; }
-            100% { opacity:1; }
-        }
-        @-webkit-keyframes blink{
-            0% { opacity:1; }
-            50% { opacity:0; }
-            100% { opacity:1; }
-        }
-        @-moz-keyframes blink{
-            0% { opacity:1; }
-            50% { opacity:0; }
-            100% { opacity:1; }
-        }
-        /* END Added in { Personal } for Typed Cursor in Header */
-
-        /* Animation for hand-swipe */
-        @-webkit-keyframes swipe {
-            from {
-                left: 5%;
-            }
-             to {
-                 left: -5%;
-             }
-         }
-
-         @-moz-keyframes swipe {
-             from {
-                 left: 5%;
-             }
-             to {
-                 left: -5%;
-             }
-         }
-         /* END Animation for hand-swipe */
 
          /* Style for swipe instruction section */
          #swipe-instruction {
@@ -972,24 +871,6 @@ $font-color: #fff;
             .align-sm-right {
                 float: right;
             }
-        }
-
-        @keyframes fadeIn {
-          from { 
-            opacity: 0; 
-          }
-          to { 
-            opacity: 1; 
-          }
-        }
-
-        @keyframes fadeOut {
-          from { 
-            opacity: 1; 
-          }
-          to { 
-            opacity: 0;
-          }
         }
 
         .donate-button {
