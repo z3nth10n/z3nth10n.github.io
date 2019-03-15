@@ -30,7 +30,9 @@ $font-color: #fff;*/
 $color-scheme: (
     (default,  $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color),
     (light,    white,          gray,             #bbb,                 #ccc,       #000),
-    (dark,     black,          #00cdff,          gray,                 #333,       white)
+    (dark,     black,          #00cdff,          gray,                 #333,       white),
+    // (bblue,    #000033,        #000099,          #0000bb,              rgba(0, 0, 128, .5),      white)
+    // (oorange,  #ff8800,        white,            orange,               rgba(255, 128, 0, .5),      black)
 );
 
 // Color themes for cards
@@ -39,5 +41,7 @@ $color-scheme: (
 $cards-color-scheme: (
     (default,  $box-color, $cards-general-text-color, $cards-strong-color),
     (light,    #ccc,       black,                     #ddd),
-    (dark,     #333,       black,                     #aaa)
+    (dark,     #333,       black,                     #aaa),
+    // (bblue,    rgba(0, 0, 128, .5),       black,                     #ddd),
+    // (oorange,  rgba(255, 128, 9, .5),       black,                     #ddd)
 );
