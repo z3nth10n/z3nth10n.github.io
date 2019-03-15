@@ -207,6 +207,15 @@ uncat: 'SIN CATEGORÍA'
 comments: 'Comentarios'
 comment: 'Comentario'
 
+#############
+# Donations #
+#############
+
+goal-help: '¡Ayúdame a conseguir mi meta!'
+one-time-donation: '... O si prefieres donar solo una vez:'
+appreciated-donations: '¡Tus donaciones son apreciadas!'
+donation-code: 'es_ES'
+
 ############
 # Timeline #
 ############
