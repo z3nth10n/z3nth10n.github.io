@@ -17,10 +17,10 @@ report-issue: 'Esta página sigue en desarrollo. Si has tenido algún problema o
 # Themes #
 ##########
 
-select-theme: 'Select a theme:'
-default-theme: 'Default'
-light-theme: 'Light'
-dark-theme: 'Dark'
+select-theme: 'Seleciona un tema:'
+default-theme: 'Por defecto'
+light-theme: 'Claro'
+dark-theme: 'Oscuro'
 
 ##############################
 # Dynamic Text on the Header #
