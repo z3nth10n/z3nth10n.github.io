@@ -1,4 +1,4 @@
- .navbar-brand img {
+.navbar-brand img {
  	filter: invert(26%) sepia(85%) saturate(874%) hue-rotate(327deg) brightness(109%) contrast(77%);
  }
  .navbar-brand div {

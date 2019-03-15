@@ -595,7 +595,7 @@ div {
             -webkit-transition: all .3s;
             -moz-transition: all .3s;
             transition: all .3s;
-            &: hover, &: focus, &: active {
+            &:hover, &:focus, &:active {
                 background-color: darken($social-buttons-color, 10%);
             }
         }
@@ -608,7 +608,7 @@ div {
         
         box a {
             color: $secondary-color!important;
-            &: hover, &: focus {
+            &:hover, &:focus {
                 text-decoration: none;
                 color: darken($secondary-color, 20%)!important;
             }
