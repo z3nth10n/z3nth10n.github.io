@@ -1,16 +1,16 @@
 <script language="JavaScript">
-    var PatreonData = {goalietron_json};
-    var GoalieTronShowGoalText = {showgoaltext};
+    var PatreonData = JSON.parse("#{json}");
+    var patreonShowGoalText = #{showgoaltext};
 </script>
-<div class="meter {metercolor}" id="goalietron_meter">
+<div class="meter #{metercolor}" id="patreon_meter">
     <span style="width: 0%"></span>
 </div>
-<div class="goalietron_streamlinetext">
-    <span id="goalietron_toptext">{toptext}</span>
-    <span id="goalietron_goalmoneytext"></span>
-    <span id="goalietron_paypername"></span>
-    <span id="goalietron_goalreached" class='goalreached'></span>
+<div class="patreon_streamlinetext">
+    <span id="patreon_toptext">#{toptext}</span>
+    <span id="patreon_goalmoneytext"></span>
+    <span id="patreon_paypername"></span>
+    <span id="patreon_goalreached" class='goalreached'></span>
 </div>
-<div id="goalietron_goaltext"></div>
-<div id="goalietron_bottomtext">{bottomtext}</div>
-<div class="goalietron_button">{goalietron_button}</div>
+<div id="patreon_goaltext"></div>
+<div id="patreon_bottomtext">#{bottomtext}</div>
+<div class="patreon_button">#{patreon_button}</div>

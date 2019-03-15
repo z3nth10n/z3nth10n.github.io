@@ -1,6 +1,6 @@
 // 'use strict';
 
-var GoalieTron = {
+var patreon = {
     GetCampaign: function() {
         for (var idx in PatreonData.included) {
             var linkedData = PatreonData.included[idx];
@@ -50,7 +50,7 @@ var GoalieTron = {
     ShowGoalProgress: function(perc) {
         var percWidth = perc > 100 ? 100 : perc;
 
-        $("#goalietron_meter > span").each(function() {
+        $("#patreon_meter > span").each(function() {
             $(this)
                 .data("origWidth", percWidth + "%")
                 .width(0)
@@ -67,28 +67,28 @@ var GoalieTron = {
         {
             pledgeSum = Math.floor(this.GetPledgeSum(campaignData));
 
-            $("#goalietron_paypername").html("per " + campaignData.pay_per_name);
+            $("#patreon_paypername").html("per " + campaignData.pay_per_name);
         }
 
         if (goalData)
         {
             goalTotal = Math.floor(this.GetGoalTotal(goalData));
 
-            if (GoalieTronShowGoalText)
+            if (patreonShowGoalText)
             {
-                $("#goalietron_goaltext").html(goalData.description);
+                $("#patreon_goaltext").html(goalData.description);
             }
         }
 
         if (pledgeSum < goalTotal)
         {
-            $("#goalietron_goalmoneytext").html("$" + pledgeSum + " of $" + goalTotal);
-            $("#goalietron_goalreached").html("");
+            $("#patreon_goalmoneytext").html("$" + pledgeSum + " of $" + goalTotal);
+            $("#patreon_goalreached").html("");
         }
         else
         {
-            $("#goalietron_goalmoneytext").html("$" + goalTotal);
-            $("#goalietron_goalreached").html("- reached!");
+            $("#patreon_goalmoneytext").html("$" + goalTotal);
+            $("#patreon_goalreached").html("- reached!");
         }
     },
     CreateDummyGoal: function(campaignData) {
@@ -105,17 +105,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(document).ready(function() {
         if (typeof PatreonData['data'] == "object")
         {
-            var campaignData = GoalieTron.GetCampaign();
-            var goalData = GoalieTron.GetActiveGoal();
+            var campaignData = patreon.GetCampaign();
+            var goalData = patreon.GetActiveGoal();
             if (!goalData)
             {
-                goalData = GoalieTron.CreateDummyGoal(campaignData);
+                goalData = patreon.CreateDummyGoal(campaignData);
             }
 
             var goalperc = Math.floor((campaignData.pledge_sum / goalData.amount_cents) * 100.0);
-            $("#goalietron_percentage").val(goalperc);
-            GoalieTron.GoalTextFromTo(campaignData, goalData);
-            GoalieTron.ShowGoalProgress(goalperc)
+            $("#patreon_percentage").val(goalperc);
+            patreon.GoalTextFromTo(campaignData, goalData);
+            patreon.ShowGoalProgress(goalperc)
         }
+        
+        if($("#patreon_toptext").text() == "")
+            $("#patreon_toptext").remove();
+        
+        if($("#patreon_bottomtext").text() == "")
+            $("#patreon_bottomtext").remove();
     });
 });

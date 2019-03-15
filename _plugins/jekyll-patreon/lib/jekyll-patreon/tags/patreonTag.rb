@@ -41,13 +41,13 @@ module Jekyll
           json = Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8').escape_json
 
           source = "<script>" + File.read(File.join(@inc, "js", "patreon.js")) + "</script>"
-          source += File.read(File.join(@inc, "design_default.html")).interpolate({ json: json, showgoaltext: @config['showgoaltext'], toptext: @config['toptext'], metercolor: @config['metercolor'], bottomtext: @config['bottomtext'], goalietron_button: @config['goalietron_button'] })
+          source += File.read(File.join(@inc, "design_" + @config['design'] + ".html")).interpolate({ json: json, showgoaltext: @config['showgoaltext'], toptext: @config['toptext'], metercolor: @config['metercolor'], bottomtext: @config['bottomtext'], patreon_button: @config['patreon_button'] })
           
-          unless @config['showbutton']
+          if @config['showbutton']
             source += File.read(File.join(@inc, "button.html")).interpolate(pid: @PatreonID)
           end
             
-          source += "<style>" + File.read(File.join(@inc, "css", "design_default.css")) + "</style>"
+          source += "<style>" + File.read(File.join(@inc, "css", "design_" + @config['design'] + ".css")) + "</style>"
 
           source
         end

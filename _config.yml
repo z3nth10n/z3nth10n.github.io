@@ -258,11 +258,11 @@ pagination:
 
 patreon:
     enabled: true
-    design: 'default'
+    design: 'default' # Supports the following desings: default, fancy, minimal, streamlined, reversed, swapped
     title: ''
-    metercolor: 'green'
-    toptext: ''
-    bottomtext: ''
+    metercolor: 'green' # Supports the following colors: reed, green, orange, red nostripes, green nostripes, orange nostripes, blue nostripes
+    toptext: '' # Text that appears in before the progress bar
+    bottomtext: '' # Text that appears in after the progress bar
     showgoaltext: true
     showbutton: true
   
