@@ -34,12 +34,8 @@ $(document).ready(function() {
     
     function setTheme(theme) {
         console.log("Setting theme: " + theme);
-        
-        console.log(themeChanger.settings.wrappers);
-        console.log(typeof themeChanger.settings.wrappers);
 
         themeChanger.settings.wrappers.forEach(function(el) {
-            console.log(el);
             el.removeClass().addClass('net ' + theme)
         });
     }
