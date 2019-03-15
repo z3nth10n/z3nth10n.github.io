@@ -11,7 +11,6 @@
             </p>
             <hr>
             <h4>{% t 'categories_caption' %}</h4>
-            <br>
                 {% assign categories = "" | split: ',' %}
                
                 {% for post in paginator.posts %}
@@ -35,7 +34,6 @@
             <br>
             <hr>
             <h4>{% t 'tags_caption' %}</h4>
-            <br>
                 {% assign tags = "" | split: ',' %}
                
                 {% for post in paginator.posts %}

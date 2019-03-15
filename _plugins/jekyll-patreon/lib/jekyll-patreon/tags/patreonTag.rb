@@ -23,7 +23,7 @@ module Jekyll
 
         def initialize(tag_name, markup, tokens)
           super
-
+            
           @inc = File.expand_path("../../_inc", __FILE__)
           @username = markup.strip
           @config = Jekyll::Patreon::Generator::PatreonGenerator.getConfig
@@ -35,8 +35,12 @@ module Jekyll
           end
             
           if @PatreonID.nil?
-             @PatreonID = getPatreonID(@username) 
+             @PatreonID = getPatreonID(@username)
+          else
+              return
           end
+            
+          # Jekyll.logger.info "Patreon lang:",@config['lang']
 
           json = Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8').escape_json
 
@@ -44,6 +48,7 @@ module Jekyll
           source += File.read(File.join(@inc, "design_" + @config['design'] + ".html")).interpolate({ json: json, showgoaltext: @config['showgoaltext'], toptext: @config['toptext'], metercolor: @config['metercolor'], bottomtext: @config['bottomtext'], patreon_button: @config['patreon_button'] })
           
           if @config['showbutton']
+            # source += "<script>" + File.read(File.join(@inc, "js", "becomePatronButton.bundle.js")).force_encoding('UTF-8') + "</script>" 
             source += File.read(File.join(@inc, "button.html")).interpolate(pid: @PatreonID)
           end
             
