@@ -1,0 +1,3 @@
+@each $name, $box-color, $cards-general-text-color, $cards-strong-color in $cards-color-scheme {
+    @include cards-theme($name, $box-color, $cards-general-text-color, $cards-strong-color);
+}

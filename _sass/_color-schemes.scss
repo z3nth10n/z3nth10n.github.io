@@ -11,7 +11,11 @@ $light-primary-color: #b84d45;
 
 // Anchor color
 $secondary-color: #00cdff;
+
+// Cards and main layout colors
 $box-color: #292F33;
+
+// Only cards colors
 $cards-general-text-color: #bbb;
 $cards-text-color: white;
 $cards-strong-color: #ddd;
@@ -21,10 +25,19 @@ $font-color: #fff;*/
 
 @import "default-variables";
 
-// Color themes
+// Color themes for grayscale and timeline sass files
 // $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color
 $color-scheme: (
     (default,  $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color),
     (light,    white,          gray,             #bbb,                 #ccc,       #000),
-    (dark,     black,          #00cdff,          gray,                #333,       white)
+    (dark,     black,          #00cdff,          gray,                 #333,       white)
+);
+
+// Color themes for cards
+// $box-color, $cards-general-text-color, $cards-strong-color
+
+$cards-color-scheme: (
+    (default,  $box-color, $cards-general-text-color, $cards-strong-color),
+    (light,    #ccc,       black,                     #ddd),
+    (dark,     #333,       white,                     #aaa)
 );

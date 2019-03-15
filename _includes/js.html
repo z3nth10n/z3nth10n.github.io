@@ -50,9 +50,6 @@ $(document).ready(function () {
     cache: false,
     dataType: 'jsonp',
     success: function (result) {
-        
-      console.log(result);    
-
       for (var i in result.response) {
         var countText = "{% t 'comments' %}",
             count = result.response[i].posts;

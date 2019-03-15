@@ -1,8 +1,6 @@
 ---
 ---
 
-@import "color-schemes";
-
 .timeline {
     position: relative;
     padding: 0;
@@ -338,6 +336,8 @@
     -moz-transition: height 1s;
     transition: height 1s;
 }
+
+@import "color-schemes";
 
 @mixin theme($name, $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color) {
 

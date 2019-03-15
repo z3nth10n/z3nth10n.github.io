@@ -1,67 +1,81 @@
 ---
 ---
 
-/*
+@import "color-schemes";
 
-// Color themes
-$color-scheme: (
-    (default, #00A4EC, #002F58, #0061B2, #fff, #000),
-    (inverted, #f8d73b, #fd9c2c, #f76f23, #000, #fff)
-);
+@mixin cards-theme($name, $box-color, $cards-general-text-color, $cards-strong-color) {
 
-@mixin theme($name, $primary, $secundary, $tertiary, $color, $background) {  
-    .#{$name} { 
-        .block {
-            background: $primary;
+    body.#{$name} {
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        overflow: hidden;
+
+        .github-card {
+            border-radius: 5px;
+            padding: 8px 8px 0;
+            background: $box-color;
+            color: $cards-general-text-color;
+            position: relative
         }
-      .teste {
-            background: $secundary;
-      }
+
+        .github-card .button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 4px 8px 4px 7px;
+            color: $cards-general-text-color;
+            text-shadow: 0 1px 0 #fff;
+            border: 1px solid #d4d4d4;
+            border-radius: 3px;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 14px;
+            background-color: #e6e6e6;
+            background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+            background-image: -moz-linear-gradient(#fafafa, #eaeaea);
+            background-image: -ms-linear-gradient(#fafafa, #eaeaea);
+            background-image: linear-gradient(#fafafa, #eaeaea)
+        }
+
+        .user-card .header a {
+            color: $cards-text-color;
+            text-decoration: none
+        }
+
+        .user-card strong {
+            display: block;
+            color: $cards-strong-color;
+            font-size: 16px;
+            line-height: 1.6
+        }
+
+        .user-card ul {
+            text-transform: uppercase;
+            font-size: 12px;
+            color: $cards-text-color;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            zoom: 1
+        }
+
+        .repo-card .header strong a {
+            color: $cards-strong-color;
+        }
     }
-    [data-theme='#{$name}'] {
-        border: none;
-        padding: 5px 15px;
-        color: $color;
-        background: $primary;
-    }
 }
 
-@each $name, $primary, $secundary, $tertiary, $color, $background in $color-scheme {
-    @include theme($name, $primary, $secundary, $tertiary, $color, $background);
-}
+@import "init-cards-themes";
 
-.block {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  margin: 0 10px 10px 0;
-}
-
-*/
-
-@import "default-variables";
-
-body {
-	padding: 0;
-	margin: 0;
-	font-size: 14px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	overflow: hidden
-}
-
-body.ready {
+.ready {
 	border: 1px solid #eee;
 	border-radius: 5px;
 	border-color: #eee #ddd #bbb;
 	box-shadow: rgba(0, 0, 0, .14) 0 1px 3px
-}
-
-.github-card {
-	border-radius: 5px;
-	padding: 8px 8px 0;
-	background: $box-color;
-	color: $cards-general-text-color;
-	position: relative
 }
 
 .github-card a {
@@ -76,25 +90,6 @@ body.ready {
 
 .github-card .header {
 	position: relative
-}
-
-.github-card .button {
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 4px 8px 4px 7px;
-	color: $cards-general-text-color;
-	text-shadow: 0 1px 0 #fff;
-	border: 1px solid #d4d4d4;
-	border-radius: 3px;
-	font-size: 13px;
-	font-weight: 700;
-	line-height: 14px;
-	background-color: #e6e6e6;
-	background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
-	background-image: -moz-linear-gradient(#fafafa, #eaeaea);
-	background-image: -ms-linear-gradient(#fafafa, #eaeaea);
-	background-image: linear-gradient(#fafafa, #eaeaea)
 }
 
 .github-card .button:hover {
@@ -114,11 +109,6 @@ body.ready {
 	min-height: 48px
 }
 
-.user-card .header a {
-	color: $cards-text-color;
-	text-decoration: none
-}
-
 .user-card .header a:hover strong {
 	text-decoration: underline
 }
@@ -131,25 +121,6 @@ body.ready {
 	height: 48px;
 	background: #fff;
 	border-radius: 4px
-}
-
-.user-card strong {
-	display: block;
-	color: $cards-strong-color;
-	font-size: 16px;
-	line-height: 1.6
-}
-
-.user-card ul {
-	text-transform: uppercase;
-	font-size: 12px;
-	color: $cards-text-color;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
-	zoom: 1
 }
 
 .user-card ul:after {
@@ -212,10 +183,6 @@ body.ready {
 	display: block;
 	font-size: 18px;
 	line-height: 1.4
-}
-
-.repo-card .header strong a {
-	color: $cards-strong-color;
 }
 
 .repo-card .header sup {
