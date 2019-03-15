@@ -212,11 +212,13 @@
  }
  .donate-button {
  	margin-top: 10px!important;
- 	img {
- 		border: 0!important;
- 		margin-bottom: 10px;
- 	}
  }
+
+ .donate-button img {
+ 	border: 0!important;
+ 	margin-bottom: 10px;
+ }
+
  .donate-button + b {
  	opacity: 0;
  	transition: opacity 1s ease-in-out;

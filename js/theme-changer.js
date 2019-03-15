@@ -95,6 +95,31 @@ $(document).ready(function() {
 
         if (currentTheme != undefined)
             setTheme(currentTheme);
+        
+        setMobileStyles(currentTheme);
+    }
+    
+    /*
+    
+    <!-- Chrome, Firefox OS and Opera -->
+<meta name="theme-color" content="{{site.color-browser}}">
+<!-- Windows Phone -->
+<meta name="msapplication-navbutton-color" content="{{site.color-browser}}">
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="{{site.apple-status-bar-style}}">
+    */
+    
+    var mobileThemes = [];
+    
+    function setMobileStyles(theme) {
+        mobileThemes["default"] = "#2f1f1f";
+        mobileThemes["dark"] = "black";
+        mobileThemes["light"] = "white";
+        
+        $("meta[name='theme-color']").attr('content', mobileThemes[theme]);
+        $("meta[name='msapplication-navbutton-color']").attr('content', mobileThemes[theme]);
+        $("meta[name='apple-mobile-web-app-status-bar-style']").attr('content', mobileThemes[theme]);
     }
     
     // At the end, wait for the wrapper then init

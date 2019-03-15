@@ -158,6 +158,11 @@ $(".navbar-collapse ul li a").click(function() {
             $("a[href='" + href +"']").parent().hide();
          }
       });
+        
+      setTimeout(function() {
+        if($("#github-cards").text().length == 1)
+            $("#github-cards").remove();
+      }, 1000);
     });
   </script>
 
