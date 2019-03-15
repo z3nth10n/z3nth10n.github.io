@@ -265,6 +265,7 @@ patreon:
     bottomtext: '' # Text that appears in after the progress bar
     showgoaltext: true
     showbutton: true
+    username: 'z3nth10n'
   
 #################
 # Lang Settings #

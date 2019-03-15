@@ -35,17 +35,14 @@ patreon:
     bottomtext: 'Example bottom text' # Text that appears in after the progress bar (optional)
     showgoaltext: true # Display the goal text?
     showbutton: true # Display the "Become a patron" button?
+    username: 'Your username here'
 ```
 
 ## Usage
 
 Simply just put the following tag where you need this:
 
-`{% patreon username %}`
-
-**Example:** (In my case)
-
-`{% patreon z3nth10n %}`
+`{% patreon %}`
 
 ## Issues
 
