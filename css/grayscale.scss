@@ -892,3 +892,43 @@ box p {
         float: right;
     }
 }
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+  }
+  to { 
+    opacity: 1; 
+  }
+}
+
+@keyframes fadeOut {
+  from { 
+    opacity: 1; 
+  }
+  to { 
+    opacity: 0;
+  }
+}
+
+.donate-button {
+    margin-top: 10px!important;
+    
+    img {
+        border: 0!important;
+        margin-bottom: 10px;
+    }
+}
+
+.donate-button + b {
+    opacity: 0;
+    
+    transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition:opacity 1s ease-in-out;
+}
+
+.donate-button:hover + b {
+    opacity: 1;
+    
+}
