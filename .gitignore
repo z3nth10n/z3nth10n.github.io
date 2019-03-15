@@ -16,3 +16,5 @@ test/
 _deploy/*
 .jekyll-metadata
 /.idea/
+
+/_plugins/jekyll-patreon/.git/
