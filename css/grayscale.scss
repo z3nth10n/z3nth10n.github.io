@@ -256,6 +256,10 @@ div {
                 &:focus {
                     outline: none;
                 }
+                
+                div {
+                    color: $light-primary-color;
+                }
             }
             a {
                 color: $navbar-color;
