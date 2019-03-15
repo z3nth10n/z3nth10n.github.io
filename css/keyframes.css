@@ -96,6 +96,7 @@
     }
 }
 /* END Animation for hand-swipe */
+
  @keyframes fadeIn {
      from {
          opacity: 0;
