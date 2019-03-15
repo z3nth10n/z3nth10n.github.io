@@ -7,11 +7,16 @@ module Jekyll
     # (such as how to create new pages)
     # 
     class PatreonGenerator < Generator
-      # The vars    
+      # The constants
+        
+      PatreonWebsiteURL = "https://www.patreon.com/"
+      PatreonUserAPIURL = "https://api.patreon.com/user/"
+        
+      # The vars 
         
       @@config ||= nil
-      @@PatreonID ||= ""
-      @@json ||= ""    
+      @@PatreonID ||= nil
+      @@json ||= nil
         
       # This generator is safe from arbitrary code execution.
       safe true
@@ -49,7 +54,7 @@ module Jekyll
             
         # Jekyll.logger.info "Patreon lang:",@config['lang']
 
-        @@json = Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8').escape_json
+        @@json = Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@@PatreonID}")).body.force_encoding('UTF-8').escape_json
         infoSpended(start)
       end
         

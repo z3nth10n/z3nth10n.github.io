@@ -13,9 +13,6 @@ require 'net/http'
 module Jekyll
   module Patreon::Tags 
       class PatreonTag < Liquid::Tag
-        PatreonWebsiteURL = "https://www.patreon.com/"
-        PatreonUserAPIURL = "https://api.patreon.com/user/"
-          
         @inc = nil
         @username = nil
         @PatreonID = nil
