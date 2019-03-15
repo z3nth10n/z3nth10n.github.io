@@ -10,13 +10,6 @@ var waitForEl = function(selector, callback) {
 
 $(document).ready(function() {
 
-    function setTheme(_themeChanger, theme) {
-        console.log("Setting theme: " + theme);
-        _themeChanger.settings.wrappers.forEach(function(el) {
-            $(el).removeClass().addClass('net ' + theme)
-        });
-    }
-
     var themeChanger = {
         settings: {
             wrappers: [$('.js-theme-wrapper')],
@@ -30,7 +23,7 @@ $(document).ready(function() {
                 var $node = $(this),
                     theme = $node.data('theme');
 
-                setTheme(_self, theme);
+                setTheme(theme);
                 Cookies.set(_self.settings.cookieName, theme);
 
                 //_self.settings.buttons.removeAttr('disabled');
@@ -38,12 +31,19 @@ $(document).ready(function() {
             });
         }
     };
+    
+    function setTheme(theme) {
+        console.log("Setting theme: " + theme);
+        
+        themeChanger.settings.wrappers.forEach(function(el) {
+            $(el).removeClass().addClass('net ' + theme)
+        });
+    }
 
     themeChanger.init();
 
     if (currentTheme != undefined)
-        setTheme(themeChanger, currentTheme);
-
+        setTheme(currentTheme);
 
     var currentTheme = Cookies.get(themeChanger.settings.cookieName);
     console.log("Cookie stored theme: " + currentTheme);
@@ -68,15 +68,21 @@ $(document).ready(function() {
 
                 curWrappers.push(body);
 
+                ++frameCount;
+                
+                // console.log("Frame length: "+frames.length + "; Count: " + frameCount);
                 if (frames.length == frameCount)
                     frameCallback();
-
-                ++frameCount;
             });
         });
 
         function frameCallback() {
-            themeChanger.wrappers.concat(curWrappers);
+            // console.log(themeChanger);
+            console.log(curWrappers);
+            console.log(themeChanger.settings.wrappers);
+            
+            themeChanger.settings.wrappers = themeChanger.settings.wrappers.concat(curWrappers);
+            console.log(themeChanger.settings.wrappers);
         }
     });
 });
