@@ -1,40 +1,109 @@
+var waitForEl = function(selector, callback) {
+    if (jQuery(selector).length) {
+        callback();
+    } else {
+        setTimeout(function() {
+            waitForEl(selector, callback);
+        }, 100);
+    }
+};
+
 $(document).ready(function() {
-   $("body").addClass("net default js-theme-wrapper");
-    
-    (function(exports) {
-      function setTheme(_themeChanger, theme) {
-        console.log("Setting theme: " + theme);
-        _themeChanger.settings.wrapper.removeClass().addClass('net ' + theme);
-      }   
-    
-      var themeChanger = {
+
+    var themeChanger = {
         settings: {
-          wrapper: $('.js-theme-wrapper'),
-          buttons: $('.js-theme-button'),
-          cookieName: "current-theme"    
+            wrappers: [],
+            buttons: $('.js-theme-button'),
+            cookieName: "current-theme"
         },
 
-        init: function () {
-          var _self = this;
-          this.settings.buttons.on('click', function () {
-            var $node = $(this),
-                theme = $node.data('theme');
-            
-            setTheme(_self, theme);      
-            Cookies.set(_self.settings.cookieName, theme);
-            //_self.settings.buttons.removeAttr('disabled');
-            //$node.attr('disabled', true);
-          });
-        }
-      };
+        init: function() {
+            var _self = this;
+            this.settings.buttons.on('click', function() {
+                var $node = $(this),
+                    theme = $node.data('theme');
 
-      themeChanger.init();
+                setTheme(theme);
+                Cookies.set(_self.settings.cookieName, theme);
+
+                //_self.settings.buttons.removeAttr('disabled');
+                //$node.attr('disabled', true);
+            });
+        }
+    };
+    
+    function setTheme(theme) {
+        console.log("Setting theme: " + theme);
+
+        themeChanger.settings.wrappers.forEach(function(el) {
+            el.removeClass().addClass('net ' + theme)
+        });
+    }
+    
+    // Add theme wrapper to body
+    $("body").addClass("net default js-theme-wrapper");
+
+    // And them do the workaround for iframes (ie, cards)
+    var curWrappers = [];
+
+    waitForEl("iframe.theme-sensitive", function() {
+        var frames = $("iframe.theme-sensitive"),
+            frameCount = 0;
         
-      var currentTheme = Cookies.get(themeChanger.settings.cookieName);
+        if(frames.length == 0) {
+            // If there is any available frame just assign the cookie
+            assignFromCookie();
+            return;
+        }
         
-      console.log("Cookie stored theme: " + currentTheme);
-        
-      if(currentTheme != undefined)
-        setTheme(themeChanger, currentTheme); 
-    }(window));
+        console.log("Assigning theme to frames (" + frames.length + ")");
+
+        frames.each(function() {
+            $(this).load(function() {
+                var body = $(this).contents().find("body");
+                body.addClass("net " + getCurrentTheme() + " js-theme-wrapper");
+
+                curWrappers.push(body);
+
+                ++frameCount;
+
+                if (frames.length == frameCount)
+                    frameCallback();
+            });
+        });
+
+        function frameCallback() {
+            themeChanger.settings.wrappers = themeChanger.settings.wrappers.concat(curWrappers);
+            
+            // Assign theme from cookie (if defined)
+            assignFromCookie();
+        }
+    });
+    
+    function isThemeDefined() {
+        return Cookies.get(themeChanger.settings.cookieName);
+    }
+    
+    function getCurrentTheme() {
+        var curTheme = isThemeDefined();
+        return curTheme != undefined ? curTheme : "default";
+    }
+    
+    function assignFromCookie() {
+        var currentTheme = isThemeDefined();
+        console.log("Cookie stored theme: " + currentTheme);
+
+        if (currentTheme != undefined)
+            setTheme(currentTheme);
+    }
+    
+    // At the end, wait for the wrapper then init
+    var defaultWrapper = '.js-theme-wrapper';
+    waitForEl(defaultWrapper, function() {
+        // Add default wrapper
+        themeChanger.settings.wrappers.push($(defaultWrapper));
+
+        // ... and them, init
+        themeChanger.init(); 
+    });
 });

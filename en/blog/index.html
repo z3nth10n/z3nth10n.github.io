@@ -340,9 +340,6 @@ $(document).ready(function () {
     cache: false,
     dataType: 'jsonp',
     success: function (result) {
-        
-      console.log(result);    
-
       for (var i in result.response) {
         var countText = "Comments",
             count = result.response[i].posts;
