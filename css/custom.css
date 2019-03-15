@@ -226,3 +226,11 @@
  .donate-button:hover + b {
  	opacity: 1;
  }
+
+.black-color {
+    color: black;
+}
+
+.white-color {
+    color: white;
+}

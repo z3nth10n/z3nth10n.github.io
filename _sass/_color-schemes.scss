@@ -25,5 +25,6 @@ $font-color: #fff;*/
 // $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color
 $color-scheme: (
     (default,  $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color),
-    (inverted, #f8d73b,        #fd9c2c,          red,                  #f76f23,    #000)
+    (light,    white,          gray,             #bbb,                 #ccc,       #000),
+    (dark,     black,          #00cdff,          black,                #333,       white)
 );
