@@ -1,7 +1,7 @@
 ---
 ---
 
-@import "default-variables";
+@import "color-schemes";
 
 .timeline {
     position: relative;
@@ -339,29 +339,37 @@
     transition: height 1s;
 }
 
-.timeline.only-button {
+@mixin theme($name, $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color) {
+
+    body.#{$name} {
     
-    &:before {
-        margin-top: -100px;
-    }
-    
-    li {
-        margin-top: 100px;
-    }
-    
-    button {
-        z-index: 1000;
-        position: absolute;
-        margin-left: -64px;
-        margin-top: -60px;
-        width: 128px;
-        background-color: $primary-color;
-        
-        &:hover,
-        &:focus {
-            color: white;
-            border: 1px solid white;
-            background-color: $secondary-color;
+        .timeline.only-button {
+
+            &:before {
+                margin-top: -100px;
+            }
+
+            li {
+                margin-top: 100px;
+            }
+
+            button {
+                z-index: 1000;
+                position: absolute;
+                margin-left: -64px;
+                margin-top: -60px;
+                width: 128px;
+                background-color: $primary-color;
+
+                &:hover,
+                &:focus {
+                    color: white;
+                    border: 1px solid white;
+                    background-color: $secondary-color;
+                }
+            }
         }
     }
 }
+
+@import "init-themes";
