@@ -45,14 +45,16 @@ $(document).ready(function() {
     if (currentTheme != undefined)
         setTheme(currentTheme);
 
+    // Assign theme to body from cookie (if defined)
     var currentTheme = Cookies.get(themeChanger.settings.cookieName);
+    if(currentTheme == undefined)
+        currentTheme = "default";
+    
     console.log("Cookie stored theme: " + currentTheme);
 
     $("body").addClass("net " + currentTheme + " js-theme-wrapper");
 
     // Workaround for iframes (ie, cards)
-    console.log($("iframe.theme-sensitive"));
-
     var curWrappers = [];
 
     waitForEl("iframe.theme-sensitive", function() {
@@ -61,28 +63,20 @@ $(document).ready(function() {
 
         frames.each(function() {
             $(this).load(function() {
-                // console.log($(this).contents().find("body").attr("class"));
-
                 var body = $(this).contents().find("body");
                 body.addClass("net " + currentTheme + " js-theme-wrapper");
 
                 curWrappers.push(body);
 
                 ++frameCount;
-                
-                // console.log("Frame length: "+frames.length + "; Count: " + frameCount);
+
                 if (frames.length == frameCount)
                     frameCallback();
             });
         });
 
         function frameCallback() {
-            // console.log(themeChanger);
-            console.log(curWrappers);
-            console.log(themeChanger.settings.wrappers);
-            
             themeChanger.settings.wrappers = themeChanger.settings.wrappers.concat(curWrappers);
-            console.log(themeChanger.settings.wrappers);
         }
     });
 });
