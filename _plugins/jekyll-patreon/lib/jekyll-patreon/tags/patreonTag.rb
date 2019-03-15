@@ -32,11 +32,11 @@ module Jekyll
              @PatreonID = getPatreonID(@username) 
           end
 
-          json = escape_json(Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8'))
+          json = Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8').escape_json
 
           source = "<script>" + File.read(File.join(@inc, "js", "patreon.js")) + "</script>"
-          source += File.read(File.join(@inc, "design_default.html"))
-          source += File.read(File.join(@inc, "button.html"))
+          source += File.read(File.join(@inc, "design_default.html")).interpolate({ json: json, showgoaltext: "", toptext: "", metercolor: "", bottomtext: "", goalietron_button: "" })
+          source += File.read(File.join(@inc, "button.html")).interpolate(pid: @PatreonID)
           source += "<style>" + File.read(File.join(@inc, "css", "design_default.css")) + "</style>"
 
           source
@@ -79,18 +79,6 @@ module Jekyll
 
         def raiseError()
             raise RuntimeError, "An error occurred getting the ID from your Patreon profile"
-        end
-
-        JSON_ESCAPE_MAP = {
-        '\\'    => '\\\\',
-        '</'    => '<\/',
-        "\r\n"  => '\n',
-        "\n"    => '\n',
-        "\r"    => '\n',
-        '"'     => '\\"' }
-
-        def escape_json(json)
-          json.gsub(/(\\|<\/|\r\n|[\n\r"])/) { JSON_ESCAPE_MAP[$1] }
         end
       end
   end
