@@ -1,0 +1,3 @@
+@each $name, $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color in $color-scheme {
+    @include theme($name, $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color);
+}

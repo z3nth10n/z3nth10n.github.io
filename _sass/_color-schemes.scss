@@ -1,0 +1,40 @@
+@import "bootstrap/functions";
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
+@import 'bootstrap/utilities/text';
+
+// Variables
+
+// Main color
+/*$primary-color: rgb(47, 31, 31);
+$light-primary-color: #b84d45;
+
+// Anchor color
+$secondary-color: #00cdff;
+$box-color: #292F33;
+$cards-general-text-color: #bbb;
+$cards-text-color: white;
+$cards-strong-color: #ddd;
+
+// Font color
+$font-color: #fff;*/
+
+@import "default-variables";
+
+// Color themes
+// $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color
+$color-scheme: (
+    (default,  $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color),
+    (inverted, #f8d73b,        #fd9c2c,          red,                  #f76f23,    #000)
+);
+
+/*$navbar-text-shadow: true;
+$header-text-shadow: true;
+$header-background-color: $light-primary-color;
+$intro-text-color: $font-color;
+$navbar-color: $font-color;
+$navbar-lg-collapse-background-color: $primary-color;
+$navbar-lg-background: $primary-color;
+$navbar-sm-background-color: $navbar-lg-collapse-background-color;
+
+$social-buttons-color: $light-primary-color;*/

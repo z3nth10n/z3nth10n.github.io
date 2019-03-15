@@ -1,7 +1,45 @@
 ---
 ---
 
-@import "variables";
+/*
+
+// Color themes
+$color-scheme: (
+    (default, #00A4EC, #002F58, #0061B2, #fff, #000),
+    (inverted, #f8d73b, #fd9c2c, #f76f23, #000, #fff)
+);
+
+@mixin theme($name, $primary, $secundary, $tertiary, $color, $background) {  
+    .#{$name} { 
+        .block {
+            background: $primary;
+        }
+      .teste {
+            background: $secundary;
+      }
+    }
+    [data-theme='#{$name}'] {
+        border: none;
+        padding: 5px 15px;
+        color: $color;
+        background: $primary;
+    }
+}
+
+@each $name, $primary, $secundary, $tertiary, $color, $background in $color-scheme {
+    @include theme($name, $primary, $secundary, $tertiary, $color, $background);
+}
+
+.block {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0 10px 10px 0;
+}
+
+*/
+
+@import "default-variables";
 
 body {
 	padding: 0;
