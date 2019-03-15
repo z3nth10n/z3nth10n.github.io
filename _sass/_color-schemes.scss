@@ -26,5 +26,5 @@ $font-color: #fff;*/
 $color-scheme: (
     (default,  $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color),
     (light,    white,          gray,             #bbb,                 #ccc,       #000),
-    (dark,     black,          #00cdff,          black,                #333,       white)
+    (dark,     black,          #00cdff,          gray,                #333,       white)
 );
