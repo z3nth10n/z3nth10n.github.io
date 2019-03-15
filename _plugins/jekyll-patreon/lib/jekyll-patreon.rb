@@ -7,6 +7,9 @@
 
 require "jekyll-patreon/version"
 # Files needed for the widget generator
+require "jekyll-patreon/generator/defaults"
+require "jekyll-patreon/generator/patreonGenerator"
+# Files needed for displaying the widget
 require "jekyll-patreon/tags/patreonTag"
 
 module Jekyll 

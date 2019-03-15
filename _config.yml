@@ -252,6 +252,20 @@ pagination:
   # Without file extension
   indexpage: 'index'
   
+####################
+# Patreon Settings #
+####################
+
+patreon:
+    enabled: true
+    design: 'default'
+    title: ''
+    metercolor: 'green'
+    toptext: ''
+    bottomtext: ''
+    showgoaltext: true
+    showbutton: true
+  
 #################
 # Lang Settings #
 #################

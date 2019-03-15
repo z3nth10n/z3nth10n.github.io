@@ -19,15 +19,21 @@ module Jekyll
         @inc = nil
         @username = nil
         @PatreonID = nil
+        @config = nil
 
         def initialize(tag_name, markup, tokens)
           super
 
           @inc = File.expand_path("../../_inc", __FILE__)
           @username = markup.strip
+          @config = Jekyll::Patreon::Generator::PatreonGenerator.getConfig
         end
 
         def render(context)
+          unless @config['enabled']
+             return 
+          end
+            
           if @PatreonID.nil?
              @PatreonID = getPatreonID(@username) 
           end
@@ -35,8 +41,12 @@ module Jekyll
           json = Net::HTTP.get_response(URI.parse("#{PatreonUserAPIURL}#{@PatreonID}")).body.force_encoding('UTF-8').escape_json
 
           source = "<script>" + File.read(File.join(@inc, "js", "patreon.js")) + "</script>"
-          source += File.read(File.join(@inc, "design_default.html")).interpolate({ json: json, showgoaltext: "", toptext: "", metercolor: "", bottomtext: "", goalietron_button: "" })
-          source += File.read(File.join(@inc, "button.html")).interpolate(pid: @PatreonID)
+          source += File.read(File.join(@inc, "design_default.html")).interpolate({ json: json, showgoaltext: @config['showgoaltext'], toptext: @config['toptext'], metercolor: @config['metercolor'], bottomtext: @config['bottomtext'], goalietron_button: @config['goalietron_button'] })
+          
+          unless @config['showbutton']
+            source += File.read(File.join(@inc, "button.html")).interpolate(pid: @PatreonID)
+          end
+            
           source += "<style>" + File.read(File.join(@inc, "css", "design_default.css")) + "</style>"
 
           source
