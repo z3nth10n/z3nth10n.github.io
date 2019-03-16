@@ -236,3 +236,21 @@
 .white-color {
     color: white;
 }
+
+.themes {
+    margin-top: 90px;
+    padding: 10px 5px;
+    background-color: black;
+    overflow-x: auto;
+}
+
+.themes > div {
+    height: 64px;
+    width: max-content;
+}
+
+.themes button {
+    width: 62px;
+    height: 62px;
+    border: 1px gray dashed;
+}
