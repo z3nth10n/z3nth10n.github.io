@@ -112,8 +112,23 @@ $(document).ready(function() {
     
     function setMobileStyles(theme) {
         mobileThemes["default"] = "#2f1f1f";
-        mobileThemes["dark"] = "#000";
         mobileThemes["light"] = "#fff";
+        mobileThemes["dark"] = "#000";
+        mobileThemes["dark-blue"] = "#003";
+        mobileThemes["dark-orange"] = "#804000";
+        mobileThemes["dark-red"] = "#3f0000";
+        mobileThemes["dark-green"] = "#001800";
+        mobileThemes["dark-olive-green"] = "#2b3618";
+        mobileThemes["dark-cyan"] = "#003f3f";
+        mobileThemes["dark-turquoise"] = "#008385";
+        mobileThemes["flower-blue"] = "#1f66e5";
+        mobileThemes["dark-flower-blue"] = "#1d44b8";
+        mobileThemes["sand"] = "#ef7b18";
+        mobileThemes["dark-purple"] = "#1f0036";
+        mobileThemes["light-purple"] = "#3f23e6";
+        mobileThemes["light-pink"] = "#ff6a80";
+        mobileThemes["_pink"] = "#ff748c";
+        mobileThemes["lilac"] = "#6533cb";
         
         $("meta[name='theme-color']").attr('content', mobileThemes[theme]);
         $("meta[name='msapplication-navbutton-color']").attr('content', mobileThemes[theme]);

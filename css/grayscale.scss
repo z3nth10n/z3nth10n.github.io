@@ -621,7 +621,7 @@ body.light box {
         }
         
         box a {
-            color: $secondary-color!important;
+            color: lighten($secondary-color, 20%)!important;
             &:hover, &:focus {
                 text-decoration: none;
                 color: darken($secondary-color, 20%)!important;
