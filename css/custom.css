@@ -254,3 +254,7 @@
     height: 62px;
     border: 1px gray dashed;
 }
+
+.themes button:focus {
+    outline: none;
+}
