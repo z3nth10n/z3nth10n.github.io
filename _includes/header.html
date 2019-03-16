@@ -37,7 +37,7 @@
   </div>
 </header>
 
-<b>{% t 'select-theme' %}</b>
+<b id="theme-caption"><script>setTimeout(function() { $("#theme-caption").text("{% t 'select-theme' %} (" + Cookies.get("current-theme") + "):"); }, 500);</script></b>
 <button class="js-theme-button" data-theme="default">{% t 'default-theme' %}</button>
 <button class="js-theme-button black-color" data-theme="light">{% t 'light-theme' %}</button>
 <button class="js-theme-button white-color" data-theme="dark">{% t 'dark-theme' %}</button>

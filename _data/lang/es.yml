@@ -17,7 +17,7 @@ report-issue: 'Esta página sigue en desarrollo. Si has tenido algún problema o
 # Themes #
 ##########
 
-select-theme: 'Seleciona un tema:'
+select-theme: 'Seleciona un tema'
 default-theme: 'Por defecto'
 light-theme: 'Claro'
 dark-theme: 'Oscuro'

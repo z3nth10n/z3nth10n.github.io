@@ -17,7 +17,7 @@ report-issue: 'This page is in a beta stage. If you had an issue or an idea for 
 # Themes #
 ##########
 
-select-theme: 'Select a theme:'
+select-theme: 'Select a theme'
 default-theme: 'Default'
 light-theme: 'Light'
 dark-theme: 'Dark'
