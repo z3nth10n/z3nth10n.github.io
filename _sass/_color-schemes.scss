@@ -28,20 +28,47 @@ $font-color: #fff;*/
 // Color themes for grayscale and timeline sass files
 // $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color
 $color-scheme: (
-    (default,  $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color),
-    (light,    white,          gray,             #bbb,                 #ccc,       #000),
-    (dark,     black,          #00cdff,          gray,                 #333,       white),
-    // (bblue,    #000033,        #000099,          #0000bb,              rgba(0, 0, 128, .5),      white)
-    // (oorange,  #ff8800,        white,            orange,               rgba(255, 128, 0, .5),      black)
+    (default,      $primary-color, $secondary-color, $light-primary-color, $box-color,         $font-color),
+    (light,        white,          gray,             #bbb,                 #ccc,                      #000),
+    (dark,         black,          #00cdff,          gray,                 #333,                     white),
+    (dark-blue,    #000033,        #000099,          #0000bb,              rgba(0, 0, 128, .5),      white),
+    (dark-orange,      rgb(128, 64, 0),        white,            rgb(160, 80, 0),               rgba(255, 128, 0, .5),    black),
+    (dark-red,     darken(darkred, 15%),  darkred,         lighten(darkred, 25%),                   darkred,            white),
+    (dark-green, darken(darkgreen, 15%), darkgreen,          lighten(darkgreen, 25%),                 darkgreen,          white),
+    (dark-olive-green, darken(darkolivegreen, 15%), darkolivegreen, lighten(darkolivegreen, 25%), darkolivegreen, white)
+    /*(dark-cyan, ),
+    (dark-turquoise, ),
+    (flower-blue, ),
+    (dark-flower-blue, ),
+    (sand, ),
+    (dark-purple, ),
+    (light-purple, ),
+    (light-pink, ),
+    (_pink, ),
+    (lilac, )*/
+    
 );
 
 // Color themes for cards
 // $box-color, $cards-general-text-color, $cards-strong-color
 
 $cards-color-scheme: (
-    (default,  $box-color, $cards-general-text-color, $cards-strong-color),
-    (light,    #ccc,       black,                     #ddd),
-    (dark,     #333,       black,                     #aaa),
-    // (bblue,    rgba(0, 0, 128, .5),       black,                     #ddd),
-    // (oorange,  rgba(255, 128, 9, .5),       black,                     #ddd)
+    (default,     $box-color, $cards-general-text-color, $cards-strong-color),
+    (light,       #ccc,                           black,                #ddd),
+    (dark,        #333,                           white,                #aaa),
+    (dark-blue,   rgba(0, 0, 128, .5),            white,                #ddd),
+    (dark-orange,     rgba(255, 128, 0, .5),          white,                #ddd),
+    (dark-red, darkred, white, #ddd),
+    (dark-green, darkgreen, white, #ddd),
+    (dark-olive-green, darkolivegreen, white, #ddd),
+    /*(dark-cyan, ),
+    (dark-turquoise, ),
+    (flower-blue, ),
+    (dark-flower-blue, ),
+    (sand, ),
+    (dark-purple, ),
+    (light-purple, ),
+    (light-pink, ),
+    (_pink, ),
+    (lilac, )*/
 );

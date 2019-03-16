@@ -584,12 +584,12 @@ body.light box {
          .issue-report {
             width: 100%;
             background-color: $header-background-color;
-            color: black;
+            color: $font-color;
             margin-bottom: 75px;
             text-align: center;
             padding: 5px 0;
             a {
-                color: black;
+                color: darken($font-color, 15%);
                 text-decoration: underline;
             }
          }
