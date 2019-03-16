@@ -170,6 +170,10 @@ body.light box {
 
             .language-selection {
                 text-align: center;
+                
+                span {
+                    text-shadow: 0 0 2px rgba(0,0,0,0.8);
+                }
 
                 .lang-select li {
                     display: block;
