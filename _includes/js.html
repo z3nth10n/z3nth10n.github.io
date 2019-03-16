@@ -39,9 +39,9 @@ $(document).ready(function () {
 
   var dataObj = { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray };
 
-  console.log(urlArray);
+  /*console.log(urlArray);
   console.log('{{site.mainurl}}');
-  console.log(unescape("https://disqus.com/api/3.0/threads/set.jsonp?" + $.param(dataObj)));    
+  console.log(unescape("https://disqus.com/api/3.0/threads/set.jsonp?" + $.param(dataObj)));*/
     
   $.ajax({
     type: 'GET',

@@ -53,18 +53,16 @@ $(document).ready(function() {
             frameCount = 0;
         
         if(frames.length == 0) {
-            // If there is any available frame just assign the cookie
-            assignFromCookie();
+            // If there is any available frame just assign it
+            assignTheme();
             return;
         }
         
         console.log("Assigning theme to frames (" + frames.length + ")");
 
         frames.each(function() {
-            $(this).load(function() {
+            $(this).load(function() { // body.addClass("net " + getCurrentTheme() + " js-theme-wrapper");
                 var body = $(this).contents().find("body");
-                body.addClass("net " + getCurrentTheme() + " js-theme-wrapper");
-
                 curWrappers.push(body);
 
                 ++frameCount;
@@ -78,7 +76,7 @@ $(document).ready(function() {
             themeChanger.settings.wrappers = themeChanger.settings.wrappers.concat(curWrappers);
             
             // Assign theme from cookie (if defined)
-            assignFromCookie();
+            assignTheme();
         }
     });
     
@@ -91,13 +89,11 @@ $(document).ready(function() {
         return curTheme != undefined ? curTheme : "default";
     }
     
-    function assignFromCookie() {
-        var currentTheme = isThemeDefined();
-        console.log("Cookie stored theme: " + currentTheme);
+    function assignTheme() {
+        var currentTheme = getCurrentTheme();
+        console.log("Current theme: " + currentTheme);
 
-        if (currentTheme != undefined)
-            setTheme(currentTheme);
-        
+        setTheme(currentTheme);
         setMobileStyles(currentTheme);
     }
     
@@ -116,8 +112,8 @@ $(document).ready(function() {
     
     function setMobileStyles(theme) {
         mobileThemes["default"] = "#2f1f1f";
-        mobileThemes["dark"] = "black";
-        mobileThemes["light"] = "white";
+        mobileThemes["dark"] = "#000";
+        mobileThemes["light"] = "#fff";
         
         $("meta[name='theme-color']").attr('content', mobileThemes[theme]);
         $("meta[name='msapplication-navbutton-color']").attr('content', mobileThemes[theme]);
@@ -131,6 +127,8 @@ $(document).ready(function() {
         themeChanger.settings.wrappers.push($(defaultWrapper));
 
         // ... and them, init
-        themeChanger.init(); 
+        themeChanger.init();
+        
+        assignTheme();
     });
 });

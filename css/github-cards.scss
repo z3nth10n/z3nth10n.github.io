@@ -1,6 +1,14 @@
 ---
 ---
 
+/* Custom styles for light theme */
+
+body.light .github-card {
+    -webkit-box-shadow: 5px 5px 10px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 10px -3px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 10px -3px rgba(0,0,0,0.75);
+}
+
 @import "color-schemes";
 
 @mixin cards-theme($name, $box-color, $cards-general-text-color, $cards-strong-color) {

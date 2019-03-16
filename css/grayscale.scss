@@ -95,6 +95,14 @@ div {
   user-select: text;
 }
 
+/* Custom Styles for light theme */
+
+body.light box {
+    -webkit-box-shadow: 5px 5px 10px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 10px -3px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 10px -3px rgba(0,0,0,0.75);
+}
+
 @mixin theme($name, $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color) {
     
     $navbar-text-shadow: true;
