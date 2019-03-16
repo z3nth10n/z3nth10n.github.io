@@ -257,7 +257,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
   </div>
 </header>
 
-<b>Seleciona un tema:</b>
+<b id="theme-caption"><script>setTimeout(function() { $("#theme-caption").text("Seleciona un tema (" + Cookies.get("current-theme") + "):"); }, 500);</script></b>
 <button class="js-theme-button" data-theme="default">Por defecto</button>
 <button class="js-theme-button black-color" data-theme="light">Claro</button>
 <button class="js-theme-button white-color" data-theme="dark">Oscuro</button>
