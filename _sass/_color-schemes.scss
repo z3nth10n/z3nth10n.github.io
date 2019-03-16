@@ -28,24 +28,24 @@ $font-color: #fff;*/
 // Color themes for grayscale and timeline sass files
 // $primary-color, $secondary-color, $light-primary-color, $box-color, $font-color
 $color-scheme: (
-    (default,      $primary-color, $secondary-color, $light-primary-color, $box-color,         $font-color),
-    (light,        white,          gray,             #bbb,                 #ccc,                      #000),
-    (dark,         black,          #00cdff,          gray,                 #333,                     white),
-    (dark-blue,    #000033,        #000099,          #0000bb,              rgba(0, 0, 128, .5),      white),
-    (dark-orange,      rgb(128, 64, 0),        white,            rgb(160, 80, 0),               rgba(255, 128, 0, .5),    black),
-    (dark-red,     darken(darkred, 15%),  lighten(darkred, 10%),         lighten(darkred, 20%),                   darkred,            white),
-    (dark-green, darken(darkgreen, 15%), lighten(darkgreen, 10%),          lighten(darkgreen, 20%),                 darkgreen,          white),
-    (dark-olive-green, darken(darkolivegreen, 15%), lighten(darkolivegreen, 10%), lighten(darkolivegreen, 20%), darkolivegreen, white)
-    /*(dark-cyan, ),
-    (dark-turquoise, ),
-    (flower-blue, ),
-    (dark-flower-blue, ),
-    (sand, ),
-    (dark-purple, ),
-    (light-purple, ),
-    (light-pink, ),
-    (_pink, ),
-    (lilac, )*/
+    (default,          $primary-color,              $secondary-color,  $light-primary-color,          $box-color,            $font-color),
+    (light,            white,                       gray,              #bbb,                          #ccc,                  #000),
+    (dark,             black,                       #00cdff,           gray,                          #333,                  white),
+    (dark-blue,        #000033,                     #000099,           #0000bb,                       rgba(0, 0, 128, .5),   white),
+    (dark-orange,      rgb(128, 64, 0),             white,             rgb(160, 80, 0),               rgba(255, 128, 0, .5), black),
+    (dark-red,         darken(darkred,         15%), darkred,          lighten(darkred,         15%), darkred,               white),
+    (dark-green,       darken(darkgreen,       15%), darkgreen,        lighten(darkgreen,       15%), darkgreen,             white),
+    (dark-olive-green, darken(darkolivegreen,  15%), darkolivegreen,   lighten(darkolivegreen,  15%), darkolivegreen,        white),
+    (dark-cyan,        darken(darkcyan,        15%), darkcyan,         lighten(darkcyan,        15%), darkcyan,              white),
+    (dark-turquoise,   darken(darkturquoise,   15%), darkturquoise,    lighten(darkturquoise,   15%), darkturquoise,         white),
+    (flower-blue,      darken(cornflowerblue,  15%), cornflowerblue,   lighten(cornflowerblue,  15%), cornflowerblue,        white),
+    (dark-flower-blue, darken(royalblue,       15%), royalblue,        lighten(royalblue,       15%), royalblue,             white),
+    (sand,             darken(sandybrown,      15%), sandybrown,       lighten(sandybrown,      15%), sandybrown,            black),
+    (dark-purple,      darken(indigo,          15%), indigo,           lighten(indigo,          15%), indigo,                white),
+    (light-purple,     darken(mediumslateblue, 15%), mediumslateblue,  lighten(mediumslateblue, 15%), mediumslateblue,       black),
+    (light-pink,       darken(lightpink,       15%), lightpink,        lighten(lightpink,       15%), lightpink,             black),
+    (_pink,            darken(pink,            15%), pink,             lighten(pink,            15%), pink,                  black),
+    (lilac,            darken(mediumpurple,    15%), mediumpurple,     lighten(mediumpurple,    15%), mediumpurple,          black)
     
 );
 
@@ -53,22 +53,22 @@ $color-scheme: (
 // $box-color, $cards-general-text-color, $cards-strong-color
 
 $cards-color-scheme: (
-    (default,     $box-color, $cards-general-text-color, $cards-strong-color),
-    (light,       #ccc,                           black,                #ddd),
-    (dark,        #333,                           white,                #aaa),
-    (dark-blue,   rgba(0, 0, 128, .5),            white,                #ddd),
-    (dark-orange,     rgba(255, 128, 0, .5),          white,                #ddd),
-    (dark-red, darkred, white, #ddd),
-    (dark-green, darkgreen, white, #ddd),
-    (dark-olive-green, darkolivegreen, white, #ddd),
-    /*(dark-cyan, ),
-    (dark-turquoise, ),
-    (flower-blue, ),
-    (dark-flower-blue, ),
-    (sand, ),
-    (dark-purple, ),
-    (light-purple, ),
-    (light-pink, ),
-    (_pink, ),
-    (lilac, )*/
+    (default,          $box-color, $cards-general-text-color, $cards-strong-color),
+    (light,            #ccc,                           black,                #ddd),
+    (dark,             #333,                           white,                #aaa),
+    (dark-blue,        rgba(0, 0, 128, .5),            white,                #ddd),
+    (dark-orange,      rgba(255, 128, 0, .5),          white,                #ddd),
+    (dark-red,         darkred,                        white,                #ddd),
+    (dark-green,       darkgreen,                      white,                #ddd),
+    (dark-olive-green, darkolivegreen,                 white,                #ddd),
+    (dark-cyan,        darkcyan,                       white,                #ddd),
+    (dark-turquoise,   darkturquoise,                  white,                #ddd),
+    (flower-blue,      cornflowerblue,                 white,                #ddd),
+    (dark-flower-blue, royalblue,                      white,                #ddd),
+    (sand,             sandybrown,                     black,                #ddd),
+    (dark-purple,      indigo,                         white,                #ddd),
+    (light-purple,     mediumslateblue,                black,                #ddd),
+    (light-pink,       lightpink,                      black,                #ddd),
+    (_pink,            pink,                           black,                #ddd),
+    (lilac,            mediumpurple,                   black,                #ddd)
 );
