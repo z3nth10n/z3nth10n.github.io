@@ -216,6 +216,18 @@ one-time-donation: '... O si prefieres donar solo una vez:'
 appreciated-donations: '¡Tus donaciones son apreciadas!'
 donation-code: 'es_ES'
 
+#################
+# Patreon Goals #
+#################
+
+patreon_goal_0: "hhh"
+patreon_goal_1: "iii"
+patreon_goal_2: "jjj"
+patreon_goal_3: "kkk"
+patreon_goal_4: "lll"
+patreon_goal_5: "mmm"
+patreon_goal_6: "nnn"
+
 ############
 # Timeline #
 ############
