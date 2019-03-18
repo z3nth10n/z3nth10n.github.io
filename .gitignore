@@ -19,3 +19,5 @@ _deploy/*
 
 /_plugins/jekyll-patreon/.git/
 *.p12
+*.pem
+*.key

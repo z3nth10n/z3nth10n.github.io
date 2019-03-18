@@ -1,8 +1,9 @@
-# Adapted from https://code.google.com/p/google-api-ruby-client/
+# Adapted from https://code.google.com/p/google-api-ruby-analytics/
 
 require 'jekyll'
 require 'rubygems'
-require 'google/api_client'
+require 'googleauth'
+require 'google/apis/analytics_v3'
 require 'chronic'
 require 'json'
 
@@ -36,22 +37,27 @@ module Jekyll
         response_data = JSON.parse(File.read(cache_file_path));
       else
 
-        client = Google::APIClient.new(
-          :application_name => ga['application_name'],
-          :application_version => ga['application_version'])
+        #analytics = Google::APIClient.new(
+        #  :application_name => ga['application_name'],
+        #  :application_version => ga['application_version'])
+          
+        analytics = Google::Apis::AnalyticsV3::AnalyticsService.new
+          
+        auth = ::Google::Auth::ServiceAccountCredentials
+            .make_creds(scope: 'https://www.googleapis.com/auth/analytics')
+        analytics.authorization = auth
 
         # Load our credentials for the service account
-        key = Google::APIClient::KeyUtils.load_from_pkcs12(ga['key_file'], ga['key_secret'])
-        client.authorization = Signet::OAuth2::Client.new(
-          :token_credential_uri => 'https://accounts.google.com/o/oauth2/token',
-          :audience => 'https://accounts.google.com/o/oauth2/token',
-          :scope => 'https://www.googleapis.com/auth/analytics.readonly',
-          :issuer => ga['service_account_email'],
-          :signing_key => key)
+        #key = Google::APIClient::KeyUtils.load_from_pkcs12(ga['key_file'], ga['key_secret'])
+        #analytics.authorization = Signet::OAuth2::Client.new(
+        #  :token_credential_uri => 'https://accounts.google.com/o/oauth2/token',
+        #  :audience => 'https://accounts.google.com/o/oauth2/token',
+        #  :scope => 'https://www.googleapis.com/auth/analytics.readonly',
+        #  :issuer => ga['service_account_email'],
+        #  :signing_key => key)
 
         # Request a token for our service account
-        client.authorization.fetch_access_token!
-        analytics = client.discovered_api('analytics','v3')
+        # analytics.authorization.fetch_access_token!
 
         params = {
           'ids' => ga['profileID'],
@@ -61,20 +67,24 @@ module Jekyll
           'metrics' => ga['metric'],
           'max-results' => 10000
         }
+          
         if ga['segment']
           params['segment'] = ga['segment']
         end
         if ga['filters']
           params['filters'] = ga['filters']
         end
+          
+        # def get_ga_data(ids, start_date, end_date, metrics, dimensions: nil, filters: nil, include_empty_rows: nil, max_results: nil, output: nil, sampling_level: nil, segment: nil, sort: nil, start_index: nil, fields: nil, quota_user: nil, user_ip: nil, options: nil, &block)
 
-        response = client.execute(:api_method => analytics.data.ga.get, :parameters => params)
+        response = analytics.get_ga_data(ga['profileID'], Chronic.parse(ga['start']).strftime("%Y-%m-%d"), Chronic.parse(ga['end']).strftime("%Y-%m-%d"), ga['metric'])
+          # analytics.execute(:api_method => analytics.data.ga.get, :parameters => params)
 
-        if response.error?
-          abort("Client Execute Error: #{response.error_message}")
-        end
+        # if response.error?
+        #  abort("Client Execute Error: #{response.error_message}")
+        # end
 
-        response_data = response.data
+        response_data = response
 
         File.open(cache_file_path,"w") do |f|
           f.write(response_data.to_json)
@@ -82,13 +92,13 @@ module Jekyll
 
       end
 
-      results = Hash[response_data["rows"]]
+      results = response_data[:rows]
 
-      site.posts.docs.each { |post|
-        url = post.url + '/'
+      # site.posts.docs.each { |post|
+      #   url = post.url + '/'
 
-        post.data.merge!("_ga" => (results[url]) ? results[url].to_i : 0)
-      }
+      #   post.data.merge!("_ga" => (results[:url]) ? results[:url].to_i : 0)
+      # }
     end
   end
 
