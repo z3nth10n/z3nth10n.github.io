@@ -18,3 +18,4 @@ _deploy/*
 /.idea/
 
 /_plugins/jekyll-patreon/.git/
+*.p12

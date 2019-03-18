@@ -267,6 +267,22 @@ patreon:
     showbutton: true
     username: 'z3nth10n'
     default_lang: "en"
+    
+####################
+# Google Analytics #
+####################
+
+jekyll_ga:
+  service_account_email: client-2@imperial-sphere-234903.iam.gserviceaccount.com   # service account email address
+  key_file: ga.p12  # service account private key file
+  key_secret: notasecret    # service account private key's password
+  profileID: ga:191710732   # profile ID 
+  start: last month         # Beginning of report
+  end: now                  # End of report
+  metric: ga:pageviews      # Metric code
+  segment:                  # optional
+  filters:                  # optional
+  sort: true                # Sort posts by this metric
   
 #################
 # Lang Settings #
@@ -283,7 +299,7 @@ language_includes_dir: _i18n
 
 # Exclusion list from the generated _site
 
-exclude: ["LICENSE", "README.md", "CONTRIBUTING", "CONTRIBUTORS", "scripts", "vendor"]
+exclude: ["LICENSE", "README.md", "CONTRIBUTING", "CONTRIBUTORS", "scripts", "vendor", "ga.p12"]
 
 # Enable minification SASS
 
