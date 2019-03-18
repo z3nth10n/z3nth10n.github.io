@@ -45,15 +45,16 @@ jobs:
             - run:
                 name: Run Build HTML
                 command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
-        branches:
-            only:
-              - gh-pages-ci
-            ignore:
-              - master
+        filters:
+            branches:
+                only:
+                  - gh-pages-ci
+                ignore:
+                  - master
 
 workflows:
     version: 2
     test-deploy:
         jobs:
-          - build
-          - deploy
+            - build
+            - deploy
