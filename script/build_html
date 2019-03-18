@@ -22,3 +22,5 @@ mv /tmp/_site/* .
 git add --all
 git commit -m "$GIT_COMMIT_DESC"
 git push origin master
+
+echo "Test env vars: $GOOGLE_ACCOUNT_TYPE"
