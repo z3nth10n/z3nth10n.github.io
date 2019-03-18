@@ -8,6 +8,12 @@ jobs:
         context: "Google Analytics Sensitive Data"
         docker:
           - image: circleci/ruby:2.6.0-node
+        filters:
+            branches:
+                only:
+                  - gh-pages-ci
+                ignore:
+                  - master
         environment:
             BUNDLER_VERSION: 2.0.1
             BUNDLE_PATH: ~/repo/vendor/bundle
@@ -35,26 +41,12 @@ jobs:
             - run:
                 name: Jekyll build
                 command: bundle exec jekyll build --trace
-                
-    deploy:
-        requires:
-            - build
-        machine: true
-        context: "Google Analytics Sensitive Data"
-        steps:
             - run:
                 name: Run Build HTML
                 command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
-        filters:
-            branches:
-                only:
-                  - gh-pages-ci
-                ignore:
-                  - master
 
 workflows:
     version: 2
     test-deploy:
         jobs:
             - build
-            - deploy
