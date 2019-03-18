@@ -267,6 +267,39 @@ $(".navbar-collapse ul li a").click(function() {
          Cookies.set("lang", dataLang);
          doLangDirect(dataLang);
       });
+        
+      // Draggable theme buttons
+        
+      if($(window).width() > 992) {
+        const slider = document.querySelector('.themes');
+        const speed = 1;
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+          isDown = true;
+          slider.classList.add('active');
+          startX = e.pageX - slider.offsetLeft;
+          scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+          isDown = false;
+          slider.classList.remove('active');
+        });
+        slider.addEventListener('mouseup', () => {
+          isDown = false;
+          slider.classList.remove('active');
+        });
+        slider.addEventListener('mousemove', (e) => {
+          if(!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - slider.offsetLeft;
+          const walk = (x - startX) * speed; //scroll-fast
+          slider.scrollLeft = scrollLeft - walk;
+          // console.log(walk);
+        });
+      }
     });
 </script>
 
