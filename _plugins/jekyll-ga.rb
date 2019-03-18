@@ -13,6 +13,9 @@ module Jekyll
     priority :highest
 
     def generate(site)
+      Jekyll.logger.info "Jekyll GA:","Initializating"
+      startTime = Time.now
+        
       if !site.config['jekyll_ga']
         return
       end
@@ -93,6 +96,12 @@ module Jekyll
       end
 
       results = response_data[:rows]
+        
+      endTime = Time.now - startTime
+        
+      Jekyll.logger.info "Jekyll GA:","Initializated in #{endTime} seconds"
+        
+      Jekyll.logger.info "Jekyll GA:",results
 
       # site.posts.docs.each { |post|
       #   url = post.url + '/'
