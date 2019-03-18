@@ -11,6 +11,7 @@ jobs:
       BUNDLE_PATH: ~/repo/vendor/bundle
       GIT_COMMIT_DESC: git log -1 --pretty=%B
       JEKYLL_ENV: production
+    context: "Google Analytics Sensitive Data"
     steps:
       - checkout
       - restore_cache:
