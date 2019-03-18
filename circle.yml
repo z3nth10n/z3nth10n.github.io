@@ -2,41 +2,41 @@ defaults: &defaults
   working_directory: ~/repo
 version: 2
 jobs:
-  build:
-    <<: *defaults
-    context: "Google Analytics Sensitive Data"
-    docker:
-      - image: circleci/ruby:2.6.0-node
+    build:
+        <<: *defaults
+        context: "Google Analytics Sensitive Data"
+        docker:
+          - image: circleci/ruby:2.6.0-node
     environment:
-      BUNDLER_VERSION: 2.0.1
-      BUNDLE_PATH: ~/repo/vendor/bundle
-      GIT_COMMIT_DESC: git log -1 --pretty=%B
-      JEKYLL_ENV: production
+        BUNDLER_VERSION: 2.0.1
+        BUNDLE_PATH: ~/repo/vendor/bundle
+        GIT_COMMIT_DESC: git log -1 --pretty=%B
+        JEKYLL_ENV: production
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - rubygems-v1-{{ checksum "Gemfile.lock" }}
-            - rubygems-v1-fallback
-      - run:
-          name: Bundle Pre Install
-          command: gem install bundler:$BUNDLER_VERSION
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
-      - run:
-          name: Rake tests
-          command: bundle exec rake
-      - save_cache:
-          key: rubygems-v1-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-      - run:
-          name: Jekyll build
-          command: bundle exec jekyll build --trace
-      - run:
-          name: Run Build HTML
-          command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
+        - checkout
+        - restore_cache:
+            keys:
+                - rubygems-v1-{{ checksum "Gemfile.lock" }}
+                - rubygems-v1-fallback
+        - run:
+            name: Bundle Pre Install
+            command: gem install bundler:$BUNDLER_VERSION
+        - run:
+            name: Bundle Install
+            command: bundle check || bundle install
+        - run:
+            name: Rake tests
+            command: bundle exec rake
+        - save_cache:
+            key: rubygems-v1-{{ checksum "Gemfile.lock" }}
+            paths:
+                - vendor/bundle
+        - run:
+            name: Jekyll build
+            command: bundle exec jekyll build --trace
+        - run:
+            name: Run Build HTML
+            command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
   deploy:
     requires:
         - build
