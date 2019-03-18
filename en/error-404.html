@@ -281,6 +281,13 @@ $(".navbar-collapse ul li a").click(function() {
       return this.replace(new RegExp(string, 'g'), replaced);
     };
     
+    function _parseLiquid(str) {
+      str = str.replaceAll("=>", ":").replaceAll("}", "},").replaceAll("},,", "},");
+      str = "[" + str.substr(0, str.length - 1) + "]";
+              
+      return str;
+    }
+    
     function parseLiquid(str) {
       str = str.replaceAll("=>", ":").replaceAll("}", "},");
       str = "[" + str.substr(0, str.length - 1) + "]";
