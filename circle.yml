@@ -5,7 +5,6 @@ version: 2
 jobs:
     build:
         <<: *defaults
-        context: "Google Analytics Sensitive Data"
         docker:
           - image: circleci/ruby:2.6.0-node
         filters:
@@ -49,4 +48,5 @@ workflows:
     version: 2
     test-deploy:
         jobs:
-            - build
+            - build:
+                context: "Google Analytics Sensitive Data"
