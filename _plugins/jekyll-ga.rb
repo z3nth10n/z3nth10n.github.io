@@ -102,7 +102,7 @@ module Jekyll
         
       Jekyll.logger.info "Jekyll GA:","Initializated in #{endTime} seconds"
         
-      Jekyll.logger.info "Jekyll GA:",results
+      Jekyll.logger.info "Jekyll GA:",response_data.to_json
 
       # site.posts.docs.each { |post|
       #   url = post.url + '/'
