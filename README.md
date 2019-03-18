@@ -4,4 +4,4 @@ This is the z3nth10n webpage source code. I will update this whenever I can.
 
 Best regards.
 
-(c) z3nth10n 2019
+> (c) z3nth10n 2019
