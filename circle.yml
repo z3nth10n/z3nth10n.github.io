@@ -35,21 +35,21 @@ jobs:
             - run:
                 name: Jekyll build
                 command: bundle exec jekyll build --trace
-            - run:
-                name: Run Build HTML
-                command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
                 
     deploy:
         requires:
             - build
+        machine: true
         context: "Google Analytics Sensitive Data"
-        steps: []
-        filters:
-            branches:
-                only:
-                  - gh-pages-ci
-                ignore:
-                  - master
+        steps:
+            - run:
+                name: Run Build HTML
+                command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
+        branches:
+            only:
+              - gh-pages-ci
+            ignore:
+              - master
 
 workflows:
     version: 2
