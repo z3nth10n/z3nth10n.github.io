@@ -11,7 +11,6 @@ jobs:
       BUNDLE_PATH: ~/repo/vendor/bundle
       GIT_COMMIT_DESC: git log -1 --pretty=%B
       JEKYLL_ENV: production
-    context: "Google Analytics Sensitive Data"
     steps:
       - checkout
       - restore_cache:
@@ -37,17 +36,20 @@ jobs:
       - run:
           name: Run Build HTML
           command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
+  deploy:
+    requires:
+        - build
+    filters:
+        branches:
+            only:
+              - gh-pages-ci
+            ignore:
+              - master
+
 workflows:
   version: 2
   test-deploy:
     jobs:
+      context: "Google Analytics Sensitive Data"
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-                only:
-                  - gh-pages-ci
-                ignore:
-                  - master
+      - deploy
