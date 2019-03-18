@@ -241,20 +241,34 @@
     margin-top: 90px;
     padding: 10px 5px;
     background-color: black;
-    overflow-x: auto;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.themes::-webkit-scrollbar { 
+    height: 0 !important;
 }
 
 .themes > div {
     height: 64px;
     width: max-content;
+    cursor: pointer;
+    padding-right: 10px;
 }
 
-.themes button {
+.themes > div.active {
+    cursor: grabbing!important;
+    cursor: -webkit-grabbing!important;
+}
+
+.js-theme-button {
+    display: inline-block;
     width: 62px;
     height: 62px;
-    border: 1px gray dashed;
+    border: 1px gray dashed!important;
 }
 
-.themes button:focus {
+/*.themes button:focus {
     outline: none;
-}
+}*/

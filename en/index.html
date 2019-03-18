@@ -229,24 +229,35 @@ window.cookieconsent.initialise({
 
 <div class="themes">
     <div>
-        <button class="js-theme-button" data-theme="default"></button>
-        <button class="js-theme-button" data-theme="light"></button>
-        <button class="js-theme-button" data-theme="dark"></button>
-        <button class="js-theme-button" data-theme="dark-blue"></button>
-        <button class="js-theme-button" data-theme="dark-orange"></button>
-        <button class="js-theme-button" data-theme="dark-red"></button>
-        <button class="js-theme-button" data-theme="dark-green"></button>
-        <button class="js-theme-button" data-theme="dark-olive-green"></button>
-        <button class="js-theme-button" data-theme="dark-cyan"></button>
-        <button class="js-theme-button" data-theme="dark-turquoise"></button>
-        <button class="js-theme-button" data-theme="flower-blue"></button>
-        <button class="js-theme-button" data-theme="dark-flower-blue"></button>
-        <button class="js-theme-button" data-theme="sand"></button>
-        <button class="js-theme-button" data-theme="dark-purple"></button>
-        <button class="js-theme-button" data-theme="light-purple"></button>
-        <button class="js-theme-button" data-theme="light-pink"></button>
-        <button class="js-theme-button" data-theme="_pink"></button>
-        <button class="js-theme-button" data-theme="lilac"></button>
+        <span class="js-theme-button" data-theme="default"></span>
+        <span class="js-theme-button" data-theme="light"></span>
+        <span class="js-theme-button" data-theme="dark"></span>
+        <span class="js-theme-button" data-theme="dark-blue"></span>
+        <span class="js-theme-button" data-theme="dark-orange"></span>
+        <span class="js-theme-button" data-theme="dark-red"></span>
+        <span class="js-theme-button" data-theme="dark-green"></span>
+        <span class="js-theme-button" data-theme="dark-yellow"></span>
+        <span class="js-theme-button" data-theme="dark-olive-green"></span>
+        <span class="js-theme-button" data-theme="dark-cyan"></span>
+        <span class="js-theme-button" data-theme="dark-turquoise"></span>
+        <span class="js-theme-button" data-theme="flower-blue"></span>
+        <span class="js-theme-button" data-theme="dark-flower-blue"></span>
+        <span class="js-theme-button" data-theme="sand"></span>
+        <span class="js-theme-button" data-theme="dark-purple"></span>
+        <span class="js-theme-button" data-theme="light-purple"></span>
+        <span class="js-theme-button" data-theme="light-pink"></span>
+        <span class="js-theme-button" data-theme="_pink"></span>
+        <span class="js-theme-button" data-theme="lilac"></span>
+        <span class="js-theme-button" data-theme="_brown"></span>
+        <span class="js-theme-button" data-theme="light-orange"></span>
+        <span class="js-theme-button" data-theme="light-red"></span>
+        <span class="js-theme-button" data-theme="light-green"></span>
+        <span class="js-theme-button" data-theme="light-yellow"></span>
+        <span class="js-theme-button" data-theme="light-olive-green"></span>
+        <span class="js-theme-button" data-theme="light-cyan"></span>
+        <span class="js-theme-button" data-theme="light-turquoise"></span>
+        <span class="js-theme-button" data-theme="_salmon"></span>
+        <span class="js-theme-button" data-theme="_gray"></span>
     </div>
 </div>
 
@@ -1465,6 +1476,39 @@ $(".navbar-collapse ul li a").click(function() {
          Cookies.set("lang", dataLang);
          doLangDirect(dataLang);
       });
+        
+      // Draggable theme buttons
+        
+      if($(window).width() > 992) {
+        const slider = document.querySelector('.themes');
+        const speed = 1;
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+          isDown = true;
+          slider.classList.add('active');
+          startX = e.pageX - slider.offsetLeft;
+          scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+          isDown = false;
+          slider.classList.remove('active');
+        });
+        slider.addEventListener('mouseup', () => {
+          isDown = false;
+          slider.classList.remove('active');
+        });
+        slider.addEventListener('mousemove', (e) => {
+          if(!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - slider.offsetLeft;
+          const walk = (x - startX) * speed; //scroll-fast
+          slider.scrollLeft = scrollLeft - walk;
+          // console.log(walk);
+        });
+      }
     });
 </script>
 
