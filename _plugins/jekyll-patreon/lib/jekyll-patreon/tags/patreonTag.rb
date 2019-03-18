@@ -17,6 +17,8 @@ module Jekyll
         @PatreonID = nil
         @config = nil
         @json = nil
+        @language = nil
+        @confDefLang = nil
 
         def initialize(tag_name, markup, tokens)
           super
@@ -26,6 +28,7 @@ module Jekyll
           @config = Jekyll::Patreon::Generator::PatreonGenerator.getConfig
             
           @username = @config["username"]
+          @confDefLang = @config["default_lang"]
           @PatreonID = Jekyll::Patreon::Generator::PatreonGenerator.getPatreonID
           @json = Jekyll::Patreon::Generator::PatreonGenerator.getJSON
         end
@@ -34,12 +37,25 @@ module Jekyll
           unless @config['enabled']
              return 
           end
+            
+          @language = Jekyll::Patreon.get_language(context)
+            
+          if @language.to_s.empty? and @confDefLang.to_s.empty
+             @language = "en" 
+          end
 
-          source = "<script>" + File.read(File.join(@inc, "js", "patreon.js")) + "</script>"
+          trFile = File.expand_path(File.join('..', '..', 'langs', "#{@language}.yml"), __FILE__)
+          ymlConf = YAML.load_file(trFile)
+            
+          source = "<script>" + File.read(File.join(@inc, "js", "patreon.js")).interpolate({per: ymlConf["per"], month: ymlConf["month"], patrons: ymlConf["patrons"], of: ymlConf["of"], reached: ymlConf["reached"]}) + "</script>"
           source += File.read(File.join(@inc, "design_" + @config['design'] + ".html")).interpolate({ json: translateJson(context, @json), showgoaltext: @config['showgoaltext'], toptext: @config['toptext'], metercolor: @config['metercolor'], bottomtext: @config['bottomtext'], patreon_button: @config['patreon_button'] })
           
           if @config['showbutton']
-            source += File.read(File.join(@inc, "button.html")).interpolate(pid: @PatreonID)
+            if @language == @confDefLang
+                source += File.read(File.join(@inc, "button.html")).interpolate(pid: @PatreonID)
+            else
+                source += File.read(File.join(@inc, "translated_button.html")).interpolate({pid: @PatreonID, caption: ymlConf["caption"]})
+            end
           end
             
           source += "<style>" + File.read(File.join(@inc, "css", "design_" + @config['design'] + ".css")) + "</style>"
@@ -53,9 +69,9 @@ module Jekyll
         end
           
         def translateJson(context, jsonStr)
-          language = Jekyll::Patreon.get_language(context)
+          
             
-          if language.to_s.empty? or language == @config["default_lang"]
+          if @language.to_s.empty? or @language == @confDefLang
              return jsonStr.escape_json  
           end    
             
@@ -69,9 +85,8 @@ module Jekyll
              break if item["type"] == "goal"
           end
             
-          file = File.expand_path(File.join('..', '..', '..', '..', '..', '..', '_data', 'lang', "#{language}.yml"), __FILE__)
-            
-          ymlConf = YAML.load_file(file)
+          trFile = File.expand_path(File.join('..', '..', '..', '..', '..', '..', '_data', 'lang', "#{@language}.yml"), __FILE__)
+          ymlConf = YAML.load_file(trFile)
             
           for index in (startIndex..incl.length - 1)
              i = index - startIndex

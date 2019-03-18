@@ -220,12 +220,12 @@ donation-code: 'es_ES'
 # Patreon Goals #
 #################
 
-patreon_goal_0: "hhh"
-patreon_goal_1: "iii"
-patreon_goal_2: "jjj"
-patreon_goal_3: "kkk"
-patreon_goal_4: "lll"
-patreon_goal_5: "mmm"
+patreon_goal_0: "Una pequeña cantidad que me servirá para darme cuenta de vuestro interés (y por supuesto, para apreciarlo)."
+patreon_goal_1: "Con esta cantidad, podré pagar varias cosas: como assets de Unity, cursos y piezas para mi ordenador."
+patreon_goal_2: "Con esta cantidad, podré comprar productos para crear un nuevo estudio. Ahorrar dinero para comprar un iMac para implementar juegos de móvil para iOS con XCode. Además, podré pagar un nuevo servidor dedicado para mi sitio web y mis pruebas remotas / servidores para mis futuros juegos."
+patreon_goal_3: "Con esta cantidad, podré ahorrar dinero para varias licencias como la de Unity3D o los pagos requeridos por la Apple Store (199$/año) o Steam (100$ por juego). Además, comenzaré a invertir en campañas para mi contenido/proyectos."
+patreon_goal_4: "Con esta cantidad, podré pagarle a mi equipo / terceras personas."
+patreon_goal_5: "Con esta cantidad, podré alquilar una cada (o incluso ahorrar dinero para comprar una nueva) y tener una forma básica para sobrevivir."
 patreon_goal_6: "nnn"
 
 ############
