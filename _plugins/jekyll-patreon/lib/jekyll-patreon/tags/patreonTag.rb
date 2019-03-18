@@ -55,7 +55,7 @@ module Jekyll
         def translateJson(context, jsonStr)
           language = Jekyll::Patreon.get_language(context)
             
-          if language.to_s.empty?
+          if language.to_s.empty? or language == @config["default_lang"]
              return jsonStr.escape_json  
           end    
             

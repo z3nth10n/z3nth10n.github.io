@@ -216,13 +216,13 @@ donation-code: 'en_US'
 # Patreon Goals #
 #################
 
-patreon_goal_0: "aaa"
-patreon_goal_1: "bbb"
-patreon_goal_2: "ccc"
-patreon_goal_3: "ddd"
-patreon_goal_4: "eee"
-patreon_goal_5: "fff"
-patreon_goal_6: "ggg"
+# patreon_goal_0: "aaa"
+# patreon_goal_1: "bbb"
+# patreon_goal_2: "ccc"
+# patreon_goal_3: "ddd"
+# patreon_goal_4: "eee"
+# patreon_goal_5: "fff"
+# patreon_goal_6: "ggg"
 
 ############
 # Timeline #

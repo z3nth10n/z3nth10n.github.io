@@ -266,6 +266,7 @@ patreon:
     showgoaltext: true
     showbutton: true
     username: 'z3nth10n'
+    default_lang: "en"
   
 #################
 # Lang Settings #
