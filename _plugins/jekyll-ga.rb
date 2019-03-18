@@ -74,6 +74,7 @@ module Jekyll
         if ga['segment']
           params['segment'] = ga['segment']
         end
+          
         if ga['filters']
           params['filters'] = ga['filters']
         end
@@ -83,13 +84,13 @@ module Jekyll
         response = analytics.get_ga_data(ga['profileID'], Chronic.parse(ga['start']).strftime("%Y-%m-%d"), Chronic.parse(ga['end']).strftime("%Y-%m-%d"), ga['metric'])
           # analytics.execute(:api_method => analytics.data.ga.get, :parameters => params)
 
-        # if response.error?
-        #  abort("Client Execute Error: #{response.error_message}")
-        # end
+        unless response["error"].nil?
+            abort("Client Execute Error: #{response.error_message}")
+        end
 
         response_data = response
 
-        File.open(cache_file_path,"w") do |f|
+        File.open(cache_file_path, "w") do |f|
           f.write(response_data.to_json)
         end
 
