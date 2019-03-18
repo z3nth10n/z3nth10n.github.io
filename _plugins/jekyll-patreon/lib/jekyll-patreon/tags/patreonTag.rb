@@ -88,10 +88,13 @@ module Jekyll
           trFile = File.expand_path(File.join('..', '..', '..', '..', '..', '..', '_data', 'lang', "#{@language}.yml"), __FILE__)
           ymlConf = YAML.load_file(trFile)
             
+          # Get markdownify pipe
+          converter = context.registers[:site].find_converter_instance(Jekyll::Converters::Markdown)
+            
           for index in (startIndex..incl.length - 1)
              i = index - startIndex
-
-             json["included"][index]["attributes"]["description"] = ymlConf["patreon_goal_#{i}"]
+              
+             json["included"][index]["attributes"]["description"] = converter.convert(ymlConf["patreon_goal_#{i}"].to_s).gsub("<p>", "").gsub("</p>", "")
           end
         
           return JSON.dump(json).escape_json

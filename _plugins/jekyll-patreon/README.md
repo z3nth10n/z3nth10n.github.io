@@ -1,6 +1,6 @@
 # jekyll-patreon [![Build Status](https://travis-ci.org/uta-org/jekyll-patreon.svg?branch=master)](https://travis-ci.org/uta-org/jekyll-patreon) [![Gem Version](https://badge.fury.io/rb/jekyll-patreon.svg)](http://badge.fury.io/rb/jekyll-patreon)
 
-Requires Ruby 2.3+ and Jekyll +3.0
+Requires Ruby 2.5+ and Jekyll 3.8+
 
 > A Jekyll plugins that adds Patreon support in your blog to easily embed a widget with goals
 
@@ -9,6 +9,7 @@ Requires Ruby 2.3+ and Jekyll +3.0
 * Supports several designs: default, fancy, minimal, streamlined, reversed, swapped
 * Supports several colors: red, green, orange, red nostripes, green nostripes, orange nostripes, blue nostripes
 * Supports i18n (compatible with [jekyll-language-plugin](https://github.com/vwochnik/jekyll-language-plugin))
+* Supports Markdown on your Patreon goals
 
 > To see the possible styles && designs navigate to the assets folder where the screenshots are located
 

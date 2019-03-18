@@ -10,7 +10,7 @@ description: "Este es el blog y sitio web de z3nth10n, aquí se tratará princip
 #########################
 
 introduction-header: "¿Quién soy?"
-introduction: "Soy un desarrollador español desde 2011. Me gusta (y también, estoy acostumbrado) a desarrollar solo. Pero estoy abierto a nuevas oportunidades y os invito a que colaboréis conmigo si estáis interesados en mis proyectos. Échales un vistazo más abajo."
+introduction: "Soy un desarrollador español (desde 2011). Me gusta (y también, estoy acostumbrado) a desarrollar solo. Pero estoy abierto a nuevas oportunidades y os invito a que colaboréis conmigo si estáis interesados en mis proyectos. Échales un vistazo más abajo."
 report-issue: 'Esta página sigue en desarrollo. Si has tenido algún problema o alguna idea para este sitio, por favor <a href="https://github.com/z3nth10n/z3nth10n.github.io/issues">reportalo aquí</a>.'
 
 ##############################
@@ -226,7 +226,7 @@ patreon_goal_2: "Con esta cantidad, podré comprar productos para crear un nuevo
 patreon_goal_3: "Con esta cantidad, podré ahorrar dinero para varias licencias como la de Unity3D o los pagos requeridos por la Apple Store (199$/año) o Steam (100$ por juego). Además, comenzaré a invertir en campañas para mi contenido/proyectos."
 patreon_goal_4: "Con esta cantidad, podré pagarle a mi equipo / terceras personas."
 patreon_goal_5: "Con esta cantidad, podré alquilar una cada (o incluso ahorrar dinero para comprar una nueva) y tener una forma básica para sobrevivir."
-patreon_goal_6: "nnn"
+patreon_goal_6: "En este punto, podré dedicar mi tiempo completo al desarrollo. ¡Gracias!"
 
 ############
 # Timeline #
