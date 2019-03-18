@@ -84,7 +84,7 @@ module Jekyll
         response = analytics.get_ga_data(ga['profileID'], Chronic.parse(ga['start']).strftime("%Y-%m-%d"), Chronic.parse(ga['end']).strftime("%Y-%m-%d"), ga['metric'])
           # analytics.execute(:api_method => analytics.data.ga.get, :parameters => params)
 
-        unless response["error"].nil?
+        unless response[:error].nil?
             abort("Client Execute Error: #{response.error_message}")
         end
 

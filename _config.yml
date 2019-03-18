@@ -296,7 +296,7 @@ language_includes_dir: _i18n
 
 # Exclusion list from the generated _site
 
-exclude: ["LICENSE", "README.md", "CONTRIBUTING", "CONTRIBUTORS", "scripts", "vendor", "ga.p12"]
+exclude: ["LICENSE", "CONTRIBUTING", "CONTRIBUTORS", "scripts", "vendor"]
 
 # Enable minification SASS
 
