@@ -43,6 +43,7 @@ jobs:
         requires:
             - build
         context: "Google Analytics Sensitive Data"
+        steps: true
         filters:
             branches:
                 only:
