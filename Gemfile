@@ -36,6 +36,9 @@ group :jekyll_plugins do
   gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
   gem 'jekyll-redirect-from', '~> 0.14.0'
   gem 'jekyll-patreon', path: "_plugins/jekyll-patreon"
+  gem 'chronic', '~> 0.10.2'
+  gem 'google-api-client', '~> 0.28.4'
+  gem 'googleauth', '~> 0.8.0'
   # gem 'jekyll-minifier', '~> 0.1.10'
 end
 
