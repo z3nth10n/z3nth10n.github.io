@@ -627,6 +627,11 @@ body.light box {
                 color: darken($secondary-color, 20%)!important;
             }
         }
+        
+        .post-list hr {
+            margin: 5px 0;
+            border-top: 1px solid darken($light-primary-color, 20%);
+        }
     }
 }
 

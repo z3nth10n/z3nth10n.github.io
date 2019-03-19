@@ -27,7 +27,7 @@
               <a class="category" href="{{site.baseurl}}/categories/{{page.categories.first | downcase }}.html">
                 {{ page.categories.first }}
               </a>
-                {% if post.categories.first and post.categories.size == 0 or post.categories.first != true and post.categories == blank %}
+                {% if post.categories.size == 0 %}
                     {% t 'uncat' %}
                 {% endif %}
               .

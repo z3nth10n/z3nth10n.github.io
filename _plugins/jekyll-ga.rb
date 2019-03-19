@@ -84,7 +84,7 @@ module Jekyll
         response = analytics.get_ga_data(ga['profileID'], Chronic.parse(ga['start']).strftime("%Y-%m-%d"), Chronic.parse(ga['end']).strftime("%Y-%m-%d"), ga['metric'])
           # analytics.execute(:api_method => analytics.data.ga.get, :parameters => params)
 
-        if response.kind_of?(Array) and response.any?("error")
+        if response.kind_of?(Array) and response.include? "error"
             errors = reponse["error"]["errors"]
             
             errors.each { |error|
@@ -102,7 +102,7 @@ module Jekyll
 
       end
 
-      results = response_data["rows"] if response_data.any?("rows")
+      results = response_data["rows"] if response_data.include? "rows"
         
       endTime = Time.now - startTime
         

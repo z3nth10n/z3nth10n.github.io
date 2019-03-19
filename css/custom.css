@@ -269,6 +269,11 @@
     border: 1px gray dashed!important;
 }
 
-/*.themes button:focus {
-    outline: none;
-}*/
+.readmore {
+    font-size: 24px;
+    text-decoration: underline;
+    font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

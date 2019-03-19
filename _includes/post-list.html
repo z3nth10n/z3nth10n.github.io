@@ -6,7 +6,7 @@
 
 <section id="{{ section | strip_newlines | strip }}">
     <div class="row">
-      <box class="col-md-12 vertical-offset">
+      <box class="col-md-12 vertical-offset post-list">
 
         {% assign post = site.posts.first %}
         <h4> <strong> {{ post.date | date_to_string }} </strong>
@@ -15,7 +15,7 @@
               {{ post.categories.first }}
             </a>
             
-            {% if post.categories.first and post.categories.size == 0 or post.categories.first != true and post.categories == blank %}
+            {% if post.categories.size == 0 %}
                 {% t 'uncat' %}
             {% endif %}
           .</small>
@@ -23,10 +23,17 @@
           <small>. <a href="{{site.baseurl}}{{post.url}}#disqus_thread"><span data-disqus-url="{{site.mainurl}}{{post.url | remove: '.html'}}" class="count-comments"></span></a></small>
         </h4>
 
+        <hr>
+       
         <section class="text-left">
           {{ post.content | markdownify | truncatehtml: site.post-preview-words }}
         </section>
 
+        <hr>
+        
+        <center>
+            <a class="readmore" href="{{site.baseurl}}/categories/{{post.categories.first | downcase}}.html">Read more...</a>
+        </center>
       </box>
     </div>
 </section>
