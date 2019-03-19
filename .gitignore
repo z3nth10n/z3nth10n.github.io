@@ -21,9 +21,3 @@ _deploy/*
 *.p12
 *.pem
 *.key
-
-# Ignore Git here
-.git
-
-# But not these files...
-!.gitignore
