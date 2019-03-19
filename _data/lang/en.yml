@@ -203,6 +203,14 @@ uncat: 'UNCATEGORIZED'
 comments: 'Comments'
 comment: 'Comment'
 
+##############
+# Categories #
+##############
+
+category-desc:
+    category_caption: 'Category'
+    jekyll-plugin: "A category where I will show some of the Jekyll plugins I have developed"
+
 #############
 # Donations #
 #############

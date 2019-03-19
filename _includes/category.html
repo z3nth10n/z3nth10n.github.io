@@ -1,0 +1,44 @@
+<!-- Categories Include Start -->
+
+<!DOCTYPE html>
+<html lang='{{ page.language }}'>
+
+  {% include head.html %}
+
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    
+    <h1 class="brand-heading">&nbsp;</h1>
+    <h1 class="brand-heading">&nbsp;</h1>
+
+    {% include navigation.html %}
+    
+    <!--- Main section -->
+    
+    <section class="container content-section text-center xs-margin-top">
+    
+        <h1>{% t 'category_caption' %}: {{ page.category }}</h1>
+
+        <p>{% t page.category %}</p>
+
+        <hr>
+
+        {% include category-count.html %}
+       
+        {% if paginator.total_posts > 0 %}
+          {% for post in paginator.posts %}
+            {% include post-list.html %}
+          {% endfor %}
+        {% else %}
+            {% include empty-post-list.html %}
+        {% endif %}
+    
+    </section>
+    
+    <!--- End main section -->
+
+    {% include js.html %}
+
+  </body>
+</html>
+
+<!-- Categories Include End -->

@@ -207,6 +207,14 @@ uncat: 'SIN CATEGORÍA'
 comments: 'Comentarios'
 comment: 'Comentario'
 
+##############
+# Categories #
+##############
+
+category-desc:
+    category_caption: 'Categoría'
+    jekyll-plugin: "Una categoría donde mostraré algunos de los plugins de Jekyll que he desarrollado"
+
 #############
 # Donations #
 #############

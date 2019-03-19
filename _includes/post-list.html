@@ -32,7 +32,7 @@
         <hr>
         
         <center>
-            <a class="readmore" href="{{site.baseurl}}/categories/{{post.categories.first | downcase}}.html">Read more...</a>
+            <a class="readmore" href="{{site.baseurl}}{{ post.url | remove: '.html' }}">Read more...</a>
         </center>
       </box>
     </div>
