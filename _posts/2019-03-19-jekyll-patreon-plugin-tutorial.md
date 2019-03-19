@@ -1,6 +1,19 @@
-# jekyll-patreon [![Build Status](https://travis-ci.org/uta-org/jekyll-patreon.svg?branch=master)](https://travis-ci.org/uta-org/jekyll-patreon) [![Gem Version](https://badge.fury.io/rb/jekyll-patreon.svg)](http://badge.fury.io/rb/jekyll-patreon)
+---
+layout: post
+section-type: post
+title: How to use Patreon in Jekyll (jekyll-patreon plugin tutorial)
+date:   2019-03-19 9:22:00 +0100
+categories: jekyll-plugin
+language: en
+locale: 'en'
+permalink: "/:language/:year/:month/:day/jekyll-patreon-plugin-tutorial.html"
+---
 
-Requires Ruby 2.5+ and Jekyll 3.8+
+In this post I will explain how to use the plugin called jekyll-patreon. I created this plugin to be able to implement a widget that shows information about our Patreon profile.
+
+**Note:** This plugin requires Ruby 2.5+ and Jekyll 3.8+
+
+## What is this used for?
 
 > A Jekyll plugin that adds Patreon support in your blog to easily embed a widget with goals
 
@@ -11,7 +24,7 @@ Requires Ruby 2.5+ and Jekyll 3.8+
 * Supports i18n (compatible with [jekyll-language-plugin](https://github.com/vwochnik/jekyll-language-plugin))
 * Supports Markdown on your Patreon goals
 
-> To see the possible styles && designs navigate to the [assets folder](/assets/) where the screenshots are located
+> To see the possible styles && designs navigate to the [assets folder of the main repo](https://github.com/uta-org/jekyll-patreon/tree/master/assets) where the screenshots are located
 
 ## Installation
 
@@ -45,7 +58,11 @@ patreon:
 
 Simply just put the following tag where you need this:
 
-`{% patreon %}`
+<pre>
+   <code>
+        {&percnt; patreon &percnt;}
+   </code>
+</pre>
 
 ### i18n
 
@@ -53,23 +70,23 @@ To support languages just use [jekyll-language-plugin](https://github.com/vwochn
 
 First, in your main index.html (or wherever you need the i18n support) declare the following lines:
 
-```yaml
----
-layout: <layout>
+<pre><code data-trim class="yaml">
+&ndash;&ndash;&ndash;
+layout: &lt;layout&gt;
 language: en
----
-```
+&ndash;&ndash;&ndash;
+</code></pre>
 
 Or if you want to support several languages in the same page:
 
-```yaml
----
-layout: <layout>
+<pre><code data-trim class="yaml">
+&ndash;&ndash;&ndash;
+layout: &lt;layout&gt;
 languages:
 - en
 - es
----
-```
+&ndash;&ndash;&ndash;
+</code></pre>
 
 Then, in "_data/lang/" create one file for each lang.
 
@@ -77,7 +94,7 @@ Then, in "_data/lang/" create one file for each lang.
 
 Then, write the translations of you goals like this:
 
-```yaml
+<pre><code data-trim class="yaml">
 #################
 # Patreon Goals #
 #################
@@ -86,7 +103,7 @@ patreon_goal_0: "..."
 patreon_goal_1: "..."
 patreon_goal_2: "..."
 # etc etc...
-```
+</code></pre>
 
 There you will need to create as much translations as the number of goals that your Patreon page have. (**Note:** starting index is 0 (zero))
 
@@ -94,22 +111,4 @@ There you will need to create as much translations as the number of goals that y
 
 Having issues? Just report in [the issue section](https://github.com/uta-org/jekyll-patreon/issues). **Thanks for the feedback!**
 
-## Contribute
-
-Fork this repository, make your changes and then issue a pull request. If you find bugs or have new ideas that you do not want to implement yourself, file a bug report.
-
-## Donate
-
-Become a patron, by simply clicking on this button (**very appreciated!**):
-
-[![](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/z3nth10n)
-
-... Or if you prefer an one-time donation:
-
-[![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/z3nth10n)
-
-## Copyright
-
-Copyright (c) 2019 z3nth10n (United Teamwork Association).
-
-License: MIT
+**Best regards!**
