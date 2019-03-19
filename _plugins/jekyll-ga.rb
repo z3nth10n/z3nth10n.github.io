@@ -102,13 +102,15 @@ module Jekyll
 
       end
 
-      results = response_data["rows"] if response_data.include? "rows"
-        
-      endTime = Time.now - startTime
-        
-      Jekyll.logger.info "Jekyll GA:","Initializated in #{endTime} seconds"
-        
-      Jekyll.logger.info "Jekyll GA:",response_data.to_json
+      if response_data.include? "rows"
+          results = response_data["rows"]
+
+          endTime = Time.now - startTime
+
+          Jekyll.logger.info "Jekyll GA:","Initializated in #{endTime} seconds"
+
+          Jekyll.logger.info "Jekyll GA:",response_data.to_json
+      end
 
       # site.posts.docs.each { |post|
       #   url = post.url + '/'

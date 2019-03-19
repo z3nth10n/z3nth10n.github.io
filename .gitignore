@@ -18,6 +18,7 @@ _deploy/*
 /.idea/
 
 /_plugins/jekyll-patreon/.git/
+/_plugins/jekyll-paginate-v2/.git/
 *.p12
 *.pem
 *.key
