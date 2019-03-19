@@ -17,8 +17,13 @@ _deploy/*
 .jekyll-metadata
 /.idea/
 
-/_plugins/jekyll-patreon/.git/
-/_plugins/jekyll-paginate-v2/.git/
+# Public and private keys
 *.p12
 *.pem
 *.key
+
+# Ignore Git here
+.git
+
+# But not these files...
+!.gitignore
