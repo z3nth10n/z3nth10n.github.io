@@ -18,33 +18,27 @@
 		
 		
 			<item>
-				<title>Modifying the social buttons</title>
+				<title>¡Bienvenidos a mi blog!</title>
 				
 				
-					<description>&lt;p&gt;español post&lt;/p&gt;
+					<description>&lt;h2 id=&quot;bienvenidos-a-mi-blog&quot;&gt;¡Bienvenidos a mi blog!&lt;/h2&gt;
+
+&lt;p&gt;Al ser este el primer post de mi blog, hablaré sobre que va a tratar y de que temas hablaré.&lt;/p&gt;
+
+&lt;p&gt;Como bien he dicho en la presentación de la página, soy un desarrollador español que se dedica a esto desde 2011.&lt;/p&gt;
+
+&lt;p&gt;Por lo tanto, los principales temas de habla serán acerca del desarollo que los proyectos que tenga en curso en el momento. Además, iré publicando tutoriales sobre la marcha de dudas que me surjan en el desarrollo y consiga resolver. O bien, de antiguas dudas que tuve y conseguí resolver.&lt;/p&gt;
+
+&lt;p&gt;Poco a poco, y conforme vaya teniendo tiempo e ideas, iré publicando posts sobre otras índoles según me vayan surgiendo.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;¡Un saludo!&lt;/strong&gt;&lt;/p&gt;
 </description>
 				
-				<pubDate>Thu, 27 Oct 2016 18:16:49 +0000</pubDate>
-				<link>https://z3nth10n.github.io/es/2016/10/27/social-buttons-tutorial.html</link>
-				<guid isPermaLink="true">https://z3nth10n.github.io/es/2016/10/27/social-buttons-tutorial.html</guid>
+				<pubDate>Tue, 19 Mar 2019 06:48:00 +0000</pubDate>
+				<link>https://z3nth10n.github.io/es/2019/03/19/welcome-to-my-blog.html</link>
+				<guid isPermaLink="true">https://z3nth10n.github.io/es/2019/03/19/welcome-to-my-blog.html</guid>
 			</item>
         
-		
-		
-			<item>
-				<title>Modifying the Contact</title>
-				
-				
-					<description>&lt;p&gt;español post&lt;/p&gt;
-</description>
-				
-				<pubDate>Thu, 27 Oct 2016 18:16:49 +0000</pubDate>
-				<link>https://z3nth10n.github.io/es/2016/10/27/contact-tutorial.html</link>
-				<guid isPermaLink="true">https://z3nth10n.github.io/es/2016/10/27/contact-tutorial.html</guid>
-			</item>
-        
-		
-		
 		
 	</channel>
 </rss>

@@ -16,35 +16,30 @@
 		
 		
 			<item>
-				<title>Modifying the social buttons</title>
+				<title>Welcome to my blog!</title>
 				
 				
-					<description>&lt;p&gt;english post&lt;/p&gt;
+					<description>&lt;h2 id=&quot;welcome-to-my-blog&quot;&gt;Welcome to my blog!&lt;/h2&gt;
+
+&lt;p&gt;Since this is the first post of my blog, I will talk about what kind of topics I will post here.&lt;/p&gt;
+
+&lt;p&gt;Como bien he dicho en la presentación de la página, soy un desarrollador español que se dedica a esto desde 2011.
+As I said in the presentation of the website, I’m a spanish developer since 2011.&lt;/p&gt;
+
+&lt;p&gt;Consequently, the main topics that will be discussed here will be about the developmwnt of the projects I maintain at the moment. Also, I will post tutorials on the fly about doubts that arise me when I develop (that I could figure out). Either, I will post old doubts.&lt;/p&gt;
+
+&lt;p&gt;Little by little and when I have time and ideas, I will post about other kind of topics (that come to my mind).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Best regards!&lt;/strong&gt;&lt;/p&gt;
 </description>
 				
-				<pubDate>Thu, 27 Oct 2016 18:16:49 +0000</pubDate>
-				<link>https://z3nth10n.github.io/en/2016/10/27/social-buttons-tutorial.html</link>
-				<guid isPermaLink="true">https://z3nth10n.github.io/en/2016/10/27/social-buttons-tutorial.html</guid>
+				<pubDate>Tue, 19 Mar 2019 06:48:00 +0000</pubDate>
+				<link>https://z3nth10n.github.io/en/2019/03/19/welcome-to-my-blog.html</link>
+				<guid isPermaLink="true">https://z3nth10n.github.io/en/2019/03/19/welcome-to-my-blog.html</guid>
 			</item>
         
 		
 		
-		
-		
-		
-		
-			<item>
-				<title>Modifying the Contact</title>
-				
-				
-					<description>&lt;p&gt;english post&lt;/p&gt;
-</description>
-				
-				<pubDate>Thu, 27 Oct 2016 18:16:49 +0000</pubDate>
-				<link>https://z3nth10n.github.io/en/2016/10/27/contact-tutorial.html</link>
-				<guid isPermaLink="true">https://z3nth10n.github.io/en/2016/10/27/contact-tutorial.html</guid>
-			</item>
-        
 		
 	</channel>
 </rss>
