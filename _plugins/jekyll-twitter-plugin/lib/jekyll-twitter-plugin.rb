@@ -188,6 +188,9 @@ module TwitterJekyll
       # Lang
       # parsed_data.at_css("a").set_attribute("lang", "ES")
         
+      # Tweet limit
+      parsed_data.at_css("a").set_attribute("data-tweet-limit", "3")
+        
       "<div class='jekyll-twitter-plugin'>#{parsed_data.to_html}</div>"
         # <a class="twitter-timeline" data-width="500" data-theme="dark" data-link-color="#b84d45" href="https://twitter.com/z3nth10n?ref_src=twsrc%5Etfw">Tweets by z3nth10n</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     end
