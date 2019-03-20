@@ -53,16 +53,16 @@ workflows:
         jobs:
             - build:
                 context: "Google Analytics Sensitive Data"
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-                only:
-                  - gh-pages-ci
-                ignore:
-                  - master
-    jobs:
-      - build:
-            context: "Google Analytics Sensitive Data"
+    nightly:
+        triggers:
+            - schedule:
+                cron: "0 0 * * *"
+                filters:
+                    branches:
+                        only:
+                            - gh-pages-ci
+                        ignore:
+                            - master
+        jobs:
+            - build:
+                context: "Google Analytics Sensitive Data"
