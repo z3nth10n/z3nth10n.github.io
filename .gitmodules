@@ -1,3 +1,6 @@
 [submodule "_plugins/jekyll-paginate-v2"]
 	path = _plugins/jekyll-paginate-v2
 	url = https://github.com/uta-org/jekyll-paginate-v2.git
+[submodule "_plugins/jekyll-patreon"]
+	path = _plugins/jekyll-patreon
+	url = https://github.com/uta-org/jekyll-patreon.git
