@@ -21,11 +21,13 @@
                 {% endfor %}
                 
                 {% if categories.size > 0 %}
+                    {% assign cat_index = 0 %}
                     {% for category in categories %}
-                        {% if forloop.index <= 5 %}
+                        {% if cat_index <= 5 and category != blank %}
                             <a class="label" href="{{site.baseurl}}/categories/{{ category | downcase }}">
                                 {{ category }}
                             </a>
+                            {% assign cat_index = cat_index | plus: 1 %}
                         {% endif %}
                     {% endfor %}
                 {% else %}
@@ -44,11 +46,13 @@
                 {% endfor %}
                
                 {% if tags.first != blank and tags.size > 0 %}
+                    {% assign tag_index = 0 %}
                     {% for tag in tags %}
-                        {% if forloop.index <= 5 %}
+                        {% if tag_index <= 5 and tags != blank %}
                             <a class="label" href="{{site.baseurl}}/tags/{{ tag | downcase }}">
                                 {{ tag }}
                             </a>
+                            {% assign tag_index = tag_index | plus: 1 %}
                         {% endif %}
                     {% endfor %}
                 {% else %}

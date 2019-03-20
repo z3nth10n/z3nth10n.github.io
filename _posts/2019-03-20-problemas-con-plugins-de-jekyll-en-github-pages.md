@@ -1,7 +1,7 @@
 ---
 layout: post
 section-type: post
-title: How To Use Any Jekyll Plugins on GitHub Pages with CircleCI
+title: Como usar cualquier plugin de Jekyll con Github Pages
 date:   2019-03-20 13:00:00 +0100
 categories: jekyll
 language: es
@@ -9,7 +9,7 @@ locale: 'es'
 permalink: "/:language/:year/:month/:day/jekyll-plugin-issue-with-github-pages.html"
 ---
 
-## Jekyll Plugin Issue with GitHub Pages
+## ¿Problemas con los plugins de Jekyll en Github Pages?
 
 For this blog, I knew I wanted to be able to customize it and did not want to learn how to customize WordPress themes. The idea of using a static site generator like [Jekyll](https://jekyllrb.com) was appealing to me because I would not have to deal with a database. Also since [GitHub Pages](https://pages.github.com) hosts and automatically builds Jekyll sites, I would not have to deal with hosting. I went about installing Jekyll locally, created a starter blog site and pushed my changes to GitHub. [z3nth10n.github.io](/) was up and running quickly!
 
