@@ -1,40 +1,12 @@
 ---
+layout: error
 title: 404
+languages:
+- en
+- es
 subset: err
-permalink: '/404.html'
 ---
 
-<!--- LINQ for JS -->
-<script src="{{ site.baseurl }}/js/plugins/linq.min.js"></script>
-<!--- JQuery Cookies -->
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-<!-- Lang Utils -->
-<script>
-    {% include js/lang.utils.js %}
-</script>
+## {% t 'title' %}
 
-<!-- Error redirect -->
-<script>
-    (function() {
-        console.log(getLangArr());
-        var langArr = getLangArr();
-        var langs = getLocationLang();
-
-        var retLang = "/",
-            curLang = Cookies.get("lang");
-        
-        if(curLang == undefined) {
-            if(langs.count() >= 1)
-                retLang += langs.first() + "/";
-            else
-                retLang = "/en/";
-        }
-        else
-            retLang = "/" + curLang + "/";
-        
-        var url = window.location.protocol + "//" + window.location.host + retLang + "error-404";
-        
-        // console.log(url);
-        window.location.href = url;
-    })();
-</script>
+#### {% t 'content' %}

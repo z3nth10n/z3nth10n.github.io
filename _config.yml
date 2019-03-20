@@ -312,10 +312,5 @@ plugins:
   - nokogiri
   - jekyll-twitter-plugin
   - jekyll-language-plugin
-  - jekyll-redirect-from
 
-whitelist:
-  - jekyll-redirect-from
-  
 encoding: UTF-8
-# permalink: "/:language/:year/:month/:day/:title"
