@@ -5,6 +5,8 @@ GIT_COMMIT_DESC="$1"
 # Setup git so we can use it
 git config --global user.email "z3nth10n@gmail.com"
 git config --global user.name "z3nth10n"
+# Update submodules
+git submodule update --init --recursive
 # remove changes from current gh-pages-ci branch
 git checkout -f
 git checkout master
