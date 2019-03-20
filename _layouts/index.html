@@ -1,1 +1,43 @@
-{% include index.html %}
+<!-- Index Layout Start -->
+
+<!DOCTYPE html>
+<html lang='{{ page.language }}'>
+
+  {% include head.html %}
+
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    {% include navigation.html %}
+
+    {% include header.html %}
+    
+    {% capture _pagelist %}
+        {% t 'pages_list' %}
+    {% endcapture %}
+    
+    {% assign pagelist = _pagelist | remove: "{" | remove: "}" %}
+    
+    {% assign pagearr = pagelist | split: "," %}
+    
+    {% for _p in pagearr %}
+      {% assign innerindex=forloop.index0 %}
+      {% assign p = _p | split: "=>" %}
+      
+      {% capture findex %} {{ innerindex }} {% endcapture %}
+      
+      {% assign _pincl = p[1] | strip %}
+      {% assign pincl = _pincl | replace: '"', '' | append: ".html" %}
+       
+      {% include {{ pincl }} %}
+    {% endfor %}
+
+    {% include footer.html %}
+
+    {% include js.html %}
+    
+    {% t 'chatango' %}
+
+  </body>
+</html>
+
+<!-- Index Layout End -->

@@ -4,3 +4,6 @@
 [submodule "_plugins/jekyll-patreon"]
 	path = _plugins/jekyll-patreon
 	url = https://github.com/uta-org/jekyll-patreon.git
+[submodule "_plugins/jekyll-language-plugin"]
+	path = _plugins/jekyll-language-plugin
+	url = https://github.com/uta-org/jekyll-language-plugin.git

@@ -102,7 +102,7 @@ module Jekyll
 
       end
 
-      if response_data.include? "rows"
+      if !response_data.nil? and response_data.include? "rows"
           results = response_data["rows"]
 
           endTime = Time.now - startTime

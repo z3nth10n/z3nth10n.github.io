@@ -287,6 +287,7 @@ jekyll_ga:
 
 language_data: data.lang.%%
 language_includes_dir: _i18n
+default_language: "en"
 
 ################################################################################
 
