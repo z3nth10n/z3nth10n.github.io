@@ -27,7 +27,7 @@
 
 &lt;p&gt;Then I wanted to embed a YouTube link to a &lt;a href=&quot;/articles/virtues-of-great-programmers&quot;&gt;blog post&lt;/a&gt;. @joelverhagen posted a simple Jekyll YouTube Embed Plugin &lt;a href=&quot;https://gist.github.com/joelverhagen/1805814&quot;&gt;gist&lt;/a&gt;. I tested locally and it generated the blog post and site fine. But when GitHub Pages tried to build the static html files it failed with an &lt;code class=&quot;highlighter-rouge&quot;&gt;Liquid Exception: Unknown tag 'youtube'&lt;/code&gt; error message.&lt;/p&gt;
 
-&lt;p&gt;Apparently and understandably, GitHub Pages does not allow any arbitrary plugin as part of their Jekyll build process; specifically, &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll build —safe&lt;/code&gt; is ran. Instead GitHub Pages whitelists a limited set of Jekyll plugins listed &lt;a href=&quot;https://help.github.com/articles/using-jekyll-plugins-with-github-pages/&quot;&gt;here&lt;/a&gt;, only 4 at the time of this writing. So if you want to use a plugin that is not yet officially supported, you will have to ask GitHub support to add it. Here is an &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/325&quot;&gt;example&lt;/a&gt;: “Please please , whitelist jekyll-asciidoc plugin”. &lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;Jekyll’s Plugin documentation page&lt;/a&gt; suggests this workaround:&lt;/p&gt;
+&lt;p&gt;Apparently and understandably, GitHub Pages does not allow any arbitrary plugin as part of their Jekyll build process; specifically, &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll build —safe&lt;/code&gt; is ran. Instead GitHub Pages whitelists a limited set of Jekyll plugins listed &lt;a href=&quot;https://pages.github.com/versions/&quot;&gt;here&lt;/a&gt;, only 47 at the time of this writing. So if you want to use a plugin that is not yet officially supported, you will have to ask GitHub support to add it. Here is an &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/325&quot;&gt;example&lt;/a&gt;: “Please please, whitelist jekyll-asciidoc plugin”. &lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;Jekyll’s Plugin documentation page&lt;/a&gt; suggests this workaround:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;You can still use GitHub Pages to publish your site, but you’ll need to convert the site locally and push the generated static files to your GitHub repository instead of the Jekyll source files.&lt;/p&gt;
@@ -72,9 +72,10 @@
     &lt;span class=&quot;nv&quot;&gt;GIT_COMMIT_DESC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 
     &lt;span class=&quot;c&quot;&gt;# Setup git so we can use it&lt;/span&gt;
-    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;z3nth10n@gmail.com&quot;&lt;/span&gt;
-    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;z3nth10n&quot;&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# remove changes from current gh-pages-ci branch&lt;/span&gt;
+    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;your email&amp;gt;&quot;&lt;/span&gt;
+    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;your username&amp;gt;&quot;&lt;/span&gt;
+    
+    &lt;span class=&quot;c&quot;&gt;# Remove changes from current gh-pages-ci branch&lt;/span&gt;
     git checkout &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt;
     git checkout master
 
@@ -158,11 +159,11 @@
 
 &lt;p&gt;CircleCI is great about being security conscientious. They set things up so that a deploy read-only ssh key is used to clone the repo. Since the build_html script above pushes to master at the end, you will need to add a key that has write access to the repo. This is a simple 1-click step in “Project Settings -&amp;gt; Permissions / Checkout SSH Keys”.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/blogs/circleci-checkout-ssh-keys.png&quot; alt=&quot;CircleCI Checkout SSH Keys&quot; title=&quot;CircleCI Checkout SSH Keys&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/blogs/circleci-checkout-ssh-keys.png&quot; alt=&quot;CircleCI Checkout SSH Keys&quot; title=&quot;CircleCI Checkout SSH Keys&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;summary-of-the-final-flow&quot;&gt;Summary of the Final Flow&lt;/h3&gt;
 
-&lt;p&gt;All I have to do now to update the blog is make modifications to the gh-pages-ci branch and then run &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;. It was more work to set this all up than just having GitHub Pages build the Jekyll site but the site will always be checked by html-proofer now. And now I am also able to use any Jekyll plugin that I need &lt;img src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png&quot; alt=&quot;:thumbsup:&quot; title=&quot;:thumbsup:&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;All I have to do now to update the blog is make modifications to the gh-pages-ci branch and then run &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;. It was more work to set this all up than just having GitHub Pages build the Jekyll site but the site will always be checked by html-proofer now. And now I am also able to use any Jekyll plugin that I need! &lt;img class=&quot;emojione&quot; alt=&quot;👍&quot; src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png&quot; /&gt;&lt;/p&gt;
 </description>
                     
                     <pubDate>Wed, 20 Mar 2019 12:00:00 +0000</pubDate>

@@ -21,34 +21,46 @@
                     
                         <description>&lt;h2 id=&quot;problemas-con-los-plugins-de-jekyll-en-github-pages&quot;&gt;¿Problemas con los plugins de Jekyll en Github Pages?&lt;/h2&gt;
 
-&lt;p&gt;For this blog, I knew I wanted to be able to customize it and did not want to learn how to customize WordPress themes. The idea of using a static site generator like &lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; was appealing to me because I would not have to deal with a database. Also since &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt; hosts and automatically builds Jekyll sites, I would not have to deal with hosting. I went about installing Jekyll locally, created a starter blog site and pushed my changes to GitHub. &lt;a href=&quot;/&quot;&gt;z3nth10n.github.io&lt;/a&gt; was up and running quickly!&lt;/p&gt;
+&lt;p&gt;Para este blog, sabía que quería poder personalizarlo y no quería aprender a personalizar los temas de WordPress. La idea de utilizar un generador de sitio estático como &lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; me atraía porque no tendría que tratar con una base de datos. Además, dado que &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt; aloja y crea automáticamente los sitios Jekyll, no tendría que lidiar con el hosting. Fui a instalar Jekyll localmente, creé un sitio de blog de inicio y envié mis cambios a GitHub. ¡&lt;a href=&quot;/&quot;&gt;z3nth10n.github.io&lt;/a&gt; estaba en funcionamiento!&lt;/p&gt;
 
-&lt;p&gt;Then I wanted to embed a YouTube link to a &lt;a href=&quot;/articles/virtues-of-great-programmers&quot;&gt;blog post&lt;/a&gt;. @joelverhagen posted a simple Jekyll YouTube Embed Plugin &lt;a href=&quot;https://gist.github.com/joelverhagen/1805814&quot;&gt;gist&lt;/a&gt;. I tested locally and it generated the blog post and site fine. But when GitHub Pages tried to build the static html files it failed with an &lt;code class=&quot;highlighter-rouge&quot;&gt;Liquid Exception: Unknown tag 'youtube'&lt;/code&gt; error message.&lt;/p&gt;
+&lt;p&gt;Luego quise insertar un enlace de YouTube en la página principal del blog. @joelverhagen publicó un &lt;a href=&quot;https://gist.github.com/joelverhagen/1805814&quot;&gt;gist&lt;/a&gt; de Jekyll YouTube Embed Plugin. Lo probé localmente y generó la publicación del blog y el sitio bien. Pero cuando GitHub Pages trató de construir los archivos html estáticos, falló con un mensaje de error &lt;code class=&quot;highlighter-rouge&quot;&gt;Liquid Exception: Unknown tag 'youtube'&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Apparently and understandably, GitHub Pages does not allow any arbitrary plugin as part of their Jekyll build process; specifically, &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll build —safe&lt;/code&gt; is ran. Instead GitHub Pages whitelists a limited set of Jekyll plugins listed &lt;a href=&quot;https://help.github.com/articles/using-jekyll-plugins-with-github-pages/&quot;&gt;here&lt;/a&gt;, only 4 at the time of this writing. So if you want to use a plugin that is not yet officially supported, you will have to ask GitHub support to add it. Here is an &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/325&quot;&gt;example&lt;/a&gt;: “Please please , whitelist jekyll-asciidoc plugin”. &lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;Jekyll’s Plugin documentation page&lt;/a&gt; suggests this workaround:&lt;/p&gt;
+&lt;p&gt;Aparentemente y de manera comprensible, GitHub Pages no permite ningún complemento arbitrario como parte de su proceso de compilación Jekyll; específicamente, &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll build —safe&lt;/code&gt; se ejecuta. En su lugar, GitHub Pages incluye un conjunto limitado de complementos Jekyll enumerados &lt;a href=&quot;https://pages.github.com/versions/&quot;&gt;aquí&lt;/a&gt;, solo 47 en el momento de escribir este artículo. Por lo tanto, si desea usar un complemento que aún no está oficialmente soportado, tendrá que pedirle a GitHub que lo agregue. Aquí hay un &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/325&quot;&gt;ejemplo&lt;/a&gt;: “Por favor, agregue el complemento jekyll-asciidoc a la lista blanca”. &lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;La página de documentación de Jekyll Plugins&lt;/a&gt; sugiere esta solución:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;You can still use GitHub Pages to publish your site, but you’ll need to convert the site locally and push the generated static files to your GitHub repository instead of the Jekyll source files.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;The workaround is not as seamlessly as just simply pushing your branch to GitHub and having GitHub Pages automatically build the static site. I could had followed the suggestion and written a rake task to automate this locally but then I would have to remember to run the one extra command.&lt;/p&gt;
+&lt;p&gt;En español:&lt;/p&gt;
 
-&lt;h2 id=&quot;taking-over-continuous-integration-with-circleci&quot;&gt;Taking Over Continuous Integration with CircleCI&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Aún puede usar GitHub Pages para publicar su sitio, pero deberá convertir el sitio localmente y enviar los archivos estáticos generados a su repositorio de GitHub en lugar de a los archivos de origen Jekyll.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;La solución no es tan sencilla como simplemente hacer un push de tu rama a GitHub y hacer que GitHub Pages construya automáticamente el sitio estático. Podría haber seguido la sugerencia y haber escrito una tarea de rake para automatizar esto localmente, pero luego tendría que acordarse de ejecutar un comando adicional.&lt;/p&gt;
+
+&lt;h2 id=&quot;comenzando-con-la-integración-continua-con-circleci&quot;&gt;Comenzando con la Integración Continua con CircleCI&lt;/h2&gt;
 
 &lt;p&gt;Jekyll documentation has a neat example of &lt;a href=&quot;http://jekyllrb.com/docs/continuous-integration/&quot;&gt;Continuous Integration&lt;/a&gt; with &lt;a href=&quot;https://github.com/gjtorikian/html-proofer&quot;&gt;html-proofer&lt;/a&gt;. Running html-proofer will ensure that the html output will not have any broken links, images, etc. So I figured that I’d kill two birds with one stone and set up continuous integration on &lt;a href=&quot;https://circleci.com/&quot;&gt;CirleCI&lt;/a&gt;. It will both run html-proofer and build the static html files. The workflow:&lt;/p&gt;
 
+&lt;p&gt;La documentación de Jekyll tiene un buen ejemplo de &lt;a href=&quot;http://jekyllrb.com/docs/continuous-integration/&quot;&gt;Integración Continua&lt;/a&gt; con &lt;a href=&quot;https://github.com/gjtorikian/html-proofer&quot;&gt;html-proofer&lt;/a&gt;. Ejecutar html-proofer asegurará que la salida de html no tenga enlaces rotos, imágenes, etc. Así que pensé que mataría dos pájaros de un tiro y configuraría la integración continua en &lt;a href=&quot;https://circleci.com/&quot;&gt;CirleCI&lt;/a&gt;. Ejecutará html-proofer y construirá los archivos html estáticos. El flujo de trabajo:&lt;/p&gt;
+
 &lt;ol&gt;
-  &lt;li&gt;Push to a special gh-pages-ci branch&lt;/li&gt;
-  &lt;li&gt;CircleCI watches only the gh-pages-ci branch&lt;/li&gt;
-  &lt;li&gt;Test site via html-proofer&lt;/li&gt;
-  &lt;li&gt;Build the static html files&lt;/li&gt;
-  &lt;li&gt;Push the static html files to the git master branch&lt;/li&gt;
-  &lt;li&gt;This triggers GitHub Pages to update the site&lt;/li&gt;
+  &lt;li&gt;Haz un push a una rama especial de gh-pages-ci&lt;/li&gt;
+  &lt;li&gt;CircleCI mira solo la rama gh-pages-ci&lt;/li&gt;
+  &lt;li&gt;Prueba el sitio a través de html-proofer&lt;/li&gt;
+  &lt;li&gt;Construye los archivos html estáticos&lt;/li&gt;
+  &lt;li&gt;Haz un push de los archivos html estáticos a la rama “master” de git&lt;/li&gt;
+  &lt;li&gt;Esto activa las GitHub Pages para actualizar el sitio.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;I chose to use the gh-pages-ci branch because I’ll likely use this technique for static html projects sites where GitHub Pages watches the gh-pages instead of master branch. The relevant scripts used in this workflow are below:&lt;/p&gt;
 
 &lt;p&gt;The rake task in the Rakefile that runs html-proofer:&lt;/p&gt;
+
+&lt;p&gt;Elegí usar la rama gh-pages-ci porque probablemente usaré esta técnica para los sitios de proyectos que usen html estático donde GitHub Pages mira las páginas gh en lugar de la rama maestra. Los scripts relevantes utilizados en este flujo de trabajo se encuentran a continuación:&lt;/p&gt;
+
+&lt;p&gt;La tarea de rake en el Rakefile que ejecuta html-proofer:&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'html/proofer'&lt;/span&gt;
 
@@ -63,26 +75,27 @@
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The script/build_html script that will build the Jekyll site and push it to the master git branch:&lt;/p&gt;
+&lt;p&gt;El script “script/build_html” que construirá el sitio Jekyll y lo enviará a la rama principal (“master”) de git:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c&quot;&gt;#!/bin/bash -ex&lt;/span&gt;
 
     &lt;span class=&quot;nv&quot;&gt;GIT_COMMIT_DESC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 
-    &lt;span class=&quot;c&quot;&gt;# Setup git so we can use it&lt;/span&gt;
-    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;z3nth10n@gmail.com&quot;&lt;/span&gt;
-    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;z3nth10n&quot;&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# remove changes from current gh-pages-ci branch&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Configurar git para que podamos usarlo&lt;/span&gt;
+    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;your email&amp;gt;&quot;&lt;/span&gt;
+    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;your username&amp;gt;&quot;&lt;/span&gt;
+    
+    &lt;span class=&quot;c&quot;&gt;# Eliminar cambios de la rama gh-pages-ci actual&lt;/span&gt;
     git checkout &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt;
     git checkout master
 
-    &lt;span class=&quot;c&quot;&gt;# Make sure that local master matches with remote master&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# CircleCI merges made changes to master so need to reset it&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Asegúrese de que la rama &quot;master&quot; local coincida con la rama &quot;master&quot; remota&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# CircleCI combina los cambios realizados en la rama &quot;master&quot;, por lo que es necesario restablecerlo&lt;/span&gt;
     git fetch origin master
     git reset &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt; origin/master
 
-    &lt;span class=&quot;c&quot;&gt;# Gets _site/* files and pushes them to master branch&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# Note: CircleCI creates vendor and .bundle files&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Obtiene los archivos &quot;_site/*&quot; y hace un push a la rama &quot;master&quot;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Nota: CircleCI crea los archivos &quot;vendor&quot; y &quot;.bundle&quot; (por lo que sería conveniente borrarlos)&lt;/span&gt;
     &lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;_site /tmp/
     &lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; .bundle .sass-cache
     &lt;span class=&quot;nb&quot;&gt;mv&lt;/span&gt; /tmp/_site/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
@@ -92,7 +105,7 @@
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The circle.yml that is configured to only watch for changes in the gh-pages-ci branch:&lt;/p&gt;
+&lt;p&gt;El circle.yml que está configurado para observar solo los cambios en la rama gh-pages-ci:&lt;/p&gt;
 
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;na&quot;&gt;defaults&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;&amp;amp;defaults&lt;/span&gt;
@@ -121,7 +134,7 @@
                 &lt;span class=&quot;na&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
                     &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rubygems-v1-{{  checksum &quot;Gemfile.lock&quot; }}&lt;/span&gt;
                     &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rubygems-v1-fallback&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;# If you have submodules maybe you need to uncomment this&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# Si usas submodules quizás debas descomentar esto&lt;/span&gt;
             &lt;span class=&quot;c1&quot;&gt;# - run:&lt;/span&gt;
             &lt;span class=&quot;c1&quot;&gt;#    name: Update Git submodules&lt;/span&gt;
             &lt;span class=&quot;c1&quot;&gt;#    command: git submodule update --init --recursive&lt;/span&gt;
@@ -152,15 +165,17 @@
             &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;one-circleci-gotcha&quot;&gt;One CircleCI Gotcha&lt;/h3&gt;
+&lt;h3 id=&quot;un-consejo-para-circleci&quot;&gt;Un consejo para CircleCI&lt;/h3&gt;
 
 &lt;p&gt;CircleCI is great about being security conscientious. They set things up so that a deploy read-only ssh key is used to clone the repo. Since the build_html script above pushes to master at the end, you will need to add a key that has write access to the repo. This is a simple 1-click step in “Project Settings -&amp;gt; Permissions / Checkout SSH Keys”.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/blogs/circleci-checkout-ssh-keys.png&quot; alt=&quot;CircleCI Checkout SSH Keys&quot; title=&quot;CircleCI Checkout SSH Keys&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;CircleCI es genial en ser consciente de la seguridad. Configuran las cosas para que se use una clave ssh de solo lectura para clonar el repositorio. Dado que la secuencia de comandos build_html anterior ejecuta un push a la rama “master” al final, deberá agregar una clave que tenga acceso de escritura al repositorio. Este es un paso simple de 1 clic en “Configuración del proyecto -&amp;gt; Permisos / verificación de claves SSH” (“Project Settings -&amp;gt; Permissions / Checkout SSH Keys”).&lt;/p&gt;
 
-&lt;h3 id=&quot;summary-of-the-final-flow&quot;&gt;Summary of the Final Flow&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/img/blogs/circleci-checkout-ssh-keys.png&quot; alt=&quot;Verificación de claves SSH por parte de CircleCI&quot; title=&quot;CircleCI Checkout SSH Keys&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;All I have to do now to update the blog is make modifications to the gh-pages-ci branch and then run &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;. It was more work to set this all up than just having GitHub Pages build the Jekyll site but the site will always be checked by html-proofer now. And now I am also able to use any Jekyll plugin that I need &lt;img src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png&quot; alt=&quot;:thumbsup:&quot; title=&quot;:thumbsup:&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;resumen-del-flujo-final&quot;&gt;Resumen del flujo final&lt;/h3&gt;
+
+&lt;p&gt;Todo lo que hay que hacer ahora para actualizar el blog es hacer modificaciones a la rama gh-pages-ci y luego ejecutar &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;. Fue más trabajo configurar todo esto que solo hacer que GitHub Pages construya el sitio Jekyll, pero el sitio siempre será revisado por html-proofer ahora. ¡Y ahora también puedo usar cualquier complemento de Jekyll que necesite! &lt;img class=&quot;emojione&quot; alt=&quot;👍&quot; src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png&quot; /&gt;&lt;/p&gt;
 </description>
                     
                     <pubDate>Wed, 20 Mar 2019 12:00:00 +0000</pubDate>
