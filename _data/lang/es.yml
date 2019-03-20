@@ -213,7 +213,8 @@ comment: 'Comentario'
 
 category-desc:
     category_caption: 'Categoría'
-    jekyll-plugin: "Una categoría donde mostraré algunos de los plugins de Jekyll que he desarrollado"
+    jekyll-plugin: "Una categoría donde mostraré algunos de los plugins de Jekyll que he desarrollado."
+    jekyll: "Una categoría donde mostraré tutoriales para Jekyll."
 
 #############
 # Donations #
