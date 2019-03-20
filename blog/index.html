@@ -1,7 +1,8 @@
-<!-- Categories Include Start -->
+
+<!-- Blog Layout Start -->
 
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="">
 
   
 <!-- HEAD Start -->
@@ -27,8 +28,8 @@
   <meta name="description" content="Blog and website of z3nth10n, blogging mainly for tech.">
   <meta name="author" content="z3nth10n">
   <meta name="keywords" content="z3nth10n, dev">
-  <link rel="canonical" href="/en/categories/jekyll-plugin/">
-  <title>{ z3nth10n }</title>
+  <link rel="canonical" href="/blog/">
+  <title>{ z3nth10n } | Blog</title>
 
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -128,10 +129,7 @@ window.cookieconsent.initialise({
 <!-- HEAD End -->
 
 
-  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-    
-    <h1 class="brand-heading">&nbsp;</h1>
-    <h1 class="brand-heading">&nbsp;</h1>
+  <body>
 
     
 <!-- Navigation Start -->
@@ -194,67 +192,111 @@ window.cookieconsent.initialise({
 
 <!-- Navigation End -->
 
-    
-    <!--- Main section -->
-    
-    <section class="container content-section text-center xs-margin-top">
-    
-        <h1>Category: </h1>
 
-        <p>A category where I will show some of the Jekyll plugins I have developed.</p>
-       
-        <hr>
+    <section id="page" class="container content-section text-center">
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
 
         
-       
-        
+<!-- Swipe Instructions Start -->
+
+<div id="swipe-instruction">
+  <div>
+    <p><br><br><br></p>
+    <i id="hand-swipe" class="far fa-hand-point-up"></i>
+    <p><strong>
+    
+      Did you know that you can navigate the archive pages by swiping left and right?
+    
+    </strong></p>
+    <button type="button" class="btn btn-default ok-btn close-swipe-instruction">
+      
+        Got it!
+      
+    </button>
+  </div>
+</div>
+
+<!-- Swipe Instructions End -->
+
+
+        <h2 id="blog">Blog</h2>
+
+
+        <div>
           
-            <!-- Post List End -->
-
-
-
-<section id="github-cards">
-    <div class="row">
-      <box class="col-md-12 vertical-offset post-list">
+        </div>
 
         
-        <h4> <strong> 19 Mar 2019 </strong>
-          <small>.
-            <a class="category" href="/categories/jekyll-plugin.html">
-              jekyll-plugin
-            </a>
-            
-            
-          .</small>
-          <strong> <a href="/en/2019/03/19/jekyll-patreon-plugin-tutorial">How to use Patreon in Jekyll (jekyll-patreon plugin tutorial) </a> </strong>
-          <small>. <a href="/en/2019/03/19/jekyll-patreon-plugin-tutorial.html#disqus_thread"><span data-disqus-url="https://z3nth10n.github.io/en/2019/03/19/jekyll-patreon-plugin-tutorial" class="count-comments"></span></a></small>
-        </h4>
+<!-- Pagination Links Start -->
 
-        <hr>
-       
-        <section class="text-left">
-          <p>In this post I will explain how to use the plugin called jekyll-patreon. I created this plugin to be able to implement a widget that shows information about our Patreon profile.</p>
+  <!-- 
+    Showing buttons to move to the next and to the previous list of posts (pager buttons).
+  -->
+  
 
-<p><strong>Note:</strong> This plugin requires Ruby 2.5+ and Jekyll 3.8+</p>
+<!-- Pagination Links End -->
 
-<h2 id="what-is-this-used-for">What is this used...</h2>
-        </section>
 
-        <hr>
-        
-        <center>
-            <a class="readmore" href="/en/2019/03/19/jekyll-patreon-plugin-tutorial">Read more...</a>
-        </center>
-      </box>
-    </div>
-</section>
-
-          
-        
-    
+        </div>
+      </div>
     </section>
+
+    <!-- Footer Start -->
+
+<footer>
+
+	
+    	<!-- Social Buttons Start -->
+
+<ul class="list-inline social-buttons ">
     
-    <!--- End main section -->
+    <li>
+        <a href="https://facebook.com/Z3nth10n-344166426434567" target="_blank"><i class=" fab  fa-facebook fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://twitter.com/z3nth10n" target="_blank"><i class=" fab  fa-twitter fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://github.com/z3nth10n" target="_blank"><i class=" fab  fa-github fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://instagram.com/z3nth10n" target="_blank"><i class=" fab  fa-instagram fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://discord.com/users/208235269764284417" target="_blank"><i class=" fab  fa-discord fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="https://t.me/z3nth10n" target="_blank"><i class=" fab  fa-telegram fa-fw"></i></a>
+    </li>
+    
+    <li>
+        <a href="/feed.xml" target="_blank"><i class=" fas  fa-rss fa-fw"></i></a>
+    </li>
+    
+    
+</ul>
+
+<!-- Social Buttons End -->
+
+    
+
+    <p><br><br></p>
+
+    <div class="container text-center">
+        <p>Copyright &copy; z3nth10n 2019</p>
+        
+    </div>
+</footer>
+
+<!-- Footer End -->
+
 
     
 <!-- Javascript Start -->
@@ -572,6 +614,25 @@ $(".navbar-collapse ul li a").click(function() {
 
   
 
+    <!-- Comments Counter Start -->
+
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'z3nth10n'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+
+    <!-- Comments Counter End -->
+
+  
+
 
 
 
@@ -581,7 +642,7 @@ $(".navbar-collapse ul li a").click(function() {
 <script>
 function addTohistory() {
   if (!window.location.host.startsWith("127.0.0.1")) {
-    history.pushState({}, '{ z3nth10n }', 'https://z3nth10n.github.io/en/categories/jekyll-plugin/index.html');
+    history.pushState({}, 'Blog', 'https://z3nth10n.github.io/blog/');
   }
 }
 </script>
@@ -592,6 +653,49 @@ function addTohistory() {
   
 
   
+
+    <!-- Blog Gesture Navigation Start -->
+
+    <script type="text/javascript" src="/js/hammer.min.js"></script>
+
+    <script>
+      var page = document.getElementById('page');
+
+      new Hammer(page).on('swipeleft', function(event) {
+        addTohistory();
+        
+          document.location.replace("/");
+        
+      });
+      new Hammer(page).on('swiperight', function(event) {
+        addTohistory();
+        
+          document.location.replace("/");
+        
+      });
+    </script>
+
+    <!-- Blog Gesture Navigation Start -->
+
+  
+
+  
+
+    <!-- Swipe Instructions for Blog Start -->
+
+    <script>
+      $(document).ready(function(){
+        if(!localStorage.getItem('blog-swipeshowed')){
+          $("#swipe-instruction").fadeIn();
+          $("#swipe-instruction .close-swipe-instruction").click(function(){
+            $("#swipe-instruction").fadeOut();
+          });
+          localStorage.setItem('blog-swipeshowed', true);
+        }
+      });
+    </script>
+
+    <!-- Swipe Instructions for Blog End -->
 
   
 
@@ -607,4 +711,4 @@ function addTohistory() {
   </body>
 </html>
 
-<!-- Categories Include End -->
+<!-- Blog Layout End -->

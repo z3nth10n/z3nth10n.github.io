@@ -32,14 +32,12 @@ group :jekyll_plugins do
   gem 'oga', '~> 1.2', '>= 1.2.0'
   gem 'yajl-ruby', '~> 1.2', '>= 1.2.0'
   gem 'jekyll-emoji', path: '_plugins/jekyll-emoji'
-  gem 'jekyll-language-plugin'
+  gem 'jekyll-language-plugin', path: "_plugins/jekyll-language-plugin"
   gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
-  gem 'jekyll-redirect-from', '~> 0.14.0'
   gem 'jekyll-patreon', path: "_plugins/jekyll-patreon"
   gem 'chronic', '~> 0.10.2'
   gem 'google-api-client', '~> 0.28.4'
   gem 'googleauth', '~> 0.8.0'
-  # gem 'jekyll-minifier', '~> 0.1.10'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

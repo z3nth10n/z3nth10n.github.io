@@ -11,17 +11,174 @@
         </description>
         
 		<link>https://z3nth10n.github.io</link>
-        <language>en</language>
+        
 		<atom:link href="https://z3nth10n.github.io/en/feed.xml" rel="self" type="application/rss+xml" />
 		
+            
 		
+            
+                <item>
+                    <title>How To Use Any Jekyll Plugins on GitHub Pages with CircleCI</title>
+                    
+                    
+                        <description>&lt;h2 id=&quot;jekyll-plugin-issue-with-github-pages&quot;&gt;Jekyll Plugin Issue with GitHub Pages&lt;/h2&gt;
+
+&lt;p&gt;For this blog, I knew I wanted to be able to customize it and did not want to learn how to customize WordPress themes. The idea of using a static site generator like &lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; was appealing to me because I would not have to deal with a database. Also since &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt; hosts and automatically builds Jekyll sites, I would not have to deal with hosting. I went about installing Jekyll locally, created a starter blog site and pushed my changes to GitHub. &lt;a href=&quot;/&quot;&gt;z3nth10n.github.io&lt;/a&gt; was up and running quickly!&lt;/p&gt;
+
+&lt;p&gt;Then I wanted to embed a YouTube link to a &lt;a href=&quot;/articles/virtues-of-great-programmers&quot;&gt;blog post&lt;/a&gt;. @joelverhagen posted a simple Jekyll YouTube Embed Plugin &lt;a href=&quot;https://gist.github.com/joelverhagen/1805814&quot;&gt;gist&lt;/a&gt;. I tested locally and it generated the blog post and site fine. But when GitHub Pages tried to build the static html files it failed with an &lt;code class=&quot;highlighter-rouge&quot;&gt;Liquid Exception: Unknown tag 'youtube'&lt;/code&gt; error message.&lt;/p&gt;
+
+&lt;p&gt;Apparently and understandably, GitHub Pages does not allow any arbitrary plugin as part of their Jekyll build process; specifically, &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll build —safe&lt;/code&gt; is ran. Instead GitHub Pages whitelists a limited set of Jekyll plugins listed &lt;a href=&quot;https://help.github.com/articles/using-jekyll-plugins-with-github-pages/&quot;&gt;here&lt;/a&gt;, only 4 at the time of this writing. So if you want to use a plugin that is not yet officially supported, you will have to ask GitHub support to add it. Here is an &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/325&quot;&gt;example&lt;/a&gt;: “Please please , whitelist jekyll-asciidoc plugin”. &lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;Jekyll’s Plugin documentation page&lt;/a&gt; suggests this workaround:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can still use GitHub Pages to publish your site, but you’ll need to convert the site locally and push the generated static files to your GitHub repository instead of the Jekyll source files.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The workaround is not as seamlessly as just simply pushing your branch to GitHub and having GitHub Pages automatically build the static site. I could had followed the suggestion and written a rake task to automate this locally but then I would have to remember to run the one extra command.&lt;/p&gt;
+
+&lt;h2 id=&quot;taking-over-continuous-integration-with-circleci&quot;&gt;Taking Over Continuous Integration with CircleCI&lt;/h2&gt;
+
+&lt;p&gt;Jekyll documentation has a neat example of &lt;a href=&quot;http://jekyllrb.com/docs/continuous-integration/&quot;&gt;Continuous Integration&lt;/a&gt; with &lt;a href=&quot;https://github.com/gjtorikian/html-proofer&quot;&gt;html-proofer&lt;/a&gt;. Running html-proofer will ensure that the html output will not have any broken links, images, etc. So I figured that I’d kill two birds with one stone and set up continuous integration on &lt;a href=&quot;https://circleci.com/&quot;&gt;CirleCI&lt;/a&gt;. It will both run html-proofer and build the static html files. The workflow:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Push to a special gh-pages-ci branch&lt;/li&gt;
+  &lt;li&gt;CircleCI watches only the gh-pages-ci branch&lt;/li&gt;
+  &lt;li&gt;Test site via html-proofer&lt;/li&gt;
+  &lt;li&gt;Build the static html files&lt;/li&gt;
+  &lt;li&gt;Push the static html files to the git master branch&lt;/li&gt;
+  &lt;li&gt;This triggers GitHub Pages to update the site&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I chose to use the gh-pages-ci branch because I’ll likely use this technique for static html projects sites where GitHub Pages watches the gh-pages instead of master branch. The relevant scripts used in this workflow are below:&lt;/p&gt;
+
+&lt;p&gt;The rake task in the Rakefile that runs html-proofer:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'html/proofer'&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:test&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;sh&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bundle exec jekyll build&quot;&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;HTML&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Proofer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;./_site&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;check_html: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;only_4xx: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The script/build_html script that will build the Jekyll site and push it to the master git branch:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c&quot;&gt;#!/bin/bash -ex&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;GIT_COMMIT_DESC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;# Setup git so we can use it&lt;/span&gt;
+    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;z3nth10n@gmail.com&quot;&lt;/span&gt;
+    git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;z3nth10n&quot;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# remove changes from current gh-pages-ci branch&lt;/span&gt;
+    git checkout &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt;
+    git checkout master
+
+    &lt;span class=&quot;c&quot;&gt;# Make sure that local master matches with remote master&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# CircleCI merges made changes to master so need to reset it&lt;/span&gt;
+    git fetch origin master
+    git reset &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt; origin/master
+
+    &lt;span class=&quot;c&quot;&gt;# Gets _site/* files and pushes them to master branch&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Note: CircleCI creates vendor and .bundle files&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;_site /tmp/
+    &lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; .bundle .sass-cache
+    &lt;span class=&quot;nb&quot;&gt;mv&lt;/span&gt; /tmp/_site/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+    git add &lt;span class=&quot;nt&quot;&gt;--all&lt;/span&gt;
+    git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$GIT_COMMIT_DESC&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    git push origin master
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The circle.yml that is configured to only watch for changes in the gh-pages-ci branch:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;na&quot;&gt;defaults&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;&amp;amp;defaults&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;working_directory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;~/repo&lt;/span&gt;
+    
+&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;*defaults&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;docker&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;circleci/ruby:2.6.0-node&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;filters&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;gh-pages-ci&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;ignore&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;BUNDLER_VERSION&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2.0.1&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;BUNDLE_PATH&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;~/repo/vendor/bundle&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;GIT_COMMIT_DESC&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git log -1 --pretty=%B&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;JEKYLL_ENV&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;production&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;checkout&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;restore_cache&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rubygems-v1-{{  checksum &quot;Gemfile.lock&quot; }}&lt;/span&gt;
+                    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rubygems-v1-fallback&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# If you have submodules maybe you need to uncomment this&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# - run:&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;#    name: Update Git submodules&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;#    command: git submodule update --init --recursive&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Bundle Pre Install&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;gem install bundler:$BUNDLER_VERSION&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Bundle Install&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bundle check || bundle install&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Rake tests&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bundle exec rake&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;save_cache&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rubygems-v1-{{  checksum &quot;Gemfile.lock&quot; }}&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;vendor/bundle&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Jekyll build&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bundle exec jekyll build --trace&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Run Build HTML&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bash ~/repo/script/build_html &quot;`$GIT_COMMIT_DESC`&quot;&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;workflows&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;test-deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;one-circleci-gotcha&quot;&gt;One CircleCI Gotcha&lt;/h3&gt;
+
+&lt;p&gt;CircleCI is great about being security conscientious. They set things up so that a deploy read-only ssh key is used to clone the repo. Since the build_html script above pushes to master at the end, you will need to add a key that has write access to the repo. This is a simple 1-click step in “Project Settings -&amp;gt; Permissions / Checkout SSH Keys”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/blogs/circleci-checkout-ssh-keys.png&quot; alt=&quot;CircleCI Checkout SSH Keys&quot; title=&quot;CircleCI Checkout SSH Keys&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;summary-of-the-final-flow&quot;&gt;Summary of the Final Flow&lt;/h3&gt;
+
+&lt;p&gt;All I have to do now to update the blog is make modifications to the gh-pages-ci branch and then run &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;. It was more work to set this all up than just having GitHub Pages build the Jekyll site but the site will always be checked by html-proofer now. And now I am also able to use any Jekyll plugin that I need &lt;img src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png&quot; alt=&quot;:thumbsup:&quot; title=&quot;:thumbsup:&quot; /&gt;&lt;/p&gt;
+</description>
+                    
+                    <pubDate>Wed, 20 Mar 2019 12:00:00 +0000</pubDate>
+                    <link>https://z3nth10n.github.io/en/2019/03/20/jekyll-plugin-issue-with-github-pages.html</link>
+                    <guid isPermaLink="true">https://z3nth10n.github.io/en/2019/03/20/jekyll-plugin-issue-with-github-pages.html</guid>
+                </item>
+            
 		
+            
 		
-			<item>
-				<title>How to use Patreon in Jekyll (jekyll-patreon plugin tutorial)</title>
-				
-				
-					<description>&lt;p&gt;In this post I will explain how to use the plugin called jekyll-patreon. I created this plugin to be able to implement a widget that shows information about our Patreon profile.&lt;/p&gt;
+            
+                <item>
+                    <title>How to use Patreon in Jekyll (jekyll-patreon plugin tutorial)</title>
+                    
+                    
+                        <description>&lt;p&gt;In this post I will explain how to use the plugin called jekyll-patreon. I created this plugin to be able to implement a widget that shows information about our Patreon profile.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This plugin requires Ruby 2.5+ and Jekyll 3.8+&lt;/p&gt;
 
@@ -131,19 +288,19 @@ patreon_goal_2: &quot;...&quot;
 
 &lt;p&gt;&lt;strong&gt;Best regards!&lt;/strong&gt;&lt;/p&gt;
 </description>
-				
-				<pubDate>Tue, 19 Mar 2019 08:22:00 +0000</pubDate>
-				<link>https://z3nth10n.github.io/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</link>
-				<guid isPermaLink="true">https://z3nth10n.github.io/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</guid>
-			</item>
-        
+                    
+                    <pubDate>Tue, 19 Mar 2019 08:22:00 +0000</pubDate>
+                    <link>https://z3nth10n.github.io/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</link>
+                    <guid isPermaLink="true">https://z3nth10n.github.io/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</guid>
+                </item>
+            
 		
-		
-			<item>
-				<title>Welcome to my blog!</title>
-				
-				
-					<description>&lt;h2 id=&quot;welcome-to-my-blog&quot;&gt;Welcome to my blog!&lt;/h2&gt;
+            
+                <item>
+                    <title>Welcome to my blog!</title>
+                    
+                    
+                        <description>&lt;h2 id=&quot;welcome-to-my-blog&quot;&gt;Welcome to my blog!&lt;/h2&gt;
 
 &lt;p&gt;Since this is the first post of my blog, I will talk about what kind of topics I will post here.&lt;/p&gt;
 
@@ -155,14 +312,14 @@ patreon_goal_2: &quot;...&quot;
 
 &lt;p&gt;&lt;strong&gt;Best regards!&lt;/strong&gt;&lt;/p&gt;
 </description>
-				
-				<pubDate>Tue, 19 Mar 2019 06:48:00 +0000</pubDate>
-				<link>https://z3nth10n.github.io/en/2019/03/19/welcome-to-my-blog.html</link>
-				<guid isPermaLink="true">https://z3nth10n.github.io/en/2019/03/19/welcome-to-my-blog.html</guid>
-			</item>
-        
+                    
+                    <pubDate>Tue, 19 Mar 2019 06:48:00 +0000</pubDate>
+                    <link>https://z3nth10n.github.io/en/2019/03/19/welcome-to-my-blog.html</link>
+                    <guid isPermaLink="true">https://z3nth10n.github.io/en/2019/03/19/welcome-to-my-blog.html</guid>
+                </item>
+            
 		
-		
+            
 		
 	</channel>
 </rss>
