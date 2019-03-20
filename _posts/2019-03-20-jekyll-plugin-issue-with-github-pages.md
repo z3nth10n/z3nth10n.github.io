@@ -15,7 +15,7 @@ For this blog, I knew I wanted to be able to customize it and did not want to le
 
 Then I wanted to embed a YouTube link to a [blog post](/articles/virtues-of-great-programmers). @joelverhagen posted a simple Jekyll YouTube Embed Plugin [gist](https://gist.github.com/joelverhagen/1805814). I tested locally and it generated the blog post and site fine. But when GitHub Pages tried to build the static html files it failed with an `Liquid Exception: Unknown tag 'youtube'` error message.
 
-Apparently and understandably, GitHub Pages does not allow any arbitrary plugin as part of their Jekyll build process; specifically, `bundle exec jekyll build —safe` is ran. Instead GitHub Pages whitelists a limited set of Jekyll plugins listed [here](https://help.github.com/articles/using-jekyll-plugins-with-github-pages/), only 4 at the time of this writing. So if you want to use a plugin that is not yet officially supported, you will have to ask GitHub support to add it. Here is an [example](https://github.com/jekyll/jekyll/issues/325): "Please please , whitelist jekyll-asciidoc plugin". [Jekyll's Plugin documentation page](http://jekyllrb.com/docs/plugins/) suggests this workaround:
+Apparently and understandably, GitHub Pages does not allow any arbitrary plugin as part of their Jekyll build process; specifically, `bundle exec jekyll build —safe` is ran. Instead GitHub Pages whitelists a limited set of Jekyll plugins listed [here](https://pages.github.com/versions/), only 47 at the time of this writing. So if you want to use a plugin that is not yet officially supported, you will have to ask GitHub support to add it. Here is an [example](https://github.com/jekyll/jekyll/issues/325): "Please please, whitelist jekyll-asciidoc plugin". [Jekyll's Plugin documentation page](http://jekyllrb.com/docs/plugins/) suggests this workaround:
 
 > You can still use GitHub Pages to publish your site, but you’ll need to convert the site locally and push the generated static files to your GitHub repository instead of the Jekyll source files.
 
@@ -58,9 +58,10 @@ The script/build_html script that will build the Jekyll site and push it to the 
     GIT_COMMIT_DESC="$1"
 
     # Setup git so we can use it
-    git config --global user.email "z3nth10n@gmail.com"
-    git config --global user.name "z3nth10n"
-    # remove changes from current gh-pages-ci branch
+    git config --global user.email "<your email>"
+    git config --global user.name "<your username>"
+    
+    # Remove changes from current gh-pages-ci branch
     git checkout -f
     git checkout master
 
@@ -145,8 +146,8 @@ workflows:
 
 CircleCI is great about being security conscientious. They set things up so that a deploy read-only ssh key is used to clone the repo. Since the build_html script above pushes to master at the end, you will need to add a key that has write access to the repo. This is a simple 1-click step in "Project Settings -> Permissions / Checkout SSH Keys".
 
-![CircleCI Checkout SSH Keys](/images/blogs/circleci-checkout-ssh-keys.png "CircleCI Checkout SSH Keys")
+![CircleCI Checkout SSH Keys](/img/blogs/circleci-checkout-ssh-keys.png "CircleCI Checkout SSH Keys")
 
 ### Summary of the Final Flow
 
-All I have to do now to update the blog is make modifications to the gh-pages-ci branch and then run `git push`. It was more work to set this all up than just having GitHub Pages build the Jekyll site but the site will always be checked by html-proofer now. And now I am also able to use any Jekyll plugin that I need ![:thumbsup:](https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png ":thumbsup:")
+All I have to do now to update the blog is make modifications to the gh-pages-ci branch and then run `git push`. It was more work to set this all up than just having GitHub Pages build the Jekyll site but the site will always be checked by html-proofer now. And now I am also able to use any Jekyll plugin that I need! :thumbsup:

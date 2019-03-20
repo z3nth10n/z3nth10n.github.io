@@ -11,30 +11,40 @@ permalink: "/:language/:year/:month/:day/jekyll-plugin-issue-with-github-pages.h
 
 ## ¿Problemas con los plugins de Jekyll en Github Pages?
 
-For this blog, I knew I wanted to be able to customize it and did not want to learn how to customize WordPress themes. The idea of using a static site generator like [Jekyll](https://jekyllrb.com) was appealing to me because I would not have to deal with a database. Also since [GitHub Pages](https://pages.github.com) hosts and automatically builds Jekyll sites, I would not have to deal with hosting. I went about installing Jekyll locally, created a starter blog site and pushed my changes to GitHub. [z3nth10n.github.io](/) was up and running quickly!
+Para este blog, sabía que quería poder personalizarlo y no quería aprender a personalizar los temas de WordPress. La idea de utilizar un generador de sitio estático como [Jekyll](https://jekyllrb.com) me atraía porque no tendría que tratar con una base de datos. Además, dado que [GitHub Pages](https://pages.github.com) aloja y crea automáticamente los sitios Jekyll, no tendría que lidiar con el hosting. Fui a instalar Jekyll localmente, creé un sitio de blog de inicio y envié mis cambios a GitHub. ¡[z3nth10n.github.io](/) estaba en funcionamiento!
 
-Then I wanted to embed a YouTube link to a [blog post](/articles/virtues-of-great-programmers). @joelverhagen posted a simple Jekyll YouTube Embed Plugin [gist](https://gist.github.com/joelverhagen/1805814). I tested locally and it generated the blog post and site fine. But when GitHub Pages tried to build the static html files it failed with an `Liquid Exception: Unknown tag 'youtube'` error message.
+Luego quise insertar un enlace de YouTube en la página principal del blog. @joelverhagen publicó un [gist](https://gist.github.com/joelverhagen/1805814) de Jekyll YouTube Embed Plugin. Lo probé localmente y generó la publicación del blog y el sitio bien. Pero cuando GitHub Pages trató de construir los archivos html estáticos, falló con un mensaje de error `Liquid Exception: Unknown tag 'youtube'`.
 
-Apparently and understandably, GitHub Pages does not allow any arbitrary plugin as part of their Jekyll build process; specifically, `bundle exec jekyll build —safe` is ran. Instead GitHub Pages whitelists a limited set of Jekyll plugins listed [here](https://help.github.com/articles/using-jekyll-plugins-with-github-pages/), only 4 at the time of this writing. So if you want to use a plugin that is not yet officially supported, you will have to ask GitHub support to add it. Here is an [example](https://github.com/jekyll/jekyll/issues/325): "Please please , whitelist jekyll-asciidoc plugin". [Jekyll's Plugin documentation page](http://jekyllrb.com/docs/plugins/) suggests this workaround:
+Aparentemente y de manera comprensible, GitHub Pages no permite ningún complemento arbitrario como parte de su proceso de compilación Jekyll; específicamente, `bundle exec jekyll build —safe` se ejecuta. En su lugar, GitHub Pages incluye un conjunto limitado de complementos Jekyll enumerados [aquí](https://pages.github.com/versions/), solo 47 en el momento de escribir este artículo. Por lo tanto, si desea usar un complemento que aún no está oficialmente soportado, tendrá que pedirle a GitHub que lo agregue. Aquí hay un [ejemplo](https://github.com/jekyll/jekyll/issues/325): "Por favor, agregue el complemento jekyll-asciidoc a la lista blanca". [La página de documentación de Jekyll Plugins](http://jekyllrb.com/docs/plugins/) sugiere esta solución:
 
 > You can still use GitHub Pages to publish your site, but you’ll need to convert the site locally and push the generated static files to your GitHub repository instead of the Jekyll source files.
 
-The workaround is not as seamlessly as just simply pushing your branch to GitHub and having GitHub Pages automatically build the static site. I could had followed the suggestion and written a rake task to automate this locally but then I would have to remember to run the one extra command.
+En español:
 
-## Taking Over Continuous Integration with CircleCI
+> Aún puede usar GitHub Pages para publicar su sitio, pero deberá convertir el sitio localmente y enviar los archivos estáticos generados a su repositorio de GitHub en lugar de a los archivos de origen Jekyll.
+
+La solución no es tan sencilla como simplemente hacer un push de tu rama a GitHub y hacer que GitHub Pages construya automáticamente el sitio estático. Podría haber seguido la sugerencia y haber escrito una tarea de rake para automatizar esto localmente, pero luego tendría que acordarse de ejecutar un comando adicional.
+
+## Comenzando con la Integración Continua con CircleCI
 
 Jekyll documentation has a neat example of [Continuous Integration](http://jekyllrb.com/docs/continuous-integration/) with [html-proofer](https://github.com/gjtorikian/html-proofer). Running html-proofer will ensure that the html output will not have any broken links, images, etc. So I figured that I'd kill two birds with one stone and set up continuous integration on [CirleCI](https://circleci.com/). It will both run html-proofer and build the static html files. The workflow:
 
-1.  Push to a special gh-pages-ci branch
-2.  CircleCI watches only the gh-pages-ci branch
-3.  Test site via html-proofer
-4.  Build the static html files
-5.  Push the static html files to the git master branch
-6.  This triggers GitHub Pages to update the site
+La documentación de Jekyll tiene un buen ejemplo de [Integración Continua](http://jekyllrb.com/docs/continuous-integration/) con [html-proofer](https://github.com/gjtorikian/html-proofer). Ejecutar html-proofer asegurará que la salida de html no tenga enlaces rotos, imágenes, etc. Así que pensé que mataría dos pájaros de un tiro y configuraría la integración continua en [CirleCI](https://circleci.com/). Ejecutará html-proofer y construirá los archivos html estáticos. El flujo de trabajo:
+
+1.  Haz un push a una rama especial de gh-pages-ci
+2.  CircleCI mira solo la rama gh-pages-ci
+3.  Prueba el sitio a través de html-proofer
+4.  Construye los archivos html estáticos
+5.  Haz un push de los archivos html estáticos a la rama "master" de git
+6.  Esto activa las GitHub Pages para actualizar el sitio.
 
 I chose to use the gh-pages-ci branch because I'll likely use this technique for static html projects sites where GitHub Pages watches the gh-pages instead of master branch. The relevant scripts used in this workflow are below:
 
 The rake task in the Rakefile that runs html-proofer:
+
+Elegí usar la rama gh-pages-ci porque probablemente usaré esta técnica para los sitios de proyectos que usen html estático donde GitHub Pages mira las páginas gh en lugar de la rama maestra. Los scripts relevantes utilizados en este flujo de trabajo se encuentran a continuación:
+
+La tarea de rake en el Rakefile que ejecuta html-proofer:
 
 ```ruby
     require 'html/proofer'
@@ -50,27 +60,28 @@ The rake task in the Rakefile that runs html-proofer:
 
 ```
 
-The script/build_html script that will build the Jekyll site and push it to the master git branch:
+El script "script/build_html" que construirá el sitio Jekyll y lo enviará a la rama principal ("master") de git:
 
 ```bash
     #!/bin/bash -ex
 
     GIT_COMMIT_DESC="$1"
 
-    # Setup git so we can use it
-    git config --global user.email "z3nth10n@gmail.com"
-    git config --global user.name "z3nth10n"
-    # remove changes from current gh-pages-ci branch
+    # Configurar git para que podamos usarlo
+    git config --global user.email "<your email>"
+    git config --global user.name "<your username>"
+    
+    # Eliminar cambios de la rama gh-pages-ci actual
     git checkout -f
     git checkout master
 
-    # Make sure that local master matches with remote master
-    # CircleCI merges made changes to master so need to reset it
+    # Asegúrese de que la rama "master" local coincida con la rama "master" remota
+    # CircleCI combina los cambios realizados en la rama "master", por lo que es necesario restablecerlo
     git fetch origin master
     git reset --hard origin/master
 
-    # Gets _site/* files and pushes them to master branch
-    # Note: CircleCI creates vendor and .bundle files
+    # Obtiene los archivos "_site/*" y hace un push a la rama "master"
+    # Nota: CircleCI crea los archivos "vendor" y ".bundle" (por lo que sería conveniente borrarlos)
     mv _site /tmp/
     rm -rf * .bundle .sass-cache
     mv /tmp/_site/* .
@@ -80,7 +91,7 @@ The script/build_html script that will build the Jekyll site and push it to the 
 
 ```
 
-The circle.yml that is configured to only watch for changes in the gh-pages-ci branch:
+El circle.yml que está configurado para observar solo los cambios en la rama gh-pages-ci:
 
 ```yaml
 
@@ -110,7 +121,7 @@ jobs:
                 keys:
                     - rubygems-v1-&#x7B;&#x7B;  checksum "Gemfile.lock" &#x7D;&#x7D;
                     - rubygems-v1-fallback
-            # If you have submodules maybe you need to uncomment this
+            # Si usas submodules quizás debas descomentar esto
             # - run:
             #    name: Update Git submodules
             #    command: git submodule update --init --recursive
@@ -141,12 +152,14 @@ workflows:
             - build
 ```
 
-### One CircleCI Gotcha
+### Un consejo para CircleCI
 
 CircleCI is great about being security conscientious. They set things up so that a deploy read-only ssh key is used to clone the repo. Since the build_html script above pushes to master at the end, you will need to add a key that has write access to the repo. This is a simple 1-click step in "Project Settings -> Permissions / Checkout SSH Keys".
 
-![CircleCI Checkout SSH Keys](/images/blogs/circleci-checkout-ssh-keys.png "CircleCI Checkout SSH Keys")
+CircleCI es genial en ser consciente de la seguridad. Configuran las cosas para que se use una clave ssh de solo lectura para clonar el repositorio. Dado que la secuencia de comandos build_html anterior ejecuta un push a la rama "master" al final, deberá agregar una clave que tenga acceso de escritura al repositorio. Este es un paso simple de 1 clic en "Configuración del proyecto -> Permisos / verificación de claves SSH" ("Project Settings -> Permissions / Checkout SSH Keys").
 
-### Summary of the Final Flow
+![Verificación de claves SSH por parte de CircleCI](/img/blogs/circleci-checkout-ssh-keys.png "CircleCI Checkout SSH Keys")
 
-All I have to do now to update the blog is make modifications to the gh-pages-ci branch and then run `git push`. It was more work to set this all up than just having GitHub Pages build the Jekyll site but the site will always be checked by html-proofer now. And now I am also able to use any Jekyll plugin that I need ![:thumbsup:](https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png ":thumbsup:")
+### Resumen del flujo final
+
+Todo lo que hay que hacer ahora para actualizar el blog es hacer modificaciones a la rama gh-pages-ci y luego ejecutar `git push`. Fue más trabajo configurar todo esto que solo hacer que GitHub Pages construya el sitio Jekyll, pero el sitio siempre será revisado por html-proofer ahora. ¡Y ahora también puedo usar cualquier complemento de Jekyll que necesite! :thumbsup:

@@ -22,7 +22,7 @@
        
         <hr>
 
-        {% include category-count.html %}
+        <h3>{% t 'total-post-cat' %} ({{ paginator.total_posts }}):</h3>
        
         {% if paginator.total_posts > 0 %}
           {% for post in paginator.posts %}

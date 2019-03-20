@@ -211,6 +211,7 @@ category-desc:
     category_caption: 'Category'
     jekyll-plugin: "A category where I will show some of the Jekyll plugins I have developed."
     jekyll: "A category where I will show some tutorials for Jekyll."
+    total-post-cat: "Total posts for this category"
 
 #############
 # Donations #
