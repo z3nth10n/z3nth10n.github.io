@@ -15,6 +15,130 @@
 		<atom:link href="https://z3nth10n.github.io/en/feed.xml" rel="self" type="application/rss+xml" />
 		
 		
+		
+		
+			<item>
+				<title>How to use Patreon in Jekyll (jekyll-patreon plugin tutorial)</title>
+				
+				
+					<description>&lt;p&gt;In this post I will explain how to use the plugin called jekyll-patreon. I created this plugin to be able to implement a widget that shows information about our Patreon profile.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This plugin requires Ruby 2.5+ and Jekyll 3.8+&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-this-used-for&quot;&gt;What is this used for?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A Jekyll plugin that adds Patreon support in your blog to easily embed a widget with goals&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Supports several designs: default, fancy, minimal, streamlined, reversed, swapped&lt;/li&gt;
+  &lt;li&gt;Supports several colors: red, green, orange, red nostripes, green nostripes, orange nostripes, blue nostripes&lt;/li&gt;
+  &lt;li&gt;Supports i18n (compatible with &lt;a href=&quot;https://github.com/vwochnik/jekyll-language-plugin&quot;&gt;jekyll-language-plugin&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Supports Markdown on your Patreon goals&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;To see the possible styles &amp;amp;&amp;amp; designs navigate to the &lt;a href=&quot;https://github.com/uta-org/jekyll-patreon/tree/master/assets&quot;&gt;assets folder of the main repo&lt;/a&gt; where the screenshots are located&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;Add this line to your site’s Gemfile:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'jekyll-patreon'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add this configuration to your _config.yml file:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;####################&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Patreon Settings #&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;####################&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;patreon&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;design&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;default'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Supports the following desings: default, fancy, minimal, streamlined, reversed, swapped&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Example&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;title'&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metercolor&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;green'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Supports the following colors: red, green, orange, red nostripes, green nostripes, orange nostripes, blue nostripes&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;toptext&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Example&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;text'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Text that appears in before the progress bar (optional)&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;bottomtext&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Example&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;text'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Text that appears in after the progress bar (optional)&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;showgoaltext&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Display the goal text?&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;showbutton&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Display the &quot;Become a patron&quot; button?&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Your&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;here'&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;default_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;en&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# The default language to use (to avoid writing twice the same text from Patreon)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;Simply just put the following tag where you need this:&lt;/p&gt;
+
+&lt;pre&gt;
+   &lt;code&gt;
+        {% patreon %}
+   &lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;h3 id=&quot;i18n&quot;&gt;i18n&lt;/h3&gt;
+
+&lt;p&gt;To support languages just use &lt;a href=&quot;https://github.com/vwochnik/jekyll-language-plugin&quot;&gt;jekyll-language-plugin&lt;/a&gt; configuration. Or if you don’t use it, do the following steps.&lt;/p&gt;
+
+&lt;p&gt;First, in your main index.html (or wherever you need the i18n support) declare the following lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code data-trim=&quot;&quot; class=&quot;yaml&quot;&gt;
+–––
+layout: &amp;lt;layout&amp;gt;
+language: en
+–––
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or if you want to support several languages in the same page:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code data-trim=&quot;&quot; class=&quot;yaml&quot;&gt;
+–––
+layout: &amp;lt;layout&amp;gt;
+languages:
+- en
+- es
+–––
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, in “_data/lang/” create one file for each lang.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;en.yml&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;es.yml&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Then, write the translations of you goals like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code data-trim=&quot;&quot; class=&quot;yaml&quot;&gt;
+#################
+# Patreon Goals #
+#################
+
+patreon_goal_0: &quot;...&quot;
+patreon_goal_1: &quot;...&quot;
+patreon_goal_2: &quot;...&quot;
+# etc etc...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There you will need to create as much translations as the number of goals that your Patreon page have. (&lt;strong&gt;Note:&lt;/strong&gt; starting index is 0 (zero))&lt;/p&gt;
+
+&lt;h2 id=&quot;issues&quot;&gt;Issues&lt;/h2&gt;
+
+&lt;p&gt;Having issues? Just report in &lt;a href=&quot;https://github.com/uta-org/jekyll-patreon/issues&quot;&gt;the issue section&lt;/a&gt;. &lt;strong&gt;Thanks for the feedback!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Best regards!&lt;/strong&gt;&lt;/p&gt;
+</description>
+				
+				<pubDate>Tue, 19 Mar 2019 08:22:00 +0000</pubDate>
+				<link>https://z3nth10n.github.io/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</link>
+				<guid isPermaLink="true">https://z3nth10n.github.io/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</guid>
+			</item>
+        
+		
+		
 			<item>
 				<title>Welcome to my blog!</title>
 				
@@ -23,8 +147,7 @@
 
 &lt;p&gt;Since this is the first post of my blog, I will talk about what kind of topics I will post here.&lt;/p&gt;
 
-&lt;p&gt;Como bien he dicho en la presentación de la página, soy un desarrollador español que se dedica a esto desde 2011.
-As I said in the presentation of the website, I’m a spanish developer since 2011.&lt;/p&gt;
+&lt;p&gt;As I said in the presentation of the website, I’m a spanish developer since 2011.&lt;/p&gt;
 
 &lt;p&gt;Consequently, the main topics that will be discussed here will be about the developmwnt of the projects I maintain at the moment. Also, I will post tutorials on the fly about doubts that arise me when I develop (that I could figure out). Either, I will post old doubts.&lt;/p&gt;
 

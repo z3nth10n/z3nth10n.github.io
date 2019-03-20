@@ -25,6 +25,9 @@ jobs:
                     - rubygems-v1-{{ checksum "Gemfile.lock" }}
                     - rubygems-v1-fallback
             - run:
+                name: Update Git submodules
+                command: git submodule update --init --recursive
+            - run:
                 name: Bundle Pre Install
                 command: gem install bundler:$BUNDLER_VERSION
             - run:
@@ -47,6 +50,19 @@ jobs:
 workflows:
     version: 2
     test-deploy:
+        jobs:
+            - build:
+                context: "Google Analytics Sensitive Data"
+    nightly:
+        triggers:
+            - schedule:
+                cron: "0 0 * * *"
+                filters:
+                    branches:
+                        only:
+                            - gh-pages-ci
+                        ignore:
+                            - master
         jobs:
             - build:
                 context: "Google Analytics Sensitive Data"

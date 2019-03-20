@@ -15,6 +15,130 @@
 		<atom:link href="https://z3nth10n.github.io/en/feed.xml" rel="self" type="application/rss+xml" />
 		
 		
+			<item>
+				<title>Como usar Patreon en Jekyll (tutorial sobre el plugin jekyll-patreon)</title>
+				
+				
+					<description>&lt;p&gt;En este post explicaré como usar el plugin llamado jekyll-patreon, el cual he creado para poder implementar un widget el cual nos muestre información sobre nuestro perfil de Patreon.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Este plugin requiere Ruby 2.5+ y Jekyll 3.8+&lt;/p&gt;
+
+&lt;h2 id=&quot;para-que-sirve-este-plugin&quot;&gt;¿Para que sirve este plugin?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Esto es un plugin para Jekyll que añade soporte a Patreon dentro de tu blog para incrustar un widget con metas&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;características&quot;&gt;Características&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Implementa varios tipos de diseños: default, fancy, minimal, streamlined, reversed, swapped&lt;/li&gt;
+  &lt;li&gt;Implementa varios tipos de colores: red, green, orange, red nostripes, green nostripes, orange nostripes, blue nostripes&lt;/li&gt;
+  &lt;li&gt;Implementa internacionalización (compatible con &lt;a href=&quot;https://github.com/vwochnik/jekyll-language-plugin&quot;&gt;jekyll-language-plugin&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Implementa el formato Markdown en las descripciones de tus metas de Patreon&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Para ver todos los posibles estilos y diseños navega a &lt;a href=&quot;https://github.com/uta-org/jekyll-patreon/tree/master/assets&quot;&gt;la carpeta assets del repositorio&lt;/a&gt;, aquí podrás ver los pantallazos&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;instalación&quot;&gt;Instalación&lt;/h2&gt;
+
+&lt;p&gt;Añade esta línea al Gemfile de tu sitio:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'jekyll-patreon'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Añade esta configuración a tu _config.yml:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;####################&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Patreon Settings #&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;####################&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;patreon&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;design&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;default'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Supports the following desings: default, fancy, minimal, streamlined, reversed, swapped&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Example&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;title'&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metercolor&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;green'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Supports the following colors: red, green, orange, red nostripes, green nostripes, orange nostripes, blue nostripes&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;toptext&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Example&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;text'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Text that appears in before the progress bar (optional)&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;bottomtext&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Example&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;text'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Text that appears in after the progress bar (optional)&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;showgoaltext&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Display the goal text?&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;showbutton&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Display the &quot;Become a patron&quot; button?&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Your&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;here'&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;default_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;en&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# The default language to use (to avoid writing twice the same text from Patreon)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;uso&quot;&gt;Uso&lt;/h2&gt;
+
+&lt;p&gt;Simplemente pon el siguiente tag donde lo quieras usar:&lt;/p&gt;
+
+&lt;pre&gt;
+   &lt;code&gt;
+        {% patreon %}
+   &lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;h3 id=&quot;i18n-internacionalización&quot;&gt;i18n (internacionalización)&lt;/h3&gt;
+
+&lt;p&gt;Para implementar los idiomas solamente usa la configuración de &lt;a href=&quot;https://github.com/vwochnik/jekyll-language-plugin&quot;&gt;jekyll-language-plugin&lt;/a&gt;. O si no lo usas, sigue los siguientes pasos:&lt;/p&gt;
+
+&lt;p&gt;Primero, en tu index.html principal (o donde necesites usar la internacionalización) declara las siguientes líneas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code data-trim=&quot;&quot; class=&quot;yaml&quot;&gt;
+–––
+layout: &amp;lt;layout&amp;gt;
+language: en
+–––
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O si quieres implementar varios idiomas en la misma página:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code data-trim=&quot;&quot; class=&quot;yaml&quot;&gt;
+–––
+layout: &amp;lt;layout&amp;gt;
+languages:
+- en
+- es
+–––
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Después, en “_data/lang/” crea un archibvo para cada idioma.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Por ejemplo: &lt;code class=&quot;highlighter-rouge&quot;&gt;en.yml&lt;/code&gt; y &lt;code class=&quot;highlighter-rouge&quot;&gt;es.yml&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Después, escribe las traducciones de tus metas así:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code data-trim=&quot;&quot; class=&quot;yaml&quot;&gt;
+#################
+# Patreon Goals #
+#################
+
+patreon_goal_0: &quot;...&quot;
+patreon_goal_1: &quot;...&quot;
+patreon_goal_2: &quot;...&quot;
+# etc etc...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Aquí deberás de crear tantas traducciones como metas tengas en la página/perfil de Patreon. (&lt;strong&gt;Nota:&lt;/strong&gt; el índice de comienzo es el 0 (cero))&lt;/p&gt;
+
+&lt;h2 id=&quot;problemas&quot;&gt;Problemas&lt;/h2&gt;
+
+&lt;p&gt;¿Tienes problemas? Reportalos en &lt;a href=&quot;https://github.com/uta-org/jekyll-patreon/issues&quot;&gt;la sección de problemas&lt;/a&gt;. &lt;strong&gt;¡Gracias por el feedback!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;¡Un saludo!&lt;/strong&gt;&lt;/p&gt;
+</description>
+				
+				<pubDate>Tue, 19 Mar 2019 08:22:00 +0000</pubDate>
+				<link>https://z3nth10n.github.io/es/2019/03/19/jekyll-patreon-plugin-tutorial.html</link>
+				<guid isPermaLink="true">https://z3nth10n.github.io/es/2019/03/19/jekyll-patreon-plugin-tutorial.html</guid>
+			</item>
+        
+		
+		
+		
+		
 		
 		
 			<item>

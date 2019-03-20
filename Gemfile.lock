@@ -8,6 +8,12 @@ PATH
       yajl-ruby (~> 1.2, >= 1.2.0)
 
 PATH
+  remote: _plugins/jekyll-paginate-v2
+  specs:
+    jekyll-paginate-v2 (2.1.0)
+      jekyll (~> 3.0)
+
+PATH
   remote: _plugins/jekyll-patreon
   specs:
     jekyll-patreon (1.1.1)
@@ -97,8 +103,6 @@ GEM
     jekyll-feed (0.11.0)
       jekyll (~> 3.3)
     jekyll-language-plugin (1.3.5)
-    jekyll-paginate-v2 (2.1.0)
-      jekyll (~> 3.0)
     jekyll-redirect-from (0.14.0)
       jekyll (~> 3.3)
     jekyll-sass-converter (1.5.2)
@@ -195,7 +199,7 @@ DEPENDENCIES
   jekyll-emoji!
   jekyll-feed (~> 0.6)
   jekyll-language-plugin
-  jekyll-paginate-v2 (~> 2.1)
+  jekyll-paginate-v2!
   jekyll-patreon!
   jekyll-redirect-from (~> 0.14.0)
   jekyll-twitter-plugin!
