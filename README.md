@@ -2,6 +2,10 @@
 
 This is the z3nth10n webpage source code. I will update this whenever I can.
 
-Best regards.
+## Do you want to setup / clone in local?
+
+Then use the following commands in [initial_setup](/script/initial_setup).
+
+**Best regards.**
 
 > (c) z3nth10n 2019
