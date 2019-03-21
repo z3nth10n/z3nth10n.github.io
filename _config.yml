@@ -284,7 +284,7 @@ jekyll_ga:
   filters:                  # Optional
   sort: true                # Sort posts by this metric
   max_results: 10000        # Number of the maximum results get by the API
-  debug: true
+  debug: false              # Debug mode
   
 #################
 # Lang Settings #
