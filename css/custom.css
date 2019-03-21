@@ -288,3 +288,7 @@
 .color-green {
     color: green;
 }
+
+#genstats p {
+    font-size: initial!important;
+}

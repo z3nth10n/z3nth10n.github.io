@@ -1,5 +1,7 @@
 {% if page.stats.pageviews != blank %}
-    {{ page.stats.pageviews }} visits
+    {% assign hvalue = header.value | plus: 0 %}
+    {{ hvalue | round }} visits
+                
     {% if site.jekyll_ga.compare_period %}
         (
         last {{ site.data.period }} days: 
@@ -14,11 +16,11 @@
                 <i class="fas fa-arrow-down color-red"></i>
             {% endif %}
 
-            {{ perc | round }} %
+            {{ perc | round }} % |
             
             {% assign diff = page.stats.diff_pageviews %}
             {% if diff > 0 %}+{% endif %}
-            {{ diff | round }}
+            {{ diff | round }} than last period
         {% else %}
         ∞ %    
         {% endif %}

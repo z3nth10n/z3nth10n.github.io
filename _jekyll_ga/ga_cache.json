@@ -1,4 +1,5 @@
 {
+  "period": 34,
   "page-stats": {
     "/": {
       "pagePath": "/",
@@ -73,5 +74,37 @@
     "users_perc": "∞",
     "diff_newUsers": 8.0,
     "newUsers_perc": "∞"
-  }
+  },
+  "headers": [
+    {
+      "name": "pageviews",
+      "value": "27",
+      "diff_value": 27.0,
+      "value_perc": "∞"
+    },
+    {
+      "name": "bounceRate",
+      "value": "60.0",
+      "diff_value": 60.0,
+      "value_perc": "∞"
+    },
+    {
+      "name": "sessions",
+      "value": "15",
+      "diff_value": 15.0,
+      "value_perc": "∞"
+    },
+    {
+      "name": "users",
+      "value": "12",
+      "diff_value": 12.0,
+      "value_perc": "∞"
+    },
+    {
+      "name": "newUsers",
+      "value": "8",
+      "diff_value": 8.0,
+      "value_perc": "∞"
+    }
+  ]
 }
