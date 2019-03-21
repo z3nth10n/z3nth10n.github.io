@@ -16,6 +16,7 @@ test/
 _deploy/*
 .jekyll-metadata
 /.idea/
+/_jekyll_ga/
 
 # Public and private keys
 *.p12

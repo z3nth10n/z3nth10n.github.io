@@ -1,6 +1,9 @@
 <div id="genstats" class="col-md-3 align-sm-right vertical-margin order-xs-fourth col-xs-expand">
     <box class="both-offset expand-width">
-        <h3>{% t 'stats-caption' %}</h3>
+        <p>
+            <h3>{% t 'stats-caption' %}</h3>
+            <p>({% t 'stats_last' %} {{ site.data.period }} {% t 'stats_days' %})</p>
+        </p>
 
         {% for header in site.data.headers %}
         
