@@ -292,3 +292,12 @@
 #genstats p {
     font-size: initial!important;
 }
+
+#genstats p.sub {
+    color: gray;
+    font-size: 75%!important;
+}
+
+#genstats h3 {
+    margin: 0 0 15px;
+}
