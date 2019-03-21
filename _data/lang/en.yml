@@ -222,6 +222,12 @@ one-time-donation: '... Or if you prefer a one-time donation:'
 appreciated-donations: 'Your donations are apreciated!'
 donation-code: 'en_US'
 
+#########
+# Stats #
+#########
+
+stats-caption: 'Statistics'
+
 ############
 # Timeline #
 ############

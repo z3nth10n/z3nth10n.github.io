@@ -116,8 +116,11 @@
  		order: 2;
  	}
  	.order-xs-third {
- 		order: 2;
+ 		order: 3;
  	}
+     .order-xs-fourth {
+         order: 4;
+     }
  	.xs-invisible {
  		display: none;
  	}
@@ -276,4 +279,12 @@
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
+}
+
+.color-red {
+    color: red;
+}
+
+.color-green {
+    color: green;
 }

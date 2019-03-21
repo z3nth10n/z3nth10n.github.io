@@ -31,6 +31,7 @@
                     {% t 'uncat' %}
                 {% endif %}
               .
+              {% include pageviews.html %}
               <a href="{{site.baseurl}}{{page.url}}#disqus_thread">Comments</a>
               <br />
               {% for tag in page.tags %}

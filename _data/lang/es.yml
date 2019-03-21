@@ -226,6 +226,12 @@ one-time-donation: '... O si prefieres donar solo una vez:'
 appreciated-donations: '¡Tus donaciones son apreciadas!'
 donation-code: 'es_ES'
 
+#########
+# Stats #
+#########
+
+stats-caption: 'Estadísticas'
+
 #################
 # Patreon Goals #
 #################
