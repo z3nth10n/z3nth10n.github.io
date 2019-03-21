@@ -227,6 +227,14 @@ donation-code: 'en_US'
 #########
 
 stats-caption: 'Statistics'
+stats_pageviews: "pageviews"
+stats_bounceRate: " % bounce rate"
+stats_sessions: "sessions"
+stats_users: "visitors"
+stats_newUsers: "new visitors"
+stats_last: 'last'
+stats_days: 'days'
+stats_last_period: 'than last period'
 
 ############
 # Timeline #

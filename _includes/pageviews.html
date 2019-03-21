@@ -1,10 +1,10 @@
 {% if page.stats.pageviews != blank %}
     {% assign hvalue = header.value | plus: 0 %}
-    {{ hvalue | round }} visits
+    {{ hvalue | round }} {% t 'stats_pageviews' %}
                 
     {% if site.jekyll_ga.compare_period %}
         (
-        last {{ site.data.period }} days: 
+        {% t 'stats_last' %} {{ site.data.period }} {% t 'stats_days' %}: 
         {% if page.stats.pageviews_perc != "∞" %}
             {% assign perc = page.stats.pageviews_perc | plus: 0 %}
 
@@ -20,7 +20,7 @@
             
             {% assign diff = page.stats.diff_pageviews %}
             {% if diff > 0 %}+{% endif %}
-            {{ diff | round }} than last period
+            {{ diff | round }} {% t 'stats_last_period' %}
         {% else %}
         ∞ %    
         {% endif %}
