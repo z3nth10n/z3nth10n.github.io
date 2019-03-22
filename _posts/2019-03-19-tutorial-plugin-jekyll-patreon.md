@@ -9,7 +9,7 @@ locale: 'es'
 permalink: "/:language/:year/:month/:day/jekyll-patreon-plugin-tutorial.html"
 ---
 
-En este post explicaré como usar el plugin llamado jekyll-patreon, el cual he creado para poder implementar un widget el cual nos muestre información sobre nuestro perfil de Patreon.
+En este post explicaré como usar el plugin llamado **jekyll-patreon**, el cual he creado para poder implementar un widget el cual nos muestre información sobre nuestro perfil de Patreon.
 
 **Nota:** Este plugin requiere Ruby 2.5+ y Jekyll 3.8+
 
@@ -107,8 +107,8 @@ patreon_goal_2: "..."
 
 Aquí deberás de crear tantas traducciones como metas tengas en la página/perfil de Patreon. (**Nota:** el índice de comienzo es el 0 (cero))
 
-## Problemas
+## ¿Problemas?
 
-¿Tienes problemas? Reportalos en [la sección de problemas](https://github.com/uta-org/jekyll-patreon/issues). **¡Gracias por el feedback!**
+¿Tienes problemas? Repórtalos en [la sección de problemas](https://github.com/uta-org/jekyll-patreon/issues). **¡Gracias por el feedback!**
 
 **¡Un saludo!**

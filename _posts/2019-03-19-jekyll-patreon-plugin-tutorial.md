@@ -9,7 +9,7 @@ locale: 'en'
 permalink: "/:language/:year/:month/:day/jekyll-patreon-plugin-tutorial.html"
 ---
 
-In this post I will explain how to use the plugin called jekyll-patreon. I created this plugin to be able to implement a widget that shows information about our Patreon profile.
+In this post I will explain how to use the plugin called **jekyll-patreon**. I created this plugin to be able to implement a widget that shows information about our Patreon profile.
 
 **Note:** This plugin requires Ruby 2.5+ and Jekyll 3.8+
 

@@ -281,7 +281,6 @@ jekyll_ga:
   dimensions: ga:pagePath   # Dimensions
   segment:                  # Optional
   filters:                  # Optional
-  sort: true                # Sort posts by this metric
   max_results: 10000        # Number of the maximum results get by the API
   debug: false              # Debug mode
   
