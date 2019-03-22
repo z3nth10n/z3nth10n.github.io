@@ -11,7 +11,7 @@
         {% assign post = site.posts.first %}
         <h4> <strong> {{ post.date | date_to_string }} </strong>
           <small>.
-            <a class="category" href="{{site.baseurl}}/categories/{{post.categories.first | downcase}}.html">
+            <a class="category" href="{{site.baseurl}}/categories/{{post.categories.first | downcase}}">
               {{ post.categories.first }}
             </a>
             
