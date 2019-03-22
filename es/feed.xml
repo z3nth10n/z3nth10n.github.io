@@ -21,7 +21,216 @@
                     <title>Jekyll-ga-v2 un plugin para obtener datos de Google Analytics en tu sitio</title>
                     
                     
-                        <description>&lt;p&gt;Haloe&lt;/p&gt;
+                        <description>&lt;p&gt;En este post explicaré cómo usar el complemento llamado &lt;strong&gt;jekyll-ga-v2&lt;/strong&gt;. He creado este plugin para poder implementar un widget que muestra la información que Google Analytics nos puede ofrecer.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Requiere Ruby 2.5+ y Jekyll 3.8+&lt;/p&gt;
+
+&lt;h1 id=&quot;para-qué-sirve-este-plugin&quot;&gt;¿Para qué sirve este plugin?&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Es un complemento de Jekyll que descarga datos de Google Analytics y los agrega a su sitio web de Jekyll. La métrica de Google Analytics se agrega a los metadatos de cada publicación/página y se puede acceder desde la variable &lt;code class=&quot;highlighter-rouge&quot;&gt;page.stats&lt;/code&gt;. Se puede imprimir en una plantilla.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;instalación&quot;&gt;Instalación&lt;/h2&gt;
+
+&lt;p&gt;Este plugin requiere tres gemas de Ruby:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;chronic
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;google-api-client
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;googleauth
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Agregue esta línea al archivo Gem de su sitio:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'jekyll-ga-v2'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;configurar-una-cuenta-de-servicio-para-la-api-de-datos-de-google&quot;&gt;Configurar una cuenta de servicio para la API de datos de Google&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Vaya a https://code.google.com/apis/console/b/0/ y cree un nuevo proyecto.&lt;/li&gt;
+  &lt;li&gt;Active la API de Analytics y acepte los términos del servicio.&lt;/li&gt;
+  &lt;li&gt;Vaya a &lt;code class=&quot;highlighter-rouge&quot;&gt;Acceso a la API&lt;/code&gt; en el menú de la barra lateral izquierda, cree una nueva ID de cliente de OAuth 2.0, asigne un nombre a su proyecto y haga clic en &lt;code class=&quot;highlighter-rouge&quot;&gt;Siguiente&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Seleccione el tipo de aplicación: &lt;code class=&quot;highlighter-rouge&quot;&gt;Cuenta de servicio&lt;/code&gt;, y haga clic en &lt;code class=&quot;highlighter-rouge&quot;&gt;Crear ID de cliente&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Anote la contraseña de la clave privada. Probablemente será &lt;code class=&quot;highlighter-rouge&quot;&gt;notasecret&lt;/code&gt; a menos que Google cambie algo. Tendrá que usarla para obtener la clave privada a partir de OpenSSL.&lt;/li&gt;
+  &lt;li&gt;Descarga la clave privada. Guarda este archivo porque solo puedes descargarlo una vez.&lt;/li&gt;
+  &lt;li&gt;Anote la dirección de correo electrónico para la cuenta de servicio. Lo necesitará para sus ajustes de configuración y en el siguiente paso.&lt;/li&gt;
+  &lt;li&gt;Inicie sesión en Google Analytics y agregue la dirección de correo electrónico de la cuenta de servicio como usuario de su perfil de Google Analytics: Desde una página de informe, &lt;code class=&quot;highlighter-rouge&quot;&gt;Admin &amp;gt; Seleccione un perfil &amp;gt; Usuarios &amp;gt; Nuevo usuario&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;configuración-de-las-variables-de-entorno&quot;&gt;Configuración de las variables de entorno&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/googleapis/google-auth-library-ruby#example-environment-variables&quot;&gt;GoogleAuth necesita las siguientes variables de entorno para funcionar.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Hay una manera fácil de implementar esto utilizando CircleCI (quizás estás usando una herramienta similar para implementar tu sitio web Jekyll). Si no estás familiarizado con CircleCI, debes leer atentamente esta publicación en mi blog sobre “&lt;a href=&quot;/es/2019/03/20/jekyll-plugin-issue-with-github-pages&quot;&gt;Cómo utilizar cualquier plugin de Jekyll en las páginas de GitHub con CircleCI&lt;/a&gt;”.&lt;/p&gt;
+
+&lt;p&gt;Una vez que lo implementes, deberás ir a tu &lt;a href=&quot;https://circleci.com/dashboard&quot;&gt;Dashboard de CircleCI&lt;/a&gt;, buscar en la configuración de tu proyecto e ir a “&lt;strong&gt;Organización &amp;gt; Contextos&lt;/strong&gt; (&lt;strong&gt;Organization &amp;gt; Contexts&lt;/strong&gt;)” y crear &lt;a href=&quot;https://circleci.com/docs/2.0/contexts/&quot;&gt;un nuevo Contexto&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Mira la &lt;a href=&quot;https://github.com/z3nth10n/z3nth10n.github.io/blob/b9f7ef42e5fce33800aab80f8eabe6868b38f8e5/circle.yml#L54&quot;&gt;configuración CircleCI.yml&lt;/a&gt; de mi sitio web. Lo único que queda es crear el nombre de contexto adecuado y, a continuación, crear las variables de entorno requeridas:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.gyazo.com/3ad97b8e09ee7e05b8496f1cd631affa.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; El valor &lt;code class=&quot;highlighter-rouge&quot;&gt;GOOGLE_PRIVATE_KEY&lt;/code&gt; es la salida de OpenSSL. Deberá ejecutar el siguiente comando para obtenerlo del archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;*.p12&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;openssl pkcs12 &lt;span class=&quot;nt&quot;&gt;-in&lt;/span&gt; filename.p12 &lt;span class=&quot;nt&quot;&gt;-clcerts&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-nodes&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-nocerts&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Deberá reemplazar todos los caracteres de líneas nuevas por &lt;code class=&quot;highlighter-rouge&quot;&gt;\n&lt;/code&gt;. Esto se puede hacer fácilmente con Sublime Text 3 especificando las opciones Regex y reemplazando &lt;code class=&quot;highlighter-rouge&quot;&gt;\n&lt;/code&gt; por&lt;code class=&quot;highlighter-rouge&quot;&gt; \\n&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración&quot;&gt;Configuración&lt;/h2&gt;
+
+&lt;p&gt;Para configurar &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll-ga-v2&lt;/code&gt;, debes especificar cierta información sobre tu cuenta de servicio de Google Analytics (según lo establecido anteriormente) y la configuración de su informe.&lt;/p&gt;
+
+&lt;p&gt;Agregua el siguiente bloque al archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; de tu sitio Jekyll:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;####################&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Google Analytics #&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;####################&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;jekyll_ga&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;profileID&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ga:&amp;lt;user_id&amp;gt;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# Profile ID &lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;last week&lt;/span&gt;          &lt;span class=&quot;c1&quot;&gt;# Beginning of report&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;now&lt;/span&gt;                  &lt;span class=&quot;c1&quot;&gt;# End of report&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;compare_period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;      
+  &lt;span class=&quot;na&quot;&gt;metrics&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ga:pageviews&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# Metrics code&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;dimensions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ga:pagePath&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# Dimensions&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;segment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;                  &lt;span class=&quot;c1&quot;&gt;# Optional&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;filters&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;                  &lt;span class=&quot;c1&quot;&gt;# Optional&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;                &lt;span class=&quot;c1&quot;&gt;# Sort posts by this metric&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;max_results&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10000&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;# Number of the maximum results get by the API&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;              &lt;span class=&quot;c1&quot;&gt;# Debug mode&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;profileID&lt;/code&gt; es el perfil de informe específico del que deseas extraer datos. Encuéntralo yendo a la página de informes en Google Analytics. Mira la URL. Se verá algo como &lt;code class=&quot;highlighter-rouge&quot;&gt;https://www.google.com/analytics/web/?hl=en&amp;amp;pli=1#report/visitors-overview/###########p######/&lt;/code&gt;. El número después de &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; al final de la URL es su &lt;code class=&quot;highlighter-rouge&quot;&gt;profileID&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;El &lt;code class=&quot;highlighter-rouge&quot;&gt;start&lt;/code&gt; y el &lt;code class=&quot;highlighter-rouge&quot;&gt;end&lt;/code&gt; indican el rango de tiempo de los datos que desea consultar. Se analizan utilizando la gema &lt;code class=&quot;highlighter-rouge&quot;&gt;Chronic&lt;/code&gt; de Ruby, por lo que puede incluir fechas relativas o absolutas, como &lt;code class=&quot;highlighter-rouge&quot;&gt;now&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;yesterday&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;last month&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;2 weeks ago&lt;/code&gt; &lt;strong&gt;(solo en inglés)&lt;/strong&gt;. Consulta &lt;a href=&quot;https://github.com/mojombo/chronic#examples&quot;&gt;la documentación de Chronic&lt;/a&gt; para obtener más opciones.&lt;/li&gt;
+  &lt;li&gt;El valor de &lt;code class=&quot;highlighter-rouge&quot;&gt;metrics&lt;/code&gt; es lo que desea medir a partir de sus datos de Google Analytics. Por lo general, esto será &lt;code class=&quot;highlighter-rouge&quot;&gt;ga:pageviews&lt;/code&gt; o &lt;code class=&quot;highlighter-rouge&quot;&gt;ga:visits&lt;/code&gt;, pero puede ser cualquier métrica disponible en Google Analytics. Especifique sólo uno. Consulta &lt;a href=&quot;http://ga-dev-tools.appspot.com/explorer/?csw=1&quot;&gt;el explorador de consultas de Google Analytics&lt;/a&gt; para experimentar con diferentes métricas. (El parametro &lt;code class=&quot;highlighter-rouge&quot;&gt;dimension&lt;/code&gt; siempre debe ser &lt;code class=&quot;highlighter-rouge&quot;&gt;ga:pagePath&lt;/code&gt;). Te recomiendo la siguiente cadena &lt;code class=&quot;highlighter-rouge&quot;&gt;ga:pageviews,ga:bounceRate,ga:session,ga:users,ga:newUsers&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Las claves &lt;code class=&quot;highlighter-rouge&quot;&gt;segment&lt;/code&gt; y &lt;code class=&quot;highlighter-rouge&quot;&gt;filters&lt;/code&gt; son parámetros opcionales para su consulta. Consulta &lt;a href=&quot;http://ga-dev-tools.appspot.com/explorer/?csw=1&quot;&gt;el explorador de consultas de Google Analytics&lt;/a&gt; para obtener una descripción de cómo usarlos, o simplemente omítalos.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nuevos params en v2:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Si &lt;code class=&quot;highlighter-rouge&quot;&gt;compare_period&lt;/code&gt; es verdadero, esto creará dos informes (&lt;strong&gt;ejemplo:&lt;/strong&gt; si la clave &lt;code class=&quot;highlighter-rouge&quot;&gt;start&lt;/code&gt; está configurado como “last month”, se creará un informe desde “end” hasta “start” (como siempre) y el segundo informe empezará en el “start” del último reporte y para el caso de “last month” su “start” se establecerá 2 meses antes, con estos datos se creará una comparación).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;necesitas-automatizar-esto&quot;&gt;¿Necesitas automatizar esto?&lt;/h3&gt;
+
+&lt;p&gt;Tal vez estás pensando que tendrás que hacer un nuevo push cada vez que necesites actualizar tus estadísticas. Y tienes razón, pero CircleCI viene aquí de nuevo al rescate. Todo lo que necesitas es &lt;a href=&quot;https://circleci.com/docs/2.0/workflows/#nightly-example&quot;&gt;programar una compilación nocturna con CircleCI&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Aquí está mi propia implementación en &lt;a href=&quot;https://github.com/z3nth10n/z3nth10n.github.io/blob/b9f7ef42e5fce33800aab80f8eabe6868b38f8e5/circle.yml#L56&quot;&gt;mi configuración CircleCI.yml, otra vez&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;na&quot;&gt;nightly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;triggers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;cron&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;filters&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                        &lt;span class=&quot;na&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;gh-pages-ci&lt;/span&gt;
+                        &lt;span class=&quot;na&quot;&gt;ignore&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Google&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Analytics&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Sensitive&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Data&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Por supuesto, necesitarás especificar el contexto otra vez.&lt;/p&gt;
+
+&lt;h3 id=&quot;necesitas-ejemplos&quot;&gt;¿Necesitas ejemplos?&lt;/h3&gt;
+
+&lt;p&gt;Mira esos dos archivos HTML que creé para representar mi configuración:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ni&quot;&gt;&amp;lt;div id=&quot;genstats&quot; class=&quot;col-md-3 align-sm-right vertical-margin order-xs-fourth col-xs-expand&quot;&amp;gt;
+    &amp;lt;box class=&quot;both-offset expand-width&quot;&amp;gt;
+        &amp;lt;p&amp;gt;
+            &amp;lt;h3&amp;gt;Statistics&amp;lt;/h3&amp;gt;
+            &amp;lt;p&amp;gt;(last {{ site.data.period }} days)&amp;lt;/p&amp;gt;
+        &amp;lt;/p&amp;gt;
+
+        {% for header in site.data.headers %}
+        
+            &amp;lt;p&amp;gt;
+                {% assign hvalue = header.value | plus: 0 %}
+                {{ hvalue | round }} {{ header.name }}
+            &amp;lt;/p&amp;gt;
+            &amp;lt;p class=&quot;sub&quot;&amp;gt;
+                    {% if site.jekyll_ga.compare_period %}
+                    (
+                    last {{ site.data.period }} days: 
+                    {% if header.value_perc != &quot;∞&quot; %}
+                        {% assign perc = header.value_perc | plus: 0 %}
+
+                        {% if perc &amp;gt; 0 %}
+                            &amp;lt;i class=&quot;fas fa-arrow-up color-green&quot;&amp;gt;&amp;lt;/i&amp;gt;
+                        {% elsif perc == 0 %}
+                            &amp;lt;i class=&quot;fas fa-equals&quot;&amp;gt;&amp;lt;/i&amp;gt;
+                        {% elsif perc &amp;lt; 0 %}
+                            &amp;lt;i class=&quot;fas fa-arrow-down color-red&quot;&amp;gt;&amp;lt;/i&amp;gt;
+                        {% endif %}
+
+                        {{ perc | round }} % | 
+                        
+                        {% assign diff = header.diff_value %}
+                        {% if diff &amp;gt; 0 %}+{% endif %}
+                        {{ diff | round }} than last period
+                    {% else %}
+                    ∞ %    
+                    {% endif %}
+                    )
+                {% endif %}
+            &amp;lt;/p&amp;gt;
+
+        {% endfor %}
+    &amp;lt;/box&amp;gt;
+&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto muestra un cuadro con las diferentes métricas seleccionadas en tu parámetro de configuración &lt;code class=&quot;highlighter-rouge&quot;&gt;metrics&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.gyazo.com/3105ff73fc023c5cf3506b9adcd63577.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yo uso esto para cualquier publicación:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ni&quot;&gt;{% if page.stats.pageviews != blank %}
+    {% assign hvalue = header.value | plus: 0 %}
+    {{ hvalue | round }} views
+                
+    {% if site.jekyll_ga.compare_period %}
+        (
+        last {{ site.data.period }} days: 
+        {% if page.stats.pageviews_perc != &quot;∞&quot; %}
+            {% assign perc = page.stats.pageviews_perc | plus: 0 %}
+
+            {% if perc &amp;gt; 0 %}
+                &amp;lt;i class=&quot;fas fa-arrow-up color-green&quot;&amp;gt;&amp;lt;/i&amp;gt;
+            {% elsif perc == 0 %}
+                &amp;lt;i class=&quot;fas fa-equals&quot;&amp;gt;&amp;lt;/i&amp;gt;
+            {% elsif perc &amp;lt; 0 %}
+                &amp;lt;i class=&quot;fas fa-arrow-down color-red&quot;&amp;gt;&amp;lt;/i&amp;gt;
+            {% endif %}
+
+            {{ perc | round }} % |
+            
+            {% assign diff = page.stats.diff_pageviews %}
+            {% if diff &amp;gt; 0 %}+{% endif %}
+            {{ diff | round }} than last period
+        {% else %}
+        ∞ %    
+        {% endif %}
+        )
+    {% endif %}
+    .
+{% endif %}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Sólo muestra &lt;code class=&quot;highlighter-rouge&quot;&gt;xx visitas (porcentaje % | diferencia entre dos rangos)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;problemas&quot;&gt;¿Problemas?&lt;/h2&gt;
+
+&lt;p&gt;¿Tienes problemas? Repórtalos en &lt;a href=&quot;https://github.com/uta-org/jekyll-ga-v2/issues&quot;&gt;la sección de problemas&lt;/a&gt;. &lt;strong&gt;¡Gracias por el feedback!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;¡Un saludo!&lt;/strong&gt;&lt;/p&gt;
 </description>
                     
                     <pubDate>Fri, 22 Mar 2019 01:35:00 +0000</pubDate>
@@ -207,7 +416,7 @@
                     <title>Como usar Patreon en Jekyll (tutorial sobre el plugin jekyll-patreon)</title>
                     
                     
-                        <description>&lt;p&gt;En este post explicaré como usar el plugin llamado jekyll-patreon, el cual he creado para poder implementar un widget el cual nos muestre información sobre nuestro perfil de Patreon.&lt;/p&gt;
+                        <description>&lt;p&gt;En este post explicaré como usar el plugin llamado &lt;strong&gt;jekyll-patreon&lt;/strong&gt;, el cual he creado para poder implementar un widget el cual nos muestre información sobre nuestro perfil de Patreon.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Este plugin requiere Ruby 2.5+ y Jekyll 3.8+&lt;/p&gt;
 
@@ -311,9 +520,9 @@ patreon_goal_2: &quot;...&quot;
 
 &lt;p&gt;Aquí deberás de crear tantas traducciones como metas tengas en la página/perfil de Patreon. (&lt;strong&gt;Nota:&lt;/strong&gt; el índice de comienzo es el 0 (cero))&lt;/p&gt;
 
-&lt;h2 id=&quot;problemas&quot;&gt;Problemas&lt;/h2&gt;
+&lt;h2 id=&quot;problemas&quot;&gt;¿Problemas?&lt;/h2&gt;
 
-&lt;p&gt;¿Tienes problemas? Reportalos en &lt;a href=&quot;https://github.com/uta-org/jekyll-patreon/issues&quot;&gt;la sección de problemas&lt;/a&gt;. &lt;strong&gt;¡Gracias por el feedback!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;¿Tienes problemas? Repórtalos en &lt;a href=&quot;https://github.com/uta-org/jekyll-patreon/issues&quot;&gt;la sección de problemas&lt;/a&gt;. &lt;strong&gt;¡Gracias por el feedback!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;¡Un saludo!&lt;/strong&gt;&lt;/p&gt;
 </description>
