@@ -277,7 +277,6 @@ jekyll_ga:
   start: last week          # Beginning of report
   end: now                  # End of report
   compare_period: true      # If set to true this will create two reports (example: if start is set to "last month", this will create one report from "end" to "start" and the second report its end will be at the start of the first report, with this data a comparation will be created)
-  show_total: true # If set to true this will show the total without having care of any datetime (period) (only in the index)
   metrics: ga:pageviews,ga:bounceRate,ga:sessions,ga:users,ga:newUsers      # Metrics code
   dimensions: ga:pagePath   # Dimensions
   segment:                  # Optional
