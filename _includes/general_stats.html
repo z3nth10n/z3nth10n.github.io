@@ -19,19 +19,29 @@
                     {% if header.value_perc != "∞" %}
                         {% assign perc = header.value_perc | plus: 0 %}
 
-                        {% if perc > 0 %}
-                            <i class="fas fa-arrow-up color-green"></i>
-                        {% elsif perc == 0 %}
-                            <i class="fas fa-equals"></i>
-                        {% elsif perc < 0 %}
-                            <i class="fas fa-arrow-down color-red"></i>
+                        {% if header.name != "bounceRate" %}
+                            {% if perc > 0 %}
+                                <i class="fas fa-arrow-up color-green"></i>
+                            {% elsif perc == 0 %}
+                                <i class="fas fa-equals"></i>
+                            {% elsif perc < 0 %}
+                                <i class="fas fa-arrow-down color-red"></i>
+                            {% endif %}
+                        {% else %}
+                            {% if perc < 0 %}
+                                <i class="fas fa-arrow-up color-green"></i>
+                            {% elsif perc == 0 %}
+                                <i class="fas fa-equals"></i>
+                            {% elsif perc > 0 %}
+                                <i class="fas fa-arrow-down color-red"></i>
+                            {% endif %}
                         {% endif %}
 
                         {{ perc | round }} % | 
                         
                         {% assign diff = header.diff_value %}
                         {% if diff > 0 %}+{% endif %}
-                        {{ diff | round }} {% t 'stats_last_period' %}
+                        {{ diff | round }}{% if header.name == "bounceRate" %}%{% endif %} {% t 'stats_last_period' %}
                     {% else %}
                     ∞ %    
                     {% endif %}
