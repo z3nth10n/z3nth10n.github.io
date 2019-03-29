@@ -172,7 +172,7 @@ $(document).ready(function () {
   var dataObj = { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray };
 
   /*console.log(urlArray);
-  console.log('https://z3nth10n.github.io');
+  console.log('http://z3nth10n.net');
   console.log(unescape("https://disqus.com/api/3.0/threads/set.jsonp?" + $.param(dataObj)));*/
     
   $.ajax({
@@ -455,7 +455,7 @@ $(".navbar-collapse ul li a").click(function() {
 <script>
 function addTohistory() {
   if (!window.location.host.startsWith("127.0.0.1")) {
-    history.pushState({}, '404', 'https://z3nth10n.github.io/404.html');
+    history.pushState({}, '404', 'http://z3nth10n.net/404.html');
   }
 }
 </script>
