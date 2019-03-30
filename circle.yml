@@ -49,7 +49,7 @@ jobs:
     schedule_posts:
         <<: *defaults
         docker:
-            - machine
+          - image: circleci/ruby:2.6.0-node
         filters:
             branches:
                 only:
