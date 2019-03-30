@@ -215,6 +215,7 @@ category-desc:
     category_caption: 'Categoría'
     jekyll-plugin: "Una categoría donde mostraré algunos de los plugins de Jekyll que he desarrollado."
     jekyll: "Una categoría donde mostraré tutoriales para Jekyll."
+    tutorial: "Una categoría donde publicaré tutoriales de cualquier tipo."
     total-post-cat: "Total de publicaciones para esta categoría"
 
 #############
