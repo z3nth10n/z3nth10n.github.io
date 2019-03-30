@@ -48,6 +48,8 @@ jobs:
                 command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
     schedule_posts:
         <<: *defaults
+        docker:
+            - machine
         filters:
             branches:
                 only:
