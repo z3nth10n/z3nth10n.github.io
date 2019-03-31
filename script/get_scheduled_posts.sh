@@ -5,6 +5,10 @@ IFS="="
 schedule_date=""
 schedule_post=""
 
+if [[ ! -d ~/repo/scheduled-posts ]]; then
+    exit 1
+fi
+
 while read -r name value
 do
     if [[ $name == "schedule_date" ]]; then
