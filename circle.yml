@@ -2,9 +2,9 @@ defaults: &defaults
     working_directory: ~/repo
 
 version: 2
+orbs:
+    queue: eddiewebb/queue@volatile
 jobs:
-    orbs:
-        queue: eddiewebb/queue@volatile
     build:
         <<: *defaults
         docker:
