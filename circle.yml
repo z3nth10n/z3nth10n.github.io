@@ -3,6 +3,8 @@ defaults: &defaults
 
 version: 2
 jobs:
+    orbs:
+        queue: eddiewebb/queue@volatile
     build:
         <<: *defaults
         docker:
