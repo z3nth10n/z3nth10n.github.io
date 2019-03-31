@@ -60,7 +60,7 @@ jobs:
             - checkout 
             - run:
                 name: Executing scheduler
-                command: bash ~/repo/script/get_scheduled_posts
+                command: bash ~/repo/script/get_scheduled_posts.sh
 workflows:
     version: 2
     test-deploy:

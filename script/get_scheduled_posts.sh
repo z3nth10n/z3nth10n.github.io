@@ -1,7 +1,5 @@
 #!/bin/bash -ex
 
-ls -l
-
 IFS="="
 
 schedule_date=""
@@ -21,4 +19,4 @@ do
             echo "You have bad configuration on circle.yml ($schedule_post)"
         fi
     fi
-done < "sch.ini"
+done < "script/sch.ini"
