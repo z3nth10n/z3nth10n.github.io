@@ -1,6 +1,7 @@
 defaults: &defaults
     working_directory: ~/repo
-   
+
+version: 2
 jobs:
     build:
         <<: *defaults
@@ -66,8 +67,8 @@ jobs:
                 
 orbs:
     queue: eddiewebb/queue@volatile
-version: 2
 workflows:
+    version: 2
     test-deploy:
         jobs:
             - schedule_posts:
