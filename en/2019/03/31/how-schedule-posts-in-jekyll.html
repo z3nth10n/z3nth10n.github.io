@@ -249,6 +249,8 @@ window.cookieconsent.initialise({
 
 <p>Requires a that you Jekyll repository has a <a href="https://z3nth10n.net/en/2019/03/20/jekyll-plugin-issue-with-github-pages">CircleCI environment</a> set.</p>
 
+<p>You’ll need to access to <a href="https://github.com/uta-org/jekyll-scheduler">the repository of this script</a> to download some files that you’ll need in this tutorial.</p>
+
 <h2 id="setup-steps">Setup steps</h2>
 
 <ol>
@@ -289,20 +291,23 @@ window.cookieconsent.initialise({
       <li><code class="highlighter-rouge">cp sch.ini &lt;path to your jekyll site&gt;/script/sch.ini &amp;&amp; cp get_scheduled_posts.sh &lt;path to your jekyll site&gt;/script/get_scheduled_posts.sh</code></li>
     </ul>
   </li>
-  <li>Create a folder called “schedule” inside “_posts” folder. (<strong>Note:</strong> there will be the scheduled posts)
+  <li>Create a folder called “scheduled-posts” inside your site root folder.
     <ul>
-      <li><code class="highlighter-rouge">cd _posts &amp;&amp; mkdir schedule</code></li>
+      <li><code class="highlighter-rouge">mkdir scheduled-posts</code></li>
     </ul>
   </li>
   <li>Copy this on your <code class="highlighter-rouge">circle.yml</code> configuration file:</li>
 </ol>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">defaults</span><span class="pi">:</span> <span class="nl">&amp;defaults</span>
+<h4 id="dont-use-this-method">Don’t use this method!</h4>
+
+<blockquote>
+  <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">defaults</span><span class="pi">:</span> <span class="nl">&amp;defaults</span>
     <span class="na">working_directory</span><span class="pi">:</span> <span class="s">~/repo</span>
     
 <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
 <span class="na">jobs</span><span class="pi">:</span>
-<span class="err">	</span><span class="c1"># Your jobs here... </span>
+  <span class="c1"># Your jobs here... </span>
     <span class="na">schedule_posts</span><span class="pi">:</span>
         <span class="s">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*defaults</span>
         <span class="na">docker</span><span class="pi">:</span>
@@ -341,9 +346,37 @@ window.cookieconsent.initialise({
                             <span class="pi">-</span> <span class="s">master</span>
         <span class="na">jobs</span><span class="pi">:</span>
             <span class="pi">-</span> <span class="s">schedule_posts</span>
+</code></pre></div>  </div>
+
+  <p><strong>Note:</strong> This will execute the scheduler any time you make a push. Or every day at 12AM.</p>
+</blockquote>
+
+<p><strong>Note2:</strong> This is not the optimal way to accomplish the task, I strongly recommend you to use this as an unique step in your main job, and put this after <code class="highlighter-rouge">checkout</code> happens. See <a href="https://github.com/z3nth10n/z3nth10n.github.io/blob/4500f380cd722a25e83108d5335edb87a9a3274e/circle.yml#L23">my example at this file</a>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+                <span class="na">name</span><span class="pi">:</span> <span class="s">Executing scheduler</span>
+                <span class="na">command</span><span class="pi">:</span> <span class="s">bash ~/repo/script/get_scheduled_posts.sh</span>
 </code></pre></div></div>
 
-<p><strong>Note:</strong> This will execute the scheduler any time you make a push. Or every day at 12AM.</p>
+<ol>
+  <li>You’ll need to sync all your scheduled posts in local, for accomplish that create a Git alias in your environment to automatize this on the local-side.</li>
+</ol>
+
+<p>For this, you’ll need to download <code class="highlighter-rouge">scheduler-alias.sh</code>, with the following command:</p>
+
+<p><code class="highlighter-rouge">wget https://raw.githubusercontent.com/uta-org/jekyll-scheduler/master/scheduler-alias.sh -O ~/UnitedTeamworkAssociation/scheduler-alias.sh</code></p>
+
+<p>And then, create an alias for it:</p>
+
+<p><code class="highlighter-rouge">git config --global alias.publish '!script="$HOME/UnitedTeamworkAssociation/scheduler-alias.sh" &amp;&amp; bash "$script"'</code></p>
+
+<p>All together:</p>
+
+<p><code class="highlighter-rouge">wget https://raw.githubusercontent.com/uta-org/jekyll-scheduler/master/scheduler-alias.sh -O ${HOME}/UnitedTeamworkAssociation/scheduler-alias.sh &amp;&amp; git config --global alias.publish '!script="$HOME/UnitedTeamworkAssociation/scheduler-alias.sh" &amp;&amp; bash "$script"'</code></p>
+
+<p>So, instead of using <code class="highlighter-rouge">git push</code> use <code class="highlighter-rouge">git publish</code>.</p>
+
+<p><strong>Note:</strong> This command must be called from you repository root.</p>
 
 <ol>
   <li>Enjoy!</li>
@@ -351,7 +384,7 @@ window.cookieconsent.initialise({
 
 <h3 id="how-does-the-script-works">How does the script works?</h3>
 
-<p>It simply copies the files required by the date from the “schedule” folder to the “_posts” one.</p>
+<p>It simply copies the files required by the date from the “scheduled-posts” folder to the “_posts” one.</p>
 
 <p>So, just simply write posts as you normally do.</p>
 
