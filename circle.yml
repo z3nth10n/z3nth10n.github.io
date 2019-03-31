@@ -47,7 +47,7 @@ jobs:
                 name: Run Build HTML
                 command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
     schedule_posts:
-        <<: *defaults
+        working_directory: ~/repo
         docker:
           - image: circleci/ruby:2.6.0-node
         filters:
