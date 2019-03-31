@@ -65,6 +65,7 @@ jobs:
                 ignore:
                   - master
         steps:
+            - checkout 
             - run:
                 name: Executing scheduler
                 command: bash ~/repo/script/get_scheduled_posts.sh
@@ -78,7 +79,7 @@ workflows:
                         only:
                           - gh-pages-ci
                         ignore:
-                          - master             
+                          - master              
     nightly:
         triggers:
             - schedule:
