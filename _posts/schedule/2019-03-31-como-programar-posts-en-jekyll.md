@@ -72,6 +72,24 @@ workflows:
     version: 2
     test-deploy:
         jobs:
+            - schedule_posts:
+                filters:
+                    branches:
+                        only:
+                          - gh-pages-ci
+                        ignore:
+                          - master             
+    nightly:
+        triggers:
+            - schedule:
+                cron: "0 0 * * *"
+                filters:
+                    branches:
+                        only:
+                            - gh-pages-ci
+                        ignore:
+                            - master
+        jobs:
             - schedule_posts
 ```
 

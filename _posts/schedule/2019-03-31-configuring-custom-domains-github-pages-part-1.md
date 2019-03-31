@@ -33,6 +33,27 @@ In this tutorial I will show you how to configure a domain with [name.com](https
 
 ![](https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/04.PNG?raw=true)
 
+5.1. It's required that you create a `CNAME` file in your site root with the domain you'll manage:
+
+In my case:
+
+- z3nth10n.net
+- www.zenth10n.net
+
+But there is a Bash command to do that:
+
+```bash
+printf "<domain>\n<domain with www>" > CNAME && git add . && git commit -m "Added CNAME" && git push
+```
+
+Example:
+
+```bash
+printf "zenth10n.net\nwww.zenth10n.net" > CNAME && git add . && git commit -m "Added CNAME" && git push
+```
+
+![](https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/05.PNG?raw=true)
+
 6. Now go to [Cloudflare](https://cloudflare.com) and register a new account:
 
 ![](https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/06.PNG?raw=true)

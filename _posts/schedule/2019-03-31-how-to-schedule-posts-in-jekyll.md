@@ -72,8 +72,28 @@ workflows:
     version: 2
     test-deploy:
         jobs:
+            - schedule_posts:
+                filters:
+                    branches:
+                        only:
+                          - gh-pages-ci
+                        ignore:
+                          - master             
+    nightly:
+        triggers:
+            - schedule:
+                cron: "0 0 * * *"
+                filters:
+                    branches:
+                        only:
+                            - gh-pages-ci
+                        ignore:
+                            - master
+        jobs:
             - schedule_posts
 ```
+
+**Note:** This will execute the scheduler any time you make a push. Or every day at 12AM.
 
 6. Enjoy!
 
