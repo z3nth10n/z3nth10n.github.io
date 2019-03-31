@@ -2,9 +2,17 @@
 
 GIT_COMMIT_DESC="$1"
 
+echo "Posts 1"
 ls -l ~/repo/_posts
+
+echo "Posts 2"
 ls -l ~/repo/_posts/schedule
+
+echo "Posts 3"
 ls -l ~/repo/_site/
+
+echo "Posts 4"
+ls -l ~/repo/_site/en/2019/03/31
 
 # Setup git so we can use it
 git config --global user.email "z3nth10n@gmail.com"
