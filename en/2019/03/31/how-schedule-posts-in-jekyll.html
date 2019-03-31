@@ -321,8 +321,28 @@ window.cookieconsent.initialise({
     <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
     <span class="na">test-deploy</span><span class="pi">:</span>
         <span class="na">jobs</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">schedule_posts</span><span class="pi">:</span>
+                <span class="na">filters</span><span class="pi">:</span>
+                    <span class="na">branches</span><span class="pi">:</span>
+                        <span class="na">only</span><span class="pi">:</span>
+                          <span class="pi">-</span> <span class="s">gh-pages-ci</span>
+                        <span class="na">ignore</span><span class="pi">:</span>
+                          <span class="pi">-</span> <span class="s">master</span>             
+    <span class="na">nightly</span><span class="pi">:</span>
+        <span class="na">triggers</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">schedule</span><span class="pi">:</span>
+                <span class="na">cron</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*"</span>
+                <span class="na">filters</span><span class="pi">:</span>
+                    <span class="na">branches</span><span class="pi">:</span>
+                        <span class="na">only</span><span class="pi">:</span>
+                            <span class="pi">-</span> <span class="s">gh-pages-ci</span>
+                        <span class="na">ignore</span><span class="pi">:</span>
+                            <span class="pi">-</span> <span class="s">master</span>
+        <span class="na">jobs</span><span class="pi">:</span>
             <span class="pi">-</span> <span class="s">schedule_posts</span>
 </code></pre></div></div>
+
+<p><strong>Note:</strong> This will execute the scheduler any time you make a push. Or every day at 12AM.</p>
 
 <ol>
   <li>Enjoy!</li>
