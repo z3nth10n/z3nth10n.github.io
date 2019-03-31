@@ -14,6 +14,7 @@ do
 
         # Then do the magic
         if [[ $schedule_date == "$(date +%Y-%m-%d)" && -d ~/repo/ ]]; then
+            echo "Publishing post: $schedule_post"
             mv ~/repo/_posts/schedule/$schedule_post ~/repo/_posts/$schedule_post
         elif [[ ! -d ~/repo/ ]]; then
             echo "You have bad configuration on circle.yml ($schedule_post)"

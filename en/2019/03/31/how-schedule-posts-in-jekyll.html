@@ -314,6 +314,7 @@ window.cookieconsent.initialise({
                 <span class="na">ignore</span><span class="pi">:</span>
                   <span class="pi">-</span> <span class="s">master</span>
         <span class="na">steps</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">checkout</span> 
             <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
                 <span class="na">name</span><span class="pi">:</span> <span class="s">Executing scheduler</span>
                 <span class="na">command</span><span class="pi">:</span> <span class="s">bash ~/repo/script/get_scheduled_posts.sh</span>
@@ -327,7 +328,7 @@ window.cookieconsent.initialise({
                         <span class="na">only</span><span class="pi">:</span>
                           <span class="pi">-</span> <span class="s">gh-pages-ci</span>
                         <span class="na">ignore</span><span class="pi">:</span>
-                          <span class="pi">-</span> <span class="s">master</span>             
+                          <span class="pi">-</span> <span class="s">master</span>              
     <span class="na">nightly</span><span class="pi">:</span>
         <span class="na">triggers</span><span class="pi">:</span>
             <span class="pi">-</span> <span class="na">schedule</span><span class="pi">:</span>
