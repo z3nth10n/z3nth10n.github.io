@@ -1,8 +1,6 @@
 defaults: &defaults
     working_directory: ~/repo
    
-orbs:
-  queue: eddiewebb/queue@volatile
 version: 2
 jobs:
     build:
@@ -64,6 +62,8 @@ jobs:
                 name: Executing scheduler
                 command: bash ~/repo/script/get_scheduled_posts.sh
 workflows:
+    orbs:
+        queue: eddiewebb/queue@volatile
     version: 2
     test-deploy:
         jobs:
