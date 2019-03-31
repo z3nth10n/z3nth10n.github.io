@@ -28,8 +28,8 @@
   <meta name="description" content="Blog and website of z3nth10n, blogging mainly for tech.">
   <meta name="author" content="z3nth10n">
   <meta name="keywords" content="z3nth10n, dev">
-  <link rel="canonical" href="/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html">
-  <title>{ z3nth10n } | Jekyll-ga-v2 a plugin to get Google Analytics data into your site</title>
+  <link rel="canonical" href="/en/2019/03/31/how-schedule-posts-in-jekyll.html">
+  <title>{ z3nth10n } | How to schedule posts in Jekyll</title>
 
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -223,244 +223,116 @@ window.cookieconsent.initialise({
 <!-- Swipe Instructions End -->
 
 
-          <h1><strong>Jekyll-ga-v2 a plugin to get Google Analytics data into your site</strong></h1>
+          <h1><strong>How to schedule posts in Jekyll</strong></h1>
           <h4>
-            <strong>22 Mar 2019</strong>
+            <strong>31 Mar 2019</strong>
             <small>
               . Category:
-              <a class="category" href="/categories/jekyll-plugin">
-                jekyll-plugin
+              <a class="category" href="/categories/tutorial">
+                tutorial
               </a>
                 
               .
               
-    
-    0 views
-                
-    
-        (
-        last 3 days: 
-        
-        ∞ %    
-        
-        )
-    
-    .
-
-              <a href="/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html#disqus_thread">Comments</a>
+              <a href="/en/2019/03/31/how-schedule-posts-in-jekyll.html#disqus_thread">Comments</a>
               <br />
               
             </small>
           </h4>
 
           <section class="text-justify">
-            <p>In this post I will explain how to use the plugin called <strong>jekyll-ga-v2</strong>. I created this plugin to be able to implement a widget that shows information that Google Analytics can offer to us.</p>
-
-<p><strong>Note:</strong> Requires Ruby 2.5+ and Jekyll 3.8+</p>
-
-<h2 id="what-is-this-used-for">What is this used for?</h2>
+            <p>In this post I will explain how to use <strong>Jekyll Scheduler</strong> a bash utility to schedule Jekyll post upload.</p>
 
 <blockquote>
-  <p>A Jekyll plugin that downloads Google Analytics data and adds it to your Jekyll website. The Google Analytics metric is added to each post/page’s metadata and is accessible as <code class="highlighter-rouge">page.stats</code>. It can be printed in a template.</p>
+  <p>Jekyll Scheduler is a bash script (executed preferably by CircleCI nightly triggers) that schedule your posts.</p>
 </blockquote>
 
-<h2 id="installation">Installation</h2>
+<p>Requires a that you Jekyll repository has a <a href="https://z3nth10n.net/en/2019/03/20/jekyll-plugin-issue-with-github-pages">CircleCI environment</a> set.</p>
 
-<p>This plugin requires three Ruby gems:</p>
+<h2 id="setup-steps">Setup steps</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>gem <span class="nb">install </span>chronic
-<span class="nv">$ </span><span class="nb">sudo </span>gem <span class="nb">install </span>google-api-client
-<span class="nv">$ </span><span class="nb">sudo </span>gem <span class="nb">install </span>googleauth
+<ol>
+  <li>Clone this repo outside of your Jekyll site.
+    <ul>
+      <li><code class="highlighter-rouge">git clone https://github.com/uta-org/jekyll-scheduler.git</code></li>
+    </ul>
+  </li>
+  <li>Create a <code class="highlighter-rouge">sch.ini</code> file, with this configuration:</li>
+</ol>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">schedule_date</span><span class="p">=</span><span class="s">&lt;date in YYYY-MM-DD format&gt;</span>
+<span class="py">schedule_post</span><span class="p">=</span><span class="s">&lt;url to your posts&gt;</span>
 </code></pre></div></div>
 
-<p>Add this line to your site’s Gemfile:</p>
+<p><em>Example:</em></p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'jekyll-ga-v2'</span>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">schedule_date</span><span class="p">=</span><span class="s">2019-03-31</span>
+<span class="py">schedule_post</span><span class="p">=</span><span class="s">2019-03-31-how-schedule-posts-in-jekyll.md</span>
+<span class="py">schedule_date</span><span class="p">=</span><span class="s">2019-03-31</span>
+<span class="py">schedule_post</span><span class="p">=</span><span class="s">2019-03-31-configuring-custom-domains-github-pages-part-1.md</span>
+<span class="py">schedule_date</span><span class="p">=</span><span class="s">2019-04-01</span>
+<span class="py">schedule_post</span><span class="p">=</span><span class="s">2019-04-01-configuring-custom-domains-github-pages-part-2.md</span>
 </code></pre></div></div>
 
-<h3 id="set-up-a-service-account-for-the-google-data-api">Set up a service account for the Google data API</h3>
+<blockquote>
+  <p>This will schedule two posts for 2019-03-31 and one for 2019-04-01.</p>
+</blockquote>
 
-<ul>
-  <li>Go to https://code.google.com/apis/console/b/0/ and create a new  project.</li>
-  <li>Turn on the Analytics API and accept the terms of service</li>
-  <li>Go to <code class="highlighter-rouge">API Access</code> on the left sidebar menu, create a new oauth 2.0 client ID, give your project a name, and click <code class="highlighter-rouge">next</code>.</li>
-  <li>Select Application type: <code class="highlighter-rouge">Service account</code>, and click <code class="highlighter-rouge">Create client ID</code></li>
-  <li>note the private key’s password. It will probably be <code class="highlighter-rouge">notasecret</code> unless Google changes something. You’ll need to use this value to decrypt the PCKS12 file (later explanined).</li>
-  <li>Download the private key. Save this file because you can only download it once.</li>
-  <li>Note the <code class="highlighter-rouge">Email address</code> for the Service account. You’ll need this for your configuration settings and in the next step.</li>
-  <li>Log into Google Analytics and add the service account email address as a user of your Google Analytics profile: From a report page, <code class="highlighter-rouge">Admin &gt; select a profile &gt; Users &gt; New User</code></li>
-</ul>
+<ol>
+  <li>Create a “script” folder on your site root path.
+    <ul>
+      <li><code class="highlighter-rouge">mkdir script</code></li>
+    </ul>
+  </li>
+  <li>Copy this script and the <code class="highlighter-rouge">ini</code> file into “script” folder.
+    <ul>
+      <li><code class="highlighter-rouge">cp sch.ini &lt;path to your jekyll site&gt;/script/sch.ini &amp;&amp; cp get_scheduled_posts.sh &lt;path to your jekyll site&gt;/script/get_scheduled_posts.sh</code></li>
+    </ul>
+  </li>
+  <li>Create a folder called “schedule” inside “_posts” folder. (<strong>Note:</strong> there will be the scheduled posts)
+    <ul>
+      <li><code class="highlighter-rouge">cd _posts &amp;&amp; mkdir schedule</code></li>
+    </ul>
+  </li>
+  <li>Copy this on your <code class="highlighter-rouge">circle.yml</code> configuration file:</li>
+</ol>
 
-<h4 id="configuration-of-the-environment-variables">Configuration of the environment variables</h4>
-
-<p><a href="https://github.com/googleapis/google-auth-library-ruby#example-environment-variables">GoogleAuth needs the following environment variables to work.</a></p>
-
-<p>There is an easy way to implement this using CircleCI (maybe you are using similar to deploy your Jekyll website). If you’re not familiar with CircleCI you’ll need to read carefully this post on my blog about “<a href="https://z3nth10n.github.io/en/2019/03/20/jekyll-plugin-issue-with-github-pages">How To Use Any Jekyll Plugins on GitHub Pages with CircleCI</a>”.</p>
-
-<p>Once you implement it, you’ll need to go to your <a href="https://circleci.com/dashboard">CircleCI dashboard</a> search your project settings and go under “<strong>Organization &gt; Contexts</strong>” and create <a href="https://circleci.com/docs/2.0/contexts/">a new Context</a>.</p>
-
-<p>Look at my website <a href="https://github.com/z3nth10n/z3nth10n.github.io/blob/b9f7ef42e5fce33800aab80f8eabe6868b38f8e5/circle.yml#L54">CircleCI.yml configuration here</a>. The only thing remaining is to create the appropiate Context name, and then, create the required env vars:</p>
-
-<p><img src="https://i.gyazo.com/3ad97b8e09ee7e05b8496f1cd631affa.png" alt="" /></p>
-
-<p><strong>Note:</strong> The <code class="highlighter-rouge">GOOGLE_PRIVATE_KEY</code> value is the output from OpenSSL. You’ll need to execute the following command to get it from the <code class="highlighter-rouge">*.p12</code> file:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>openssl pkcs12 <span class="nt">-in</span> filename.p12 <span class="nt">-clcerts</span> <span class="nt">-nodes</span> <span class="nt">-nocerts</span>
-</code></pre></div></div>
-
-<p>You’ll need to replace all the new lines characters by <code class="highlighter-rouge">\n</code>. This can be easily done with Sublime Text 3 specifying the Regex options and the replacing <code class="highlighter-rouge">\n</code> by <code class="highlighter-rouge">\\n</code>.</p>
-
-<h2 id="configuration">Configuration</h2>
-
-<p>To configure <code class="highlighter-rouge">jekyll-ga-v2</code>, you need to specify some information about your Google Analytics service account (as set up above) and your report settings.</p>
-
-<p>Add the following block to your Jekyll site’s <code class="highlighter-rouge">_config.yml</code> file:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">####################</span>
-<span class="c1"># Google Analytics #</span>
-<span class="c1">####################</span>
-
-<span class="na">jekyll_ga</span><span class="pi">:</span>
-  <span class="na">profileID</span><span class="pi">:</span> <span class="s">ga:&lt;user_id&gt;</span>   <span class="c1"># Profile ID </span>
-  <span class="na">start</span><span class="pi">:</span> <span class="s">last week</span>          <span class="c1"># Beginning of report</span>
-  <span class="na">end</span><span class="pi">:</span> <span class="s">now</span>                  <span class="c1"># End of report</span>
-  <span class="na">compare_period</span><span class="pi">:</span> <span class="no">true</span>      
-  <span class="na">metrics</span><span class="pi">:</span> <span class="s">ga:pageviews</span>     <span class="c1"># Metrics code</span>
-  <span class="na">dimensions</span><span class="pi">:</span> <span class="s">ga:pagePath</span>   <span class="c1"># Dimensions</span>
-  <span class="na">segment</span><span class="pi">:</span>                  <span class="c1"># Optional</span>
-  <span class="na">filters</span><span class="pi">:</span>                  <span class="c1"># Optional</span>
-  <span class="na">max_results</span><span class="pi">:</span> <span class="s">10000</span>        <span class="c1"># Number of the maximum results get by the API</span>
-  <span class="na">debug</span><span class="pi">:</span> <span class="no">false</span>              <span class="c1"># Debug mode</span>
-</code></pre></div></div>
-
-<ul>
-  <li><code class="highlighter-rouge">profileID</code> is the specific report profile from which you want to pull data. Find it by going to the report page in Google Analytics. Look at the URL. It will look something like <code class="highlighter-rouge">https://www.google.com/analytics/web/?hl=en&amp;pli=1#report/visitors-overview/###########p######/</code>. The number after the <code class="highlighter-rouge">p</code> at the end of the URL is your <code class="highlighter-rouge">profileID</code>.</li>
-  <li>The <code class="highlighter-rouge">start</code> and <code class="highlighter-rouge">end</code> indicate the time range of data you want to query. They are parsed using Ruby’s <code class="highlighter-rouge">Chronic</code> gem, so you can include relative or absolute dates, such as <code class="highlighter-rouge">now</code>, <code class="highlighter-rouge">yesterday</code>, <code class="highlighter-rouge">last month</code>, <code class="highlighter-rouge">2 weeks ago</code>. See <a href="https://github.com/mojombo/chronic#examples">Chronic’s documentation</a> for more options.</li>
-  <li>The <code class="highlighter-rouge">metrics</code> value is what you want to measure from your Google Analytics data. Usually this will be <code class="highlighter-rouge">ga:pageviews</code> or <code class="highlighter-rouge">ga:visits</code>, but it can be any metric available in Google Analytics. Specify only one. See the <a href="http://ga-dev-tools.appspot.com/explorer/?csw=1">Google Analytics Query Explorer</a> to experiment with different metrics. (Your <code class="highlighter-rouge">dimension</code> should always be <code class="highlighter-rouge">ga:pagePath</code>). I recommend you the following string <code class="highlighter-rouge">ga:pageviews,ga:bounceRate,ga:sessions,ga:users,ga:newUsers</code>.</li>
-  <li>The <code class="highlighter-rouge">segment</code> and <code class="highlighter-rouge">filters</code> keys are optional parameters for your query. See the <a href="http://ga-dev-tools.appspot.com/explorer/?csw=1">Google Analytics Query Explorer</a> for a description of how to use them, or just leave them out.</li>
-</ul>
-
-<p>New params in v2:</p>
-
-<ul>
-  <li>If <code class="highlighter-rouge">compare_period</code> is to true, then this will create two reports (<strong>example:</strong> if start is set to “last month”, this will create one report from “end” to “start” and the second report its end will be at the start of the first report, with this data a comparation will be created).</li>
-</ul>
-
-<h3 id="do-you-need-to-automatize-this">Do you need to automatize this?</h3>
-
-<p>Maybe you’re thinking that you’ll need to make a new push everytime you need to update your stats. And you’re right, but CircleCI comes here again for the rescue. All you need is to <a href="https://circleci.com/docs/2.0/workflows/#nightly-example">schedule a nightly build</a>.</p>
-
-<p>Here is my own implementation on <a href="https://github.com/z3nth10n/z3nth10n.github.io/blob/b9f7ef42e5fce33800aab80f8eabe6868b38f8e5/circle.yml#L56">my CircleCI.yml configuration, again</a>.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="na">nightly</span><span class="pi">:</span>
-        <span class="na">triggers</span><span class="pi">:</span>
-            <span class="pi">-</span> <span class="na">schedule</span><span class="pi">:</span>
-                <span class="na">cron</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*"</span>
-                <span class="na">filters</span><span class="pi">:</span>
-                    <span class="na">branches</span><span class="pi">:</span>
-                        <span class="na">only</span><span class="pi">:</span>
-                            <span class="pi">-</span> <span class="s">gh-pages-ci</span>
-                        <span class="na">ignore</span><span class="pi">:</span>
-                            <span class="pi">-</span> <span class="s">master</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">defaults</span><span class="pi">:</span> <span class="nl">&amp;defaults</span>
+    <span class="na">working_directory</span><span class="pi">:</span> <span class="s">~/repo</span>
+    
+<span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+<span class="na">jobs</span><span class="pi">:</span>
+<span class="err">	</span><span class="c1"># Your jobs here... </span>
+    <span class="na">schedule_posts</span><span class="pi">:</span>
+        <span class="s">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*defaults</span>
+        <span class="na">docker</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/ruby:2.6.0-node</span>
+        <span class="na">filters</span><span class="pi">:</span>
+            <span class="na">branches</span><span class="pi">:</span>
+                <span class="na">only</span><span class="pi">:</span>
+                  <span class="pi">-</span> <span class="s">gh-pages-ci</span>
+                <span class="na">ignore</span><span class="pi">:</span>
+                  <span class="pi">-</span> <span class="s">master</span>
+        <span class="na">steps</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+                <span class="na">name</span><span class="pi">:</span> <span class="s">Executing scheduler</span>
+                <span class="na">command</span><span class="pi">:</span> <span class="s">bash ~/repo/script/get_scheduled_posts.sh</span>
+<span class="na">workflows</span><span class="pi">:</span>
+    <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+    <span class="na">test-deploy</span><span class="pi">:</span>
         <span class="na">jobs</span><span class="pi">:</span>
-            <span class="pi">-</span> <span class="na">build</span><span class="pi">:</span>
-                <span class="na">context</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Google</span><span class="nv"> </span><span class="s">Analytics</span><span class="nv"> </span><span class="s">Sensitive</span><span class="nv"> </span><span class="s">Data"</span>
+            <span class="pi">-</span> <span class="s">schedule_posts</span>
 </code></pre></div></div>
 
-<p>Of course, you’ll need to specify the context again.</p>
+<ol>
+  <li>Enjoy!</li>
+</ol>
 
-<h3 id="need-help-for-examples">Need help for examples?</h3>
+<h3 id="how-does-the-script-works">How does the script works?</h3>
 
-<p>Look at those two HTML files I created to render my settings:</p>
+<p>It simply copies the files required by the date from the “schedule” folder to the “_posts” one.</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ni">&lt;div id="genstats" class="col-md-3 align-sm-right vertical-margin order-xs-fourth col-xs-expand"&gt;
-    &lt;box class="both-offset expand-width"&gt;
-        &lt;p&gt;
-            &lt;h3&gt;Statistics&lt;/h3&gt;
-            &lt;p&gt;(last {{ site.data.period }} days)&lt;/p&gt;
-        &lt;/p&gt;
-
-        {% for header in site.data.headers %}
-        
-            &lt;p&gt;
-                {% assign hvalue = header.value | plus: 0 %}
-                {{ hvalue | round }} {{ header.name }}
-            &lt;/p&gt;
-            &lt;p class="sub"&gt;
-                    {% if site.jekyll_ga.compare_period %}
-                    (
-                    last {{ site.data.period }} days: 
-                    {% if header.value_perc != "∞" %}
-                        {% assign perc = header.value_perc | plus: 0 %}
-
-                        {% if perc &gt; 0 %}
-                            &lt;i class="fas fa-arrow-up color-green"&gt;&lt;/i&gt;
-                        {% elsif perc == 0 %}
-                            &lt;i class="fas fa-equals"&gt;&lt;/i&gt;
-                        {% elsif perc &lt; 0 %}
-                            &lt;i class="fas fa-arrow-down color-red"&gt;&lt;/i&gt;
-                        {% endif %}
-
-                        {{ perc | round }} % | 
-                        
-                        {% assign diff = header.diff_value %}
-                        {% if diff &gt; 0 %}+{% endif %}
-                        {{ diff | round }} than last period
-                    {% else %}
-                    ∞ %    
-                    {% endif %}
-                    )
-                {% endif %}
-            &lt;/p&gt;
-
-        {% endfor %}
-    &lt;/box&gt;
-&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<p>This displays a box with the different metrics selected in your <code class="highlighter-rouge">metrics</code> configuration parameter:</p>
-
-<p><img src="https://i.gyazo.com/3105ff73fc023c5cf3506b9adcd63577.png" alt="" /></p>
-
-<p>I use this for any post:</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ni">{% if page.stats.pageviews != blank %}
-    {% assign hvalue = header.value | plus: 0 %}
-    {{ hvalue | round }} views
-                
-    {% if site.jekyll_ga.compare_period %}
-        (
-        last {{ site.data.period }} days: 
-        {% if page.stats.pageviews_perc != "∞" %}
-            {% assign perc = page.stats.pageviews_perc | plus: 0 %}
-
-            {% if perc &gt; 0 %}
-                &lt;i class="fas fa-arrow-up color-green"&gt;&lt;/i&gt;
-            {% elsif perc == 0 %}
-                &lt;i class="fas fa-equals"&gt;&lt;/i&gt;
-            {% elsif perc &lt; 0 %}
-                &lt;i class="fas fa-arrow-down color-red"&gt;&lt;/i&gt;
-            {% endif %}
-
-            {{ perc | round }} % |
-            
-            {% assign diff = page.stats.diff_pageviews %}
-            {% if diff &gt; 0 %}+{% endif %}
-            {{ diff | round }} than last period
-        {% else %}
-        ∞ %    
-        {% endif %}
-        )
-    {% endif %}
-    .
-{% endif %}</span>
-</code></pre></div></div>
-
-<p>It only displays <code class="highlighter-rouge">xx visits (percentage % | difference between two ranges)</code>.</p>
-
-<h2 id="issues">Issues</h2>
-
-<p>Having issues? Just report in <a href="https://github.com/uta-org/jekyll-ga-v2/issues">the issue section</a>. <strong>Thanks for the feedback!</strong></p>
+<p>So, just simply write posts as you normally do.</p>
 
 <p><strong>Best regards!</strong></p>
 
@@ -472,7 +344,7 @@ window.cookieconsent.initialise({
   <ul class="rrssb-buttons clearfix">
     
       <li class="rrssb-email">
-        <a href="mailto:?subject=Jekyll-ga-v2 a plugin to get Google Analytics data into your site&body=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html" data-proofer-ignore>
+        <a href="mailto:?subject=How to schedule posts in Jekyll&body=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html" data-proofer-ignore>
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M20.11 26.147c-2.335 1.05-4.36 1.4-7.124 1.4C6.524 27.548.84 22.916.84 15.284.84 7.343 6.602.45 15.4.45c6.854 0 11.8 4.7 11.8 11.252 0 5.684-3.193 9.265-7.398 9.3-1.83 0-3.153-.934-3.347-2.997h-.077c-1.208 1.986-2.96 2.997-5.023 2.997-2.532 0-4.36-1.868-4.36-5.062 0-4.75 3.503-9.07 9.11-9.07 1.713 0 3.7.4 4.6.972l-1.17 7.203c-.387 2.298-.115 3.3 1 3.4 1.674 0 3.774-2.102 3.774-6.58 0-5.06-3.27-8.994-9.304-8.994C9.05 2.87 3.83 7.545 3.83 14.97c0 6.5 4.2 10.2 10 10.202 1.987 0 4.09-.43 5.647-1.245l.634 2.22zM16.647 10.1c-.31-.078-.7-.155-1.207-.155-2.572 0-4.596 2.53-4.596 5.53 0 1.5.7 2.4 1.9 2.4 1.44 0 2.96-1.83 3.31-4.088l.592-3.72z"
@@ -485,7 +357,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-facebook">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html&title=Jekyll-ga-v2 a plugin to get Google Analytics data into your site" class="popup">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html&title=How to schedule posts in Jekyll" class="popup">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="29" height="29" viewBox="0 0 29 29"><path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"
               class="cls-2" fill-rule="evenodd"/></svg>
@@ -496,7 +368,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-twitter">
-        <a href="https://twitter.com/share?url=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html&text=Jekyll-ga-v2 a plugin to get Google Analytics data into your site"
+        <a href="https://twitter.com/share?url=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html&text=How to schedule posts in Jekyll"
         class="popup">
           <span class="rrssb-icon"><svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62c-3.122.162-6.22-.646-8.86-2.32 2.702.18 5.375-.648 7.507-2.32-2.072-.248-3.818-1.662-4.49-3.64.802.13 1.62.077 2.4-.154-2.482-.466-4.312-2.586-4.412-5.11.688.276 1.426.408 2.168.387-2.135-1.65-2.73-4.62-1.394-6.965C5.574 7.816 9.54 9.84 13.802 10.07c-.842-2.738.694-5.64 3.434-6.48 2.018-.624 4.212.043 5.546 1.682 1.186-.213 2.318-.662 3.33-1.317-.386 1.256-1.248 2.312-2.4 2.942 1.048-.106 2.07-.394 3.02-.85-.458 1.182-1.343 2.15-2.48 2.71z"/></svg></span>
           <span class="rrssb-text">twitter</span>
@@ -505,7 +377,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-linkedin">
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html" class="popup">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html" class="popup">
         <span class="rrssb-icon">
           <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
             <path d="M25.424 15.887v8.447h-4.896v-7.882c0-1.98-.71-3.33-2.48-3.33-1.354 0-2.158.91-2.514 1.802-.13.315-.162.753-.162 1.194v8.216h-4.9s.067-13.35 0-14.73h4.9v2.087c-.01.017-.023.033-.033.05h.032v-.05c.65-1.002 1.812-2.435 4.414-2.435 3.222 0 5.638 2.106 5.638 6.632zM5.348 2.5c-1.676 0-2.772 1.093-2.772 2.54 0 1.42 1.066 2.538 2.717 2.546h.032c1.71 0 2.77-1.132 2.77-2.546C8.056 3.593 7.02 2.5 5.344 2.5h.005zm-2.48 21.834h4.896V9.604H2.867v14.73z"
@@ -518,7 +390,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-reddit">
-        <a href="https://www.reddit.com/submit?url=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html&title=Jekyll-ga-v2 a plugin to get Google Analytics data into your site" target="_blank">
+        <a href="https://www.reddit.com/submit?url=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html&title=How to schedule posts in Jekyll" target="_blank">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M11.794 15.316c0-1.03-.835-1.895-1.866-1.895-1.03 0-1.893.866-1.893 1.896s.863 1.9 1.9 1.9c1.023-.016 1.865-.916 1.865-1.9zM18.1 13.422c-1.03 0-1.895.864-1.895 1.895 0 1 .9 1.9 1.9 1.865 1.03 0 1.87-.836 1.87-1.865-.006-1.017-.875-1.917-1.875-1.895zM17.527 19.79c-.678.68-1.826 1.007-3.514 1.007h-.03c-1.686 0-2.834-.328-3.51-1.005-.264-.265-.693-.265-.958 0-.264.265-.264.7 0 1 .943.9 2.4 1.4 4.5 1.402.005 0 0 0 0 0 .005 0 0 0 0 0 2.066 0 3.527-.46 4.47-1.402.265-.264.265-.693.002-.958-.267-.334-.688-.334-.988-.043z"
@@ -533,7 +405,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-googleplus">
-        <a href="https://plus.google.com/share?url=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html" class="popup">
+        <a href="https://plus.google.com/share?url=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html" class="popup">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21 8.29h-1.95v2.6h-2.6v1.82h2.6v2.6H21v-2.6h2.6v-1.885H21V8.29zM7.614 10.306v2.925h3.9c-.26 1.69-1.755 2.925-3.9 2.925-2.34 0-4.29-2.016-4.29-4.354s1.885-4.353 4.29-4.353c1.104 0 2.014.326 2.794 1.105l2.08-2.08c-1.3-1.17-2.924-1.883-4.874-1.883C3.65 4.586.4 7.835.4 11.8s3.25 7.212 7.214 7.212c4.224 0 6.953-2.988 6.953-7.082 0-.52-.065-1.104-.13-1.624H7.614z"/></svg>
           </span>
@@ -543,7 +415,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-tumblr">
-        <a href="https://tumblr.com/share/link?url=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html" target="_blank">
+        <a href="https://tumblr.com/share/link?url=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html" target="_blank">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M18.02 21.842c-2.03.052-2.422-1.396-2.44-2.446v-7.294h4.73V7.874H15.6V1.592h-3.714s-.167.053-.182.186c-.218 1.935-1.144 5.33-4.988 6.688v3.637h2.927v7.677c0 2.8 1.7 6.7 7.3 6.6 1.863-.03 3.934-.795 4.392-1.453l-1.22-3.54c-.52.213-1.415.413-2.115.455z"
@@ -556,7 +428,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-pinterest">
-        <a href="https://pinterest.com/pin/create/button/?url=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html" target="_blank">
+        <a href="https://pinterest.com/pin/create/button/?url=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html" target="_blank">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M14.02 1.57c-7.06 0-12.784 5.723-12.784 12.785S6.96 27.14 14.02 27.14c7.062 0 12.786-5.725 12.786-12.785 0-7.06-5.724-12.785-12.785-12.785zm1.24 17.085c-1.16-.09-1.648-.666-2.558-1.22-.5 2.627-1.113 5.146-2.925 6.46-.56-3.972.822-6.952 1.462-10.117-1.094-1.84.13-5.545 2.437-4.632 2.837 1.123-2.458 6.842 1.1 7.557 3.71.744 5.226-6.44 2.924-8.775-3.324-3.374-9.677-.077-8.896 4.754.19 1.178 1.408 1.538.49 3.168-2.13-.472-2.764-2.15-2.683-4.388.132-3.662 3.292-6.227 6.46-6.582 4.008-.448 7.772 1.474 8.29 5.24.58 4.254-1.815 8.864-6.1 8.532v.003z"
@@ -569,7 +441,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-pocket">
-        <a href="https://getpocket.com/save?url=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html">
+        <a href="https://getpocket.com/save?url=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html">
           <span class="rrssb-icon">
             <svg width="32" height="28" viewBox="0 0 32 28" xmlns="http://www.w3.org/2000/svg">
               <path d="M28.782.002c2.03.002 3.193 1.12 3.182 3.106-.022 3.57.17 7.16-.158 10.7-1.09 11.773-14.588 18.092-24.6 11.573C2.72 22.458.197 18.313.057 12.937c-.09-3.36-.05-6.72-.026-10.08C.04 1.113 1.212.016 3.02.008 7.347-.006 11.678.004 16.006.002c4.258 0 8.518-.004 12.776 0zM8.65 7.856c-1.262.135-1.99.57-2.357 1.476-.392.965-.115 1.81.606 2.496 2.453 2.334 4.91 4.664 7.398 6.966 1.086 1.003 2.237.99 3.314-.013 2.407-2.23 4.795-4.482 7.17-6.747 1.203-1.148 1.32-2.468.365-3.426-1.01-1.014-2.302-.933-3.558.245-1.596 1.497-3.222 2.965-4.75 4.526-.706.715-1.12.627-1.783-.034-1.597-1.596-3.25-3.138-4.93-4.644-.47-.42-1.123-.647-1.478-.844z"
@@ -582,7 +454,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-vk">
-        <a href="https://vk.com/share.php?url=http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html" class="popup">
+        <a href="https://vk.com/share.php?url=http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html" class="popup">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="70 70 378.7 378.7"><path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"/></svg>
           </span>
@@ -1071,7 +943,7 @@ function loadScript(url) {
 <script>
 function addTohistory() {
   if (!window.location.host.startsWith("127.0.0.1")) {
-    history.pushState({}, 'Jekyll-ga-v2 a plugin to get Google Analytics data into your site', 'http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html');
+    history.pushState({}, 'How to schedule posts in Jekyll', 'http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html');
   }
 }
 </script>
@@ -1091,14 +963,14 @@ function addTohistory() {
       new Hammer(post).on('swipeleft', function(event) {
         addTohistory();
         
-          document.location.replace("/es/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html");
+          document.location.replace("/es/2019/03/31/how-schedule-posts-in-jekyll.html");
         
       });
 
       new Hammer(post).on('swiperight', function(event) {
         addTohistory();
         
-          document.location.replace("/es/2019/03/31/how-schedule-posts-in-jekyll.html");
+          document.location.replace("/");
         
       });
     </script>
