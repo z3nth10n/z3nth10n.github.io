@@ -1,7 +1,6 @@
 defaults: &defaults
     working_directory: ~/repo
    
-version: 2
 jobs:
     build:
         <<: *defaults
@@ -57,18 +56,21 @@ jobs:
                 ignore:
                   - master
         steps:
-            - checkout 
+            - checkout
             - run:
                 name: Executing scheduler
                 command: bash ~/repo/script/get_scheduled_posts.sh
+            - queue/until_front_of_line:
+              only-on-branch: gh-pages-gi
+              time: '1'
+                
+orbs:
+    queue: eddiewebb/queue@volatile
+version: 2.1
 workflows:
-    orbs:
-        queue: eddiewebb/queue@volatile
-    version: 2
     test-deploy:
         jobs:
             - schedule_posts:
-                time: '2'
                 filters:
                     branches:
                         only:
@@ -96,8 +98,7 @@ workflows:
                         ignore:
                             - master
         jobs:
-            - schedule_posts:
-                time: '2'
+            - schedule_posts
             - build:
                 requires:
                     - schedule_posts
