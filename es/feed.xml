@@ -18,23 +18,6 @@
 		
             
                 <item>
-                    <title>How to schedule posts in Jekyll</title>
-                    
-                    
-                        <description>&lt;p&gt;En esta publicación explicaré cómo usar la utilidad de Bash llamada &lt;strong&gt;Jekyll Scheduler&lt;/strong&gt; para programar la subida de publicaciones de Jekyll.&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Sun, 31 Mar 2019 08:22:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/es/2019/03/31/how-schedule-posts-in-jekyll.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/03/31/how-schedule-posts-in-jekyll.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
                     <title>Jekyll-ga-v2 un plugin para obtener datos de Google Analytics en tu sitio</title>
                     
                     

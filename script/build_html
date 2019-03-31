@@ -6,9 +6,6 @@ echo "Posts 1"
 ls -l ~/repo/_posts
 
 echo "Posts 2"
-ls -l ~/repo/scheduled-posts
-
-echo "Posts 3"
 ls -l ~/repo/_site/en/2019/03/31
 
 # Setup git so we can use it
