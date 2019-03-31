@@ -47,7 +47,7 @@ jobs:
                 name: Run Build HTML
                 command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
     schedule_posts:
-        working_directory: ~/repo
+        <<: *defaults
         docker:
           - image: circleci/ruby:2.6.0-node
         filters:
@@ -64,9 +64,21 @@ workflows:
     version: 2
     test-deploy:
         jobs:
-            - schedule_posts
+            - schedule_posts:
+                filters:
+                    branches:
+                        only:
+                          - gh-pages-ci
+                        ignore:
+                          - master
             - build:
                 context: "Google Analytics Sensitive Data"
+                filters:
+                    branches:
+                        only:
+                            - gh-pages-ci
+                        ignore:
+                            - master               
     nightly:
         triggers:
             - schedule:
