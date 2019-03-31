@@ -1,13 +1,15 @@
 ---
 layout: post
 section-type: post
-title: How to schedule posts in Jekyll 
+title: Configurando dominios personalizados en Github Pages (Parte 1)
 date:   2019-03-31 22:00:00 +0100
 categories: tutorial
 language: es
 locale: 'es'
 permalink: "/:language/:year/:month/:day/configuring-custom-domains-github-pages-part-1.html"
 ---
+
+## ¿Cómo configurar Github pages para usar un dominio personalizado con Cloudflare?
 
 En este tutorial, mostraré cómo configurar un dominio con [name.com](https://name.com) y utilizarlo en su sitio web de Jekyll con [Cloudflare](https://cloudflare.com).
 
@@ -96,7 +98,21 @@ Aquí debe presionar el botón "Continuar", lo configuraremos más adelante.
 
 ![](https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/18.PNG?raw=true)
 
-16. ¡Disfruta!
+16. Para comprobar que todo ha ido bien, usa este comando:
+
+```bash
+$ curl -sI "http://z3nth10n.net" | grep "HTTP/\|Location"
+```
+
+Si tienes problemas en Windows, puedes usar:
+
+```
+ipconfig /flushdns
+```
+
+Esto borrará toda la caches de tus DNS, así que si tienes algun problema y lo solucionas, los cambios se aplicarán más rápido.
+
+17. ¡Disfruta!
 
 **Nota:** En caso de tener problemas, no dudes en preguntar en un comentario.
 
