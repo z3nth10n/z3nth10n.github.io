@@ -2,6 +2,10 @@
 
 GIT_COMMIT_DESC="$1"
 
+ls -l ~/repo/_posts
+ls -l ~/repo/_posts/schedule
+ls -l ~/repo/_site/
+
 # Setup git so we can use it
 git config --global user.email "z3nth10n@gmail.com"
 git config --global user.name "z3nth10n"
