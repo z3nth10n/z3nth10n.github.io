@@ -1,5 +1,7 @@
 #!/bin/bash -ex
 
+ls -l
+
 IFS="="
 
 schedule_date=""
