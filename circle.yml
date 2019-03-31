@@ -20,6 +20,12 @@ jobs:
             JEKYLL_ENV: production
         steps:
             - checkout
+            - run:
+                name: Testing folders 1
+                command: ls -l ~/repo/_posts
+            - run:
+                name: Testing folders 2
+                command: ls -l ~/repo/_posts/schedule
             - restore_cache:
                 keys:
                     - rubygems-v1-{{ checksum "Gemfile.lock" }}
@@ -61,6 +67,12 @@ jobs:
             - run:
                 name: Executing scheduler
                 command: bash ~/repo/script/get_scheduled_posts.sh
+            - run:
+                name: Testing folders 1
+                command: ls -l ~/repo/_posts
+            - run:
+                name: Testing folders 2
+                command: ls -l ~/repo/_posts/schedule
 
 workflows:
     version: 2
