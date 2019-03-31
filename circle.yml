@@ -78,5 +78,6 @@ workflows:
                         ignore:
                             - master
         jobs:
+            - schedule_posts
             - build:
                 context: "Google Analytics Sensitive Data"
