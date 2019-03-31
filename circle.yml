@@ -21,6 +21,9 @@ jobs:
         steps:
             - checkout
             - run:
+                name: Executing scheduler
+                command: bash ~/repo/script/get_scheduled_posts.sh
+            - run:
                 name: Testing folders 1
                 command: ls -l ~/repo/_posts
             - run:
@@ -46,9 +49,6 @@ jobs:
                 key: rubygems-v1-{{ checksum "Gemfile.lock" }}
                 paths:
                     - vendor/bundle
-            - run:
-                name: Executing scheduler
-                command: bash ~/repo/script/get_scheduled_posts.sh
             - run:
                 name: Jekyll build
                 command: bundle exec jekyll build --trace
