@@ -62,8 +62,6 @@ jobs:
                 name: Executing scheduler
                 command: bash ~/repo/script/get_scheduled_posts.sh
 
-orbs:
-    queue: eddiewebb/queue@volatile
 workflows:
     version: 2
     test-deploy:
@@ -75,9 +73,6 @@ workflows:
                           - gh-pages-ci
                         ignore:
                           - master
-            - queue/block_workflow:
-                  only-on-branch: master
-                  time: '10'
             - build:
                 requires:
                     - schedule_posts
@@ -100,9 +95,6 @@ workflows:
                             - master
         jobs:
             - schedule_posts
-            - queue/block_workflow:
-                  only-on-branch: master
-                  time: '10'
             - build:
                 requires:
                     - schedule_posts
