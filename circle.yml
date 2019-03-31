@@ -2,8 +2,6 @@ defaults: &defaults
     working_directory: ~/repo
 
 version: 2
-orbs:
-    queue: eddiewebb/queue@volatile
 jobs:
     build:
         <<: *defaults
@@ -21,9 +19,6 @@ jobs:
             GIT_COMMIT_DESC: git log -1 --pretty=%B
             JEKYLL_ENV: production
         steps:
-            - queue/until_front_of_line:
-                  only-on-branch: gh-pages-gi
-                  time: '1'
             - checkout
             - restore_cache:
                 keys:
@@ -66,7 +61,9 @@ jobs:
             - run:
                 name: Executing scheduler
                 command: bash ~/repo/script/get_scheduled_posts.sh
-                
+
+orbs:
+    queue: eddiewebb/queue@volatile
 workflows:
     version: 2
     test-deploy:
@@ -78,6 +75,9 @@ workflows:
                           - gh-pages-ci
                         ignore:
                           - master
+            - queue/block_workflow:
+                  only-on-branch: master
+                  time: '10'
             - build:
                 requires:
                     - schedule_posts
@@ -100,6 +100,9 @@ workflows:
                             - master
         jobs:
             - schedule_posts
+            - queue/block_workflow:
+                  only-on-branch: master
+                  time: '10'
             - build:
                 requires:
                     - schedule_posts
