@@ -1,7 +1,7 @@
 defaults: &defaults
     working_directory: ~/repo
 
-version: 2.1
+version: 2
 jobs:
     build:
         <<: *defaults
@@ -47,47 +47,20 @@ jobs:
                 paths:
                     - vendor/bundle
             - run:
+                name: Executing scheduler
+                command: bash ~/repo/script/get_scheduled_posts.sh
+            - run:
                 name: Jekyll build
                 command: bundle exec jekyll build --trace
             - run:
                 name: Run Build HTML
                 command: bash ~/repo/script/build_html "`$GIT_COMMIT_DESC`"
-    schedule_posts:
-        <<: *defaults
-        docker:
-          - image: circleci/ruby:2.6.0-node
-        filters:
-            branches:
-                only:
-                  - gh-pages-ci
-                ignore:
-                  - master
-        steps:
-            - checkout
-            - run:
-                name: Executing scheduler
-                command: bash ~/repo/script/get_scheduled_posts.sh
-            - run:
-                name: Testing folders 1
-                command: ls -l ~/repo/_posts
-            - run:
-                name: Testing folders 2
-                command: ls -l ~/repo/_posts/schedule
 
 workflows:
-    version: 2.1
+    version: 2
     test-deploy:
         jobs:
-            - schedule_posts:
-                filters:
-                    branches:
-                        only:
-                          - gh-pages-ci
-                        ignore:
-                          - master
             - build:
-                requires:
-                    - schedule_posts
                 context: "Google Analytics Sensitive Data"
                 filters:
                     branches:
@@ -106,8 +79,5 @@ workflows:
                         ignore:
                             - master
         jobs:
-            - schedule_posts
             - build:
-                requires:
-                    - schedule_posts
                 context: "Google Analytics Sensitive Data"
