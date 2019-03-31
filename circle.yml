@@ -1,7 +1,7 @@
 defaults: &defaults
     working_directory: ~/repo
 
-version: 2
+version: 2.1
 jobs:
     build:
         <<: *defaults
@@ -75,7 +75,7 @@ jobs:
                 command: ls -l ~/repo/_posts/schedule
 
 workflows:
-    version: 2
+    version: 2.1
     test-deploy:
         jobs:
             - schedule_posts:
