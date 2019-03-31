@@ -1,6 +1,8 @@
 defaults: &defaults
     working_directory: ~/repo
-    
+   
+orbs:
+  queue: eddiewebb/queue@volatile
 version: 2
 jobs:
     build:
@@ -66,6 +68,7 @@ workflows:
     test-deploy:
         jobs:
             - schedule_posts:
+                time: '2'
                 filters:
                     branches:
                         only:
@@ -73,6 +76,8 @@ workflows:
                         ignore:
                           - master
             - build:
+                requires:
+                    - schedule_posts
                 context: "Google Analytics Sensitive Data"
                 filters:
                     branches:
@@ -91,6 +96,9 @@ workflows:
                         ignore:
                             - master
         jobs:
-            - schedule_posts
+            - schedule_posts:
+                time: '2'
             - build:
+                requires:
+                    - schedule_posts
                 context: "Google Analytics Sensitive Data"
