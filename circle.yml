@@ -56,9 +56,8 @@ jobs:
                   - gh-pages-ci
                 ignore:
                   - master
-        environment:
-            BASH_ENV: ~/.bashrc
         steps:
+            - checkout 
             - run:
                 name: Executing scheduler
                 command: bash ~/repo/script/get_scheduled_posts
