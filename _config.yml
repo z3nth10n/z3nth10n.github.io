@@ -274,7 +274,7 @@ patreon:
 
 jekyll_ga:
   profileID: ga:191710732   # Profile ID 
-  start: last week          # Beginning of report
+  start: last 7 days        # Beginning of report
   end: now                  # End of report
   compare_period: true      # If set to true this will create two reports (example: if start is set to "last month", this will create one report from "end" to "start" and the second report its end will be at the start of the first report, with this data a comparation will be created)
   metrics: ga:pageviews,ga:bounceRate,ga:sessions,ga:users,ga:newUsers      # Metrics code
@@ -317,3 +317,4 @@ plugins:
   - jekyll-language-plugin
 
 encoding: UTF-8
+# future: true
