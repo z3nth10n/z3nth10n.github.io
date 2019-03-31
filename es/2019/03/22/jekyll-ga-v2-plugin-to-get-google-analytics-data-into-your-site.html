@@ -364,36 +364,47 @@ window.cookieconsent.initialise({
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ni">&lt;div id="genstats" class="col-md-3 align-sm-right vertical-margin order-xs-fourth col-xs-expand"&gt;
     &lt;box class="both-offset expand-width"&gt;
         &lt;p&gt;
-            &lt;h3&gt;Statistics&lt;/h3&gt;
-            &lt;p&gt;(last {{ site.data.period }} days)&lt;/p&gt;
+            &lt;h3&gt;{% t 'stats-caption' %}&lt;/h3&gt;
+            &lt;p&gt;({% t 'stats_last' %} {{ site.data.period }} {% t 'stats_days' %})&lt;/p&gt;
         &lt;/p&gt;
 
         {% for header in site.data.headers %}
         
             &lt;p&gt;
                 {% assign hvalue = header.value | plus: 0 %}
-                {{ hvalue | round }} {{ header.name }}
+                {% assign statname = 'stats_' | append: header.name %}
+                {{ hvalue | round }} {% t statname %}
             &lt;/p&gt;
             &lt;p class="sub"&gt;
                     {% if site.jekyll_ga.compare_period %}
                     (
-                    last {{ site.data.period }} days: 
+                    {% t 'stats_last' %} {{ site.data.period }} {% t 'stats_days' %}: 
                     {% if header.value_perc != "∞" %}
                         {% assign perc = header.value_perc | plus: 0 %}
 
-                        {% if perc &gt; 0 %}
-                            &lt;i class="fas fa-arrow-up color-green"&gt;&lt;/i&gt;
-                        {% elsif perc == 0 %}
-                            &lt;i class="fas fa-equals"&gt;&lt;/i&gt;
-                        {% elsif perc &lt; 0 %}
-                            &lt;i class="fas fa-arrow-down color-red"&gt;&lt;/i&gt;
+                        {% if header.name != "bounceRate" %}
+                            {% if perc &gt; 0 %}
+                                &lt;i class="fas fa-arrow-up color-green"&gt;&lt;/i&gt;
+                            {% elsif perc == 0 %}
+                                &lt;i class="fas fa-equals"&gt;&lt;/i&gt;
+                            {% elsif perc &lt; 0 %}
+                                &lt;i class="fas fa-arrow-down color-red"&gt;&lt;/i&gt;
+                            {% endif %}
+                        {% else %}
+                            {% if diff &lt; 0 %}
+                                &lt;i class="fas fa-arrow-up color-green"&gt;&lt;/i&gt;
+                            {% elsif diff == 0 %}
+                                &lt;i class="fas fa-equals"&gt;&lt;/i&gt;
+                            {% elsif diff &gt; 0 %}
+                                &lt;i class="fas fa-arrow-down color-red"&gt;&lt;/i&gt;
+                            {% endif %}
                         {% endif %}
 
                         {{ perc | round }} % | 
                         
                         {% assign diff = header.diff_value %}
                         {% if diff &gt; 0 %}+{% endif %}
-                        {{ diff | round }} than last period
+                        {{ diff | round }}{% if header.name == "bounceRate" %}%{% endif %} {% t 'stats_last_period' %}
                     {% else %}
                     ∞ %    
                     {% endif %}
@@ -404,6 +415,23 @@ window.cookieconsent.initialise({
         {% endfor %}
     &lt;/box&gt;
 &lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Nota:</strong> Ten en cuenta de que este snippet hace uso de <a href="https://github.com/uta-org/jekyll-language-plugin">jekyll-language-plugin</a>, por tanto todas las palabras claves <code class="highlighter-rouge">{&amp;percnt; t ... &amp;percnt;}</code> deben ser cambiadas por sus equivalentes:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#########</span>
+<span class="c1"># Stats #</span>
+<span class="c1">#########</span>
+
+<span class="na">stats-caption</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Estadísticas'</span>
+<span class="na">stats_pageviews</span><span class="pi">:</span> <span class="s2">"</span><span class="s">visitas"</span>
+<span class="na">stats_bounceRate</span><span class="pi">:</span> <span class="s2">"</span><span class="nv"> </span><span class="s">%</span><span class="nv"> </span><span class="s">de</span><span class="nv"> </span><span class="s">rebote"</span>
+<span class="na">stats_sessions</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sesiones"</span>
+<span class="na">stats_users</span><span class="pi">:</span> <span class="s2">"</span><span class="s">visitantes"</span>
+<span class="na">stats_newUsers</span><span class="pi">:</span> <span class="s2">"</span><span class="s">nuevos</span><span class="nv"> </span><span class="s">visitantes"</span>
+<span class="na">stats_last</span><span class="pi">:</span> <span class="s1">'</span><span class="s">últimos'</span>
+<span class="na">stats_days</span><span class="pi">:</span> <span class="s1">'</span><span class="s">días'</span>
+<span class="na">stats_last_period</span><span class="pi">:</span> <span class="s1">'</span><span class="s">de</span><span class="nv"> </span><span class="s">diferencia'</span>
 </code></pre></div></div>
 
 <p>Esto muestra un cuadro con las diferentes métricas seleccionadas en tu parámetro de configuración <code class="highlighter-rouge">metrics</code>:</p>
