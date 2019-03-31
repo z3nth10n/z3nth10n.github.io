@@ -28,11 +28,11 @@
                                 <i class="fas fa-arrow-down color-red"></i>
                             {% endif %}
                         {% else %}
-                            {% if perc < 0 %}
+                            {% if diff < 0 %}
                                 <i class="fas fa-arrow-up color-green"></i>
-                            {% elsif perc == 0 %}
+                            {% elsif diff == 0 %}
                                 <i class="fas fa-equals"></i>
-                            {% elsif perc > 0 %}
+                            {% elsif diff > 0 %}
                                 <i class="fas fa-arrow-down color-red"></i>
                             {% endif %}
                         {% endif %}
