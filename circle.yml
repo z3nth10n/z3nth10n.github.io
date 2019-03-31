@@ -48,7 +48,7 @@ jobs:
                 command: ls -l ~/repo/_posts
             - run:
                 name: Testing folders 2
-                command: ls -l ~/repo/_posts/schedule
+                command: ls -l ~/repo/scheduled-posts
             - run:
                 name: Jekyll build
                 command: bundle exec jekyll build --trace
