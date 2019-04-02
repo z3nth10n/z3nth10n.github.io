@@ -16,6 +16,40 @@
 		
             
                 <item>
+                    <title>Configuring custom domains on Github Pages (Part 3)</title>
+                    
+                    
+                        <description>&lt;h1 id=&quot;how-to-configure-and-use-phpmyadmin-with-heroku-using-jawsdb&quot;&gt;How to configure and use PHPMyAdmin with Heroku using JawsDB&lt;/h1&gt;
+
+</description>
+                    
+                    <pubDate>Tue, 02 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
+                    <title>Configuring custom domains on Github Pages (Part 2)</title>
+                    
+                    
+                        <description>&lt;h2 id=&quot;configure-heroku-to-use-multiple-subdomains-on-the-same-domain-for-free-with-ssl&quot;&gt;Configure Heroku to use multiple subdomains on the same domain for free with SSL&lt;/h2&gt;
+
+</description>
+                    
+                    <pubDate>Mon, 01 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/en/2019/04/01/configuring-custom-domains-github-pages-part-2.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/01/configuring-custom-domains-github-pages-part-2.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
                     <title>Configuring custom domains on Github Pages (Part 1)</title>
                     
                     
@@ -63,40 +97,6 @@
                 </item>
             
 		
-            
-		
-            
-		
-            
-                <item>
-                    <title>How To Use Any Jekyll Plugins on GitHub Pages with CircleCI</title>
-                    
-                    
-                        <description>&lt;h2 id=&quot;jekyll-plugin-issue-with-github-pages&quot;&gt;Jekyll Plugin Issue with GitHub Pages&lt;/h2&gt;
-
-</description>
-                    
-                    <pubDate>Wed, 20 Mar 2019 12:00:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/en/2019/03/20/jekyll-plugin-issue-with-github-pages.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/03/20/jekyll-plugin-issue-with-github-pages.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>How to use Patreon in Jekyll (jekyll-patreon plugin tutorial)</title>
-                    
-                    
-                        <description>&lt;p&gt;In this post I will explain how to use the plugin called &lt;strong&gt;jekyll-patreon&lt;/strong&gt;. I created this plugin to be able to implement a widget that shows information about our Patreon profile.&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Tue, 19 Mar 2019 08:22:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</guid>
-                </item>
             
 		
 	</channel>

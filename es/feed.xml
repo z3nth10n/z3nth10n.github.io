@@ -18,6 +18,38 @@
 		
             
                 <item>
+                    <title>Configurando dominios personalizados en Github Pages (Parte 3)</title>
+                    
+                    
+                        <description>
+</description>
+                    
+                    <pubDate>Tue, 02 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/es/2019/04/02/configuring-custom-domains-github-pages-part-3.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/02/configuring-custom-domains-github-pages-part-3.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
+                    <title>Configurando dominios personalizados en Github Pages (Parte 2)</title>
+                    
+                    
+                        <description>
+</description>
+                    
+                    <pubDate>Mon, 01 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/es/2019/04/01/configuring-custom-domains-github-pages-part-2.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/01/configuring-custom-domains-github-pages-part-2.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
                     <title>Configurando dominios personalizados en Github Pages (Parte 1)</title>
                     
                     
@@ -63,40 +95,6 @@
                     <link>http://z3nth10n.net/es/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html</link>
                     <guid isPermaLink="true">http://z3nth10n.net/es/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html</guid>
                 </item>
-            
-		
-            
-                <item>
-                    <title>Como usar cualquier plugin de Jekyll con Github Pages</title>
-                    
-                    
-                        <description>&lt;h2 id=&quot;problemas-con-los-plugins-de-jekyll-en-github-pages&quot;&gt;¿Problemas con los plugins de Jekyll en Github Pages?&lt;/h2&gt;
-
-</description>
-                    
-                    <pubDate>Wed, 20 Mar 2019 12:00:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/es/2019/03/20/jekyll-plugin-issue-with-github-pages.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/03/20/jekyll-plugin-issue-with-github-pages.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>Como usar Patreon en Jekyll (tutorial sobre el plugin jekyll-patreon)</title>
-                    
-                    
-                        <description>&lt;p&gt;En este post explicaré como usar el plugin llamado &lt;strong&gt;jekyll-patreon&lt;/strong&gt;, el cual he creado para poder implementar un widget el cual nos muestre información sobre nuestro perfil de Patreon.&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Tue, 19 Mar 2019 08:22:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/es/2019/03/19/jekyll-patreon-plugin-tutorial.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/03/19/jekyll-patreon-plugin-tutorial.html</guid>
-                </item>
-            
-		
             
 		
 	</channel>
