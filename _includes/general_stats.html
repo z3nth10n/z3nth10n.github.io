@@ -18,6 +18,7 @@
                     {% t 'stats_last' %} {{ site.data.period }} {% t 'stats_days' %}: 
                     {% if header.value_perc != "∞" %}
                         {% assign perc = header.value_perc | plus: 0 %}
+                        {% assign diff = header.diff_value %}
 
                         {% if header.name != "bounceRate" %}
                             {% if perc > 0 %}
@@ -39,9 +40,7 @@
 
                         {{ perc | round }} % | 
                         
-                        {% assign diff = header.diff_value %}
-                        {% if diff > 0 %}+{% endif %}
-                        {{ diff | round }}{% if header.name == "bounceRate" %}%{% endif %} {% t 'stats_last_period' %}
+                        {% if diff > 0 %}+{% endif %}{{ diff | round }}{% if header.name == "bounceRate" %}%{% endif %} {% t 'stats_last_period' %}
                     {% else %}
                     ∞ %    
                     {% endif %}

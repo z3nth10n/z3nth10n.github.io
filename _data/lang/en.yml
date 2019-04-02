@@ -229,7 +229,7 @@ donation-code: 'en_US'
 
 stats-caption: 'Statistics'
 stats_pageviews: "views"
-stats_bounceRate: " % bounce rate"
+stats_bounceRate: "% bounce rate"
 stats_sessions: "sessions"
 stats_users: "visitors"
 stats_newUsers: "new visitors"

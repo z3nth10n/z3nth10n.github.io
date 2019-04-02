@@ -233,7 +233,7 @@ donation-code: 'es_ES'
 
 stats-caption: 'Estadísticas'
 stats_pageviews: "visitas"
-stats_bounceRate: " % de rebote"
+stats_bounceRate: "% de rebote"
 stats_sessions: "sesiones"
 stats_users: "visitantes"
 stats_newUsers: "nuevos visitantes"
