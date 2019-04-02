@@ -93,11 +93,11 @@ If you followed the Part 2 of this tutorial, you'll need to unset the **"Always 
 
 * https://sql.example.com/
     * Rule => SSL: Off
-* http://*example.com/*
+* http://&#x2A;example.com/&#x2A;
     * Rule => Always Use HTTPS
     
 Click "Save and Deploy".
 
-**Important Tip:** Don't login in your DDBB on a public Wifi due to possible MiTM.
+**Important Tip:** Don't login in your DDBB on a public Wifi due to a possible [*MitM attack*](https://en.wikipedia.org/wiki/Man-in-the-middle_attack).
 
 **Best regards!**
