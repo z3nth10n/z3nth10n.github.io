@@ -16,6 +16,23 @@
 		
             
                 <item>
+                    <title>Configuring custom domains on Github Pages (Part 1)</title>
+                    
+                    
+                        <description>&lt;h2 id=&quot;how-to-configure-github-pages-to-use-a-custom-domain-with-cloudflare&quot;&gt;How to configure Github Pages to use a custom domain with Cloudflare?&lt;/h2&gt;
+
+</description>
+                    
+                    <pubDate>Sun, 31 Mar 2019 21:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/en/2019/03/31/configuring-custom-domains-github-pages-part-1.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/03/31/configuring-custom-domains-github-pages-part-1.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
                     <title>How to schedule posts in Jekyll</title>
                     
                     
@@ -80,23 +97,6 @@
                     <link>http://z3nth10n.net/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</link>
                     <guid isPermaLink="true">http://z3nth10n.net/en/2019/03/19/jekyll-patreon-plugin-tutorial.html</guid>
                 </item>
-            
-		
-            
-                <item>
-                    <title>Welcome to my blog!</title>
-                    
-                    
-                        <description>&lt;h2 id=&quot;welcome-to-my-blog&quot;&gt;Welcome to my blog!&lt;/h2&gt;
-
-</description>
-                    
-                    <pubDate>Tue, 19 Mar 2019 06:48:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/en/2019/03/19/welcome-to-my-blog.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/03/19/welcome-to-my-blog.html</guid>
-                </item>
-            
-		
             
 		
 	</channel>
