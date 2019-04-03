@@ -9,7 +9,7 @@ locale: 'en'
 permalink: "/:language/:year/:month/:day/configuring-custom-domains-github-pages-part-3.html"
 ---
 
-# How to configure and use PHPMyAdmin with Heroku using JawsDB
+# Configure and use PHPMyAdmin with Heroku using JawsDB
 
 On the last tutorial I teached you how to configure [your first PHP backend using Heroku](/en/2019/04/01/configuring-custom-domains-github-pages-part-2), now we will introduce PHPMyAdmin on Heroku.
 
