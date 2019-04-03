@@ -296,7 +296,7 @@ window.cookieconsent.initialise({
 
 <h3 id="some-caveats">Some caveats</h3>
 
-<p>In order to login on Heroku you’ll need to execute the <code class="highlighter-rouge">heroku login</code> command, but once you make your first post if you put wrong credentials <a href="https://devcenter.heroku.com/articles/git#http-git-authentication">an error would be prompting in your scene</a>, if this happens to you, I have a solution for you:</p>
+<p>In order to login on Heroku you’ll need to execute the <code class="highlighter-rouge">heroku login</code> command, but once you make your first commit if you put wrong credentials (at pushing) <a href="https://devcenter.heroku.com/articles/git#http-git-authentication">an error would be prompting in your scene</a>, if this happens to you, I have a solution for you:</p>
 
 <p>First remove Git credentials by using:</p>
 
@@ -305,7 +305,7 @@ window.cookieconsent.initialise({
 
 <p>If you’re in Windows and you use Mingw64 console for your projects and you’re using CMD you’re out of risk because <a href="https://git-scm.com/docs/git-credential-store">the git-credential-store settings</a> won’t be deleted.</p>
 
-<p>The just read this article where <a href="https://devcenter.heroku.com/articles/authentication">Heroku suggests you to use its <code class="highlighter-rouge">auth:token</code> option</a>. This are the credentials you need to use on your first login, the one given from the <code class="highlighter-rouge">.netrc</code> at your HOME path.</p>
+<p>I just readed this article where <a href="https://devcenter.heroku.com/articles/authentication">Heroku suggests you to use its <code class="highlighter-rouge">auth:token</code> option</a>. This are the credentials you need to use on your first login, the one given from the <code class="highlighter-rouge">.netrc</code> at your HOME path.</p>
 
 <h2 id="configure-custom-domains">Configure custom domains</h2>
 
@@ -336,6 +336,10 @@ window.cookieconsent.initialise({
 <p>And then, go to Cloudflare and add there subdomains as <code class="highlighter-rouge">CNAME records</code>:</p>
 
 <p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/01-heroku+free%20ssl/00.PNG?raw=true" alt="" /></p>
+
+<ul>
+  <li>In this screenshot I’m missing the <code class="highlighter-rouge">sql</code> subdomain.</li>
+</ul>
 
 <p>Remove the current <code class="highlighter-rouge">.htaccess</code> file under <code class="highlighter-rouge">web</code> folder and create a new one.</p>
 

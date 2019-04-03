@@ -241,7 +241,151 @@ window.cookieconsent.initialise({
           </h4>
 
           <section class="text-justify">
-            
+            <h2 id="configurando-heroku-para-usar-múltiples-subdominios-en-el-mismo-dominio-de-forma-gratuita-con-ssl">Configurando Heroku para usar múltiples subdominios en el mismo dominio de forma gratuita con SSL</h2>
+
+<p>En este tutorial, el primer paso que mostraré es cómo implementar una aplicación Heroku con PHP, que usaremos como backend.</p>
+
+<p>Necesitarás tener una cuenta en Heroku, así que <a href="https://signup.heroku.com/login">no dudes en registrarte</a>.</p>
+
+<blockquote>
+  <p>Para esto, debe reproducir los pasos de la guía sobre [cómo comenzar en PHP en Heroku] (https://devcenter.heroku.com/articles/getting-started-with-php) hasta la parte de configuración de variables. (<strong>Nota:</strong> la guía está en inglés)</p>
+</blockquote>
+
+<p><strong>Nota:</strong> Si ya sabes cómo publicar una aplicación PHP con Heroku, crea una.</p>
+
+<p>Una vez que acabemos la guía, tendremos que deshacer algunos pasos del tutorial Heroku, porque personalmente, no usaré Symfony (prefiero Laravel, enseñaré algunos conceptos básicos en los próximos tutoriales), pero no quiero usar el enrutamiento que Symfony ofrece por el momento.</p>
+
+<p>Volviendo al tema, debes eliminar manualmente estas líneas del archivo <code class="highlighter-rouge">composer.json</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="s2">"require"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"silex/silex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.0.4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"monolog/monolog"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.22"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"twig/twig"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symfony/twig-bridge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>reemplaza esta parte de esta manera:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="s2">"require"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Por el momento no utilizaremos ninguna dependencia.</p>
+
+<p>Luego solo use los siguientes comandos para actualizar el proyecto y cargar una nueva versión del mismo:</p>
+
+<p>En Linux:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">rm</span> <span class="nt">-rf</span> vendor
+<span class="nv">$ </span><span class="nb">rm </span>composer.lock
+</code></pre></div></div>
+
+<p>En Windows:</p>
+
+<pre><code class="language-dos">@ rmdir /S vendor
+@ del /F composer.lock
+</code></pre>
+
+<p>Después:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>composer <span class="nb">install</span>
+<span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"&lt;descripción del commit&gt;"</span>
+<span class="nv">$ </span>git push heroku master
+</code></pre></div></div>
+
+<h3 id="algunas-advertencias">Algunas advertencias</h3>
+
+<p>Para iniciar sesión en Heroku, deberás ejecutar el comando <code class="highlighter-rouge">heroku login</code>, pero una vez que hagas tu primer commit si pones credenciales incorrectas (al hacer push) <a href="https: //devcenter.heroku.com/articles/git#http-git-authentication">un error ocurrirá</a>, si esto te sucede, tengo una solución:</p>
+
+<p>Primero borra las credenciales de Git usando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--system</span> <span class="nt">--unset</span> credential.helper
+</code></pre></div></div>
+
+<p>Si estás en Windows y usas la consola Mingw64 para tus proyectos y estás usando CMD, estás fuera de riesgo porque <a href="https://git-scm.com/docs/git-credential-store">la configuración del almacén de credenciales de git</a> no será borrada.</p>
+
+<p>Acabo de leer este artículo donde <a href="https://devcenter.heroku.com/articles/authentication">Heroku sugiere que uses su opción <code class="highlighter-rouge">auth:token</code></a>. Estas son las credenciales que debes usar en tu primer inicio de sesión, la que se le da en el archivo <code class="highlighter-rouge">.netrc</code> en su HOME o en Windows: <code class="highlighter-rouge">C:/Users/&lt;tu usuario&gt;</code>.</p>
+
+<h2 id="configurar-dominios-personalizados">Configurar dominios personalizados</h2>
+
+<p>Para lograr esto, deberá seguir <a href="https://devcenter.heroku.com/articles/custom-domains#add-a-custom-domain-with-a-Subdominio">este tutorial</a>. <strong>Nota:</strong> No intentes agregarlos hasta que no hagas tu primer push a la aplicación.</p>
+
+<p>Luego, todo lo que debes hacer es agregar un nuevo <strong>‘registro CNAME’</strong> en tu panel de Cloudflare (<a href="/es/2019/03/31/configuring-custom-domains-github-pages-part-1">estábamos usando Cloudflare en la última publicación</a> apuntando al enlace DNS solicitado en la consola. <strong>Nota:</strong> Por defecto, uso el subdominio <code class="highlighter-rouge">app.example.com</code>.</p>
+
+<p>Pero la buena noticia aquí es que puedes usar tantos subdominios como necesites, y con algunos trucos, en tus proyectos.</p>
+
+<p>Normalmente, otros usuarios desplegarían varios proyectos, pero quiero usar un solo proyecto. Por lo tanto, usaría algunos archivos <code class="highlighter-rouge">.htaccess</code> para lograr esto a través de la configuración de Apache.</p>
+
+<p>Lo primero que debe tener en cuenta es que usaremos subcarpetas para apuntar a diferentes subcarpetas, por ejemplo:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>raíz
+    web/
+        phpmyadmin/ # Esto apunta a sql.example.com
+        api/        # Esto apunta a api.example.com
+        dev/        # Esto apunta a dev.example.com
+</code></pre></div></div>
+
+<p>Primero necesitarás agregar todos estos subdominios:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku domains:add api.example.com
+<span class="nv">$ </span>heroku domains:add dev.example.com
+<span class="nv">$ </span>heroku domains:add sql.example.com
+</code></pre></div></div>
+
+<p>Luego, ve a Cloudflare y agregue subdominios como “registros CNAME”:</p>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/01-heroku+free%20ssl/00.PNG?raw=true" alt="" /></p>
+
+<ul>
+  <li>En esta captura de pantalla me falta el subdominio <code class="highlighter-rouge">sql</code>.</li>
+</ul>
+
+<p>Elimina el archivo <code class="highlighter-rouge">.htaccess</code> actual en la carpeta <code class="highlighter-rouge">web</code> y cree uno nuevo.</p>
+
+<p>Entonces, necesitarás la siguiente configuración .htaccess:</p>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Options</span> +FollowSymLinks
+
+<span class="nc">RewriteEngine</span> On
+
+<span class="c"># Subdominio 1 (carpeta sql-admin)</span>
+<span class="nc">RewriteCond</span> %{HTTP_HOST} ^sql\.z3nth10n\.net$ [NC]
+<span class="nc">RewriteCond</span> %{REQUEST_URI} !^/phpmyadmin/.*$
+<span class="nc">RewriteRule</span> ^(.*)$ /phpmyadmin/$1 [L]
+
+<span class="c"># Subdominio 2 (carpeta api)</span>
+<span class="nc">RewriteCond</span> %{HTTP_HOST} ^api\.z3nth10n\.net$ [NC]
+<span class="nc">RewriteCond</span> %{REQUEST_URI} !^/api/.*$
+<span class="nc">RewriteRule</span> ^(.*)$ /api/$1 [L]
+
+<span class="c"># Subdominio 3 (carpeta dev)</span>
+<span class="nc">RewriteCond</span> %{HTTP_HOST} ^dev\.z3nth10n\.net$ [NC]
+<span class="nc">RewriteCond</span> %{REQUEST_URI} !^/dev/.*$
+<span class="nc">RewriteRule</span> ^(.*)$ /dev/$1 [L]
+</code></pre></div></div>
+
+<p>As you can see it has a very simple pattern usage:</p>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Subdominio # (carpeta x)</span>
+<span class="nc">RewriteCond</span> %{HTTP_HOST} ^&lt;subdominio x&gt;\.example\.com$ [NC]
+<span class="nc">RewriteCond</span> %{REQUEST_URI} !^/&lt;nombre de carpeta&gt;/.*$
+<span class="nc">RewriteRule</span> ^(.*)$ /&lt;nombre de carpeta&gt;/$1 [L]
+</code></pre></div></div>
+
+<h2 id="configurando-ssl">Configurando SSL</h2>
+
+<p>Aquí vienen los problemas, ya que el SSL no es gratis en Heroku. Necesitarás <a href="https://devcenter.heroku.com/articles/ssl">un dyno pagado para tenerlo</a>.</p>
+
+<p>Pero Cloudflare puede cifrar el último punto final (Usuario-Cloudflare), para esto, tendremos que ir a la sección Crypto debajo de nuestro tablero y colocar la opción SSL en <strong>el modo “Flexible”</strong> (si lo pone <strong>“Completo”</strong> o <strong>“Completo (estricto)”</strong> se mostrará un error 502). Esto significa que Cloudflare ofrecerá su SSL como protección, pero desde Heroku hasta Cloudflare no habrá ningún túnel de encriptación como el que ofrece SSL/TLS.</p>
+
+<ul>
+  <li>Puedes leer más sobre esto <a href="https://www.cloudflare.com/ssl/">aquí bajo el encabezado “Configuración SSL de Cloudflare”</a>.</li>
+</ul>
+
+<p>Luego, para hacer que todos los usuarios usen <strong>https</strong> de manera predeterminada, desplázate hacia abajo y habilita la opción <strong>“Usar siempre HTTPS”</strong>.</p>
+
+<p><strong>¡Un saludo!</strong></p>
 
           </section>
 
