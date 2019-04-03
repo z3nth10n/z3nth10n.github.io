@@ -20,7 +20,7 @@ También es necesario que conozcas las alternativas a FTP consideradas como segu
 Cómo instalar vsftpd en Linux Ubuntu y configurarlo paso a paso.
 ----------------------------------------------------------------
 
-Voy a intentar que este tutorial sea válido para tanto para versiones recientes de Ubuntu como para versiones más antiguas. En el momento de escribir este artículo estoy trabajando con [Ubuntu 18.04](http://releases.ubuntu.com/18.04/), pero el tutorial también será compatible con Ubuntu 14.04 y seguramente también sirva para versiones anteriores.
+Voy a intentar que este tutorial sea válido para tanto para versiones recientes de Ubuntu como para versiones más antiguas. En el momento de escribir este artículo estoy trabajando con [Ubuntu 18.04](http://releases.ubuntu.com/18.04/), pero el tutorial también será compatible con Ubuntu 16.04 y seguramente también sirva para versiones anteriores.
 
 Antes de entrar de lleno en la **configuración de vsftpd**, recordar que en este tutorial **no voy a incluir la configuración del firewall**, ya que cada usuario tendrá instalado el que más le guste. Con esto quiero recordarles que gestionen las reglas del firewall para que permita las conexiones al servidor FTP, que suelen emplear los puertos 20 y 21 a menos que lo configuremos de otra manera. **Sino usas ningún firewall, no necesitarás hacer nada de esto.**
 
@@ -28,49 +28,75 @@ Antes de entrar de lleno en la **configuración de vsftpd**, recordar que en est
 
 ### Instalar vsftpd en Ubuntu.
 
-Para **instalar vsftpd en Ubuntu 16.04** podemos emplear el comando:  
-`sudo apt install vsftpd`
+Para **instalar vsftpd en Ubuntu 16.04 y 18.04** podemos emplear el comando:  
+```bash
+$ sudo apt install vsftpd
+```
 
-Si empleamos e la versión **Ubuntu 14.04**, el comando que usaremos es:  
-`sudo apt-get install vsftpd`
+Si empleamos la versión **Ubuntu 14.04**, el comando que usaremos es:  
+```bash
+$ sudo apt-get install vsftpd
+```
 
-Antes de seguir avanzando, debemos conocer los comandos para iniciar, detener y reiniciar el demonio de vsftpd. **En Ubuntu 16.04 los comandos para iniciar, detener y reiniciar vsftpd son:**  
-`sudo systemctl restart vsftpd`  
-`sudo systemctl start vsftpd`  
-`sudo systemctl stop vsftpd`
+Antes de seguir avanzando, debemos conocer los comandos para iniciar, detener y reiniciar el demonio de vsftpd. **En Ubuntu 16.04 y 18.04 los comandos para iniciar, detener y reiniciar vsftpd son:**  
+```bash
+$ sudo systemctl restart vsftpd
+```  
+```bash
+$ sudo systemctl start vsftpd
+```  
+```bash
+$ sudo systemctl stop vsftpd
+```
 
 **En Ubuntu 10.04 los comandos para iniciar, detener y reiniciar vsftpd son:**  
-`sudo service vsftpd restart`  
-`sudo service vsftpd start`  
-`sudo service vsftpd stop`
+```bash
+$ sudo service vsftpd restart
+```  
+```bash
+$ sudo service vsftpd start
+```  
+```bash
+$ sudo service vsftpd stop
+```
 
 ### Configurar vsftpd en Ubuntu.
 
 Para configurar vsftpd voy a partir de cero, agregando un nuevo usuario al que darle los permisos adecuados para que pueda subir y bajar archivos a una carpeta determinada. Este usuario quedará encerrado en su carpeta `home`, de forma que no podrá acceder a ninguna otra parte del sistema operativo. De este modo, conseguimos una configuración más segura.
 
 Para añadir el usuario ejecutamos el comando:  
-`sudo adduser vozidea`
+```bash
+$ sudo adduser z3nth10n
+```
 
 Tras ejecutar este comando nos solicitará que introduzcamos una contraseña.
 
 Hago un pequeño inciso para recordar el tutorial de [cómo añadir y eliminar usuarios en Linux](https://www.vozidea.com/como-anadir-y-eliminar-usuarios-en-linux) que escribimos hace algún tiempo.
 
-Usaremos este usuario `vozidea` para acceder al servidor FTP. Debemos saber que el sistema de seguridad de jaulas chroot de vsftp encierra al usuario en su carpeta `home`, por lo que en nuestro caso el chroot sería `/home/vozidea`. Además, vsftp maneja las jaulas chroot de forma que se deben cumplir dos condiciones:
+Usaremos este usuario `z3nth10n` para acceder al servidor FTP. Debemos saber que el sistema de seguridad de jaulas chroot de vsftp encierra al usuario en su carpeta `home`, por lo que en nuestro caso el chroot sería `/home/z3nth10n`. Además, vsftp maneja las jaulas chroot de forma que se deben cumplir dos condiciones:
 
 *   **El dueño de la carpeta chroot y el usuario que se conecta por FTP no pueden ser el mismo.**
 *   **La carpeta chroot no puede tener permisos de escritura.**
 
 Así que debemos cambiar el dueño de esta carpeta con el siguiente comando:  
-`sudo chown root:root /home/vozidea`
+```bash
+$ sudo chown root:root /home/z3nth10n
+```
 
 Si queremos que el usuario pueda subir archivos al servidor FTP, necesitaremos crear una carpeta:  
-`sudo mkdir /home/vozidea/ftp_subidas`  
-`sudo chown vozidea:vozidea /home/vozidea/ftp_subidas`
+```bash
+$ sudo mkdir /home/z3nth10n/ftp_subidas
+```
+```bash
+$ sudo chown z3nth10n:z3nth10n /home/z3nth10n/ftp_subidas
+```
 
-**Algo muy importante es quitar el acceso al intérprete de comandos _(shell)_ del usuario `vozidea` que agregamos. Insisto en que es muy importante porque puede suponer un grave riesgo de seguridad.** El problema está en que al quitar acceso a la shell, vsftpd no nos deja acceder al servidor FTP porque el usuario no tiene una shell válida asignada. Para solucionar esto **vamos a crear una shell personalizada, que añadiremos a la lista de shells válidas y finalmente asignaremos esta shell a nuestro usuario**.
+**Algo muy importante es quitar el acceso al intérprete de comandos _(shell)_ del usuario `z3nth10n` que agregamos. Insisto en que es muy importante porque puede suponer un grave riesgo de seguridad.** El problema está en que al quitar acceso a la shell, vsftpd no nos deja acceder al servidor FTP porque el usuario no tiene una shell válida asignada. Para solucionar esto **vamos a crear una shell personalizada, que añadiremos a la lista de shells válidas y finalmente asignaremos esta shell a nuestro usuario**.
 
 Empezamos ejecutando el siguiente comando:  
-`sudo nano /bin/ftponly`
+```bash
+$ sudo nano /bin/ftponly
+```
 
 Añadimos las siguientes líneas y guardamos el archivo:
 
@@ -80,10 +106,14 @@ echo "Esta cuenta solo dispone de acceso por FTP."
 ```
 
 Damos permisos de ejecución a la shell `ftponly` con el comando:  
-`sudo chmod a+x /bin/ftponly`
+```bash
+$ sudo chmod a+x /bin/ftponly
+```
 
 Editamos la lista de shells válidas con el comando:  
-`sudo nano /etc/shells`
+```bash
+$ sudo nano /etc/shells
+```
 
 Añadimos `/bin/ftponly` al final de la lista:
 
@@ -97,12 +127,16 @@ Añadimos `/bin/ftponly` al final de la lista:
 ```
 
 Asignamos la shell `ftponly` a nuestro usuario:  
-`sudo usermod vozidea -s /bin/ftponly`
+```bash
+$ sudo usermod z3nth10n -s /bin/ftponly
+```
 
 **Nota importante:** en algunos tutoriales que he podido leer no crean esta shell personalizada `ftponly`, sino que usan la shell del sistema `/usr/sbin/nologin` o `/sbin/nologin`. Como hay varios servicios del sistema que emplean esta shell `nologin`, **no debemos usarla o estaremos creando un problema de seguridad grave**.
 
 Llegados a este punto, ya tenemos nuestro usuario listo. Ahora procedemos a **editar el archivo de configuración de vsftpd** con el comando:  
-`sudo nano /etc/vsftpd.conf`
+```bash
+$ sudo nano /etc/vsftpd.conf
+```
 
 Hay que modificar el archivo eliminando el carácter `#` en las partes correspondientes y haciendo las modificaciones tal y como las mostramos a continuación:
 
@@ -137,14 +171,14 @@ Para probar el servidor FTP podéis probar a conectaros empleando un [cliente FT
 
 ## Troubleshooting
 
-Quizás ya te haya pasado a mi que aún no puedas conectarte... Aquí recogeré una lista de posibles casos de error:
+Quizás ya te haya pasado como a mi que aún no puedas conectarte... Aquí recogeré una lista de posibles casos de error:
 
 * **Error: 500 OOPS: vsftpd: refusing to run with writable root inside chroot()**
     * La solución es sencilla, solo debes de añadir esta línea a tu `vsftpd.conf`: `allow_writeable_chroot=YES`
     * Reinicia el servicio
     
 * **¿Cómo cambiar el puerto del 21 a otro?**
-    * Añade esta línea a tu `vsftpd.conf`: `listen_port=2121`
+    * Añade esta línea a tu `vsftpd.conf`: `listen_port=<número de puerto>` (ejemplo: `listen_port=2121`)
     * Reinicia el servicio
     
 * **Failed to retrieve directory listing**
@@ -157,7 +191,7 @@ pasv_min_port=9010
 pasv_max_port=9020
 ```
 
-    * Estos puertos deden de estar abiertos...
+    * Estos puertos deden de estar abiertos... (en el servidor, mediante el reenvío de puertos (port forwarding) o mediante reglas de Firewall)
     * Reinicia el servicio
     * Configura una nueva sesión en tu Filezilla para poder acceder en modo pasivo, [aquí un tutorial](https://www.nerion.es/soporte/tutoriales/error-connection-timed-out-after-20-seconds-of-inactivity/).
     * No haría falta cambiar las opciones generales a Pasivo, dentro de tu nuevo sitio, ve a "Opciones de Transferencia" y cambia al modo pasivo.
