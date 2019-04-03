@@ -212,6 +212,7 @@ category-desc:
     jekyll-plugin: "A category where I will show some of the Jekyll plugins I have developed."
     jekyll: "A category where I will show some tutorials for Jekyll."
     tutorial: "A category where I will post tutorials of any kind."
+    cs-snippet: "A category where I will post some of my C# snippets."
     total-post-cat: "Total posts for this category"
 
 #############
