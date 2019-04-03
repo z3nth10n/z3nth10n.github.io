@@ -9,7 +9,7 @@ locale: 'en'
 permalink: "/:language/:year/:month/:day/configuring-custom-domains-github-pages-part-3.html"
 ---
 
-# Configure and use PHPMyAdmin with Heroku using JawsDB
+## Configure and use PHPMyAdmin with Heroku using JawsDB
 
 On the last tutorial I teached you how to configure [your first PHP backend using Heroku](/en/2019/04/01/configuring-custom-domains-github-pages-part-2), now we will introduce PHPMyAdmin on Heroku.
 
@@ -96,7 +96,7 @@ If you followed the Part 2 of this tutorial, you'll need to unset the **"Always 
 * http://&#x2A;example.com/&#x2A;
     * Rule => Always Use HTTPS
     
-Click "Save and Deploy".
+Click **"Save and Deploy"**.
 
 **Important Tip:** Don't login in your DDBB on a public Wifi due to a possible [*MitM attack*](https://en.wikipedia.org/wiki/Man-in-the-middle_attack).
 

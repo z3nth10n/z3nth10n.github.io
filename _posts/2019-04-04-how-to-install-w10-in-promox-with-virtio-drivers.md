@@ -56,3 +56,5 @@ Instructions:
 ![](https://jonspraggins.com/wp-content/uploads/2017/09/removedevice-1024x733.png)
     
 The Red lines will be there until you shutdown and start the VM from Proxmox.
+
+**Best regards!**

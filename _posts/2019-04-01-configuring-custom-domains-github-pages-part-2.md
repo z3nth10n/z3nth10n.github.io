@@ -67,7 +67,7 @@ $ git push heroku master
 
 ### Some caveats
 
-In order to login on Heroku you'll need to execute the `heroku login` command, but once you make your first post if you put wrong credentials [an error would be prompting in your scene](https://devcenter.heroku.com/articles/git#http-git-authentication), if this happens to you, I have a solution for you:
+In order to login on Heroku you'll need to execute the `heroku login` command, but once you make your first commit if you put wrong credentials (at pushing) [an error would be prompting in your scene](https://devcenter.heroku.com/articles/git#http-git-authentication), if this happens to you, I have a solution for you:
 
 First remove Git credentials by using:
 
@@ -77,7 +77,7 @@ $ git config --system --unset credential.helper
 
 If you're in Windows and you use Mingw64 console for your projects and you're using CMD you're out of risk because [the git-credential-store settings](https://git-scm.com/docs/git-credential-store) won't be deleted.
 
-The just read this article where [Heroku suggests you to use its `auth:token` option](https://devcenter.heroku.com/articles/authentication). This are the credentials you need to use on your first login, the one given from the `.netrc` at your HOME path.
+I just readed this article where [Heroku suggests you to use its `auth:token` option](https://devcenter.heroku.com/articles/authentication). This are the credentials you need to use on your first login, the one given from the `.netrc` at your HOME path.
 
 ## Configure custom domains
 
@@ -110,6 +110,8 @@ $ heroku domains:add sql.example.com
 And then, go to Cloudflare and add there subdomains as `CNAME records`:
 
 ![](https://github.com/uta-org/artwork/blob/master/blog/tutorials/01-heroku+free%20ssl/00.PNG?raw=true)
+
+* In this screenshot I'm missing the `sql` subdomain.
 
 Remove the current `.htaccess` file under `web` folder and create a new one.
 

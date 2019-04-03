@@ -9,7 +9,7 @@ locale: 'en'
 permalink: "/:language/:year/:month/:day/4-ways-extact-content-vmdk-vm-totally-dead.html"
 ---
 
-Sometimes, you badly need your ESXi VM data, but that thing just cannot be powered on for some reason! Well, you can try starting that VM one more time according to this article and access the data with a little luck. But, if you are out of luck and the VM is dead, you need another method to extract its VMDK file content.<span id="more-368"></span> Sometimes, you badly need your ESXi VM data, but that thing just cannot be powered on for some reason! Well, you can try starting that VM one more time according to [this article](https://kb.vmware.com/s/article/1003648) and access the data with a little luck. But, if you are out of luck and the VM is dead, you need another method to extract its VMDK file content.
+Sometimes, you badly need your ESXi VM data, but that thing just cannot be powered on for some reason! Well, you can try starting that VM one more time according to [this article](https://kb.vmware.com/s/article/1003648) and access the data with a little luck. But, if you are out of luck and the VM is dead, you need another method to extract its VMDK file content.
 
 **Disclaimer:** none of the methods I discuss here works if there is encrypted data on the disk. Decrypting is a pretty broad topic to be included in this post. So, in my today’s article, I discuss how to retrieve data from the dead VM disk that is neither damaged nor encrypted.
 
@@ -17,7 +17,7 @@ That’s absolutely true that there are several disk types. They all are describ
 
 ## **Wait, what a VMDK actually is?**
 
-Well, first, let’s look under the VMDK hood. Each disk consists of two smaller files: the descriptor and the flat file. The former is nothing more than a text file viewable in any text editor. The descriptor keeps such parameters as IDS, virtual hardware version, and disk geometry. The *flat.vmdk file, in its turn, is where the VM data reside. In Datastore browser, both the descriptor and the *flat.vmdk are displayed as a single VMDK volume.
+Well, first, let’s look under the VMDK hood. Each disk consists of two smaller files: the descriptor and the flat file. The former is nothing more than a text file viewable in any text editor. The descriptor keeps such parameters as IDS, virtual hardware version, and disk geometry. The &#x2A;flat.vmdk file, in its turn, is where the VM data reside. In Datastore browser, both the descriptor and the &#x2A;flat.vmdk are displayed as a single VMDK volume.
 
 [![](http://www.vmwareblog.org/wp-content/uploads/2018/09/1.png)](http://www.vmwareblog.org/wp-content/uploads/2018/09/1.png)
 
@@ -146,3 +146,5 @@ Eventually, once you are done with copying data, make sure that you exit the uti
 ## **Conclusion**
 
 In this article, I’ve discussed 4 the most useful ways to access the VMDK contents without powering on the VM. Well, you can find many other ways to extract a VM disk content, but the ones I discussed above, for my money, are the best. Once again, all the methods I discussed here work only if none of the VMDK volume components is corrupted. You may need some other things to do if any of those files is corrupted or encrypted. I wish you never be in the situation when you need any of the methods I describe here. Take care.
+
+**Best regards!**
