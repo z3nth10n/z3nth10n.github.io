@@ -18,6 +18,40 @@
 		
             
                 <item>
+                    <title>Implementación de la clase ThreadSafeBool para Unity3D</title>
+                    
+                    
+                        <description>&lt;p&gt;El otro día me pasaba que al asignar una variable que estaba declarada en ambito de la clase desde otro thread, al leerla desde otro thread no me devolvía el resultado esperado, por eso os traigo esta utilidad:&lt;/p&gt;
+
+</description>
+                    
+                    <pubDate>Wed, 03 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/es/2019/04/03/thread-safe-bools-unity3d-impl.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/03/thread-safe-bools-unity3d-impl.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
+                    <title>4 formas de extraer contenido de una máquina virtual (VMDK) cuando está totalmente inutilizada</title>
+                    
+                    
+                        <description>&lt;p&gt;A veces, necesitas desesperadamente tus datos de una máquina virtual en VMWare, ¡pero esa máquina simplemente no puede encenderse por alguna razón! Bueno, puedes intentar iniciar esa VM una vez más según [este artículo] (https://kb.vmware.com/s/article/1003648) y acceder a los datos con un poco de suerte. Pero, si no tienes suerte y la VM está muerta, necesita otro método para extraer el contenido del archivo VMDK.&lt;/p&gt;
+
+</description>
+                    
+                    <pubDate>Wed, 03 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
                     <title>Configurando dominios personalizados en Github Pages (Parte 3)</title>
                     
                     
@@ -62,40 +96,6 @@
                     <pubDate>Sun, 31 Mar 2019 21:00:00 +0000</pubDate>
                     <link>http://z3nth10n.net/es/2019/03/31/configuring-custom-domains-github-pages-part-1.html</link>
                     <guid isPermaLink="true">http://z3nth10n.net/es/2019/03/31/configuring-custom-domains-github-pages-part-1.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>How to schedule posts in Jekyll</title>
-                    
-                    
-                        <description>&lt;p&gt;En esta publicación explicaré cómo usar la utilidad de Bash llamada &lt;strong&gt;Jekyll Scheduler&lt;/strong&gt; para programar la subida de publicaciones de Jekyll.&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Sun, 31 Mar 2019 08:22:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/es/2019/03/31/how-schedule-posts-in-jekyll.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/03/31/how-schedule-posts-in-jekyll.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>Jekyll-ga-v2 un plugin para obtener datos de Google Analytics en tu sitio</title>
-                    
-                    
-                        <description>&lt;p&gt;En este post explicaré cómo usar el complemento llamado &lt;strong&gt;jekyll-ga-v2&lt;/strong&gt;. He creado este plugin para poder implementar un widget que muestra la información que Google Analytics nos puede ofrecer.&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Fri, 22 Mar 2019 01:35:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/es/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html</guid>
                 </item>
             
 		

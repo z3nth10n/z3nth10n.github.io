@@ -2,7 +2,7 @@
 <!-- Post Layout Start -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
   
 <!-- HEAD Start -->
@@ -25,11 +25,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Blog and website of z3nth10n, blogging mainly for tech.">
+  <meta name="description" content="Este es el blog y sitio web de z3nth10n, aquí se tratará principalmente el desarrollo de mis proyectos.">
   <meta name="author" content="z3nth10n">
   <meta name="keywords" content="z3nth10n, dev">
-  <link rel="canonical" href="/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html">
-  <title>{ z3nth10n } | Configuring custom domains on Github Pages (Part 3)</title>
+  <link rel="canonical" href="/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html">
+  <title>{ z3nth10n } | 4 formas de extraer contenido de una máquina virtual (VMDK) cuando está totalmente inutilizada</title>
 
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -82,9 +82,9 @@ window.cookieconsent.initialise({
     }
   },
   "content": {
-    "message": "This website uses cookies to ensure you get the best experience on our website.",
-    "dismiss": "Got it!",
-    "link": "Learn more",
+    "message": "Esta página web usa cookies para asegurar una mejor experiencia en nuestro sitio.",
+    "dismiss": "¡Vale!",
+    "link": "Aprende más",
     "href": "/privacy-policy"
   }
 })});
@@ -156,7 +156,7 @@ window.cookieconsent.initialise({
       <ul class="nav navbar-nav">
         <li class="language-selection">
             <button type="button" class="toggle visible">
-                <span class="sm-invisible">Select your language</span>
+                <span class="sm-invisible">Elige tu idioma</span>
                 <i class="fas fa-language sm-visible"></i>
             </button>
             <ul class="lang-select collapse">
@@ -223,136 +223,162 @@ window.cookieconsent.initialise({
 <!-- Swipe Instructions End -->
 
 
-          <h1><strong>Configuring custom domains on Github Pages (Part 3)</strong></h1>
+          <h1><strong>4 formas de extraer contenido de una máquina virtual (VMDK) cuando está totalmente inutilizada</strong></h1>
           <h4>
-            <strong>02 Apr 2019</strong>
+            <strong>03 Apr 2019</strong>
             <small>
-              . Category:
+              . Categoría:
               <a class="category" href="/categories/tutorial">
                 tutorial
               </a>
                 
               .
               
-    
-    0 views
-                
-    
-        (
-        last 7 days: 
-        
-        ∞ %    
-        
-        )
-    
-    .
-
-              <a href="/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html#disqus_thread">Comments</a>
+              <a href="/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html#disqus_thread">Comments</a>
               <br />
               
             </small>
           </h4>
 
           <section class="text-justify">
-            <h2 id="configure-and-use-phpmyadmin-with-heroku-using-jawsdb">Configure and use PHPMyAdmin with Heroku using JawsDB</h2>
+            <p>A veces, necesitas desesperadamente tus datos de una máquina virtual en VMWare, ¡pero esa máquina simplemente no puede encenderse por alguna razón! Bueno, puedes intentar iniciar esa VM una vez más según [este artículo] (https://kb.vmware.com/s/article/1003648) y acceder a los datos con un poco de suerte. Pero, si no tienes suerte y la VM está muerta, necesita otro método para extraer el contenido del archivo VMDK.</p>
 
-<p>On the last tutorial I teached you how to configure <a href="/en/2019/04/01/configuring-custom-domains-github-pages-part-2">your first PHP backend using Heroku</a>, now we will introduce PHPMyAdmin on Heroku.</p>
+<p><strong>Disclaimer:</strong> Ninguno de los métodos que discuto aquí funciona si hay datos cifrados en el disco. Descifrar es un tema bastante amplio que se incluirá en esta publicación. Por lo tanto, en el artículo de hoy, analizo cómo recuperar datos del disco VM muerto que no está dañado ni encriptado.</p>
 
-<p>For this, I used <a href="https://github.com/smsaladi/phpmyadmin_heroku">this amazing Heroku template to use PHPMyAdmin by smsaladi</a>. You just need to copy the following lines into your composer:</p>
+<p>Eso es absolutamente cierto que hay varios tipos de discos. Todos se describen <a href="https://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vddk.pg.doc_50%2FvddkDataStruct.5.3.html">aquí</a>. No quiero escribir mucho sobre ellos en este artículo, ya que tienen muchas cosas en común en términos de extracción de datos.</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="s2">"scripts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"post-install-cmd"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"composer create-project phpmyadmin/phpmyadmin; cp config.inc.php phpmyadmin/"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+<h2 id="-espera-qué-es-realmente-un-vmdk-">** Espera, ¿qué es realmente un VMDK? **</h2>
 
-<p>and inside the <code class="highlighter-rouge">require</code> part:</p>
+<p>Bueno, primero, echemos un vistazo debajo de VMDK. Cada disco consta de dos archivos más pequeños: el descriptor y el archivo plano. El primero no es más que un archivo de texto visible en cualquier editor de texto. El descriptor mantiene parámetros tales como IDS, versión de hardware virtual y geometría del disco. El archivo *flat.vmdk, a su vez, es donde residen los datos de la máquina virtual. En el navegador del almacén de datos, tanto el descriptor como el *flat.vmdk se muestran como un solo volumen VMDK.</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"ext-mbstring"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
-</span></code></pre></div></div>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09/1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/1.png" alt="" /></a></p>
 
-<p>Also, you’ll need to copy the <code class="highlighter-rouge">config.inc.php</code> into the root of your Heroku project.</p>
+<p>El único momento en que el contenido de VMDK aparece en primer plano es cuando se descarga el archivo. Luego, aparece un mensaje que le pide que permita la descarga de varios archivos.</p>
 
-<p>You’ll need to modify the “post-install-cmd” if you want to use a subfolder pointing to a subdomain as I done on the Part 2:</p>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/2-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/2-1.png" alt="" /></a></p>
 
-<p>Modify the “post-install-cmd” to match this:</p>
+<p>A nivel local, puedes ver ambos archivos con su tamaño real.</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">cd</span><span class="w"> </span><span class="err">web/</span><span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span><span class="err">composer</span><span class="w"> </span><span class="err">create-project</span><span class="w"> </span><span class="err">phpmyadmin/phpmyadmin;</span><span class="w"> </span><span class="err">cp</span><span class="w"> </span><span class="err">../config.inc.php</span><span class="w"> </span><span class="err">phpmyadmin/</span><span class="w">
-</span></code></pre></div></div>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/3-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/3-1.png" alt="" /></a></p>
 
-<p>And create the <code class="highlighter-rouge">phpmyadmin</code> folder inside the <code class="highlighter-rouge">web</code> one.</p>
+<p>En este punto, me gustaría mencionar que a menos que alguno de esos tipos funcione, ninguna de las formas de extraer el contenido del archivo VMDK descrito en mi artículo funciona. Hoy no veo esos casos en los que necesita recuperar tus datos de los archivos dañados. Solo te enseñaré cómo extraer datos cuando tienes un VMDK en buen estado, pero no puedes iniciar la VM por algún motivo. También tenga en cuenta que hacer las cosas que escribo aquí puede ser bastante arriesgado, ya que la mayoría de los métodos que analizo hoy le permiten acceder a un disco VM como un volumen de lectura-escritura. ¡Ten cuidado y no me culpes si te equivocas!</p>
 
-<p><strong>Note:</strong> If you want to point to a subdomain instead of using the folder, make sure you configured correctly your DNS records at Cloudflare and copy the proper part from my .htaccess in the example of the Part 2.</p>
+<p>Vale, con eso dicho, veamos ahora cómo obtiene tus datos. Hay dos tipos de métodos para hacerlo: métodos que permiten modificar el contenido del disco (montaje de VMDK como un volumen de lectura-escritura) y métodos exclusivamente para la recuperación de datos (abrir el archivo como un volumen de solo lectura).</p>
 
-<p>Then, execute the following commands:</p>
+<h2 id="-montaje-del-disco-como-un-volumen-de-lectura-escritura-">** Montaje del disco como un volumen de lectura-escritura **</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>composer update
-<span class="nv">$ </span>git add <span class="nb">.</span>
-<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Deploying PHPMyAdmin"</span>
-% git push heroku master
-</code></pre></div></div>
+<h3 id="-simplemente-agregue-el-vmdk-a-otra-máquina-virtual-esxi-">** Simplemente agregue el VMDK a otra máquina virtual ESXi **</h3>
 
-<h3 id="configuring-jawsdb">Configuring JawsDB</h3>
+<p>Bueno, eso puede sonar un poco trivial, pero ¿por qué simplemente no conectas el VMDK a la VM saludable? Conectar el disco a otra máquina virtual, por mi dinero, es la forma más fácil y confiable de obtener sus datos. Si tienes recursos suficientes en el host ESXi, o si solo puede usar un servidor más, no invente la rueda y agregue el VMDK a otra VM. Ten en cuenta que la VM en buen estado debe tener exactamente el mismo sistema operativo que la muerta para evitar cualquier problema de incompatibilidad de formato. En este artículo, todos los discos están formateados para NTFS y yo uso Windows Server 2016 para organizarlos.</p>
 
-<p>To configure JawsDB, you’ll need to follow <a href="https://devcenter.heroku.com/articles/jawsdb#provisioning-the-add-on">the steps on the Heroku guide about this</a>.</p>
+<p>Vale, empecemos. Llegue al host con ESXi Web Console para acceder al disco de destino. Recuerde, puede agregar el disco a la máquina virtual saludable sobre la marcha.</p>
 
-<p>I only used this two commands from this guide:</p>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/4-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/4-1.png" alt="" /></a></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku addons:create jawsdb
-</code></pre></div></div>
+<p>Especifica la ruta al VMDK y presione <strong>Seleccionar</strong>. En mi caso, el disco está ubicado exactamente en el mismo host donde reside la VM en buen estado. Bueno, honestamente, eso no es inteligente para hacer nada con ese VMDK, así que haz una copia de ese disco y juega con la copia.</p>
 
-<blockquote>
-  <p>To add the addon.</p>
-</blockquote>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/5-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/5-1.png" alt="" /></a></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku config:get JAWSDB_URL
-</code></pre></div></div>
+<p>Verifica todos los ajustes y presione <strong>Guardar</strong>.</p>
 
-<blockquote>
-  <p>To get your credentials that you will need to use in PHPMyAdmin.</p>
-</blockquote>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/6-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/6-1.png" alt="" /></a></p>
 
-<h3 id="configuring-environment-variables">Configuring environment variables</h3>
+<p>Vaya a <strong>Administración de discos</strong> y ponga en línea el disco recientemente agregado. Una vez más, la VM a la que acabo de agregar el disco se encuentra bajo la organización de Windows Server 2016.</p>
 
-<p>PHPMyAdmin’s <code class="highlighter-rouge">config.inc.php</code> file will need two environment variables:</p>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/7-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/7-1.png" alt="" /></a></p>
 
-<ul>
-  <li><a href="https://github.com/smsaladi/phpmyadmin_heroku/blob/cb0930fc82ffed1facb50ecd010b4be29b31c614/config.inc.php#L31">MYSQL_HOST</a></li>
-  <li><a href="https://github.com/smsaladi/phpmyadmin_heroku/blob/cb0930fc82ffed1facb50ecd010b4be29b31c614/config.inc.php#L17">PHPMYADMIN_BLOWFISH_SECRET</a></li>
-</ul>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/8-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/8-1.png" alt="" /></a></p>
 
-<p>To generate the blowfish secret, just use a SHA-1 or MD5 hash generators (that doesn’t store on its database <img class="emojione" alt="😂" src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png" />, for example sha1-online.com). Once you created one just set it using <a href="https://devcenter.heroku.com/articles/getting-started-with-php#define-config-vars">this command</a>:</p>
+<p>Ahora, en el Explorador de Windows, puede acceder a los datos. Ten en cuenta que puedes modificar o eliminar datos, ya que utiliza VMDK como un volumen de lectura y escritura. Deberías guardar una copia del disco en caso de que arruines las cosas.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku config:set <span class="nv">PHPMYADMIN_BLOWFISH_SECRET</span><span class="o">=</span>&lt;<span class="nb">hash</span><span class="o">&gt;</span>
-</code></pre></div></div>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/9-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/9-1.png" alt="" /></a></p>
 
-<p>The MYSQL_HOST variable can be extracted from the <code class="highlighter-rouge">heroku config:get JAWSDB_URL</code> I explained before. Just follow its format (<code class="highlighter-rouge">mysql://username:password@hostname:port/default_schema</code>)</p>
+<h2 id="vmware-workstation"><strong>VMware Workstation</strong></h2>
 
-<p>And set it as I explained before for the “<strong>PHPMYADMIN_BLOWFISH_SECRET</strong>” key.</p>
+<p>Otra forma fácil de acceder al contenido de VMDK es agregar el disco a VMware Workstation. Puede descargar VMware Workstation <a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">aquí</a>.</p>
 
-<h3 id="cant-login-using-ssl">Can’t login using SSL?</h3>
+<p>Una vez que abra VMware Workstation, vaya al menú <strong>Archivo</strong> y seleccione <strong>Asignar discos virtuales</strong> allí.</p>
 
-<p>Well, that behaviour would be expected if you’re using Heroku for free and Cloudflare with SSL.</p>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/10-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/10-1.png" alt="" /></a></p>
 
-<p>If you followed the Part 2 of this tutorial, you’ll need to unset the <strong>“Always Use HTTPS”</strong> option under <strong>Crypto on your dashboard</strong> and create some rules to keep users redirecting to https:</p>
+<p>A continuación, presione el botón <strong>Mapa…</strong>.</p>
 
-<ul>
-  <li>https://sql.example.com/
-    <ul>
-      <li>Rule =&gt; SSL: Off</li>
-    </ul>
-  </li>
-  <li>http://*example.com/*
-    <ul>
-      <li>Rule =&gt; Always Use HTTPS</li>
-    </ul>
-  </li>
-</ul>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/11-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/11-1.png" alt="" /></a></p>
 
-<p>Click <strong>“Save and Deploy”</strong>.</p>
+<p>Antes de comenzar, descarga el VMDK. En el menú <strong>Map Virtual Disk</strong>, busca el volumen. Desactiva la opción de modo de solo lectura y selecciona la letra de unidad. Presiona <strong>Ok</strong> para conectar el disco.</p>
 
-<p><strong>Important Tip:</strong> Don’t login in your DDBB on a public Wifi due to a possible <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack"><em>MitM attack</em></a>.</p>
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/12-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/12-1.png" alt="" /></a></p>
 
-<p><strong>Best regards!</strong></p>
+<p>VMware Workstation le advierte sobre el riesgo de alterar el contenido del disco. Bueno, con suerte, usted sabe lo que está haciendo, así que presione <strong>Sí</strong>.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /13.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/13.png" alt="" /></a></p>
+
+<p>El Explorador de Windows se abre justo después de conectar el disco.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /14.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/14.png" alt="" /></a></p>
+
+<p>Una vez que haya terminado con ese disco, no olvides desconectarlo. Así es como haces eso. Vaya al menú <strong>Mapa o Desconectar discos virtuales</strong>. Selecciona el disco y presiona <strong>Desconectar</strong>. Verás el mensaje que te impide desconectar el VMDK. Dice que es posible que el disco aún esté en uso y que deberías pensarlo dos veces antes de desconectarlo. Pero, si ya obtuviste los datos necesarios y no hay aplicaciones que usen datos en el disco, presiona <strong>Forzar desconexión</strong>.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /15.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/15.png" alt="" /></a></p>
+
+<h3 id="-vmware-virtual-disk-development-kit-">** VMware Virtual Disk Development Kit **</h3>
+
+<p>Ahora, veamos cómo acceder al disco con VMware Virtual Disk Development Kit (VDDK). VDDK es un montón de utilidades prácticas para desarrolladores. Vmware-mount.exe, la utilidad que permite realizar algunas manipulaciones con VMDK, en las que recuperar datos se encuentra entre ellas.</p>
+
+<p>Primero, descargue VDDK <a href="https://my.vmware.com/web/vmware/details?downloadGroup=VSP510-VDDK-510&amp;productId=268">aquí</a>. Ten en cuenta que necesitsa que la versión del kit sea anterior a 5.1 . vmware-mount.exe no está incluido en las versiones posteriores del kit. Después de la instalación, la utilidad estará disponible de forma predeterminada por la siguiente ruta: <code class="highlighter-rouge">C:\Archivos de programa (x86)\VMware\VMware Virtual Disk Development Kit\bin</code>. Ahora, ejecuta CMD.EXE y vaya a <code class="highlighter-rouge">C:\Archivos de programa (x86)\VMware\VMware Virtual Disk Development Kit\bin</code>. A continuación, ejecuta la utilidad con la opción <code class="highlighter-rouge">/p</code> y especifique la ruta al archivo VMDK (<code class="highlighter-rouge">C:\temp\Win2008Serv.vmdk</code> en mi caso).</p>
+
+<p>Observa que el volumen consta de 2 archivos. Obviamente, necesitas el más grande (el segundo en mi caso). Entonces, asigna la letra de unidad (yo uso Z: aquí) y escribe <code class="highlighter-rouge">/v:2</code> para montar ese volumen. Debes montar el archivo como el volumen de lectura y escritura, por lo que agrega <code class="highlighter-rouge">/m:w</code> antes de la ruta del archivo VMDK. También puedes habilitar el modo no persistente para garantizar que los cambios en el disco de la máquina virtual se descarten una vez que se apague la máquina virtual.</p>
+
+<p>Finalice el comando con la ruta al disco VMDK **. ** En mi caso, el cmdlet completo tiene el aspecto siguiente:</p>
+
+<pre><code class="language-dos">C:\Archivos de programa (x86)\VMware\VMware Virtual Disk Development Kit\bin&gt; vmware-mount.exe Z: /v:2 /m:w C:\temp\Win2008Serv.vmdk
+</code></pre>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/16-1024x221.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/16-1024x221.png" alt="" /></a></p>
+
+<p>Una vez que se haya montado el disco, ábrelo en el Explorador de Windows.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /17.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/17.png" alt="" /></a></p>
+
+<p>Una vez que hayas terminado, desconecta el VMDK. Escribe la letra del disco y termine la línea con /f. Tenga en cuenta que el sistema le impide cualquier otra forma de desconectar el disco ya que todavía está en uso.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/18-1024x250.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/18-1024x250.png" alt="" /></a></p>
+
+<p>Ten en cuenta que hay muchas más opciones de las que he mencionado en este artículo. Puedes averiguar más sobre ellos con <code class="highlighter-rouge">vmware-mount.exe /? cmdlet</code>.</p>
+
+<h2 id="-métodos-exclusivamente-para-la-recuperación-de-datos-">** Métodos exclusivamente para la recuperación de datos **</h2>
+
+<h3 id="-7-zip-">** 7-zip **</h3>
+
+<p>Otra forma bastante sencilla de acceder al VMDK es abrirlo como un archivo con 7-zip. Es cierto que 7-zip es una herramienta poderosa que te permite hacer un poco más que simplemente descomprimir algunos archivos. Por ejemplo, permite abrir un archivo VMDK como un archivo regular. Puedes descargar esa aplicación <a href="https://www.7-zip.org/download.html">desde el sitio oficial</a>. Abrir el disco VM con 7-zip es bueno exclusivamente para la recuperación de datos, ya que el archivo se abre en modo de solo lectura. En otras palabras, no se puede hacer nada con los datos. Ahora, veamos cómo realmente puede obtener los datos.</p>
+
+<p>Descarga el disco de la máquina virtual y abre el archivo con 7-zip.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /19.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/19.png" alt="" /></a></p>
+
+<p>A continuación, abre el archivo más grande. En mi caso, es 1.ntfs.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /20.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/20.png" alt="" /></a></p>
+
+<p>Aquí están los directorios y archivos disponibles en el disco.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /21.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/21.png" alt="" /></a></p>
+
+<p>Copia los datos.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/22-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/22-1.png" alt="" /></a></p>
+
+<p>Comprueba si ha recuperado todos los datos.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/23-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/23-1.png" alt="" /></a></p>
+
+<p>Finalmente, una vez que hayas terminado de copiar los datos, asegúrate de salir de la utilidad para evitar que se bloquee el disco hasta que se reinicie.</p>
+
+<h2 id="-conclusión-">** Conclusión **</h2>
+
+<p>En este artículo, he analizado 4 las formas más útiles de acceder a los contenidos de VMDK sin encender la máquina virtual. Bueno, puedes encontrar muchas otras formas de extraer un contenido de disco de VM, pero las que mencioné anteriormente, por mi dinero, son las mejores. Una vez más, todos los métodos que analicé aquí funcionan solo si ninguno de los componentes del volumen VMDK está dañado. Es posible que necesite hacer otras cosas si alguno de esos archivos está dañado o encriptado. Deseo que nunca estés en la situación cuando necesites alguno de los métodos que describo aquí.</p>
+
+<p><strong>¡Un saludo!</strong></p>
 
           </section>
 
@@ -362,7 +388,7 @@ window.cookieconsent.initialise({
   <ul class="rrssb-buttons clearfix">
     
       <li class="rrssb-email">
-        <a href="mailto:?subject=Configuring custom domains on Github Pages (Part 3)&body=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html" data-proofer-ignore>
+        <a href="mailto:?subject=4 formas de extraer contenido de una máquina virtual (VMDK) cuando está totalmente inutilizada&body=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html" data-proofer-ignore>
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M20.11 26.147c-2.335 1.05-4.36 1.4-7.124 1.4C6.524 27.548.84 22.916.84 15.284.84 7.343 6.602.45 15.4.45c6.854 0 11.8 4.7 11.8 11.252 0 5.684-3.193 9.265-7.398 9.3-1.83 0-3.153-.934-3.347-2.997h-.077c-1.208 1.986-2.96 2.997-5.023 2.997-2.532 0-4.36-1.868-4.36-5.062 0-4.75 3.503-9.07 9.11-9.07 1.713 0 3.7.4 4.6.972l-1.17 7.203c-.387 2.298-.115 3.3 1 3.4 1.674 0 3.774-2.102 3.774-6.58 0-5.06-3.27-8.994-9.304-8.994C9.05 2.87 3.83 7.545 3.83 14.97c0 6.5 4.2 10.2 10 10.202 1.987 0 4.09-.43 5.647-1.245l.634 2.22zM16.647 10.1c-.31-.078-.7-.155-1.207-.155-2.572 0-4.596 2.53-4.596 5.53 0 1.5.7 2.4 1.9 2.4 1.44 0 2.96-1.83 3.31-4.088l.592-3.72z"
@@ -375,7 +401,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-facebook">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html&title=Configuring custom domains on Github Pages (Part 3)" class="popup">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html&title=4 formas de extraer contenido de una máquina virtual (VMDK) cuando está totalmente inutilizada" class="popup">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="29" height="29" viewBox="0 0 29 29"><path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"
               class="cls-2" fill-rule="evenodd"/></svg>
@@ -386,7 +412,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-twitter">
-        <a href="https://twitter.com/share?url=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html&text=Configuring custom domains on Github Pages (Part 3)"
+        <a href="https://twitter.com/share?url=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html&text=4 formas de extraer contenido de una máquina virtual (VMDK) cuando está totalmente inutilizada"
         class="popup">
           <span class="rrssb-icon"><svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62c-3.122.162-6.22-.646-8.86-2.32 2.702.18 5.375-.648 7.507-2.32-2.072-.248-3.818-1.662-4.49-3.64.802.13 1.62.077 2.4-.154-2.482-.466-4.312-2.586-4.412-5.11.688.276 1.426.408 2.168.387-2.135-1.65-2.73-4.62-1.394-6.965C5.574 7.816 9.54 9.84 13.802 10.07c-.842-2.738.694-5.64 3.434-6.48 2.018-.624 4.212.043 5.546 1.682 1.186-.213 2.318-.662 3.33-1.317-.386 1.256-1.248 2.312-2.4 2.942 1.048-.106 2.07-.394 3.02-.85-.458 1.182-1.343 2.15-2.48 2.71z"/></svg></span>
           <span class="rrssb-text">twitter</span>
@@ -395,7 +421,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-linkedin">
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html" class="popup">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html" class="popup">
         <span class="rrssb-icon">
           <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
             <path d="M25.424 15.887v8.447h-4.896v-7.882c0-1.98-.71-3.33-2.48-3.33-1.354 0-2.158.91-2.514 1.802-.13.315-.162.753-.162 1.194v8.216h-4.9s.067-13.35 0-14.73h4.9v2.087c-.01.017-.023.033-.033.05h.032v-.05c.65-1.002 1.812-2.435 4.414-2.435 3.222 0 5.638 2.106 5.638 6.632zM5.348 2.5c-1.676 0-2.772 1.093-2.772 2.54 0 1.42 1.066 2.538 2.717 2.546h.032c1.71 0 2.77-1.132 2.77-2.546C8.056 3.593 7.02 2.5 5.344 2.5h.005zm-2.48 21.834h4.896V9.604H2.867v14.73z"
@@ -408,7 +434,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-reddit">
-        <a href="https://www.reddit.com/submit?url=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html&title=Configuring custom domains on Github Pages (Part 3)" target="_blank">
+        <a href="https://www.reddit.com/submit?url=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html&title=4 formas de extraer contenido de una máquina virtual (VMDK) cuando está totalmente inutilizada" target="_blank">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M11.794 15.316c0-1.03-.835-1.895-1.866-1.895-1.03 0-1.893.866-1.893 1.896s.863 1.9 1.9 1.9c1.023-.016 1.865-.916 1.865-1.9zM18.1 13.422c-1.03 0-1.895.864-1.895 1.895 0 1 .9 1.9 1.9 1.865 1.03 0 1.87-.836 1.87-1.865-.006-1.017-.875-1.917-1.875-1.895zM17.527 19.79c-.678.68-1.826 1.007-3.514 1.007h-.03c-1.686 0-2.834-.328-3.51-1.005-.264-.265-.693-.265-.958 0-.264.265-.264.7 0 1 .943.9 2.4 1.4 4.5 1.402.005 0 0 0 0 0 .005 0 0 0 0 0 2.066 0 3.527-.46 4.47-1.402.265-.264.265-.693.002-.958-.267-.334-.688-.334-.988-.043z"
@@ -423,7 +449,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-googleplus">
-        <a href="https://plus.google.com/share?url=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html" class="popup">
+        <a href="https://plus.google.com/share?url=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html" class="popup">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21 8.29h-1.95v2.6h-2.6v1.82h2.6v2.6H21v-2.6h2.6v-1.885H21V8.29zM7.614 10.306v2.925h3.9c-.26 1.69-1.755 2.925-3.9 2.925-2.34 0-4.29-2.016-4.29-4.354s1.885-4.353 4.29-4.353c1.104 0 2.014.326 2.794 1.105l2.08-2.08c-1.3-1.17-2.924-1.883-4.874-1.883C3.65 4.586.4 7.835.4 11.8s3.25 7.212 7.214 7.212c4.224 0 6.953-2.988 6.953-7.082 0-.52-.065-1.104-.13-1.624H7.614z"/></svg>
           </span>
@@ -433,7 +459,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-tumblr">
-        <a href="https://tumblr.com/share/link?url=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html" target="_blank">
+        <a href="https://tumblr.com/share/link?url=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html" target="_blank">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M18.02 21.842c-2.03.052-2.422-1.396-2.44-2.446v-7.294h4.73V7.874H15.6V1.592h-3.714s-.167.053-.182.186c-.218 1.935-1.144 5.33-4.988 6.688v3.637h2.927v7.677c0 2.8 1.7 6.7 7.3 6.6 1.863-.03 3.934-.795 4.392-1.453l-1.22-3.54c-.52.213-1.415.413-2.115.455z"
@@ -446,7 +472,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-pinterest">
-        <a href="https://pinterest.com/pin/create/button/?url=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html" target="_blank">
+        <a href="https://pinterest.com/pin/create/button/?url=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html" target="_blank">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
               <path d="M14.02 1.57c-7.06 0-12.784 5.723-12.784 12.785S6.96 27.14 14.02 27.14c7.062 0 12.786-5.725 12.786-12.785 0-7.06-5.724-12.785-12.785-12.785zm1.24 17.085c-1.16-.09-1.648-.666-2.558-1.22-.5 2.627-1.113 5.146-2.925 6.46-.56-3.972.822-6.952 1.462-10.117-1.094-1.84.13-5.545 2.437-4.632 2.837 1.123-2.458 6.842 1.1 7.557 3.71.744 5.226-6.44 2.924-8.775-3.324-3.374-9.677-.077-8.896 4.754.19 1.178 1.408 1.538.49 3.168-2.13-.472-2.764-2.15-2.683-4.388.132-3.662 3.292-6.227 6.46-6.582 4.008-.448 7.772 1.474 8.29 5.24.58 4.254-1.815 8.864-6.1 8.532v.003z"
@@ -459,7 +485,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-pocket">
-        <a href="https://getpocket.com/save?url=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html">
+        <a href="https://getpocket.com/save?url=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html">
           <span class="rrssb-icon">
             <svg width="32" height="28" viewBox="0 0 32 28" xmlns="http://www.w3.org/2000/svg">
               <path d="M28.782.002c2.03.002 3.193 1.12 3.182 3.106-.022 3.57.17 7.16-.158 10.7-1.09 11.773-14.588 18.092-24.6 11.573C2.72 22.458.197 18.313.057 12.937c-.09-3.36-.05-6.72-.026-10.08C.04 1.113 1.212.016 3.02.008 7.347-.006 11.678.004 16.006.002c4.258 0 8.518-.004 12.776 0zM8.65 7.856c-1.262.135-1.99.57-2.357 1.476-.392.965-.115 1.81.606 2.496 2.453 2.334 4.91 4.664 7.398 6.966 1.086 1.003 2.237.99 3.314-.013 2.407-2.23 4.795-4.482 7.17-6.747 1.203-1.148 1.32-2.468.365-3.426-1.01-1.014-2.302-.933-3.558.245-1.596 1.497-3.222 2.965-4.75 4.526-.706.715-1.12.627-1.783-.034-1.597-1.596-3.25-3.138-4.93-4.644-.47-.42-1.123-.647-1.478-.844z"
@@ -472,7 +498,7 @@ window.cookieconsent.initialise({
     
     
       <li class="rrssb-vk">
-        <a href="https://vk.com/share.php?url=http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html" class="popup">
+        <a href="https://vk.com/share.php?url=http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html" class="popup">
           <span class="rrssb-icon">
             <svg xmlns="https://www.w3.org/2000/svg" width="28" height="28" viewBox="70 70 378.7 378.7"><path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"/></svg>
           </span>
@@ -634,11 +660,11 @@ $(document).ready(function () {
     dataType: 'jsonp',
     success: function (result) {
       for (var i in result.response) {
-        var countText = "Comments",
+        var countText = "Comentarios",
             count = result.response[i].posts;
 
         if (count == 1)
-          countText = "Comment";
+          countText = "Comentario";
 
         $('span[data-disqus-url="' + result.response[i].link + '"]').html(count + " " + countText);
       }
@@ -759,7 +785,7 @@ $(".navbar-collapse ul li a").click(function() {
         
       $(".language-selection .toggle").click(function() { $(".lang-select").slideToggle(500); });
           
-      var timelineJson = parseLiquid('{"image"=>"/img/timeline/high-school.png", "date"=>"February 2019", "description"=>"I started at high school", "url"=>""}{"image"=>"/img/timeline/job-finish.png", "date"=>"December 2018", "description"=>"I finished my professional development course", "url"=>""}{"image"=>"/img/timeline/caja.jpg", "date"=>"November 2016", "description"=>"I bought my second computer (my current one)!", "url"=>""}{"image"=>"/img/timeline/studying.png", "date"=>"September 2016", "description"=>"I started studying my professional development course", "url"=>""}{"image"=>"/img/timeline/graduated.png", "date"=>"June 2016", "description"=>"I finished at school and I created my first Unity3D team (and our first paid assets were published)", "url"=>""}{"image"=>"/img/timeline/domain.png", "date"=>"May 2016", "description"=>"I bought my first domain && used Cloudflare for first time", "url"=>""}{"image"=>"/img/timeline/git.png", "date"=>"May 2016 - Today", "description"=>"Since here I had been using Github (with Git) && Gitlab", "url"=>""}{"image"=>"/img/timeline/java.png", "date"=>"August 2015", "description"=>"I wrote my first Java code && MC plugins for Bukkit", "url"=>"https://github.com/VintageDev-Nukes/SykoCode"}{"image"=>"/img/timeline/minecraft.png", "date"=>"December 2014 - September 2015", "description"=>"We formed a team to build a MC server!", "url"=>""}{"image"=>"/img/timeline/procedural.jpg", "date"=>"July 2014", "description"=>"I tried to create a prodecural terrain generation system (w/ Perlin Noise) in Unity3D", "url"=>""}{"image"=>"/img/timeline/unity3d.png", "date"=>"November 2013", "description"=>"I started with Unity3D (I switched into C#)", "url"=>""}{"image"=>"/img/timeline/default.png", "date"=>"July 2013", "description"=>"I joined Github!", "url"=>""}{"image"=>"/img/timeline/stackoverflow.png", "date"=>"July 2013", "description"=>"I joined Stackoverflow!", "url"=>"https://stackoverflow.com/users/2466790/seazoux"}{"image"=>"/img/timeline/actionscript.png", "date"=>"May 2013", "description"=>"I tried to learn ActionScript (but I abandoned the idea)", "url"=>"https://www.youtube.com/watch?v=t7Sh4BQlzXc"}{"image"=>"/img/timeline/c++.png", "date"=>"April 2013", "description"=>"I tried to learn C && C++ (and my first minigames in SMFL)!", "url"=>"https://github.com/VintageDev-Nukes/SelfLearningCpp"}{"image"=>"/img/timeline/smf.png", "date"=>"January 2013", "description"=>"I started using SMF", "url"=>""}{"image"=>"/img/timeline/php-sql.png", "date"=>"November 2012", "description"=>"I started learning PHP && MySQL!", "url"=>"https://github.com/VintageDev-Nukes/InfiJuegos"}{"image"=>"/img/timeline/redlaptop.jpg", "date"=>"September 2012", "description"=>"I bought my second laptop!", "url"=>""}{"image"=>"/img/timeline/vbnet.png", "date"=>"July 2012 - November 2013", "description"=>"During this peiod I had been coding in VB.NET", "url"=>"https://github.com/VintageDev-Nukes/SEO-Calculator"}{"image"=>"/img/timeline/vbscript.png", "date"=>"June 2012", "description"=>"I started writing my first VBScript scripts", "url"=>"https://github.com/VintageDev-Nukes/VBS-Launcher"}{"image"=>"/img/timeline/msdos.jpg", "date"=>"May 2012", "description"=>"I started writing my first Batch scripts", "url"=>"https://github.com/VintageDev-Nukes/BATCH-Launcher"}{"image"=>"/img/timeline/html-js-css.png", "date"=>"June 2011", "description"=>"I started writing my first HTML, JS and CSS snippets", "url"=>"https://github.com/VintageDev-Nukes/Spirate-n-Miscs"}{"image"=>"/img/timeline/youtube.png", "date"=>"June 2011", "description"=>"I joined YouTube (as a regular user) (my first account was AlvaroAlbox registered in February 2010)", "url"=>"https://socialblade.com/youtube/user/ikillnukes4evertmb"}{"image"=>"/img/timeline/ehn.png", "date"=>"May 2011", "description"=>"I joined ElHacker.Net", "url"=>"https://foro.elhacker.net/profiles/seazoux-u419740.html"}{"image"=>"/img/timeline/maxiuniverse.png", "date"=>"August 2010", "description"=>"I discovered Spirate (and how to use hostings), also, I recreated MaxiUniverse!", "url"=>"https://web.archive.org/web/20190221220205/http://maxiuniverse.activo.mx/"}{"image"=>"/img/timeline/spirate.jpg", "date"=>"April 2010 - June 2010", "description"=>"I created my first forum (MaxiUniverse)", "url"=>"https://web.archive.org/web/20100524184651/http://maxiuniverse.superforo.net/"}{"image"=>"/img/timeline/taringa.png", "date"=>"Q3 2009", "description"=>"I joined Taringa!", "url"=>""}{"image"=>"/img/timeline/freerider2.png", "date"=>"Mid 2009", "description"=>"I started playing Free Rider 2!", "url"=>""}{"image"=>"/img/timeline/foroactivo.png", "date"=>"September 2008", "description"=>"I discovered Foroactivo!", "url"=>""}{"image"=>"/img/timeline/old-laptop.png", "date"=>"June 2008", "description"=>"My uncles bought me my first laptop then I could start using Internet as a regular user && tried to learn VB6!", "url"=>""}{"image"=>"/img/timeline/nintendo.png", "date"=>"July 2007", "description"=>"I had my first Nintendo DS!", "url"=>""}{"image"=>"/img/timeline/old-computer.jpg", "date"=>"April 2003", "description"=>"My parents bought me my first computer!", "url"=>""}{"image"=>"/img/timeline/born.png", "date"=>"July 1998", "description"=>"I was born!", "url"=>""}'),
+      var timelineJson = parseLiquid('{"image"=>"/img/timeline/high-school.png", "date"=>"Febrero 2019", "description"=>"Empecé en la universidad", "url"=>""}{"image"=>"/img/timeline/job-finish.png", "date"=>"Diciembre 2018", "description"=>"Terminé la FCT del ciclo", "url"=>""}{"image"=>"/img/timeline/caja.jpg", "date"=>"Noviembre 2016", "description"=>"¡Compré mi segundo ordenador (el que tengo ahora)!", "url"=>""}{"image"=>"/img/timeline/studying.png", "date"=>"Septiembre 2016", "description"=>"Empecé un ciclo de formación profesional superior", "url"=>""}{"image"=>"/img/timeline/graduated.png", "date"=>"Junio 2016", "description"=>"Terminé bachiller y creé mi primer equipo de desarrollo en Unity3D (y nuestros primeros assets de pago)", "url"=>""}{"image"=>"/img/timeline/domain.png", "date"=>"Mayo 2016", "description"=>"Compré mi primer dominio y usé Cloudflare por primera vez", "url"=>""}{"image"=>"/img/timeline/git.png", "date"=>"Mayo 2016 - Today", "description"=>"Desde entonces he estado usando Github (con Git) y Gitlab", "url"=>""}{"image"=>"/img/timeline/java.png", "date"=>"Agosto 2015", "description"=>"Escribí mi primer código en Java y plugins de Minecraft para Bukkit", "url"=>"https://github.com/VintageDev-Nukes/SykoCode"}{"image"=>"/img/timeline/minecraft.png", "date"=>"Diciembre 2014 - Septiembre 2015", "description"=>"¡Formamos un equipo para hacer un servidor de Minecraft!", "url"=>""}{"image"=>"/img/timeline/procedural.jpg", "date"=>"Julio 2014", "description"=>"Intenté crear un sistema de generación de terrenos procedural (con Perlin Noise) en Unity3D", "url"=>""}{"image"=>"/img/timeline/unity3d.png", "date"=>"Noviembre 2013", "description"=>"Empecé en Unity3D (me cambié a C#)", "url"=>""}{"image"=>"/img/timeline/default.png", "date"=>"Julio 2013", "description"=>"¡Me registré en Github!", "url"=>""}{"image"=>"/img/timeline/stackoverflow.png", "date"=>"Julio 2013", "description"=>"¡Me registré en Stackoverflow!", "url"=>"https://stackoverflow.com/users/2466790/seazoux"}{"image"=>"/img/timeline/actionscript.png", "date"=>"Mayo 2013", "description"=>"Intenté aprender ActionScript (pero abandoné la idea)", "url"=>"https://www.youtube.com/watch?v=t7Sh4BQlzXc"}{"image"=>"/img/timeline/c++.png", "date"=>"Abril 2013", "description"=>"Intenté aprender C y C++ (y crear mis primeros minijuegos en SMFL)", "url"=>"https://github.com/VintageDev-Nukes/SelfLearningCpp"}{"image"=>"/img/timeline/smf.png", "date"=>"Enero 2013", "description"=>"Empecé a usar SMF", "url"=>""}{"image"=>"/img/timeline/php-sql.png", "date"=>"Noviembre 2012", "description"=>"Empecé a aprender PHP y MySQL", "url"=>"https://github.com/VintageDev-Nukes/InfiJuegos"}{"image"=>"/img/timeline/redlaptop.jpg", "date"=>"Septiembre 2012", "description"=>"¡Compré mi segundo portátil!", "url"=>""}{"image"=>"/img/timeline/vbnet.png", "date"=>"Julio 2012 - Noviembre 2013", "description"=>"Durante este periodo estuve programando el Visual Basic.NET", "url"=>"https://github.com/VintageDev-Nukes/SEO-Calculator"}{"image"=>"/img/timeline/vbscript.png", "date"=>"Junio 2012", "description"=>"Empecé a programar mis primeros scripts en VBScript", "url"=>"https://github.com/VintageDev-Nukes/VBS-Launcher"}{"image"=>"/img/timeline/msdos.jpg", "date"=>"Mayo 2012", "description"=>"Empecé a programar mis primeros scripts en Batch", "url"=>"https://github.com/VintageDev-Nukes/BATCH-Launcher"}{"image"=>"/img/timeline/html-js-css.png", "date"=>"Junio 2011", "description"=>"Empecé a escribir mis primeros snippets en HTML, CSS y Javascript", "url"=>"https://github.com/VintageDev-Nukes/Spirate-n-Miscs"}{"image"=>"/img/timeline/youtube.png", "date"=>"Junio 2011", "description"=>"Me registré en YouTube (como usuario habitual)", "url"=>"https://socialblade.com/youtube/user/ikillnukes4evertmb"}{"image"=>"/img/timeline/ehn.png", "date"=>"Mayo 2011", "description"=>"Me registre en EHN (ElHacker.Net)", "url"=>"https://foro.elhacker.net/profiles/seazoux-u419740.html"}{"image"=>"/img/timeline/maxiuniverse.png", "date"=>"Agosto 2010", "description"=>"Descubrí Spirate (y aprendí como usar hostings), también, recreé MaxiUniverse", "url"=>"https://web.archive.org/web/20190221220205/http://maxiuniverse.activo.mx/"}{"image"=>"/img/timeline/spirate.jpg", "date"=>"Abril 2010 - Junio 2010", "description"=>"Creé mi primer foro llamado MaxiUniverse", "url"=>"https://web.archive.org/web/20100524184651/http://maxiuniverse.superforo.net/"}{"image"=>"/img/timeline/taringa.png", "date"=>"Q3 2009", "description"=>"Me registré en Taringa", "url"=>""}{"image"=>"/img/timeline/freerider2.png", "date"=>"A mediados de 2009", "description"=>"Empecé a jugar Free Rider 2", "url"=>""}{"image"=>"/img/timeline/foroactivo.png", "date"=>"Septiembre 2008", "description"=>"Desubrí Foroactivo", "url"=>""}{"image"=>"/img/timeline/old-laptop.png", "date"=>"Junio 2008", "description"=>"Mis tíos me compraron mi primer portatil, después pude empezar a usar Internet como un usuario habitual e intenté aprender Visual Basic 6", "url"=>""}{"image"=>"/img/timeline/nintendo.png", "date"=>"Julio 2007", "description"=>"Tuve mi primera Nintendo DS", "url"=>""}{"image"=>"/img/timeline/old-computer.jpg", "date"=>"Abril 2003", "description"=>"Mis padres me compraron mi primer ordenador de torre", "url"=>""}{"image"=>"/img/timeline/born.png", "date"=>"Julio 1998", "description"=>"¡Vine al mundo!", "url"=>""}'),
           converter = new showdown.Converter(),
           items = 0;
         
@@ -816,7 +842,7 @@ $(".navbar-collapse ul li a").click(function() {
         panel.append($('<div class="timeline-body"></div>').html(converter.makeHtml(el.description)));
           
         if(el.url != "") 
-            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("See reference...")));
+            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("Ver referencia...")));
           
         li.append(panel);
           
@@ -981,7 +1007,7 @@ function loadScript(url) {
 <script>
 function addTohistory() {
   if (!window.location.host.startsWith("127.0.0.1")) {
-    history.pushState({}, 'Configuring custom domains on Github Pages (Part 3)', 'http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html');
+    history.pushState({}, '4 formas de extraer contenido de una máquina virtual (VMDK) cuando está totalmente inutilizada', 'http://z3nth10n.net/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html');
   }
 }
 </script>
@@ -1001,14 +1027,14 @@ function addTohistory() {
       new Hammer(post).on('swipeleft', function(event) {
         addTohistory();
         
-          document.location.replace("/es/2019/04/02/configuring-custom-domains-github-pages-part-3.html");
+          document.location.replace("/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html");
         
       });
 
       new Hammer(post).on('swiperight', function(event) {
         addTohistory();
         
-          document.location.replace("/es/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html");
+          document.location.replace("/en/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html");
         
       });
     </script>

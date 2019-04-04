@@ -16,6 +16,40 @@
 		
             
                 <item>
+                    <title>ThreadSafeBool class implementation for Unity3D</title>
+                    
+                    
+                        <description>&lt;p&gt;Some time ago I tried to assign a variable (of bool type) that was declared on the class scope (a global variable) from a different thread, debugging it, it didn’t returned me the value I was expecting, this is way I bring you this utility:&lt;/p&gt;
+
+</description>
+                    
+                    <pubDate>Wed, 03 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/en/2019/04/03/thread-safe-bools-unity3d-impl.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/03/thread-safe-bools-unity3d-impl.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
+                    <title>4 ways to extract the content from VMDK when a VM is totally dead</title>
+                    
+                    
+                        <description>&lt;p&gt;Sometimes, you badly need your ESXi VM data, but that thing just cannot be powered on for some reason! Well, you can try starting that VM one more time according to &lt;a href=&quot;https://kb.vmware.com/s/article/1003648&quot;&gt;this article&lt;/a&gt; and access the data with a little luck. But, if you are out of luck and the VM is dead, you need another method to extract its VMDK file content.&lt;/p&gt;
+
+</description>
+                    
+                    <pubDate>Wed, 03 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/en/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
                     <title>Configuring custom domains on Github Pages (Part 3)</title>
                     
                     
@@ -60,40 +94,6 @@
                     <pubDate>Sun, 31 Mar 2019 21:00:00 +0000</pubDate>
                     <link>http://z3nth10n.net/en/2019/03/31/configuring-custom-domains-github-pages-part-1.html</link>
                     <guid isPermaLink="true">http://z3nth10n.net/en/2019/03/31/configuring-custom-domains-github-pages-part-1.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>How to schedule posts in Jekyll</title>
-                    
-                    
-                        <description>&lt;p&gt;In this post I will explain how to use &lt;strong&gt;Jekyll Scheduler&lt;/strong&gt; a bash utility to schedule Jekyll post upload.&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Sun, 31 Mar 2019 08:22:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>Jekyll-ga-v2 a plugin to get Google Analytics data into your site</title>
-                    
-                    
-                        <description>&lt;p&gt;In this post I will explain how to use the plugin called &lt;strong&gt;jekyll-ga-v2&lt;/strong&gt;. I created this plugin to be able to implement a widget that shows information that Google Analytics can offer to us.&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Fri, 22 Mar 2019 01:35:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/03/22/jekyll-ga-v2-plugin-to-get-google-analytics-data-into-your-site.html</guid>
                 </item>
             
 		
