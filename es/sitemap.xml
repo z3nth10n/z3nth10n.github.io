@@ -107,6 +107,12 @@
     
   
     
+  
+    
+  
+    
+  
+    
       <url>
         <loc>http://z3nth10n.net/en/index.html</loc>
         
@@ -122,6 +128,19 @@
     
       <url>
         <loc>http://z3nth10n.net/en/2/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>http://z3nth10n.net/en/3/index.html</loc>
         
           
           
@@ -160,6 +179,19 @@
   
     
       <url>
+        <loc>http://z3nth10n.net/es/3/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
         <loc>http://z3nth10n.net/index.html</loc>
         
           
@@ -184,6 +216,45 @@
        </url>
     
   
+    
+      <url>
+        <loc>http://z3nth10n.net/3/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+  
+      
+  
+      
+        <url>
+          <loc>http://z3nth10n.net/es/2019/04/04/how-to-install-w10-in-promox-with-virtio-drivers.html</loc>
+          
+            <lastmod>2019-04-04T15:00:00+00:00</lastmod>
+          
+          <changefreq>weekly</changefreq>
+          <priority>1.0</priority>
+        </url>
+      
+  
+      
+  
+      
+        <url>
+          <loc>http://z3nth10n.net/es/2019/04/04/concurrent-queued-coroutines-unity3d-impl.html</loc>
+          
+            <lastmod>2019-04-04T15:00:00+00:00</lastmod>
+          
+          <changefreq>weekly</changefreq>
+          <priority>1.0</priority>
+        </url>
+      
   
       
   

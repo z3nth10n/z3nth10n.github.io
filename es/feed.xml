@@ -18,6 +18,40 @@
 		
             
                 <item>
+                    <title>Como instalar Windows 10 en Proxmox con los drivers de VirtIO</title>
+                    
+                    
+                        <description>&lt;p&gt;Una guía (afortunadamente) infalible sobre cómo instalar una instalación de Windows 10 en Proxmox VE. La manera correcta.&lt;/p&gt;
+
+</description>
+                    
+                    <pubDate>Thu, 04 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/es/2019/04/04/how-to-install-w10-in-promox-with-virtio-drivers.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/04/how-to-install-w10-in-promox-with-virtio-drivers.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
+                    <title>Implementación de la clase ConcurrentQueuedCoroutines para Unity3D</title>
+                    
+                    
+                        <description>&lt;h2 id=&quot;concurrentqueuedcoroutines-implementación-thread-safe-de-concurrentqueues-dentro-de-coroutinas&quot;&gt;ConcurrentQueuedCoroutines: Implementación Thread-Safe de ConcurrentQueues dentro de Coroutinas&lt;/h2&gt;
+
+</description>
+                    
+                    <pubDate>Thu, 04 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/es/2019/04/04/concurrent-queued-coroutines-unity3d-impl.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/04/concurrent-queued-coroutines-unity3d-impl.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
                     <title>Implementación de la clase ThreadSafeBool para Unity3D</title>
                     
                     
@@ -62,40 +96,6 @@
                     <pubDate>Tue, 02 Apr 2019 15:00:00 +0000</pubDate>
                     <link>http://z3nth10n.net/es/2019/04/02/configuring-custom-domains-github-pages-part-3.html</link>
                     <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/02/configuring-custom-domains-github-pages-part-3.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>Configurando dominios personalizados en Github Pages (Parte 2)</title>
-                    
-                    
-                        <description>&lt;h2 id=&quot;configurando-heroku-para-usar-múltiples-subdominios-en-el-mismo-dominio-de-forma-gratuita-con-ssl&quot;&gt;Configurando Heroku para usar múltiples subdominios en el mismo dominio de forma gratuita con SSL&lt;/h2&gt;
-
-</description>
-                    
-                    <pubDate>Mon, 01 Apr 2019 15:00:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/es/2019/04/01/configuring-custom-domains-github-pages-part-2.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/01/configuring-custom-domains-github-pages-part-2.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>Configurando dominios personalizados en Github Pages (Parte 1)</title>
-                    
-                    
-                        <description>&lt;h2 id=&quot;cómo-configurar-github-pages-para-usar-un-dominio-personalizado-con-cloudflare&quot;&gt;¿Cómo configurar Github pages para usar un dominio personalizado con Cloudflare?&lt;/h2&gt;
-
-</description>
-                    
-                    <pubDate>Sun, 31 Mar 2019 21:00:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/es/2019/03/31/configuring-custom-domains-github-pages-part-1.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/03/31/configuring-custom-domains-github-pages-part-1.html</guid>
                 </item>
             
 		

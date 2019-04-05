@@ -27,8 +27,8 @@
   <meta name="description" content="Blog and website of z3nth10n, blogging mainly for tech.">
   <meta name="author" content="z3nth10n">
   <meta name="keywords" content="z3nth10n, dev">
-  <link rel="canonical" href="/categories/cs-snippet/">
-  <title>{ z3nth10n }</title>
+  <link rel="canonical" href="/categories/tutorial/:language/categories/tutorial/2/">
+  <title>{ z3nth10n } | { z3nth10n } - page 2</title>
 
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -201,11 +201,11 @@ window.cookieconsent.initialise({
     
         <h1>Category: </h1>
 
-        <p>A category where I will post some of my C# snippets.</p>
+        <p>A category where I will post tutorials of any kind.</p>
        
         <hr>
 
-        <h3>Total posts for this category (2):</h3>
+        <h3>Total posts for this category (6):</h3>
        
         
           
@@ -218,71 +218,34 @@ window.cookieconsent.initialise({
       <box class="col-md-12 vertical-offset post-list">
 
         
-        <h4> <strong> 04 Apr 2019 </strong>
+        <h4> <strong> 31 Mar 2019 </strong>
           <small>.
-            <a class="category" href="/categories/cs-snippet">
-              cs-snippet
+            <a class="category" href="/categories/tutorial">
+              tutorial
             </a>
             
             
           .</small>
-          <strong> <a href="/en/2019/04/04/concurrent-queued-coroutines-unity3d-impl">ConcurrentQueuedCoroutines class implementation for Unity3D </a> </strong>
-          <small>. <a href="/en/2019/04/04/concurrent-queued-coroutines-unity3d-impl.html#disqus_thread"><span data-disqus-url="http://z3nth10n.net/en/2019/04/04/concurrent-queued-coroutines-unity3d-impl" class="count-comments"></span></a></small>
+          <strong> <a href="/en/2019/03/31/how-schedule-posts-in-jekyll">How to schedule posts in Jekyll </a> </strong>
+          <small>. <a href="/en/2019/03/31/how-schedule-posts-in-jekyll.html#disqus_thread"><span data-disqus-url="http://z3nth10n.net/en/2019/03/31/how-schedule-posts-in-jekyll" class="count-comments"></span></a></small>
         </h4>
 
         <hr>
        
         <section class="text-left">
-          <h2 id="concurrentqueuedcoroutines-thread-safe-implementation-of-concurrentqueues-within-coroutinas">ConcurrentQueuedCoroutines: Thread-Safe Implementation of ConcurrentQueues within Coroutinas</h2>
+          <p>In this post I will explain how to use <strong>Jekyll Scheduler</strong> a bash utility to schedule Jekyll post upload.</p>
 
-<p>The idea of this utility is that when you store items from another thread, you can access it from the main thread.</p>
+<blockquote>
+  <p>Jekyll Scheduler is a bash script (executed preferably by CircleCI nightly triggers) that schedule your posts.</p>
+</blockquote>
 
-<p>Mixing this idea with the Coroutinas, wh...</p>
+<p>Requires a that you Jekyll rep...</p>
         </section>
 
         <hr>
         
         <center>
-            <a class="readmore" href="/en/2019/04/04/concurrent-queued-coroutines-unity3d-impl">Read more...</a>
-        </center>
-      </box>
-    </div>
-</section>
-
-          
-            <!-- Post List End -->
-
-
-
-<section id="github-cards">
-    <div class="row">
-      <box class="col-md-12 vertical-offset post-list">
-
-        
-        <h4> <strong> 03 Apr 2019 </strong>
-          <small>.
-            <a class="category" href="/categories/cs-snippet">
-              cs-snippet
-            </a>
-            
-            
-          .</small>
-          <strong> <a href="/en/2019/04/03/thread-safe-bools-unity3d-impl">ThreadSafeBool class implementation for Unity3D </a> </strong>
-          <small>. <a href="/en/2019/04/03/thread-safe-bools-unity3d-impl.html#disqus_thread"><span data-disqus-url="http://z3nth10n.net/en/2019/04/03/thread-safe-bools-unity3d-impl" class="count-comments"></span></a></small>
-        </h4>
-
-        <hr>
-       
-        <section class="text-left">
-          <p>Some time ago I tried to assign a variable (of bool type) that was declared on the class scope (a global variable) from a different thread, debugging it, it didn’t returned me the value I was expecting, this is way I bring you this utility:</p>
-
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">Sy...</span></code></pre></div></div>
-        </section>
-
-        <hr>
-        
-        <center>
-            <a class="readmore" href="/en/2019/04/03/thread-safe-bools-unity3d-impl">Read more...</a>
+            <a class="readmore" href="/en/2019/03/31/how-schedule-posts-in-jekyll">Read more...</a>
         </center>
       </box>
     </div>
@@ -640,7 +603,7 @@ $(".navbar-collapse ul li a").click(function() {
 <script>
 function addTohistory() {
   if (!window.location.host.startsWith("127.0.0.1")) {
-    history.pushState({}, '{ z3nth10n }', 'http://z3nth10n.net/categories/cs-snippet/index.html');
+    history.pushState({}, '{ z3nth10n } - page 2', 'http://z3nth10n.net/categories/tutorial/:language/categories/tutorial/2/index.html');
   }
 }
 </script>
