@@ -16,6 +16,40 @@
 		
             
                 <item>
+                    <title>How to configure VSFTPD on Linux</title>
+                    
+                    
+                        <description>&lt;p&gt;All the tutorials that I have read at the moment about &lt;strong&gt;how to install vsftpd&lt;/strong&gt; start at the same place, &lt;strong&gt;warning that the FTP protocol is insecure because it is not encrypted&lt;/strong&gt;. This is true, but it is also true that if you want to set up a local FTP server for your own use, using vsftpd is the fastest and easiest solution. For this reason I decided to write this &lt;strong&gt;tutorial on how to install vsftpd on Linux Ubuntu and configure it correctly step by step&lt;/strong&gt;.&lt;/p&gt;
+
+</description>
+                    
+                    <pubDate>Fri, 05 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/en/2019/04/05/how-to-configure-vsftpd.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/05/how-to-configure-vsftpd.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
+                    <title>BatchedCoroutines class implementation for Unity3D</title>
+                    
+                    
+                        <description>&lt;h2 id=&quot;batchedcoroutines-iterar-coroutinas-one-by-one&quot;&gt;BatchedCoroutines: Iterar coroutinas one by one&lt;/h2&gt;
+
+</description>
+                    
+                    <pubDate>Fri, 05 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/en/2019/04/05/batched-coroutines-unity3d-impl.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/05/batched-coroutines-unity3d-impl.html</guid>
+                </item>
+            
+		
+            
+		
+            
+                <item>
                     <title>How to install Windows 10 in Proxmox with VirtIO drivers</title>
                     
                     
@@ -60,40 +94,6 @@
                     <pubDate>Wed, 03 Apr 2019 15:00:00 +0000</pubDate>
                     <link>http://z3nth10n.net/en/2019/04/03/thread-safe-bools-unity3d-impl.html</link>
                     <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/03/thread-safe-bools-unity3d-impl.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>4 ways to extract the content from VMDK when a VM is totally dead</title>
-                    
-                    
-                        <description>&lt;p&gt;Sometimes, you badly need your ESXi VM data, but that thing just cannot be powered on for some reason! Well, you can try starting that VM one more time according to &lt;a href=&quot;https://kb.vmware.com/s/article/1003648&quot;&gt;this article&lt;/a&gt; and access the data with a little luck. But, if you are out of luck and the VM is dead, you need another method to extract its VMDK file content.&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Wed, 03 Apr 2019 15:00:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/en/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/03/4-ways-extact-content-vmdk-vm-totally-dead.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>Configuring custom domains on Github Pages (Part 3)</title>
-                    
-                    
-                        <description>&lt;h2 id=&quot;configure-and-use-phpmyadmin-with-heroku-using-jawsdb&quot;&gt;Configure and use PHPMyAdmin with Heroku using JawsDB&lt;/h2&gt;
-
-</description>
-                    
-                    <pubDate>Tue, 02 Apr 2019 15:00:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/02/configuring-custom-domains-github-pages-part-3.html</guid>
                 </item>
             
 		
