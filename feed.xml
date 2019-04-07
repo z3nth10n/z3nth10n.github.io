@@ -16,6 +16,36 @@
 		
             
                 <item>
+                    <title>Named Thread &amp; Thread Marked class implementation for Unity3D</title>
+                    
+                    
+                        <description>&lt;p&gt;These are two scripts that I use to name the Threads, so when I run a &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/api/system.threading.threadpool.queueuserworkitem?view=netframework-4.7.2&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadPool.QueueUserWorkItem&lt;/code&gt;&lt;/a&gt; (for example) I can know the name of the Queue.&lt;/p&gt;
+
+</description>
+                    
+                    <pubDate>Sat, 06 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/en/2019/04/06/named-thread-thread-unity3d-impl.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/06/named-thread-thread-unity3d-impl.html</guid>
+                </item>
+            
+		
+            
+                <item>
+                    <title>Implementación de las clases Named Thread y Thread Marked para Unity3D</title>
+                    
+                    
+                        <description>&lt;p&gt;Estos dos scripts los uso para darle un nombre a los Threads, así cuando ejecuto un &lt;a href=&quot;https://docs.microsoft.com/es-es/dotnet/api/system.threading.threadpool.queueuserworkitem?view=netframework-4.7.2&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadPool.QueueUserWorkItem&lt;/code&gt;&lt;/a&gt; (por ejemplo) puedo saber el nombre de la Queue.&lt;/p&gt;
+
+</description>
+                    
+                    <pubDate>Sat, 06 Apr 2019 15:00:00 +0000</pubDate>
+                    <link>http://z3nth10n.net/en/2019/04/06/named-thread-thread-unity3d-impl.html</link>
+                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/06/named-thread-thread-unity3d-impl.html</guid>
+                </item>
+            
+		
+            
+                <item>
                     <title>How to configure VSFTPD on Linux</title>
                     
                     
@@ -77,23 +107,6 @@
                     <pubDate>Thu, 04 Apr 2019 15:00:00 +0000</pubDate>
                     <link>http://z3nth10n.net/en/2019/04/04/concurrent-queued-coroutines-unity3d-impl.html</link>
                     <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/04/concurrent-queued-coroutines-unity3d-impl.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>ThreadSafeBool class implementation for Unity3D</title>
-                    
-                    
-                        <description>&lt;p&gt;Some time ago I tried to assign a variable (of bool type) that was declared on the class scope (a global variable) from a different thread, debugging it, it didn’t returned me the value I was expecting, this is way I bring you this utility:&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Wed, 03 Apr 2019 15:00:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/en/2019/04/03/thread-safe-bools-unity3d-impl.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/en/2019/04/03/thread-safe-bools-unity3d-impl.html</guid>
                 </item>
             
 		

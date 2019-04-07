@@ -17,6 +17,10 @@
             
 		
             
+		
+            
+		
+            
                 <item>
                     <title>Como configurar VSFTPD en Linux</title>
                     
@@ -79,23 +83,6 @@
                     <pubDate>Thu, 04 Apr 2019 15:00:00 +0000</pubDate>
                     <link>http://z3nth10n.net/es/2019/04/04/concurrent-queued-coroutines-unity3d-impl.html</link>
                     <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/04/concurrent-queued-coroutines-unity3d-impl.html</guid>
-                </item>
-            
-		
-            
-		
-            
-                <item>
-                    <title>Implementación de la clase ThreadSafeBool para Unity3D</title>
-                    
-                    
-                        <description>&lt;p&gt;El otro día me pasaba que al asignar una variable que estaba declarada en ambito de la clase desde otro thread, al leerla desde otro thread no me devolvía el resultado esperado, por eso os traigo esta utilidad:&lt;/p&gt;
-
-</description>
-                    
-                    <pubDate>Wed, 03 Apr 2019 15:00:00 +0000</pubDate>
-                    <link>http://z3nth10n.net/es/2019/04/03/thread-safe-bools-unity3d-impl.html</link>
-                    <guid isPermaLink="true">http://z3nth10n.net/es/2019/04/03/thread-safe-bools-unity3d-impl.html</guid>
                 </item>
             
 		
