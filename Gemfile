@@ -23,7 +23,7 @@ group :jekyll_plugins do
   gem "rake", ">= 12.3.2"
   gem "jekyll-feed", "~> 0.6"
   gem 'html-proofer', ">= 3.10.1"
-  gem "nokogiri", ">= 1.10.1"
+  gem "nokogiri", ">= 1.10.4"
   gem "iconv", ">= 1.0.7"
   gem 'jekyll-paginate-v2', path: '_plugins/jekyll-paginate-v2'
   gem "tzinfo", "~> 1.1"
