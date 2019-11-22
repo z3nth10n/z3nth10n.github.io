@@ -8,7 +8,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 3.8.5"
+gem "jekyll", "~> 4.0"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima", "~> 2.0"
@@ -19,7 +19,7 @@ gem "minima", "~> 2.0"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-  gem 'jemoji', '~> 0.10.2'
+  gem 'jemoji', '~> 0.11.1'
   gem "rake", ">= 12.3.2"
   gem "jekyll-feed", "~> 0.6"
   gem 'html-proofer', ">= 3.10.1"
@@ -36,8 +36,8 @@ group :jekyll_plugins do
   gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
   gem 'jekyll-patreon', path: "_plugins/jekyll-patreon"
   gem 'chronic', '~> 0.10.2'
-  gem 'google-api-client', '~> 0.28.4'
-  gem 'googleauth', '~> 0.8.0'
+  gem 'google-api-client', '~> 0.34.1'
+  gem 'googleauth', '~> 0.10.0'
   gem 'jekyll-ga-v2', path: '_plugins/jekyll-ga-v2'
 end
 
