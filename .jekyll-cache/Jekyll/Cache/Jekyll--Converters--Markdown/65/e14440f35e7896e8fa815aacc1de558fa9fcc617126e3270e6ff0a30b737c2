@@ -1,0 +1,50 @@
+I"ƒ<p>Some time ago I tried to assign a variable (of bool type) that was declared on the class scope (a global variable) from a different thread, debugging it, it didnâ€™t returned me the value I was expecting, this is way I bring you this utility:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+ 
+<span class="k">namespace</span> <span class="nn">GTAMapper.Extensions.Threading</span>
+<span class="p">{</span>
+    <span class="c1">/// &lt;summary&gt;</span>
+    <span class="c1">/// Thread safe enter once into a code block:</span>
+    <span class="c1">/// the first call to CheckAndSetFirstCall returns always true,</span>
+    <span class="c1">/// all subsequent call return false.</span>
+    <span class="c1">/// &lt;/summary&gt;</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">ThreadSafeBool</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">NOTCALLED</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+                           <span class="n">CALLED</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+ 
+        <span class="k">private</span> <span class="kt">int</span> <span class="n">_state</span> <span class="p">=</span> <span class="n">NOTCALLED</span><span class="p">;</span>
+ 
+        <span class="c1">/// &lt;summary&gt;Explicit call to check and set if this is the first call&lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="n">Value</span>
+        <span class="p">{</span>
+            <span class="k">get</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">Interlocked</span><span class="p">.</span><span class="nf">Exchange</span><span class="p">(</span><span class="k">ref</span> <span class="n">_state</span><span class="p">,</span> <span class="n">CALLED</span><span class="p">)</span> <span class="p">==</span> <span class="n">NOTCALLED</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+ 
+        <span class="c1">/// &lt;summary&gt;usually init by false&lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">implicit</span> <span class="k">operator</span> <span class="nf">ThreadSafeBool</span><span class="p">(</span><span class="kt">bool</span> <span class="n">called</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">ThreadSafeBool</span><span class="p">()</span> <span class="p">{</span> <span class="n">_state</span> <span class="p">=</span> <span class="n">called</span> <span class="p">?</span> <span class="n">CALLED</span> <span class="p">:</span> <span class="n">NOTCALLED</span> <span class="p">};</span>
+        <span class="p">}</span>
+ 
+        <span class="k">public</span> <span class="k">static</span> <span class="k">implicit</span> <span class="k">operator</span> <span class="kt">bool</span><span class="p">(</span><span class="n">ThreadSafeBool</span> <span class="n">cast</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">cast</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+ 
+            <span class="k">return</span> <span class="n">cast</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Gist:</strong> https://gist.github.com/z3nth10n/052e6660c392d6a4e48290e9a6ae36f8</p>
+
+<p><strong>Source:</strong> https://www.codeproject.com/Tips/375559/Implement-Thread-Safe-One-shot-Bool-Flag-with-Inte</p>
+
+<p><strong>Best regards!</strong></p>
+:ET

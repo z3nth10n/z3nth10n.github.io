@@ -1,0 +1,139 @@
+I"|:<p>A veces, necesitas desesperadamente tus datos de una máquina virtual en VMWare, ¡pero esa máquina simplemente no puede encenderse por alguna razón! Bueno, puedes intentar iniciar esa VM una vez más según [este artículo] (https://kb.vmware.com/s/article/1003648) y acceder a los datos con un poco de suerte. Pero, si no tienes suerte y la VM está muerta, necesita otro método para extraer el contenido del archivo VMDK.</p>
+
+<p><strong>Disclaimer:</strong> Ninguno de los métodos que discuto aquí funciona si hay datos cifrados en el disco. Descifrar es un tema bastante amplio que se incluirá en esta publicación. Por lo tanto, en el artículo de hoy, analizo cómo recuperar datos del disco VM muerto que no está dañado ni encriptado.</p>
+
+<p>Eso es absolutamente cierto que hay varios tipos de discos. Todos se describen <a href="https://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vddk.pg.doc_50%2FvddkDataStruct.5.3.html">aquí</a>. No quiero escribir mucho sobre ellos en este artículo, ya que tienen muchas cosas en común en términos de extracción de datos.</p>
+
+<h2 id="-espera-qué-es-realmente-un-vmdk-">** Espera, ¿qué es realmente un VMDK? **</h2>
+
+<p>Bueno, primero, echemos un vistazo debajo de VMDK. Cada disco consta de dos archivos más pequeños: el descriptor y el archivo plano. El primero no es más que un archivo de texto visible en cualquier editor de texto. El descriptor mantiene parámetros tales como IDS, versión de hardware virtual y geometría del disco. El archivo *flat.vmdk, a su vez, es donde residen los datos de la máquina virtual. En el navegador del almacén de datos, tanto el descriptor como el *flat.vmdk se muestran como un solo volumen VMDK.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09/1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/1.png" alt="" /></a></p>
+
+<p>El único momento en que el contenido de VMDK aparece en primer plano es cuando se descarga el archivo. Luego, aparece un mensaje que le pide que permita la descarga de varios archivos.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/2-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/2-1.png" alt="" /></a></p>
+
+<p>A nivel local, puedes ver ambos archivos con su tamaño real.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/3-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/3-1.png" alt="" /></a></p>
+
+<p>En este punto, me gustaría mencionar que a menos que alguno de esos tipos funcione, ninguna de las formas de extraer el contenido del archivo VMDK descrito en mi artículo funciona. Hoy no veo esos casos en los que necesita recuperar tus datos de los archivos dañados. Solo te enseñaré cómo extraer datos cuando tienes un VMDK en buen estado, pero no puedes iniciar la VM por algún motivo. También tenga en cuenta que hacer las cosas que escribo aquí puede ser bastante arriesgado, ya que la mayoría de los métodos que analizo hoy le permiten acceder a un disco VM como un volumen de lectura-escritura. ¡Ten cuidado y no me culpes si te equivocas!</p>
+
+<p>Vale, con eso dicho, veamos ahora cómo obtiene tus datos. Hay dos tipos de métodos para hacerlo: métodos que permiten modificar el contenido del disco (montaje de VMDK como un volumen de lectura-escritura) y métodos exclusivamente para la recuperación de datos (abrir el archivo como un volumen de solo lectura).</p>
+
+<h2 id="-montaje-del-disco-como-un-volumen-de-lectura-escritura-">** Montaje del disco como un volumen de lectura-escritura **</h2>
+
+<h3 id="-simplemente-agregue-el-vmdk-a-otra-máquina-virtual-esxi-">** Simplemente agregue el VMDK a otra máquina virtual ESXi **</h3>
+
+<p>Bueno, eso puede sonar un poco trivial, pero ¿por qué simplemente no conectas el VMDK a la VM saludable? Conectar el disco a otra máquina virtual, por mi dinero, es la forma más fácil y confiable de obtener sus datos. Si tienes recursos suficientes en el host ESXi, o si solo puede usar un servidor más, no invente la rueda y agregue el VMDK a otra VM. Ten en cuenta que la VM en buen estado debe tener exactamente el mismo sistema operativo que la muerta para evitar cualquier problema de incompatibilidad de formato. En este artículo, todos los discos están formateados para NTFS y yo uso Windows Server 2016 para organizarlos.</p>
+
+<p>Vale, empecemos. Llegue al host con ESXi Web Console para acceder al disco de destino. Recuerde, puede agregar el disco a la máquina virtual saludable sobre la marcha.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/4-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/4-1.png" alt="" /></a></p>
+
+<p>Especifica la ruta al VMDK y presione <strong>Seleccionar</strong>. En mi caso, el disco está ubicado exactamente en el mismo host donde reside la VM en buen estado. Bueno, honestamente, eso no es inteligente para hacer nada con ese VMDK, así que haz una copia de ese disco y juega con la copia.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/5-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/5-1.png" alt="" /></a></p>
+
+<p>Verifica todos los ajustes y presione <strong>Guardar</strong>.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/6-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/6-1.png" alt="" /></a></p>
+
+<p>Vaya a <strong>Administración de discos</strong> y ponga en línea el disco recientemente agregado. Una vez más, la VM a la que acabo de agregar el disco se encuentra bajo la organización de Windows Server 2016.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/7-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/7-1.png" alt="" /></a></p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/8-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/8-1.png" alt="" /></a></p>
+
+<p>Ahora, en el Explorador de Windows, puede acceder a los datos. Ten en cuenta que puedes modificar o eliminar datos, ya que utiliza VMDK como un volumen de lectura y escritura. Deberías guardar una copia del disco en caso de que arruines las cosas.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/9-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/9-1.png" alt="" /></a></p>
+
+<h2 id="vmware-workstation"><strong>VMware Workstation</strong></h2>
+
+<p>Otra forma fácil de acceder al contenido de VMDK es agregar el disco a VMware Workstation. Puede descargar VMware Workstation <a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">aquí</a>.</p>
+
+<p>Una vez que abra VMware Workstation, vaya al menú <strong>Archivo</strong> y seleccione <strong>Asignar discos virtuales</strong> allí.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/10-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/10-1.png" alt="" /></a></p>
+
+<p>A continuación, presione el botón <strong>Mapa…</strong>.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/11-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/11-1.png" alt="" /></a></p>
+
+<p>Antes de comenzar, descarga el VMDK. En el menú <strong>Map Virtual Disk</strong>, busca el volumen. Desactiva la opción de modo de solo lectura y selecciona la letra de unidad. Presiona <strong>Ok</strong> para conectar el disco.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/12-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/12-1.png" alt="" /></a></p>
+
+<p>VMware Workstation le advierte sobre el riesgo de alterar el contenido del disco. Bueno, con suerte, usted sabe lo que está haciendo, así que presione <strong>Sí</strong>.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /13.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/13.png" alt="" /></a></p>
+
+<p>El Explorador de Windows se abre justo después de conectar el disco.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /14.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/14.png" alt="" /></a></p>
+
+<p>Una vez que haya terminado con ese disco, no olvides desconectarlo. Así es como haces eso. Vaya al menú <strong>Mapa o Desconectar discos virtuales</strong>. Selecciona el disco y presiona <strong>Desconectar</strong>. Verás el mensaje que te impide desconectar el VMDK. Dice que es posible que el disco aún esté en uso y que deberías pensarlo dos veces antes de desconectarlo. Pero, si ya obtuviste los datos necesarios y no hay aplicaciones que usen datos en el disco, presiona <strong>Forzar desconexión</strong>.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /15.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/15.png" alt="" /></a></p>
+
+<h3 id="-vmware-virtual-disk-development-kit-">** VMware Virtual Disk Development Kit **</h3>
+
+<p>Ahora, veamos cómo acceder al disco con VMware Virtual Disk Development Kit (VDDK). VDDK es un montón de utilidades prácticas para desarrolladores. Vmware-mount.exe, la utilidad que permite realizar algunas manipulaciones con VMDK, en las que recuperar datos se encuentra entre ellas.</p>
+
+<p>Primero, descargue VDDK <a href="https://my.vmware.com/web/vmware/details?downloadGroup=VSP510-VDDK-510&amp;productId=268">aquí</a>. Ten en cuenta que necesitsa que la versión del kit sea anterior a 5.1 . vmware-mount.exe no está incluido en las versiones posteriores del kit. Después de la instalación, la utilidad estará disponible de forma predeterminada por la siguiente ruta: <code class="highlighter-rouge">C:\Archivos de programa (x86)\VMware\VMware Virtual Disk Development Kit\bin</code>. Ahora, ejecuta CMD.EXE y vaya a <code class="highlighter-rouge">C:\Archivos de programa (x86)\VMware\VMware Virtual Disk Development Kit\bin</code>. A continuación, ejecuta la utilidad con la opción <code class="highlighter-rouge">/p</code> y especifique la ruta al archivo VMDK (<code class="highlighter-rouge">C:\temp\Win2008Serv.vmdk</code> en mi caso).</p>
+
+<p>Observa que el volumen consta de 2 archivos. Obviamente, necesitas el más grande (el segundo en mi caso). Entonces, asigna la letra de unidad (yo uso Z: aquí) y escribe <code class="highlighter-rouge">/v:2</code> para montar ese volumen. Debes montar el archivo como el volumen de lectura y escritura, por lo que agrega <code class="highlighter-rouge">/m:w</code> antes de la ruta del archivo VMDK. También puedes habilitar el modo no persistente para garantizar que los cambios en el disco de la máquina virtual se descarten una vez que se apague la máquina virtual.</p>
+
+<p>Finalice el comando con la ruta al disco VMDK **. ** En mi caso, el cmdlet completo tiene el aspecto siguiente:</p>
+
+<pre><code class="language-dos">C:\Archivos de programa (x86)\VMware\VMware Virtual Disk Development Kit\bin&gt; vmware-mount.exe Z: /v:2 /m:w C:\temp\Win2008Serv.vmdk
+</code></pre>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/16-1024x221.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/16-1024x221.png" alt="" /></a></p>
+
+<p>Una vez que se haya montado el disco, ábrelo en el Explorador de Windows.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /17.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/17.png" alt="" /></a></p>
+
+<p>Una vez que hayas terminado, desconecta el VMDK. Escribe la letra del disco y termine la línea con /f. Tenga en cuenta que el sistema le impide cualquier otra forma de desconectar el disco ya que todavía está en uso.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/18-1024x250.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/18-1024x250.png" alt="" /></a></p>
+
+<p>Ten en cuenta que hay muchas más opciones de las que he mencionado en este artículo. Puedes averiguar más sobre ellos con <code class="highlighter-rouge">vmware-mount.exe /? cmdlet</code>.</p>
+
+<h2 id="-métodos-exclusivamente-para-la-recuperación-de-datos-">** Métodos exclusivamente para la recuperación de datos **</h2>
+
+<h3 id="-7-zip-">** 7-zip **</h3>
+
+<p>Otra forma bastante sencilla de acceder al VMDK es abrirlo como un archivo con 7-zip. Es cierto que 7-zip es una herramienta poderosa que te permite hacer un poco más que simplemente descomprimir algunos archivos. Por ejemplo, permite abrir un archivo VMDK como un archivo regular. Puedes descargar esa aplicación <a href="https://www.7-zip.org/download.html">desde el sitio oficial</a>. Abrir el disco VM con 7-zip es bueno exclusivamente para la recuperación de datos, ya que el archivo se abre en modo de solo lectura. En otras palabras, no se puede hacer nada con los datos. Ahora, veamos cómo realmente puede obtener los datos.</p>
+
+<p>Descarga el disco de la máquina virtual y abre el archivo con 7-zip.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /19.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/19.png" alt="" /></a></p>
+
+<p>A continuación, abre el archivo más grande. En mi caso, es 1.ntfs.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /20.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/20.png" alt="" /></a></p>
+
+<p>Aquí están los directorios y archivos disponibles en el disco.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018/09 /21.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/21.png" alt="" /></a></p>
+
+<p>Copia los datos.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/22-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/22-1.png" alt="" /></a></p>
+
+<p>Comprueba si ha recuperado todos los datos.</p>
+
+<p><a href="http://www.vmwareblog.org/wp-content/uploads/2018 /09/23-1.png"><img src="http://www.vmwareblog.org/wp-content/uploads/2018/09/23-1.png" alt="" /></a></p>
+
+<p>Finalmente, una vez que hayas terminado de copiar los datos, asegúrate de salir de la utilidad para evitar que se bloquee el disco hasta que se reinicie.</p>
+
+<h2 id="-conclusión-">** Conclusión **</h2>
+
+<p>En este artículo, he analizado 4 las formas más útiles de acceder a los contenidos de VMDK sin encender la máquina virtual. Bueno, puedes encontrar muchas otras formas de extraer un contenido de disco de VM, pero las que mencioné anteriormente, por mi dinero, son las mejores. Una vez más, todos los métodos que analicé aquí funcionan solo si ninguno de los componentes del volumen VMDK está dañado. Es posible que necesite hacer otras cosas si alguno de esos archivos está dañado o encriptado. Deseo que nunca estés en la situación cuando necesites alguno de los métodos que describo aquí.</p>
+
+<p><strong>¡Un saludo!</strong></p>
+:ET

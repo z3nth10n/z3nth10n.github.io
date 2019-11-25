@@ -1,0 +1,2 @@
+I"þ<p>All the tutorials that I have read at the moment about <strong>how to install vsftpd</strong> start at the same place, <strong>warning that the FTP protocol is insecure because it is not encrypted</strong>. This is true, but it is also true that if you want to set up a local FTP server for your own use, using vsftpd is the fastest and easiest solution. For this reason I decided to write this <strong>tutorial on how to install vsftpd on Linux Ubuntu and configure it correctly step by step</strong>.</p>
+:ET

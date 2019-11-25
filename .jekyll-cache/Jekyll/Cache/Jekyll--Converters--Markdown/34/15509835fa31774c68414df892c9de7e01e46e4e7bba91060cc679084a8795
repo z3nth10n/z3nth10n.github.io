@@ -1,0 +1,2 @@
+I"Q<p>Estos dos scripts los uso para darle un nombre a los Threads, así cuando ejecuto un <a href="https://docs.microsoft.com/es-es/dotnet/api/system.threading.threadpool.queueuserworkitem?view=netframework-4.7.2"><code class="highlighter-rouge">ThreadPool.QueueUserWorkItem</code></a> (por ejemplo) puedo saber el nombre de la Queue.</p>
+:ET

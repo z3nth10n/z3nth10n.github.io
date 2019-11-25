@@ -1,0 +1,100 @@
+I"!<h2 id="configure-and-use-phpmyadmin-with-heroku-using-jawsdb">Configure and use PHPMyAdmin with Heroku using JawsDB</h2>
+
+<p>On the last tutorial I teached you how to configure <a href="/en/2019/04/01/configuring-custom-domains-github-pages-part-2">your first PHP backend using Heroku</a>, now we will introduce PHPMyAdmin on Heroku.</p>
+
+<p>For this, I used <a href="https://github.com/smsaladi/phpmyadmin_heroku">this amazing Heroku template to use PHPMyAdmin by smsaladi</a>. You just need to copy the following lines into your composer:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"scripts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"post-install-cmd"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"composer create-project phpmyadmin/phpmyadmin; cp config.inc.php phpmyadmin/"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>and inside the <code class="highlighter-rouge">require</code> part:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"ext-mbstring"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Also, you’ll need to copy the <code class="highlighter-rouge">config.inc.php</code> into the root of your Heroku project.</p>
+
+<p>You’ll need to modify the “post-install-cmd” if you want to use a subfolder pointing to a subdomain as I done on the Part 2:</p>
+
+<p>Modify the “post-install-cmd” to match this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">cd</span><span class="w"> </span><span class="err">web/</span><span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span><span class="err">composer</span><span class="w"> </span><span class="err">create-project</span><span class="w"> </span><span class="err">phpmyadmin/phpmyadmin;</span><span class="w"> </span><span class="err">cp</span><span class="w"> </span><span class="err">../config.inc.php</span><span class="w"> </span><span class="err">phpmyadmin/</span><span class="w">
+</span></code></pre></div></div>
+
+<p>And create the <code class="highlighter-rouge">phpmyadmin</code> folder inside the <code class="highlighter-rouge">web</code> one.</p>
+
+<p><strong>Note:</strong> If you want to point to a subdomain instead of using the folder, make sure you configured correctly your DNS records at Cloudflare and copy the proper part from my .htaccess in the example of the Part 2.</p>
+
+<p>Then, execute the following commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>composer update
+<span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Deploying PHPMyAdmin"</span>
+% git push heroku master
+</code></pre></div></div>
+
+<h3 id="configuring-jawsdb">Configuring JawsDB</h3>
+
+<p>To configure JawsDB, you’ll need to follow <a href="https://devcenter.heroku.com/articles/jawsdb#provisioning-the-add-on">the steps on the Heroku guide about this</a>.</p>
+
+<p>I only used this two commands from this guide:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku addons:create jawsdb
+</code></pre></div></div>
+
+<blockquote>
+  <p>To add the addon.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku config:get JAWSDB_URL
+</code></pre></div></div>
+
+<blockquote>
+  <p>To get your credentials that you will need to use in PHPMyAdmin.</p>
+</blockquote>
+
+<h3 id="configuring-environment-variables">Configuring environment variables</h3>
+
+<p>PHPMyAdmin’s <code class="highlighter-rouge">config.inc.php</code> file will need two environment variables:</p>
+
+<ul>
+  <li><a href="https://github.com/smsaladi/phpmyadmin_heroku/blob/cb0930fc82ffed1facb50ecd010b4be29b31c614/config.inc.php#L31">MYSQL_HOST</a></li>
+  <li><a href="https://github.com/smsaladi/phpmyadmin_heroku/blob/cb0930fc82ffed1facb50ecd010b4be29b31c614/config.inc.php#L17">PHPMYADMIN_BLOWFISH_SECRET</a></li>
+</ul>
+
+<p>To generate the blowfish secret, just use a SHA-1 or MD5 hash generators (that doesn’t store on its database :joy:, for example sha1-online.com). Once you created one just set it using <a href="https://devcenter.heroku.com/articles/getting-started-with-php#define-config-vars">this command</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku config:set <span class="nv">PHPMYADMIN_BLOWFISH_SECRET</span><span class="o">=</span>&lt;<span class="nb">hash</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>The MYSQL_HOST variable can be extracted from the <code class="highlighter-rouge">heroku config:get JAWSDB_URL</code> I explained before. Just follow its format (<code class="highlighter-rouge">mysql://username:password@hostname:port/default_schema</code>)</p>
+
+<p>And set it as I explained before for the “<strong>PHPMYADMIN_BLOWFISH_SECRET</strong>” key.</p>
+
+<h3 id="cant-login-using-ssl">Can’t login using SSL?</h3>
+
+<p>Well, that behaviour would be expected if you’re using Heroku for free and Cloudflare with SSL.</p>
+
+<p>If you followed the Part 2 of this tutorial, you’ll need to unset the <strong>“Always Use HTTPS”</strong> option under <strong>Crypto on your dashboard</strong> and create some rules to keep users redirecting to https:</p>
+
+<ul>
+  <li>https://sql.example.com/
+    <ul>
+      <li>Rule =&gt; SSL: Off</li>
+    </ul>
+  </li>
+  <li>http://*example.com/*
+    <ul>
+      <li>Rule =&gt; Always Use HTTPS</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Click <strong>“Save and Deploy”</strong>.</p>
+
+<p><strong>Important Tip:</strong> Don’t login in your DDBB on a public Wifi due to a possible <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack"><em>MitM attack</em></a>.</p>
+
+<p><strong>Best regards!</strong></p>
+:ET
