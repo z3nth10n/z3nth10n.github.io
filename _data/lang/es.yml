@@ -29,7 +29,7 @@ lines: # You can add HTML Tags in the Text
 # Navigation #
 ##############
 
-select-language: "Elige tu idioma"
+select-language: "Idioma"
 
 #########
 # Posts #
@@ -188,7 +188,8 @@ author_blurb: "**z3nth10n** es un desarrollador español desde 2011. Le gusta de
 # Sections shown in the index page
 
 pages_list:
-  Proyectos: 'github-cards'
+  'En la Asset Store': 'asset-store-projects'
+  'En Github': 'github-cards'
   'Últimas noticias': 'last-social-media'
   Blog: 'latest-post'
   'Línea de tiempo': 'timeline'

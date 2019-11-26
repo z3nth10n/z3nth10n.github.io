@@ -302,6 +302,10 @@
     margin: 0;
 }
 
+.twitter hr {
+    width: calc(100% + 20px);
+}
+
 /* Anchorify */
 
 .header-link {

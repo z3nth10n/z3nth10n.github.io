@@ -2,5 +2,9 @@
     {% include section-type.html %}
 {% endcapture %}
 
+<div class="text-center">
+    <h2>{% include title.html %}</h2>
+</div>
+                
 <section id="{{ section | strip_newlines | strip }}" data-showif="above-xs" data-jsonrequire="repos" data-htmlinclude="github-cards-content">
 </section>

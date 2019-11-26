@@ -38,7 +38,7 @@ group :jekyll_plugins do
   gem 'chronic', '~> 0.10.2'
   gem 'google-api-client', '~> 0.34.1'
   gem 'googleauth', '~> 0.10.0'
-  gem 'jekyll-ga-v2', path: '_plugins/jekyll-ga-v2'
+  # gem 'jekyll-ga-v2', path: '_plugins/jekyll-ga-v2' # TODO
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

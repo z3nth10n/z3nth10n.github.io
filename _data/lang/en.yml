@@ -25,7 +25,7 @@ lines: # You can add HTML Tags in the Text
 # Navigation #
 ##############
 
-select-language: "Select your language"
+select-language: "Language"
 
 #########
 # Posts #
@@ -184,11 +184,78 @@ author_blurb: "**z3nth10n** is a Spanish developer since 2011. He likes coding i
 # Sections shown in the index page
 
 pages_list:
-  Projects: 'github-cards'
+  'In the Asset Store': 'asset-store-projects'
+  'On Github': 'github-cards'
   'Last Social Media': 'last-social-media'
   Blog: 'latest-post'
   Timeline: 'timeline'
   Contact: 'contact'
+  
+########################
+# Asset Store Projects #
+########################
+
+asset-store-projects:
+    - title: "GetAssetPreview"
+      url: ""
+      thumb-url: ""
+      description: ""
+      blog-link: ""
+      stage: "published"
+    - title: "uzLib.Lite"
+      url: ""
+      thumb-url: ""
+      description: ""
+      blog-link: ""
+      stage: "published"
+    - title: "uzSurfaceMapper"
+      url: ""
+      thumb-url: ""
+      description: ""
+      blog-link: ""
+      stage: "development"
+    - title: "uzSourceToolkit"
+      url: ""
+      thumb-url: ""
+      description: ""
+      blog-link: ""
+      stage: "development"
+    - title: "uzCraft"
+      url: ""
+      thumb-url: ""
+      description: ""
+      blog-link: ""
+      stage: "development"
+    - title: "uzBuildingSystem"
+      url: ""
+      thumb-url: ""
+      description: ""
+      blog-link: ""
+      stage: "development"
+    - title: "uzProceduralCityGen"
+      url: ""
+      thumb-url: ""
+      description: ""
+      blog-link: ""
+      stage: "development"
+    - title: "uzBuildingSystem"
+      url: ""
+      thumb-url: ""
+      description: ""
+      blog-link: ""
+      stage: "development"
+    - title: "uzLib"
+      url: ""
+      thumb-url: ""
+      description: ""
+      blog-link: ""
+      stage: "development"
+ #   - title: ""
+ #     url: ""
+ #     thumb-url: ""
+ #     description: ""
+ #     blog-link: ""
+ #     stage: "development"
   
 ################
 # Blog Section #
