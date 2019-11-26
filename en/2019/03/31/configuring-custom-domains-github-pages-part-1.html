@@ -47,6 +47,13 @@
   <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/rrssb.css" />
   
+  <!--- GLIDE -->
+  <!-- Required Core stylesheet -->
+  <link rel="stylesheet" href="/css/glide.core.min.css">
+
+  <!-- Optional Theme stylesheet -->
+  <link rel="stylesheet" href="/css/glide.theme.min.css">
+  
   <!--- Google Adsense -->
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
@@ -156,7 +163,7 @@ window.cookieconsent.initialise({
       <ul class="nav navbar-nav">
         <li class="language-selection">
             <button type="button" class="toggle visible">
-                <span class="sm-invisible">Select your language</span>
+                <span class="sm-invisible">Language</span>
                 <i class="fas fa-language sm-visible"></i>
             </button>
             <ul class="lang-select collapse">
@@ -593,23 +600,23 @@ window.cookieconsent.initialise({
 <!-- Javascript Start -->
 
 <!-- jQuery -->
-<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <!-- Plugin JavaScript -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<!--- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> -->
 
 <!-- Plugin SlabText -->
 <script src="/js/plugins/jquery.fittext.min.js"></script>
 
 <!-- Markdownify for JS -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
 
 <!--- JQuery Cookies -->
-<script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 <!--- LINQ for JS -->
 <script src="/js/plugins/linq.min.js"></script>
@@ -624,6 +631,9 @@ window.cookieconsent.initialise({
 <!--- Anchorify -->
 <script src="/js/plugins/anchorify.min.js"></script>
 
+<!--- Glide -->
+<script src="/js/plugins/glide.min.js"></script>
+
 <!--- All together -->
 <script>
     $(document).ready(function() {
@@ -633,6 +643,22 @@ window.cookieconsent.initialise({
             target: "_blank"
         });
         post.anchorify();
+        
+        var glide = new Glide('.glide', {
+          type: 'carousel',
+          perView: 4,
+          focusAt: 'center',
+          breakpoints: {
+            800: {
+              perView: 2
+            },
+            480: {
+              perView: 1
+            }
+          }
+        });
+
+        glide.mount();
     });
 </script>
 

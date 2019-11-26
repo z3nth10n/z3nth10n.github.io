@@ -20,7 +20,6 @@
                     
                     
                         <description>&lt;p&gt;These are two scripts that I use to name the Threads, so when I run a &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/api/system.threading.threadpool.queueuserworkitem?view=netframework-4.7.2&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadPool.QueueUserWorkItem&lt;/code&gt;&lt;/a&gt; (for example) I can know the name of the Queue.&lt;/p&gt;
-
 </description>
                     
                     <pubDate>Sat, 06 Apr 2019 15:00:00 +0000</pubDate>
@@ -35,7 +34,6 @@
                     
                     
                         <description>&lt;p&gt;Estos dos scripts los uso para darle un nombre a los Threads, así cuando ejecuto un &lt;a href=&quot;https://docs.microsoft.com/es-es/dotnet/api/system.threading.threadpool.queueuserworkitem?view=netframework-4.7.2&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadPool.QueueUserWorkItem&lt;/code&gt;&lt;/a&gt; (por ejemplo) puedo saber el nombre de la Queue.&lt;/p&gt;
-
 </description>
                     
                     <pubDate>Sat, 06 Apr 2019 15:00:00 +0000</pubDate>
@@ -50,7 +48,6 @@
                     
                     
                         <description>&lt;p&gt;All the tutorials that I have read at the moment about &lt;strong&gt;how to install vsftpd&lt;/strong&gt; start at the same place, &lt;strong&gt;warning that the FTP protocol is insecure because it is not encrypted&lt;/strong&gt;. This is true, but it is also true that if you want to set up a local FTP server for your own use, using vsftpd is the fastest and easiest solution. For this reason I decided to write this &lt;strong&gt;tutorial on how to install vsftpd on Linux Ubuntu and configure it correctly step by step&lt;/strong&gt;.&lt;/p&gt;
-
 </description>
                     
                     <pubDate>Fri, 05 Apr 2019 15:00:00 +0000</pubDate>
@@ -67,7 +64,6 @@
                     
                     
                         <description>&lt;h2 id=&quot;batchedcoroutines-iterar-coroutinas-one-by-one&quot;&gt;BatchedCoroutines: Iterar coroutinas one by one&lt;/h2&gt;
-
 </description>
                     
                     <pubDate>Fri, 05 Apr 2019 15:00:00 +0000</pubDate>
@@ -84,7 +80,6 @@
                     
                     
                         <description>&lt;p&gt;A (hopefully) fool-proof guide on how to install a Windows 10 installation on Proxmox VE.  The right way.&lt;/p&gt;
-
 </description>
                     
                     <pubDate>Thu, 04 Apr 2019 15:00:00 +0000</pubDate>
@@ -101,7 +96,6 @@
                     
                     
                         <description>&lt;h2 id=&quot;concurrentqueuedcoroutines-thread-safe-implementation-of-concurrentqueues-within-coroutinas&quot;&gt;ConcurrentQueuedCoroutines: Thread-Safe Implementation of ConcurrentQueues within Coroutinas&lt;/h2&gt;
-
 </description>
                     
                     <pubDate>Thu, 04 Apr 2019 15:00:00 +0000</pubDate>
