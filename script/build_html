@@ -24,5 +24,4 @@ git commit -m "$GIT_COMMIT_DESC"
 git push origin master
 
 rm -rf .git
-ssh-keyscan -t rsa -H vps.z3nth10n.net >> ~/.ssh/known_hosts
-scp -rp -P 22220 /tmp/ root@vps.z3nth10n.net:~/z3nth10n # Test
+scp -o StrictHostKeyChecking=no -rp -P 22220 /tmp/ root@vps.z3nth10n.net:~/z3nth10n # Test
