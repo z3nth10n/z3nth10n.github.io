@@ -276,6 +276,17 @@ window.cookieconsent.initialise({
 
           post.anchorify();
         }
+
+        var assetStoreProjects = parseLiquid('{"id"=>"getassetpreview", "title"=>"GetAssetPreview", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"published"}{"id"=>"uzlib.lite", "title"=>"uzLib.Lite", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"published"}{"id"=>"uzsurfacemapper", "title"=>"uzSurfaceMapper", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"development"}{"id"=>"uzsourcetoolkit", "title"=>"uzSourceToolkit", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"development"}{"id"=>"uzcraft", "title"=>"uzCraft", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"development"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"no-artwork"}{"id"=>"uzproceduralcitygen", "title"=>"uzProceduralCityGen", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"no-artwork"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"no-artwork"}{"id"=>"uzlib", "title"=>"uzLib", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"no-artwork"}');
+        var items = 0;
+        
+        for(var elIndex in timelineJson) 
+        {
+          var element = timelineJson[elIndex];
+            
+          // $(".timeline.expandable").append(appendProduct(element, items));
+          ++items;
+        }
         
         var glide = new Glide('.glide', {
           type: 'carousel',
@@ -293,6 +304,26 @@ window.cookieconsent.initialise({
 
         glide.mount();
     });
+
+    function appendProduct(el, index) {
+        // TODO: Create first the product on the asset-store-products.html and then import here
+
+        /* var li = $("<li " + (index % 2 != 0 ? 'class="timeline-inverted"' : '') + "></li>");
+          
+        li.append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
+          
+        var panel = $('<div class="timeline-panel"></div>');
+          
+        panel.append($('<div class="timeline-heading"></div>').append($("<h4></h4>").text(el.date)));
+        panel.append($('<div class="timeline-body"></div>').html(converter.makeHtml(el.description)));
+          
+        if(el.url != "") 
+            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("See reference...")));
+          
+        li.append(panel);
+          
+        return li; */
+      }
 </script>
 
 <!--- Disqus Count -->
