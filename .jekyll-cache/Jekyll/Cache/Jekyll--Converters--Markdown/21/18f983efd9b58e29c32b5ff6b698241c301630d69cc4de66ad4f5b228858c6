@@ -1,0 +1,179 @@
+I"68<p>Todos los tutoriales que he leído hasta el momento de <strong>cómo instalar vsftpd</strong> comienzan de la misma forma, <strong>advirtiendo de que el protocolo FTP es inseguro porque no está cifrado</strong>. Esto es cierto, pero también es cierto que si queremos montar un servidor FTP local para uso propio, usar vsftpd es la solución más rápida y sencilla. Por este motivo me decidí a escribir este <strong>tutorial de cómo instalar vsftpd en Linux Ubuntu y configurarlo correctamente paso a paso</strong>.</p>
+
+<p><img src="https://www.vozidea.com/wp-content/uploads/2017/03/como-instalar-vsftpd-en-Linux-Ubuntu.png" alt="Cómo instalar vsftpd en Linux Ubuntu y configurarlo correctamente" title="Cómo instalar vsftpd en Linux Ubuntu y configurarlo correctamente" /></p>
+
+<p>También es necesario que conozcas las alternativas a FTP consideradas como seguras, donde nos encontramos los protocolos <strong>sFTP</strong> y <strong>SCP</strong> como los más usados. También podemos configurar vsftpd para que use una conexión segura bajo SSL/TLS.</p>
+
+<p><strong>A pesar de que es relativamente sencillo configurar vsftp con SSL/TLS, no lo voy a incluir en este tutorial, ya que el objetivo es hacer una explicación rápida y sencilla.</strong> Quizás le dedique un tutorial a ese aspecto más adelante.</p>
+
+<h2 id="cómo-instalar-vsftpd-en-linux-ubuntu-y-configurarlo-paso-a-paso">Cómo instalar vsftpd en Linux Ubuntu y configurarlo paso a paso.</h2>
+
+<p>Voy a intentar que este tutorial sea válido para tanto para versiones recientes de Ubuntu como para versiones más antiguas. En el momento de escribir este artículo estoy trabajando con <a href="http://releases.ubuntu.com/18.04/">Ubuntu 18.04</a>, pero el tutorial también será compatible con Ubuntu 16.04 y seguramente también sirva para versiones anteriores.</p>
+
+<p>Antes de entrar de lleno en la <strong>configuración de vsftpd</strong>, recordar que en este tutorial <strong>no voy a incluir la configuración del firewall</strong>, ya que cada usuario tendrá instalado el que más le guste. Con esto quiero recordarles que gestionen las reglas del firewall para que permita las conexiones al servidor FTP, que suelen emplear los puertos 20 y 21 a menos que lo configuremos de otra manera. <strong>Sino usas ningún firewall, no necesitarás hacer nada de esto.</strong></p>
+
+<p><strong>He elegido vsftpd como servidor FTP porque es muy sencillo de instalar y de usar.</strong> Además lo encontramos en los repositorios oficiales de Ubuntu, lo cual nos simplifica mucho más la tarea.</p>
+
+<h3 id="instalar-vsftpd-en-ubuntu">Instalar vsftpd en Ubuntu.</h3>
+
+<p>Para <strong>instalar vsftpd en Ubuntu 16.04 y 18.04</strong> podemos emplear el comando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>vsftpd
+</code></pre></div></div>
+
+<p>Si empleamos la versión <strong>Ubuntu 14.04</strong>, el comando que usaremos es:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>vsftpd
+</code></pre></div></div>
+
+<p>Antes de seguir avanzando, debemos conocer los comandos para iniciar, detener y reiniciar el demonio de vsftpd. <strong>En Ubuntu 16.04 y 18.04 los comandos para iniciar, detener y reiniciar vsftpd son:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl restart vsftpd
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl start vsftpd
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl stop vsftpd
+</code></pre></div></div>
+
+<p><strong>En Ubuntu 10.04 los comandos para iniciar, detener y reiniciar vsftpd son:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>service vsftpd restart
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>service vsftpd start
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>service vsftpd stop
+</code></pre></div></div>
+
+<h3 id="configurar-vsftpd-en-ubuntu">Configurar vsftpd en Ubuntu.</h3>
+
+<p>Para configurar vsftpd voy a partir de cero, agregando un nuevo usuario al que darle los permisos adecuados para que pueda subir y bajar archivos a una carpeta determinada. Este usuario quedará encerrado en su carpeta <code class="highlighter-rouge">home</code>, de forma que no podrá acceder a ninguna otra parte del sistema operativo. De este modo, conseguimos una configuración más segura.</p>
+
+<p>Para añadir el usuario ejecutamos el comando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>adduser z3nth10n
+</code></pre></div></div>
+
+<p>Tras ejecutar este comando nos solicitará que introduzcamos una contraseña.</p>
+
+<p>Hago un pequeño inciso para recordar el tutorial de <a href="https://www.vozidea.com/como-anadir-y-eliminar-usuarios-en-linux">cómo añadir y eliminar usuarios en Linux</a> que escribimos hace algún tiempo.</p>
+
+<p>Usaremos este usuario <code class="highlighter-rouge">z3nth10n</code> para acceder al servidor FTP. Debemos saber que el sistema de seguridad de jaulas chroot de vsftp encierra al usuario en su carpeta <code class="highlighter-rouge">home</code>, por lo que en nuestro caso el chroot sería <code class="highlighter-rouge">/home/z3nth10n</code>. Además, vsftp maneja las jaulas chroot de forma que se deben cumplir dos condiciones:</p>
+
+<ul>
+  <li><strong>El dueño de la carpeta chroot y el usuario que se conecta por FTP no pueden ser el mismo.</strong></li>
+  <li><strong>La carpeta chroot no puede tener permisos de escritura.</strong></li>
+</ul>
+
+<p>Así que debemos cambiar el dueño de esta carpeta con el siguiente comando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo chown </span>root:root /home/z3nth10n
+</code></pre></div></div>
+
+<p>Si queremos que el usuario pueda subir archivos al servidor FTP, necesitaremos crear una carpeta:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo mkdir</span> /home/z3nth10n/ftp_subidas
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo chown </span>z3nth10n:z3nth10n /home/z3nth10n/ftp_subidas
+</code></pre></div></div>
+
+<p><strong>Algo muy importante es quitar el acceso al intérprete de comandos <em>(shell)</em> del usuario <code class="highlighter-rouge">z3nth10n</code> que agregamos. Insisto en que es muy importante porque puede suponer un grave riesgo de seguridad.</strong> El problema está en que al quitar acceso a la shell, vsftpd no nos deja acceder al servidor FTP porque el usuario no tiene una shell válida asignada. Para solucionar esto <strong>vamos a crear una shell personalizada, que añadiremos a la lista de shells válidas y finalmente asignaremos esta shell a nuestro usuario</strong>.</p>
+
+<p>Empezamos ejecutando el siguiente comando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>nano /bin/ftponly
+</code></pre></div></div>
+
+<p>Añadimos las siguientes líneas y guardamos el archivo:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<span class="nb">echo</span> <span class="s2">"Esta cuenta solo dispone de acceso por FTP."</span>
+</code></pre></div></div>
+
+<p>Damos permisos de ejecución a la shell <code class="highlighter-rouge">ftponly</code> con el comando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo chmod </span>a+x /bin/ftponly
+</code></pre></div></div>
+
+<p>Editamos la lista de shells válidas con el comando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>nano /etc/shells
+</code></pre></div></div>
+
+<p>Añadimos <code class="highlighter-rouge">/bin/ftponly</code> al final de la lista:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/shells: valid login shells</span>
+/bin/sh
+/bin/dash
+/bin/bash
+/bin/rbash
+/bin/ftponly
+</code></pre></div></div>
+
+<p>Asignamos la shell <code class="highlighter-rouge">ftponly</code> a nuestro usuario:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>usermod z3nth10n <span class="nt">-s</span> /bin/ftponly
+</code></pre></div></div>
+
+<p><strong>Nota importante:</strong> en algunos tutoriales que he podido leer no crean esta shell personalizada <code class="highlighter-rouge">ftponly</code>, sino que usan la shell del sistema <code class="highlighter-rouge">/usr/sbin/nologin</code> o <code class="highlighter-rouge">/sbin/nologin</code>. Como hay varios servicios del sistema que emplean esta shell <code class="highlighter-rouge">nologin</code>, <strong>no debemos usarla o estaremos creando un problema de seguridad grave</strong>.</p>
+
+<p>Llegados a este punto, ya tenemos nuestro usuario listo. Ahora procedemos a <strong>editar el archivo de configuración de vsftpd</strong> con el comando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>nano /etc/vsftpd.conf
+</code></pre></div></div>
+
+<p>Hay que modificar el archivo eliminando el carácter <code class="highlighter-rouge">#</code> en las partes correspondientes y haciendo las modificaciones tal y como las mostramos a continuación:</p>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">...</span>
+ 
+<span class="c"># Allow anonymous FTP? (Disabled by default).</span>
+anonymous_enable=NO
+<span class="c">#</span>
+<span class="c"># Uncomment this to allow local users to log in.</span>
+local_enable=YES
+<span class="c">#</span>
+<span class="c"># Uncomment this to enable any form of FTP write command.</span>
+write_enable=YES
+<span class="c">#</span>
+ 
+<span class="err">...</span>
+ 
+<span class="c"># You may restrict local users to their home directories.  See the FAQ for</span>
+<span class="c"># the possible risks in this before using chroot_local_user or</span>
+<span class="c"># chroot_list_enable below.</span>
+chroot_local_user=YES
+<span class="c">#</span>
+<span class="err">...</span>
+</code></pre></div></div>
+
+<p>Ya sólo nos queda reiniciar vsftpd con el comando que os mostramos al comienzo de este tutorial y pasamos a probar que todo funciona correctamente. Así de sencillo es instalar vsftpd en Linux Ubuntu.</p>
+
+<p><img src="https://www.vozidea.com/wp-content/uploads/2017/03/probar-servidor-vsftpd.png" alt="Probar servidor vsftpd" title="Probar servidor vsftpd" /></p>
+
+<p>Para probar el servidor FTP podéis probar a conectaros empleando un <a href="https://dl3.cdn.filezilla-project.org/client/FileZilla_3.41.2_win64-setup.exe?h=zYebHHHn4nzjxSQ0IsqTmQ&amp;x=1554261497">cliente FTP como FileZilla</a>.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>Quizás ya te haya pasado como a mi que aún no puedas conectarte… Aquí recogeré una lista de posibles casos de error:</p>
+
+<ul>
+  <li><strong>Error: 500 OOPS: vsftpd: refusing to run with writable root inside chroot()</strong>
+    <ul>
+      <li>La solución es sencilla, solo debes de añadir esta línea a tu <code class="highlighter-rouge">vsftpd.conf</code>: <code class="highlighter-rouge">allow_writeable_chroot=YES</code></li>
+      <li>Reinicia el servicio</li>
+    </ul>
+  </li>
+  <li><strong>¿Cómo cambiar el puerto del 21 a otro?</strong>
+    <ul>
+      <li>Añade esta línea a tu <code class="highlighter-rouge">vsftpd.conf</code>: <code class="highlighter-rouge">listen_port=&lt;número de puerto&gt;</code> (ejemplo: <code class="highlighter-rouge">listen_port=2121</code>)</li>
+      <li>Reinicia el servicio</li>
+    </ul>
+  </li>
+  <li><strong>Failed to retrieve directory listing</strong>
+    <ul>
+      <li>Esto es debido a que necesitas configurar el modo pasivo del FTP ya que un Firewall por parte de tu Ubuntu o bien por la parte del cliente está bloqueando la conexión</li>
+      <li>Necesitarás habilitar el modo pasivo en tu <code class="highlighter-rouge">vsftpd.conf</code>:</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pasv_enable=YES
+pasv_min_port=9010
+pasv_max_port=9020
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* Estos puertos deden de estar abiertos... (en el servidor, mediante el reenvío de puertos (port forwarding) o mediante reglas de Firewall)
+* Reinicia el servicio
+* Configura una nueva sesión en tu Filezilla para poder acceder en modo pasivo, [aquí un tutorial](https://www.nerion.es/soporte/tutoriales/error-connection-timed-out-after-20-seconds-of-inactivity/).
+* No haría falta cambiar las opciones generales a Pasivo, dentro de tu nuevo sitio, ve a "Opciones de Transferencia" y cambia al modo pasivo.
+</code></pre></div></div>
+
+<p><strong>¡Un saludo!</strong></p>
+:ET
