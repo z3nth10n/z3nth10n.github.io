@@ -53,9 +53,9 @@
         var assetStoreProjects = parseLiquid('{% t "asset-store-projects" %}');
         var items = 0;
         
-        for(var elIndex in timelineJson) 
+        for(var elIndex in assetStoreProjects) 
         {
-          var element = timelineJson[elIndex];
+          var element = assetStoreProjects[elIndex];
             
           // $(".timeline.expandable").append(appendProduct(element, items));
           ++items;
