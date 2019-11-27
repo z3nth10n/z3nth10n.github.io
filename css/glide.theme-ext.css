@@ -311,3 +311,21 @@
 .slider--big .slider__arrow--prev {
 	left: 3rem
 }
+
+/* CUSTOM */
+
+.product p {
+    margin: 0 5px!important;
+}
+
+.product p:not(.name) {
+    font-weight: normal!important;
+}
+
+.product p:not(.image) {
+    text-align: left;
+}
+
+.product .description {
+    font-size: 80%;
+}

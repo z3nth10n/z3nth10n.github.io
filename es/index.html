@@ -384,8 +384,16 @@ If you want to have a static message in your intro layout, disable the dynamic-t
   <div class="slider__track glide__track" data-glide-el="track">
     <ul class="slider__slides glide__slides">
       
-      <li class="slider__frame glide__slide">
-          <img src="" alt="">
+      <li class="slider__frame glide__slide product">
+          <p class="image">
+              <img src="https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/getassetpreview/small.png" alt="">
+          </p>
+          <p class="name">Name</p>
+          <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, perferendis, maiores. Maiores corrupti voluptates totam debitis eum veritatis dolor iure dignissimos, fugiat voluptatum iusto, commodi. Ipsam voluptatum, sapiente ducimus eveniet!</p>
+          <p>Free</p>
+          <p>
+              <button type="button" class="btn btn-primary">See product</button>
+          </p>
       </li>
       
     <!---
@@ -1075,12 +1083,12 @@ If you want to have a static message in your intro layout, disable the dynamic-t
           post.anchorify();
         }
 
-        var assetStoreProjects = parseLiquid('{"id"=>"getassetpreview", "title"=>"GetAssetPreview", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"published"}{"id"=>"uzlib.lite", "title"=>"uzLib.Lite", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"published"}{"id"=>"uzsurfacemapper", "title"=>"uzSurfaceMapper", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"development"}{"id"=>"uzsourcetoolkit", "title"=>"uzSourceToolkit", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"development"}{"id"=>"uzcraft", "title"=>"uzCraft", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"development"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"no-artwork"}{"id"=>"uzproceduralcitygen", "title"=>"uzProceduralCityGen", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"no-artwork"}{"id"=>"uzlib", "title"=>"uzLib", "url"=>"", "description"=>"", "blog-link"=>"", "stage"=>"no-artwork"}');
+        var assetStoreProjects = parseLiquid('{"id"=>"getassetpreview", "title"=>"GetAssetPreview", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"published"}{"id"=>"uzlib.lite", "title"=>"uzLib.Lite", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"published"}{"id"=>"uzsurfacemapper", "title"=>"uzSurfaceMapper", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"development"}{"id"=>"uzsourcetoolkit", "title"=>"uzSourceToolkit", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"development"}{"id"=>"uzcraft", "title"=>"uzCraft", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"development"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"no-artwork"}{"id"=>"uzproceduralcitygen", "title"=>"uzProceduralCityGen", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"no-artwork"}{"id"=>"uzlib", "title"=>"uzLib", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"no-artwork"}');
         var items = 0;
         
-        for(var elIndex in timelineJson) 
+        for(var elIndex in assetStoreProjects) 
         {
-          var element = timelineJson[elIndex];
+          var element = assetStoreProjects[elIndex];
             
           // $(".timeline.expandable").append(appendProduct(element, items));
           ++items;
