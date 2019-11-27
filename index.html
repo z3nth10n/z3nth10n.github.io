@@ -995,11 +995,14 @@ If you want to have a static message in your intro layout, disable the dynamic-t
     $(document).ready(function() {
         var post = $("#post .col-md-10");
         
-        post.linkify({
-            target: "_blank"
-        });
-        
-        post.anchorify();
+        if(post.length > 0) 
+        {
+          post.linkify({
+              target: "_blank"
+          });
+
+          post.anchorify();
+        }
         
         var glide = new Glide('.glide', {
           type: 'carousel',

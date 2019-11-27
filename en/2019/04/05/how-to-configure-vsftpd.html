@@ -677,11 +677,14 @@ pasv_max_port = 9020
     $(document).ready(function() {
         var post = $("#post .col-md-10");
         
-        post.linkify({
-            target: "_blank"
-        });
-        
-        post.anchorify();
+        if(post.length > 0) 
+        {
+          post.linkify({
+              target: "_blank"
+          });
+
+          post.anchorify();
+        }
         
         var glide = new Glide('.glide', {
           type: 'carousel',
