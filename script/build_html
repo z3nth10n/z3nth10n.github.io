@@ -24,5 +24,6 @@ git commit -m "$GIT_COMMIT_DESC"
 git push origin master
 
 rm -rf .git
+pwd
 ls -la
 scp -o StrictHostKeyChecking=no -rp -P 22220 /tmp/ root@vps.z3nth10n.net:~/z3nth10n # Test
