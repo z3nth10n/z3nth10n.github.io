@@ -30,4 +30,4 @@ rm *.yml
 rm Rakefile
 
 # Transfer files
-scp -o StrictHostKeyChecking=no -rp -P 22220 ../repo/ root@vps.z3nth10n.net:/var/www/html/frontend/
+scp -o StrictHostKeyChecking=no -rp -P 22220 ../repo/* root@vps.z3nth10n.net:/var/www/html/frontend/
