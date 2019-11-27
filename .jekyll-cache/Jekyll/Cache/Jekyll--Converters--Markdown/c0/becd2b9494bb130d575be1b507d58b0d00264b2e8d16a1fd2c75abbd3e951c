@@ -1,0 +1,141 @@
+I"�<h2 id="how-to-configure-github-pages-to-use-a-custom-domain-with-cloudflare">How to configure Github Pages to use a custom domain with Cloudflare?</h2>
+
+<p>In this tutorial I will show you how to configure a domain with <a href="https://name.com">name.com</a> and use in your Jekyll website with <a href="https://cloudflare.com">Cloudflare</a>.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li>Enter <a href="https://name.com">name.com</a> and then, search for your domain:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/00.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>After your send your information, you’ll need to pay (you can pay with PayPal but you need a verified Paypal account):</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/01.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>If everything is right, you should be prompted to this:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/02.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>Then, you’ll need to return to your <code class="highlighter-rouge">Repository Settings</code>:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/03.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>And write your custom domain (<strong>Note:</strong> the keyword <code class="highlighter-rouge">www</code> is required):</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/04.PNG?raw=true" alt="" /></p>
+
+<p>5.1. It’s required that you create a <code class="highlighter-rouge">CNAME</code> file in your site root with the domain you’ll manage:</p>
+
+<p>In my case:</p>
+
+<ul>
+  <li>z3nth10n.net</li>
+  <li>www.zenth10n.net</li>
+</ul>
+
+<p>But there is a Bash command to do that:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">printf</span> <span class="s2">"&lt;domain&gt;</span><span class="se">\n</span><span class="s2">&lt;domain with www&gt;"</span> <span class="o">&gt;</span> CNAME <span class="o">&amp;&amp;</span> git add <span class="nb">.</span> <span class="o">&amp;&amp;</span> git commit <span class="nt">-m</span> <span class="s2">"Added CNAME"</span> <span class="o">&amp;&amp;</span> git push
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">printf</span> <span class="s2">"zenth10n.net</span><span class="se">\n</span><span class="s2">www.zenth10n.net"</span> <span class="o">&gt;</span> CNAME <span class="o">&amp;&amp;</span> git add <span class="nb">.</span> <span class="o">&amp;&amp;</span> git commit <span class="nt">-m</span> <span class="s2">"Added CNAME"</span> <span class="o">&amp;&amp;</span> git push
+</code></pre></div></div>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/05.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>Now go to <a href="https://cloudflare.com">Cloudflare</a> and register a new account:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/06.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>Cloudflare will request your domain name, simply <code class="highlighter-rouge">Add</code> it as shown below:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/07.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>By default this will be shown as this:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/08.PNG?raw=true" alt="" /></p>
+
+<p>Here you need to press “Continue” button, we’ll configure this later.</p>
+
+<ol>
+  <li>Cloudflare will need a new NS records in name.com:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/12.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>Go to your site Configuration &gt; Nameservers, and remove then:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/13.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>You’ll need to apply changes in order to make this work:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/14.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>Then, just write them:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/15.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>If everything go well you’ll see this:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/16.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>Go to your <code class="highlighter-rouge">_config.yml</code> file and change all variables that depends on url:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/17.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>Return to Cloudflare, and point this Github IP: <code class="highlighter-rouge">192.30.252.153</code> (as an <code class="highlighter-rouge">A record</code> for the <code class="highlighter-rouge">@ wildcard</code>) and a <code class="highlighter-rouge">CNAME record</code> pointing to <code class="highlighter-rouge">www</code> as a alias to your site url (in my case: <code class="highlighter-rouge">z3nth10n.github.com</code>) in your Cloudflare dashboard:</li>
+</ol>
+
+<p><img src="https://github.com/uta-org/artwork/blob/master/blog/tutorials/00-buy%20a%20domain/18.PNG?raw=true" alt="" /></p>
+
+<ol>
+  <li>To check that everything went right, just use this command:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-sI</span> <span class="s2">"http://z3nth10n.net"</span> | <span class="nb">grep</span> <span class="s2">"HTTP/</span><span class="se">\|</span><span class="s2">Location"</span>
+</code></pre></div></div>
+
+<p>If you have problems in Windows, you can use:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ipconfig /flushdns
+</code></pre></div></div>
+
+<p>This will delete all your DNS cache, so if you have any issue and you fix it, your changes will apply quicklier.</p>
+
+<ol>
+  <li>Enjoy!</li>
+</ol>
+
+<p><strong>Note:</strong> In case you have problems don’t hesistate to ask in a comment.</p>
+
+<p><strong>Best regards!</strong></p>
+:ET

@@ -1,0 +1,100 @@
+I"�<h2 id="configurar-y-usar-phpmyadmin-con-heroku-usando-jawsdb">Configurar y usar PHPMyAdmin con Heroku usando JawsDB</h2>
+
+<p>En el último tutorial, mostré cómo configurar <a href="/es/2019/04/01/configuring-custom-domains-github-pages-part-2">tu primer backend PHP usando Heroku</a>, ahora os explicaremos como usar PHPMyAdmin en Heroku.</p>
+
+<p>Para esto, utilizarás <a href="https://github.com/smsaladi/phpmyadmin_heroku">esta increíble plantilla de Heroku para usar PHPMyAdmin creada por smsaladi</a>. Solo necesitas copiar las siguientes líneas en tu archivo <code class="highlighter-rouge">composer.json</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"scripts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"post-install-cmd"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"composer create-project phpmyadmin/phpmyadmin; cp config.inc.php phpmyadmin/"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>y dentro del <code class="highlighter-rouge">require</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"ext-mbstring"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Además, deberás copiar el <code class="highlighter-rouge">config.inc.php</code> en la raíz de tu proyecto Heroku.</p>
+
+<p>Tendrás que modificar el “post-install-cmd” si deseas usar una subcarpeta que apunte a un subdominio como lo hice en la Parte 2:</p>
+
+<p>Entonces, modifica el “post-install-cmd” para que coincida con esto:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">cd</span><span class="w"> </span><span class="err">web/</span><span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span><span class="err">composer</span><span class="w"> </span><span class="err">create-project</span><span class="w"> </span><span class="err">phpmyadmin/phpmyadmin;</span><span class="w"> </span><span class="err">cp</span><span class="w"> </span><span class="err">../config.inc.php</span><span class="w"> </span><span class="err">phpmyadmin/</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Y crea la carpeta <code class="highlighter-rouge">phpmyadmin</code> dentro de <code class="highlighter-rouge">web</code>.</p>
+
+<p><strong>Nota:</strong> Si deseas apuntar un subdominio en lugar de usar la carpeta, asegúrate de configurar correctamente sus registros DNS en Cloudflare y copia la parte correcta de mi <code class="highlighter-rouge">.htaccess</code> en el ejemplo de la <strong>Parte 2</strong>.</p>
+
+<p>Luego, ejecuta los siguientes comandos:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>composer update
+<span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Deploying PHPMyAdmin"</span>
+% git push heroku master
+</code></pre></div></div>
+
+<h3 id="configurando-jawsdb">Configurando JawsDB</h3>
+
+<p>Para configurar JawsDB, deberás seguir <a href="https://devcenter.heroku.com/articles/jawsdb#provisioning-the-add-on">los pasos en la guía de Heroku sobre esto</a>.</p>
+
+<p>Solo utiliza estos dos comandos de esta guía:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku addons:create jawsdb
+</code></pre></div></div>
+
+<blockquote>
+  <p>Para añadir el addon.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku config:get JAWSDB_URL
+</code></pre></div></div>
+
+<blockquote>
+  <p>Para obtener las credenciales que necesitarás usar en el login de PHPMyAdmin.</p>
+</blockquote>
+
+<h3 id="configurando-las-variables-de-entorno">Configurando las variables de entorno</h3>
+
+<p>El archivo <code class="highlighter-rouge">config.inc.php</code> de PHPMyAdmin necesitará dos variables de entorno:</p>
+
+<ul>
+  <li><a href="https://github.com/smsaladi/phpmyadmin_heroku/blob/cb0930fc82ffed1facb50ecd010b4be29b31c614/config.inc.php#L31">MYSQL_HOST</a></li>
+  <li><a href="https://github.com/smsaladi/phpmyadmin_heroku/blob/cb0930fc82ffed1facb50ecd010b4be29b31c614/config.inc.php#L17">PHPMYADMIN_BLOWFISH_SECRET</a></li>
+</ul>
+
+<p>Para generar la variable <code class="highlighter-rouge">PHPMYADMIN_BLOWFISH_SECRET</code>, solo use un generador de hash SHA-1 o MD5 online (que no almacene los datos en su base de datos :joy:, por ejemplo sha1-online.com). Una vez que hayas creado uno, simplemente configúralo con <a href="https://devcenter.heroku.com/articles/getting-started-with-php#define-config-vars">este comando</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>heroku config:set <span class="nv">PHPMYADMIN_BLOWFISH_SECRET</span><span class="o">=</span>&lt;<span class="nb">hash</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>La variable <code class="highlighter-rouge">MYSQL_HOST</code> se puede extraer del <code class="highlighter-rouge">heroku config: get JAWSDB_URL</code> que expliqué antes. Simplemente siga su formato (<code class="highlighter-rouge">mysql://nombre de usuario:contraseña@nombre de host:puerto/default_schema</code>)</p>
+
+<p>Y configúralo como expliqué antes para la clave “<strong>PHPMYADMIN_BLOWFISH_SECRET</strong>”.</p>
+
+<h3 id="no-puedes-iniciar-sesión-usando-ssl">¿No puedes iniciar sesión usando SSL?</h3>
+
+<p>Bueno, ese comportamiento se esperaría si usas Heroku gratis y Cloudflare con SSL.</p>
+
+<p>Si siguió la Parte 2 de este tutorial, deberá desactivar la opción <strong>“Usar siempre HTTPS”</strong> en <strong>Crypto</strong> dentro de tu panel de control y crear algunas reglas para mantener a los usuarios redirigidos al protocolo <strong>https</strong>:</p>
+
+<ul>
+  <li>https://sql.example.com/
+    <ul>
+      <li>Regla =&gt; SSL: desactivado</li>
+    </ul>
+  </li>
+  <li>http: //*example.com/*
+    <ul>
+      <li>Regla =&gt; Usar siempre HTTPS</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Haz clic en <strong>“Guardar e implementar”</strong>.</p>
+
+<p><strong>Consejo importante:</strong> No inicie sesións en tu base de datos en un wifi público debido a un posible <a href="https://es.wikipedia.org/wiki/Ataque_de_intermediario"><em>ataque MitM (de intermediario)</em></a>.</p>
+
+<p><strong>¡Un saludo!</strong></p>
+:ET

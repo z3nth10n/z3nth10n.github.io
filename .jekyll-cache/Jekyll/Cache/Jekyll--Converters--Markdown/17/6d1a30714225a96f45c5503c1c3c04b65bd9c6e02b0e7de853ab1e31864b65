@@ -1,0 +1,110 @@
+I"�<p>En este post explicaré como usar el plugin llamado <strong>jekyll-patreon</strong>, el cual he creado para poder implementar un widget el cual nos muestre información sobre nuestro perfil de Patreon.</p>
+
+<p><strong>Nota:</strong> Este plugin requiere Ruby 2.5+ y Jekyll 3.8+</p>
+
+<h2 id="para-que-sirve-este-plugin">¿Para que sirve este plugin?</h2>
+
+<blockquote>
+  <p>Esto es un plugin para Jekyll que añade soporte a Patreon dentro de tu blog para incrustar un widget con metas</p>
+</blockquote>
+
+<h2 id="características">Características</h2>
+
+<ul>
+  <li>Implementa varios tipos de diseños: default, fancy, minimal, streamlined, reversed, swapped</li>
+  <li>Implementa varios tipos de colores: red, green, orange, red nostripes, green nostripes, orange nostripes, blue nostripes</li>
+  <li>Implementa internacionalización (compatible con <a href="https://github.com/vwochnik/jekyll-language-plugin">jekyll-language-plugin</a>)</li>
+  <li>Implementa el formato Markdown en las descripciones de tus metas de Patreon</li>
+</ul>
+
+<blockquote>
+  <p>Para ver todos los posibles estilos y diseños navega a <a href="https://github.com/uta-org/jekyll-patreon/tree/master/assets">la carpeta assets del repositorio</a>, aquí podrás ver los pantallazos</p>
+</blockquote>
+
+<h2 id="instalación">Instalación</h2>
+
+<p>Añade esta línea al Gemfile de tu sitio:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'jekyll-patreon'</span>
+</code></pre></div></div>
+
+<p>Añade esta configuración a tu _config.yml:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">####################</span>
+<span class="c1"># Patreon Settings #</span>
+<span class="c1">####################</span>
+
+<span class="na">patreon</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">design</span><span class="pi">:</span> <span class="s1">'</span><span class="s">default'</span> <span class="c1"># Supports the following desings: default, fancy, minimal, streamlined, reversed, swapped</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Example</span><span class="nv"> </span><span class="s">title'</span>
+    <span class="na">metercolor</span><span class="pi">:</span> <span class="s1">'</span><span class="s">green'</span> <span class="c1"># Supports the following colors: red, green, orange, red nostripes, green nostripes, orange nostripes, blue nostripes</span>
+    <span class="na">toptext</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Example</span><span class="nv"> </span><span class="s">top</span><span class="nv"> </span><span class="s">text'</span> <span class="c1"># Text that appears in before the progress bar (optional)</span>
+    <span class="na">bottomtext</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Example</span><span class="nv"> </span><span class="s">bottom</span><span class="nv"> </span><span class="s">text'</span> <span class="c1"># Text that appears in after the progress bar (optional)</span>
+    <span class="na">showgoaltext</span><span class="pi">:</span> <span class="no">true</span> <span class="c1"># Display the goal text?</span>
+    <span class="na">showbutton</span><span class="pi">:</span> <span class="no">true</span> <span class="c1"># Display the "Become a patron" button?</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Your</span><span class="nv"> </span><span class="s">username</span><span class="nv"> </span><span class="s">here'</span>
+    <span class="na">default_lang</span><span class="pi">:</span> <span class="s2">"</span><span class="s">en"</span> <span class="c1"># The default language to use (to avoid writing twice the same text from Patreon)</span>
+</code></pre></div></div>
+
+<h2 id="uso">Uso</h2>
+
+<p>Simplemente pon el siguiente tag donde lo quieras usar:</p>
+
+<pre>
+   <code>
+        {% patreon %}
+   </code>
+</pre>
+
+<h3 id="i18n-internacionalización">i18n (internacionalización)</h3>
+
+<p>Para implementar los idiomas solamente usa la configuración de <a href="https://github.com/vwochnik/jekyll-language-plugin">jekyll-language-plugin</a>. O si no lo usas, sigue los siguientes pasos:</p>
+
+<p>Primero, en tu index.html principal (o donde necesites usar la internacionalización) declara las siguientes líneas:</p>
+
+<pre><code data-trim="" class="yaml">
+–––
+layout: &lt;layout&gt;
+language: en
+–––
+</code></pre>
+
+<p>O si quieres implementar varios idiomas en la misma página:</p>
+
+<pre><code data-trim="" class="yaml">
+–––
+layout: &lt;layout&gt;
+languages:
+- en
+- es
+–––
+</code></pre>
+
+<p>Después, en “_data/lang/” crea un archibvo para cada idioma.</p>
+
+<blockquote>
+  <p>Por ejemplo: <code class="highlighter-rouge">en.yml</code> y <code class="highlighter-rouge">es.yml</code>.</p>
+</blockquote>
+
+<p>Después, escribe las traducciones de tus metas así:</p>
+
+<pre><code data-trim="" class="yaml">
+#################
+# Patreon Goals #
+#################
+
+patreon_goal_0: "..."
+patreon_goal_1: "..."
+patreon_goal_2: "..."
+# etc etc...
+</code></pre>
+
+<p>Aquí deberás de crear tantas traducciones como metas tengas en la página/perfil de Patreon. (<strong>Nota:</strong> el índice de comienzo es el 0 (cero))</p>
+
+<h2 id="problemas">¿Problemas?</h2>
+
+<p>¿Tienes problemas? Repórtalos en <a href="https://github.com/uta-org/jekyll-patreon/issues">la sección de problemas</a>. <strong>¡Gracias por el feedback!</strong></p>
+
+<p><strong>¡Un saludo!</strong></p>
+:ET
