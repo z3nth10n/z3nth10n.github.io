@@ -316,8 +316,8 @@
 
 .product p {
     margin: 0 5px!important;
-    align-self: center;
-    width: 100%;
+    align-self: center!important;
+    width: 100%!important;
 }
 
 .product p:not(.name) {
@@ -334,6 +334,6 @@
 
 .slider__frame {
     box-shadow: none!important;
-    align-self: center;
-    flex-flow: wrap;
+    align-self: center!important;
+    flex-flow: wrap!important;
 }
