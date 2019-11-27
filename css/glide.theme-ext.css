@@ -329,3 +329,7 @@
 .product .description {
     font-size: 80%;
 }
+
+.slider__frame {
+    box-shadow: none!important;
+}
