@@ -15,7 +15,7 @@ pkg/
 test/
 _deploy/*
 .jekyll-metadata
-.jekyll.cache/*
+.jekyll-cache/*
 /.idea/
 /_jekyll_ga/
 

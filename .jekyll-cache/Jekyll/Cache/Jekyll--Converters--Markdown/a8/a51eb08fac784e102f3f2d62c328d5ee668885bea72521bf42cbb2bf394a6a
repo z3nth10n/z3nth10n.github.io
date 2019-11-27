@@ -1,2 +1,0 @@
-I"A<p>These are two scripts that I use to name the Threads, so when I run a <a href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.threadpool.queueuserworkitem?view=netframework-4.7.2"><code class="highlighter-rouge">ThreadPool.QueueUserWorkItem</code></a> (for example) I can know the name of the Queue.</p>
-:ET
