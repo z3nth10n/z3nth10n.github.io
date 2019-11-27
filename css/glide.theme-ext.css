@@ -334,6 +334,6 @@
 
 .slider__frame {
     box-shadow: none!important;
-    align-self: center!important;
+    display: flex!important;
     flex-flow: wrap!important;
 }
