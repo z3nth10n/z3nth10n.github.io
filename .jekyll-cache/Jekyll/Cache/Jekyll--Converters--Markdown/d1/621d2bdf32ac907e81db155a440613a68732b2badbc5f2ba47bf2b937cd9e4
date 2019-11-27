@@ -1,2 +1,0 @@
-I"<p>Todos los tutoriales que he leído hasta el momento de <strong>cómo instalar vsftpd</strong> comienzan de la misma forma, <strong>advirtiendo de que el protocolo FTP es inseguro porque no está cifrado</strong>. Esto es cierto, pero también es cierto que si queremos montar un servidor FTP local para uso propio, usar vsftpd es la solución más rápida y sencilla. Por este motivo me decidí a escribir este <strong>tutorial de cómo instalar vsftpd en Linux Ubuntu y configurarlo correctamente paso a paso</strong>.</p>
-:ET
