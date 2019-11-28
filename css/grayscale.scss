@@ -587,17 +587,39 @@ body.light box {
 
         /* CUSTOM STYLES */
         
-         .issue-report {
-            width: 100%;
+        .popup-red {
             background-color: $header-background-color;
             color: $font-color;
+            
+            a {
+                color: darken($font-color, 15%);
+            }
+        }
+        
+        .popup-green {
+            background-color: lighten(green, 50%);
+            color: black;
+        }
+        
+        .popup-dserver {
+            position: absolute;
+        }
+        
+         .popup {
+            width: 100%;
             margin-bottom: 75px;
             text-align: center;
             padding: 5px 0;
+             
             a {
-                color: darken($font-color, 15%);
                 text-decoration: underline;
             }
+             
+             .close {
+                 float: right;
+                 opacity: 1!important;
+                 margin-right: 20px;
+             }
          }
         
         .presentation-sidebar .label {
