@@ -19,6 +19,7 @@
 
 <!--- JQuery Cookies -->
 <script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 <!--- LINQ for JS -->
 <script src="{{ site.baseurl }}/js/plugins/linq.min.js"></script>
@@ -57,7 +58,7 @@
         {
           var element = assetStoreProjects[elIndex];
             
-          // $(".timeline.expandable").append(appendProduct(element, items));
+          $(".product-slider").append(appendProduct(element, items));
           ++items;
         }
         
@@ -65,7 +66,7 @@
           type: 'carousel',
           perView: 4,
           focusAt: 'center',
-          time: 2000,
+          autoplay: 7000,
           breakpoints: {
             800: {
               perView: 2
@@ -77,8 +78,6 @@
         });
 
         glide.mount();
-        
-        attachPopup("popup-dserver");
     });
     
     function attachPopup(popupName) {
@@ -98,9 +97,46 @@
           setCookie(popupName, "true", 365);
         });
           
-          popup.append(close);
+        popup.append(close);
       }
     }
+
+    function appendProduct(el, index) {
+        // TODO: Create first the product on the asset-store-products.html and then import here
+
+        /* var li = $("<li " + (index % 2 != 0 ? 'class="timeline-inverted"' : '') + "></li>");
+          
+        li.append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
+          
+        var panel = $('<div class="timeline-panel"></div>');
+          
+        panel.append($('<div class="timeline-heading"></div>').append($("<h4></h4>").text(el.date)));
+        panel.append($('<div class="timeline-body"></div>').html(converter.makeHtml(el.description)));
+          
+        if(el.url != "") 
+            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("{% t 'see_ref' %}")));
+          
+        li.append(panel);
+          
+        return li; */
+        
+        /*
+        <li class="slider__frame glide__slide product">
+          <p class="image">
+              <img src="https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/getassetpreview/small.png" alt="">
+          </p>
+          <p class="name">Name</p>
+          <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, perferendis, maiores. Maiores corrupti voluptates totam debitis eum veritatis dolor iure dignissimos, fugiat voluptatum iusto, commodi. Ipsam voluptatum, sapiente ducimus eveniet!</p>
+          <p>Free</p>
+          <p class="text-center">
+              <button type="button" class="btn btn-primary">See product</button>
+          </p>
+        </li>
+        */
+        
+        var li = $('<li class="slider__frame glide__slide product"></li>');
+        li.append($("<p class='image'></p>").append($('<img src="https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/getassetpreview/small.png" alt="">')));
+      }
     
     function setCookie(name,value,days) {
         var expires = "";
@@ -126,26 +162,11 @@
     function eraseCookie(name) {   
         document.cookie = name+'=; Max-Age=-99999999;';  
     }
-
-    function appendProduct(el, index) {
-        // TODO: Create first the product on the asset-store-products.html and then import here
-
-        /* var li = $("<li " + (index % 2 != 0 ? 'class="timeline-inverted"' : '') + "></li>");
-          
-        li.append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
-          
-        var panel = $('<div class="timeline-panel"></div>');
-          
-        panel.append($('<div class="timeline-heading"></div>').append($("<h4></h4>").text(el.date)));
-        panel.append($('<div class="timeline-body"></div>').html(converter.makeHtml(el.description)));
-          
-        if(el.url != "") 
-            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("{% t 'see_ref' %}")));
-          
-        li.append(panel);
-          
-        return li; */
-      }
+    
+    $(window).on('load', function() {
+      // executes when complete page is fully loaded, including all frames, objects and images
+      attachPopup("popup-dserver");
+    });   
 </script>
 
 <!--- Disqus Count -->

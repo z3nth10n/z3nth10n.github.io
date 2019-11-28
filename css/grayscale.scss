@@ -605,7 +605,7 @@ body.light box {
             position: absolute;
         }
         
-         .popup {
+        .popup {
             width: 100%;
             margin-bottom: 75px;
             text-align: center;
@@ -623,6 +623,10 @@ body.light box {
                  text-shadow: none!important;
              }
          }
+        
+        .popup-hide {
+            display: none;
+        }
         
         .presentation-sidebar .label {
             display: inline-block;
