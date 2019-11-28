@@ -561,7 +561,7 @@ window.cookieconsent.initialise({
 <!-- Javascript Start -->
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -574,10 +574,11 @@ window.cookieconsent.initialise({
 <script src="/js/plugins/jquery.fittext.min.js"></script>
 
 <!-- Markdownify for JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
 
 <!--- JQuery Cookies -->
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 <!--- LINQ for JS -->
 <script src="/js/plugins/linq.min.js"></script>
@@ -624,6 +625,7 @@ window.cookieconsent.initialise({
           type: 'carousel',
           perView: 4,
           focusAt: 'center',
+          time: 2000,
           breakpoints: {
             800: {
               perView: 2
@@ -635,7 +637,33 @@ window.cookieconsent.initialise({
         });
 
         glide.mount();
+        
+        attachPopup("popup-dserver");
     });
+    
+    function attachPopup(popupName) {
+      // if no cookie
+      if ($.cookie(popupName) != "true") {
+        var popup = $("." + popupName);
+        popup.show();
+          
+        var close = $("<div>");
+        close.addClass("close");
+        close.text("X");  
+          
+        close.click(function () {
+          $("." + popupName).slideUp("slow");
+          // set the cookie for 24 hours
+          var date = new Date();
+          date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000);
+          $.cookie(popupName, "true", {
+            expires: date
+          });
+        });
+          
+          popup.append(close);
+      }
+    }
 
     function appendProduct(el, index) {
         // TODO: Create first the product on the asset-store-products.html and then import here

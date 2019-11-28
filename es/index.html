@@ -277,6 +277,10 @@ window.cookieconsent.initialise({
 
 <!-- Intro Start -->
 
+<div class="popup popup-green popup-dserver">
+    OFRECEMOS UN SERVIDOR DEDICADO POR UN BUEN PRECIO, SI ESTÁS INTERESADO POR FAVOR VISITA <a href="https://short.z3nth10n.net/bxEe3">ESTE ENLACE</a>.
+</div>
+
 <header class="intro">
   <div class="intro-body">
     <div class="container-fluid">
@@ -315,7 +319,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
   </div>
 </header>
 
-<div class="issue-report">
+<div class="popup popup-red">
     Esta página sigue en desarrollo. Si has tenido algún problema o alguna idea para este sitio, por favor <a href="https://github.com/z3nth10n/z3nth10n.github.io/issues">reportalo aquí</a>.
 </div>
 
@@ -1035,7 +1039,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
 <!-- Javascript Start -->
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -1048,10 +1052,11 @@ If you want to have a static message in your intro layout, disable the dynamic-t
 <script src="/js/plugins/jquery.fittext.min.js"></script>
 
 <!-- Markdownify for JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
 
 <!--- JQuery Cookies -->
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 <!--- LINQ for JS -->
 <script src="/js/plugins/linq.min.js"></script>
@@ -1098,6 +1103,7 @@ If you want to have a static message in your intro layout, disable the dynamic-t
           type: 'carousel',
           perView: 4,
           focusAt: 'center',
+          time: 2000,
           breakpoints: {
             800: {
               perView: 2
@@ -1109,7 +1115,33 @@ If you want to have a static message in your intro layout, disable the dynamic-t
         });
 
         glide.mount();
+        
+        attachPopup("popup-dserver");
     });
+    
+    function attachPopup(popupName) {
+      // if no cookie
+      if ($.cookie(popupName) != "true") {
+        var popup = $("." + popupName);
+        popup.show();
+          
+        var close = $("<div>");
+        close.addClass("close");
+        close.text("X");  
+          
+        close.click(function () {
+          $("." + popupName).slideUp("slow");
+          // set the cookie for 24 hours
+          var date = new Date();
+          date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000);
+          $.cookie(popupName, "true", {
+            expires: date
+          });
+        });
+          
+          popup.append(close);
+      }
+    }
 
     function appendProduct(el, index) {
         // TODO: Create first the product on the asset-store-products.html and then import here
