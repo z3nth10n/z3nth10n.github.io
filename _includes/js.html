@@ -54,11 +54,13 @@
         var assetStoreProjects = parseLiquid('{% t "asset-store-projects" %}');
         var items = 0;
         
+        console.log(assetStoreProjects);
+        
         for(var elIndex in assetStoreProjects) 
         {
           var element = assetStoreProjects[elIndex];
             
-          $(".product-slider").append(appendProduct(element, items));
+          appendSlide(element, items);
           ++items;
         }
         
@@ -101,6 +103,11 @@
       }
     }
 
+    function appendSlide(el, index) {
+       $(".product-slider").append(appendProduct(el, index));
+       $(".product-bullets").append($('<button class="slider__bullet glide__bullet" data-glide-dir="='+index+'"></button>'));
+    }
+    
     function appendProduct(el, index) {
         // TODO: Create first the product on the asset-store-products.html and then import here
 
@@ -135,7 +142,18 @@
         */
         
         var li = $('<li class="slider__frame glide__slide product"></li>');
-        li.append($("<p class='image'></p>").append($('<img src="https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/getassetpreview/small.png" alt="">')));
+        
+        var imgUrl = el["art-stage"] == "no-artwork" ? "img/assets/unknown.png"
+            : 'https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/'+el.id+'/small.png';
+        
+        li.append($("<p class='image'></p>").append($('<img src="'+imgUrl+'" alt="">')));
+        li.append($("<p class='name'>").text(el.title));        
+        li.append($("<p class='description'>").text(el.description));
+        li.append($("<p>").text(el.price));
+        li.append($("<p class='text-center'>").append($("<button>").addClass("btn btn-primary").text("See product"))); // TODO: Implement a href
+
+        
+        return li;
       }
     
     function setCookie(name,value,days) {
