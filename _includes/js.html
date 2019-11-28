@@ -19,7 +19,6 @@
 
 <!--- JQuery Cookies -->
 <script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 <!--- LINQ for JS -->
 <script src="{{ site.baseurl }}/js/plugins/linq.min.js"></script>
@@ -84,7 +83,7 @@
     
     function attachPopup(popupName) {
       // if no cookie
-      if ($.cookie(popupName) != "true") {
+      if (getCookie(popupName) != "true") {
         var popup = $("." + popupName);
         popup.show();
           
@@ -94,16 +93,38 @@
           
         close.click(function () {
           $("." + popupName).slideUp("slow");
-          // set the cookie for 24 hours
-          var date = new Date();
-          date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000);
-          $.cookie(popupName, "true", {
-            expires: date
-          });
+            
+          // set the cookie for a year
+          setCookie(popupName, "true", 365);
         });
           
           popup.append(close);
       }
+    }
+    
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    
+    function eraseCookie(name) {   
+        document.cookie = name+'=; Max-Age=-99999999;';  
     }
 
     function appendProduct(el, index) {
