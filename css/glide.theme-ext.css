@@ -357,6 +357,6 @@
 
 @media (max-width: 576px) {
     .product .name {
-        text-align: center;
+        text-align: center!important;
     }
 }
