@@ -655,7 +655,7 @@ window.cookieconsent.initialise({
           post.anchorify();
         }
 
-        var assetStoreProjects = parseLiquid('{"id"=>"getassetpreview", "title"=>"GetAssetPreview", "url"=>"", "description"=>"“GetAssetPreview in UnityEngine” will provide you a method to create previews for your GameObjects in-game.", "blog-link"=>"", "price"=>"Free", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzlib.lite", "title"=>"uzLib.Lite", "url"=>"", "description"=>"The Lite version of my paid uzLib (Unity3D) API used as dependency of my open-source repos.", "blog-link"=>"", "price"=>"7,5$", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzsurfacemapper", "title"=>"uzSurfaceMapper", "url"=>"", "description"=>"uzSurfaceMapper is an asset that implements a system that reads “specific format” texture maps and converts it on a 3D map.", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzsourcetoolkit", "title"=>"uzSourceToolkit", "url"=>"", "description"=>"uzSourceToolkit is an asset that implements a set of tools to interact with Source’s (company) games. This implements a system to read textures, models, maps, sounds and import into a Unity3D scene. (This only works if you have a legal copy of the games)", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzcraft", "title"=>"uzCraft", "url"=>"", "description"=>"uzCraft is an asset that aims to import Minecraft worlds into Unity3D and export them to 3D model formats (like FBX or OBJ).", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"uzBuildingSystem is an asset that implements a way to build structures easily.", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzproceduralcitygen", "title"=>"uzProceduralCityGen", "url"=>"", "description"=>"uzProceduralCityGen is an asset that implements a system to build / generate procedural cities without effort.", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzlib", "title"=>"uzLib", "url"=>"", "description"=>"???", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}');
+        var assetStoreProjects = parseLiquid('{"id"=>"getassetpreview", "title"=>"GetAssetPreview", "url"=>"", "description"=>"“GetAssetPreview in UnityEngine” will provide you a method to create previews for your GameObjects in-game.", "blog-link"=>"", "price"=>"7,5$", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzlib.lite", "title"=>"uzLib.Lite", "url"=>"", "description"=>"The Lite version of my paid uzLib (Unity3D) API used as a dependency of my open-source repos.", "blog-link"=>"", "price"=>"Free", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzsurfacemapper", "title"=>"uzSurfaceMapper", "url"=>"", "description"=>"uzSurfaceMapper is an asset that implements a system that reads “specific format” texture maps and converts it on a 3D map.", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzsourcetoolkit", "title"=>"uzSourceToolkit", "url"=>"", "description"=>"uzSourceToolkit is an asset that implements a set of tools to interact with Source’s (company) games. This implements a system to read textures, models, maps, sounds, and import into a Unity3D scene. (This only works if you have a legal copy of the games)", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzcraft", "title"=>"uzCraft", "url"=>"", "description"=>"uzCraft is an asset that aims to import Minecraft worlds into Unity3D and export them to 3D model formats (like FBX or OBJ).", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"uzBuildingSystem is an asset that implements a way to build structures easily.", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzproceduralcitygen", "title"=>"uzProceduralCityGen", "url"=>"", "description"=>"uzProceduralCityGen is an asset that implements a system to build / generate procedural cities without effort.", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzlib", "title"=>"uzLib", "url"=>"", "description"=>"???", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}');
         var items = 0;
         
         console.log(assetStoreProjects);
@@ -672,7 +672,7 @@ window.cookieconsent.initialise({
           type: 'carousel',
           perView: 4,
           focusAt: 'center',
-          autoplay: 7000,
+          autoplay: 10000,
           breakpoints: {
             800: {
               perView: 2
@@ -713,41 +713,10 @@ window.cookieconsent.initialise({
     }
     
     function appendProduct(el, index) {
-        // TODO: Create first the product on the asset-store-products.html and then import here
-
-        /* var li = $("<li " + (index % 2 != 0 ? 'class="timeline-inverted"' : '') + "></li>");
-          
-        li.append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
-          
-        var panel = $('<div class="timeline-panel"></div>');
-          
-        panel.append($('<div class="timeline-heading"></div>').append($("<h4></h4>").text(el.date)));
-        panel.append($('<div class="timeline-body"></div>').html(converter.makeHtml(el.description)));
-          
-        if(el.url != "") 
-            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("See reference...")));
-          
-        li.append(panel);
-          
-        return li; */
-        
-        /*
-        <li class="slider__frame glide__slide product">
-          <p class="image">
-              <img src="https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/getassetpreview/small.png" alt="">
-          </p>
-          <p class="name">Name</p>
-          <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, perferendis, maiores. Maiores corrupti voluptates totam debitis eum veritatis dolor iure dignissimos, fugiat voluptatum iusto, commodi. Ipsam voluptatum, sapiente ducimus eveniet!</p>
-          <p>Free</p>
-          <p class="text-center">
-              <button type="button" class="btn btn-primary">See product</button>
-          </p>
-        </li>
-        */
-        
         var li = $('<li class="slider__frame glide__slide product"></li>');
         
-        var imgUrl = el["art-stage"] == "no-artwork" ? "img/assets/unknown.png"
+        var imgUrl = el["art-stage"] == "no-artwork" 
+            ? "img/assets/unknown.png"
             : 'https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/'+el.id+'/small.png';
         
         li.append($("<p class='image'></p>").append($('<img src="'+imgUrl+'" alt="">')));

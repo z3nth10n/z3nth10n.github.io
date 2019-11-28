@@ -667,7 +667,7 @@ window.cookieconsent.initialise({
           post.anchorify();
         }
 
-        var assetStoreProjects = parseLiquid('{"id"=>"getassetpreview", "title"=>"GetAssetPreview", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzlib.lite", "title"=>"uzLib.Lite", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzsurfacemapper", "title"=>"uzSurfaceMapper", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzsourcetoolkit", "title"=>"uzSourceToolkit", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzcraft", "title"=>"uzCraft", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzproceduralcitygen", "title"=>"uzProceduralCityGen", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzlib", "title"=>"uzLib", "url"=>"", "description"=>"", "blog-link"=>"", "price"=>"", "stage"=>"development", "art-stage"=>"no-artwork"}');
+        var assetStoreProjects = parseLiquid('{"id"=>"getassetpreview", "title"=>"GetAssetPreview", "url"=>"", "description"=>"'GetAssetPreview en UnityEngine' le proporcionará un método para crear vistas previas para sus GameObjects en el juego.", "blog-link"=>"", "price"=>"7,5$", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzlib.lite", "title"=>"uzLib.Lite", "url"=>"", "description"=>"La versión Lite de mi API de pago uzLib (Unity3D) utilizada como dependencia de mis repositorios de código abierto.", "blog-link"=>"", "price"=>"Gratuito", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzsurfacemapper", "title"=>"uzSurfaceMapper", "url"=>"", "description"=>"uzSurfaceMapper es un asset que implementa un sistema que lee mapas de textura de 'formato específico' y lo convierte en un mapa 3D.", "blog-link"=>"", "price"=>"No establecido", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzsourcetoolkit", "title"=>"uzSourceToolkit", "url"=>"", "description"=>"uzSourceToolkit es un asset que implementa un conjunto de herramientas para interactuar con los juegos de Source (empresa). Esto implementa un sistema para leer texturas, modelos, mapas, sonidos, e importarlos en una escena Unity3D. (Esto solo funciona si tienes una copia legal de los juegos)", "blog-link"=>"", "price"=>"No establecido", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzcraft", "title"=>"uzCraft", "url"=>"", "description"=>"uzCraft es un asset que tiene como objetivo importar mundos de Minecraft en Unity3D y exportarlos a formatos de modelo 3D (como FBX u OBJ).", "blog-link"=>"", "price"=>"No establecido", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"uzBuildingSystem es un asset que implementa una forma de construir estructuras fácilmente.", "blog-link"=>"", "price"=>"No establecido", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzproceduralcitygen", "title"=>"uzProceduralCityGen", "url"=>"", "description"=>"uzProceduralCityGen es un asset que implementa un sistema para construir / generar ciudades procedurales sin esfuerzo.", "blog-link"=>"", "price"=>"", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzlib", "title"=>"uzLib", "url"=>"", "description"=>"???", "blog-link"=>"", "price"=>"No establecido", "stage"=>"development", "art-stage"=>"no-artwork"}');
         var items = 0;
         
         console.log(assetStoreProjects);
@@ -684,7 +684,7 @@ window.cookieconsent.initialise({
           type: 'carousel',
           perView: 4,
           focusAt: 'center',
-          autoplay: 7000,
+          autoplay: 10000,
           breakpoints: {
             800: {
               perView: 2
@@ -725,41 +725,10 @@ window.cookieconsent.initialise({
     }
     
     function appendProduct(el, index) {
-        // TODO: Create first the product on the asset-store-products.html and then import here
-
-        /* var li = $("<li " + (index % 2 != 0 ? 'class="timeline-inverted"' : '') + "></li>");
-          
-        li.append($('<div class="timeline-image"></div>').append('<img class="img-circle img-responsive" src="' + el.image + '" alt="">'));
-          
-        var panel = $('<div class="timeline-panel"></div>');
-          
-        panel.append($('<div class="timeline-heading"></div>').append($("<h4></h4>").text(el.date)));
-        panel.append($('<div class="timeline-body"></div>').html(converter.makeHtml(el.description)));
-          
-        if(el.url != "") 
-            panel.append($('<div class="timeline-refurl"></div>').append($('<a href="' + el.url + '"></a>').text("Ver referencia...")));
-          
-        li.append(panel);
-          
-        return li; */
-        
-        /*
-        <li class="slider__frame glide__slide product">
-          <p class="image">
-              <img src="https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/getassetpreview/small.png" alt="">
-          </p>
-          <p class="name">Name</p>
-          <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, perferendis, maiores. Maiores corrupti voluptates totam debitis eum veritatis dolor iure dignissimos, fugiat voluptatum iusto, commodi. Ipsam voluptatum, sapiente ducimus eveniet!</p>
-          <p>Free</p>
-          <p class="text-center">
-              <button type="button" class="btn btn-primary">See product</button>
-          </p>
-        </li>
-        */
-        
         var li = $('<li class="slider__frame glide__slide product"></li>');
         
-        var imgUrl = el["art-stage"] == "no-artwork" ? "img/assets/unknown.png"
+        var imgUrl = el["art-stage"] == "no-artwork" 
+            ? "img/assets/unknown.png"
             : 'https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/'+el.id+'/small.png';
         
         li.append($("<p class='image'></p>").append($('<img src="'+imgUrl+'" alt="">')));
