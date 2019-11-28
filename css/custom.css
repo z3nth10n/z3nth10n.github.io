@@ -306,6 +306,12 @@
     width: calc(100% + 20px);
 }
 
+@media (max-width: 576px) {
+    .twitter hr {
+        display: none;
+    }
+}
+
 /* Anchorify */
 
 .header-link {
