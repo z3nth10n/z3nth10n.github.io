@@ -320,6 +320,10 @@
     width: 100%!important;
 }
 
+.product .btn {
+    width: calc(100% - 20px);
+}
+
 .product p:not(.name) {
     font-weight: normal!important;
 }

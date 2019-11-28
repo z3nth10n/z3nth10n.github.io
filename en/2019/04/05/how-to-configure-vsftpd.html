@@ -695,7 +695,7 @@ pasv_max_port = 9020
         {
           var element = assetStoreProjects[elIndex];
             
-          // $(".timeline.expandable").append(appendProduct(element, items));
+          $(".product-slider").append(appendProduct(element, items));
           ++items;
         }
         
@@ -703,7 +703,7 @@ pasv_max_port = 9020
           type: 'carousel',
           perView: 4,
           focusAt: 'center',
-          time: 2000,
+          autoplay: 7000,
           breakpoints: {
             800: {
               perView: 2
@@ -715,13 +715,11 @@ pasv_max_port = 9020
         });
 
         glide.mount();
-        
-        attachPopup("popup-dserver");
     });
     
     function attachPopup(popupName) {
       // if no cookie
-      if ($.cookie(popupName) != "true") {
+      if (getCookie(popupName) != "true") {
         var popup = $("." + popupName);
         popup.show();
           
@@ -731,15 +729,12 @@ pasv_max_port = 9020
           
         close.click(function () {
           $("." + popupName).slideUp("slow");
-          // set the cookie for 24 hours
-          var date = new Date();
-          date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000);
-          $.cookie(popupName, "true", {
-            expires: date
-          });
+            
+          // set the cookie for a year
+          setCookie(popupName, "true", 365);
         });
           
-          popup.append(close);
+        popup.append(close);
       }
     }
 
@@ -761,7 +756,54 @@ pasv_max_port = 9020
         li.append(panel);
           
         return li; */
+        
+        /*
+        <li class="slider__frame glide__slide product">
+          <p class="image">
+              <img src="https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/getassetpreview/small.png" alt="">
+          </p>
+          <p class="name">Name</p>
+          <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, perferendis, maiores. Maiores corrupti voluptates totam debitis eum veritatis dolor iure dignissimos, fugiat voluptatum iusto, commodi. Ipsam voluptatum, sapiente ducimus eveniet!</p>
+          <p>Free</p>
+          <p class="text-center">
+              <button type="button" class="btn btn-primary">See product</button>
+          </p>
+        </li>
+        */
+        
+        var li = $('<li class="slider__frame glide__slide product"></li>');
+        li.append($("<p class='image'></p>").append($('<img src="https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/getassetpreview/small.png" alt="">')));
       }
+    
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    
+    function eraseCookie(name) {   
+        document.cookie = name+'=; Max-Age=-99999999;';  
+    }
+    
+    $(window).on('load', function() {
+      // executes when complete page is fully loaded, including all frames, objects and images
+      attachPopup("popup-dserver");
+    });   
 </script>
 
 <!--- Disqus Count -->
