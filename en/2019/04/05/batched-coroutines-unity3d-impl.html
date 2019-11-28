@@ -610,14 +610,16 @@ window.cookieconsent.initialise({
           post.anchorify();
         }
 
-        var assetStoreProjects = parseLiquid('{"id"=>"getassetpreview", "title"=>"GetAssetPreview", "url"=>"", "description"=>"“GetAssetPreview in UnityEngine” will provide you a method to create previews for your GameObjects in-game.", "blog-link"=>"", "price"=>"Free", "stage"=>"published"}{"id"=>"uzlib.lite", "title"=>"uzLib.Lite", "url"=>"", "description"=>"The Lite version of my paid uzLib (Unity3D) API used as dependency of my open-source repos.", "blog-link"=>"", "price"=>"Free", "stage"=>"published"}{"id"=>"uzsurfacemapper", "title"=>"uzSurfaceMapper", "url"=>"", "description"=>"uzSurfaceMapper is an asset that implements a system that reads “specific format” texture maps and converts it on a 3D map.", "blog-link"=>"", "price"=>"Free", "stage"=>"development"}{"id"=>"uzsourcetoolkit", "title"=>"uzSourceToolkit", "url"=>"", "description"=>"uzSourceToolkit is an asset that implements a set of tools to interact with Source’s (company) games. This implements a system to read textures, models, maps, sounds and import into a Unity3D scene. (This only works if you have a legal copy of the games)", "blog-link"=>"", "price"=>"Free", "stage"=>"development"}{"id"=>"uzcraft", "title"=>"uzCraft", "url"=>"", "description"=>"uzCraft is an asset that aims to import Minecraft worlds into Unity3D and export them to 3D model formats (like FBX or OBJ).", "blog-link"=>"", "price"=>"Free", "stage"=>"development"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"uzBuildingSystem is an asset that implements a way to build structures easily.", "blog-link"=>"", "price"=>"Free", "stage"=>"no-artwork"}{"id"=>"uzproceduralcitygen", "title"=>"uzProceduralCityGen", "url"=>"", "description"=>"uzProceduralCityGen is an asset that implements a system to build / generate procedural cities without effort.", "blog-link"=>"", "price"=>"Free", "stage"=>"no-artwork"}{"id"=>"uzlib", "title"=>"uzLib", "url"=>"", "description"=>"???", "blog-link"=>"", "price"=>"Free", "stage"=>"no-artwork"}');
+        var assetStoreProjects = parseLiquid('{"id"=>"getassetpreview", "title"=>"GetAssetPreview", "url"=>"", "description"=>"“GetAssetPreview in UnityEngine” will provide you a method to create previews for your GameObjects in-game.", "blog-link"=>"", "price"=>"Free", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzlib.lite", "title"=>"uzLib.Lite", "url"=>"", "description"=>"The Lite version of my paid uzLib (Unity3D) API used as dependency of my open-source repos.", "blog-link"=>"", "price"=>"7,5$", "stage"=>"published", "art-stage"=>"artwork"}{"id"=>"uzsurfacemapper", "title"=>"uzSurfaceMapper", "url"=>"", "description"=>"uzSurfaceMapper is an asset that implements a system that reads “specific format” texture maps and converts it on a 3D map.", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzsourcetoolkit", "title"=>"uzSourceToolkit", "url"=>"", "description"=>"uzSourceToolkit is an asset that implements a set of tools to interact with Source’s (company) games. This implements a system to read textures, models, maps, sounds and import into a Unity3D scene. (This only works if you have a legal copy of the games)", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzcraft", "title"=>"uzCraft", "url"=>"", "description"=>"uzCraft is an asset that aims to import Minecraft worlds into Unity3D and export them to 3D model formats (like FBX or OBJ).", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzbuildingsystem", "title"=>"uzBuildingSystem", "url"=>"", "description"=>"uzBuildingSystem is an asset that implements a way to build structures easily.", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzproceduralcitygen", "title"=>"uzProceduralCityGen", "url"=>"", "description"=>"uzProceduralCityGen is an asset that implements a system to build / generate procedural cities without effort.", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}{"id"=>"uzlib", "title"=>"uzLib", "url"=>"", "description"=>"???", "blog-link"=>"", "price"=>"Unknown", "stage"=>"development", "art-stage"=>"no-artwork"}');
         var items = 0;
+        
+        console.log(assetStoreProjects);
         
         for(var elIndex in assetStoreProjects) 
         {
           var element = assetStoreProjects[elIndex];
             
-          $(".product-slider").append(appendProduct(element, items));
+          appendSlide(element, items);
           ++items;
         }
         
@@ -660,6 +662,11 @@ window.cookieconsent.initialise({
       }
     }
 
+    function appendSlide(el, index) {
+       $(".product-slider").append(appendProduct(el, index));
+       $(".product-bullets").append($('<button class="slider__bullet glide__bullet" data-glide-dir="='+index+'"></button>'));
+    }
+    
     function appendProduct(el, index) {
         // TODO: Create first the product on the asset-store-products.html and then import here
 
@@ -694,7 +701,18 @@ window.cookieconsent.initialise({
         */
         
         var li = $('<li class="slider__frame glide__slide product"></li>');
-        li.append($("<p class='image'></p>").append($('<img src="https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/getassetpreview/small.png" alt="">')));
+        
+        var imgUrl = el["art-stage"] == "no-artwork" ? "img/assets/unknown.png"
+            : 'https://raw.githubusercontent.com/uta-org/artwork/master/asset-store/products/'+el.id+'/small.png';
+        
+        li.append($("<p class='image'></p>").append($('<img src="'+imgUrl+'" alt="">')));
+        li.append($("<p class='name'>").text(el.title));        
+        li.append($("<p class='description'>").text(el.description));
+        li.append($("<p>").text(el.price));
+        li.append($("<p class='text-center'>").append($("<button>").addClass("btn btn-primary").text("See product"))); // TODO: Implement a href
+
+        
+        return li;
       }
     
     function setCookie(name,value,days) {

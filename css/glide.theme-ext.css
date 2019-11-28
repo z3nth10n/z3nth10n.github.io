@@ -336,8 +336,27 @@
     font-size: 80%;
 }
 
+.product .image > img {
+    max-width: 200px;
+    max-height: 124px;
+}
+
 .slider__frame {
     box-shadow: none!important;
     display: flex!important;
     flex-flow: wrap!important;
+}
+
+.product-bullets {
+    bottom: -25px;
+}
+
+.glide {
+    margin-bottom: 25px;
+}
+
+@media (max-width: 576px) {
+    .product .name {
+        text-align: center;
+    }
 }
