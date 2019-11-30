@@ -32,13 +32,13 @@ group :jekyll_plugins do
   gem 'yajl-ruby', '~> 1.2', '>= 1.2.0'
   if ENV["JEKYLL_ENV"] == "production"
       gem 'jekyll-paginate-v2', github: 'uta-org/jekyll-paginate-v2'
-      gem 'jekyll-emoji', github: 'uta-org/jekyll-emoji'
+      # gem 'jekyll-emoji', github: 'uta-org/jekyll-emoji'
       gem 'jekyll-language-plugin', github: "uta-org/jekyll-language-plugin"
       gem 'jekyll-twitter-plugin', github: "uta-org/jekyll-twitter-plugin"
       gem 'jekyll-patreon', github: "uta-org/jekyll-patreon"
   else
       gem 'jekyll-paginate-v2', path: '_plugins/jekyll-paginate-v2'
-      gem 'jekyll-emoji', path: '_plugins/jekyll-emoji'
+      # gem 'jekyll-emoji', path: '_plugins/jekyll-emoji'
       gem 'jekyll-language-plugin', path: "_plugins/jekyll-language-plugin"
       gem 'jekyll-twitter-plugin', path: "_plugins/jekyll-twitter-plugin"
       gem 'jekyll-patreon', path: "_plugins/jekyll-patreon"

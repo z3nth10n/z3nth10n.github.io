@@ -310,7 +310,7 @@ sass:
 plugins:
   - jekyll-paginate-v2
   - jemoji
-  - jekyll-emoji
+  # - jekyll-emoji
   - iconv
   - nokogiri
   - jekyll-twitter-plugin

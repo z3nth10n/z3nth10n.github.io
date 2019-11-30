@@ -13,3 +13,6 @@
 [submodule "_plugins/jekyll-twitter-plugin"]
 	path = _plugins/jekyll-twitter-plugin
 	url = https://github.com/uta-org/jekyll-twitter-plugin.git
+# [submodule "_plugins/jekyll-emoji"]
+# 	path = _plugins/jekyll-emoji
+# 	url = https://github.com/uta-org/jekyll-emoji.git
