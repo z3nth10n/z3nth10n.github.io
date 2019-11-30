@@ -51,10 +51,10 @@
           post.anchorify();
         }
 
-        var assetStoreProjects = parseLiquid('{% t "asset-store-projects" %}');
-        var items = 0;
+        var assetStoreProjects = parseLiquid('{% t "asset-store-projects" %}'),
+            items = 0;
         
-        console.log(assetStoreProjects);
+        // console.log(assetStoreProjects);
         
         for(var elIndex in assetStoreProjects) 
         {
@@ -434,11 +434,7 @@ $(".navbar-collapse ul li a").click(function() {
     });
 </script>
 
-{% if site.syntax-highlight and (page.section-type == "post" or page.section-type == "category") %}
-
 {% include js-forcehighlight.html %}
-
-{% endif %}
 
 {% if jekyll.environment == "production" %}
   {% if site.google-tracking-id %}

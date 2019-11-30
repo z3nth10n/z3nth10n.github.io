@@ -2,24 +2,11 @@
 
 {% include js-funcs.html %}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>
-
-    var highlighterLoad 
-    jQueryCode = function(){
-        // your jQuery code
-        loadScript("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js");
-
-        setTimeout(function() {
-            $('pre code').each(function(i, block) {
-                hljs.highlightBlock(block);
-            });
-        }, 200);
-    }
-
-    if(window.jQuery)  jQueryCode();
-    else{   
-        var script = loadScript("https://code.jquery.com/jquery-latest.min.js");
-
-        script.onload = jQueryCode;
-    }
+    $(document).ready(function() {
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
 </script>
