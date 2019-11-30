@@ -61,7 +61,7 @@ $(document).ready(function() {
         console.log("Assigning theme to frames (" + frames.length + ")");
 
         frames.each(function() {
-            $(this).load(function() { // body.addClass("net " + getCurrentTheme() + " js-theme-wrapper");
+            $(this).on('load', function() { // body.addClass("net " + getCurrentTheme() + " js-theme-wrapper");
                 var body = $(this).contents().find("body");
                 curWrappers.push(body);
 

@@ -26,6 +26,8 @@
     
   
     
+  
+    
       <url>
         <loc>http://z3nth10n.net/en/blog/</loc>
         
@@ -109,8 +111,51 @@
     
   
     
+  
+    
+  
+    
       <url>
         <loc>http://z3nth10n.net/en/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>http://z3nth10n.net/en/2/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>http://z3nth10n.net/en/3/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>http://z3nth10n.net/en/4/index.html</loc>
         
           
           
@@ -136,7 +181,72 @@
   
     
       <url>
+        <loc>http://z3nth10n.net/es/2/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>http://z3nth10n.net/es/3/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
         <loc>http://z3nth10n.net/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>http://z3nth10n.net/2/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>http://z3nth10n.net/3/index.html</loc>
+        
+          
+          
+          
+          <priority>1.0</priority>
+          
+        
+       </url>
+    
+  
+    
+      <url>
+        <loc>http://z3nth10n.net/4/index.html</loc>
         
           
           

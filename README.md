@@ -2,6 +2,8 @@
 
 This is the z3nth10n webpage source code. I will update this whenever I can.
 
+**IMPORTANT NOTE:** YOU MUST USE `git submodule update --init --recursive` IF YOU ARE IN A *DEVELOPING ENVIRONMENT* TO CATCH ALL MISSING _PLUGINS DEPENDENCIES.
+
 ## Do you want to setup / clone in local?
 
 Then use the following commands in [initial_setup file tutorial](/scripts/initial_setup.md).
