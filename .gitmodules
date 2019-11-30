@@ -10,3 +10,6 @@
 # [submodule "_plugins/jekyll-ga-v2"]
 # 	path = _plugins/jekyll-ga-v2
 # 	url = https://github.com/uta-org/jekyll-ga-v2.git
+[submodule "_plugins/jekyll-twitter-plugin"]
+	path = _plugins/jekyll-twitter-plugin
+	url = https://github.com/uta-org/jekyll-twitter-plugin.git
